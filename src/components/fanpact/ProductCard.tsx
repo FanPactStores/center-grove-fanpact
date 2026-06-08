@@ -52,6 +52,17 @@ export function ProductCard({
             Out of Stock
           </div>
         )}
+        {onList && (
+          <div
+            className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-bold uppercase tracking-wider shadow"
+            style={{
+              background: "var(--community)",
+              color: "var(--community-foreground)",
+            }}
+          >
+            <Check className="h-3 w-3" /> On your list
+          </div>
+        )}
         <div
           className="absolute bottom-3 right-3 rounded-md px-2 py-1 text-[10px] font-bold tabular-nums shadow"
           style={{ background: "var(--community)", color: "var(--community-foreground)" }}
