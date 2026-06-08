@@ -73,14 +73,14 @@ function MasterHome() {
                 style={{ background: "var(--gold)", color: "var(--gold-foreground)" }}
               >
                 <GraduationCap className="h-5 w-5" />
-                Select your school
+                Select your college
               </a>
               <a
                 href="#youth"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
               >
                 <Users className="h-5 w-5" />
-                Select your youth alliance
+                Select your youth program
               </a>
             </div>
             <div className="mt-12 flex items-center gap-4 text-xs uppercase tracking-[0.22em] text-white/70">
