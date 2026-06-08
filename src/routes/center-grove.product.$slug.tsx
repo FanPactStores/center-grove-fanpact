@@ -15,6 +15,8 @@ import { getCategory } from "@/data/categories";
 import { STORES } from "@/data/stores";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { usd } from "@/lib/format";
+import { useMyList, productKey } from "@/lib/my-list";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/center-grove/product/$slug")({
   loader: ({ params }) => {
@@ -61,6 +63,8 @@ function ButlerProduct() {
   const store = STORES["center-grove"];
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const { isOnList, addProduct, removeProduct } = useMyList("center-grove");
+  const onList = isOnList(product);
   const [activeImg, setActiveImg] = useState(0);
   const [tab, setTab] = useState<TabKey>("description");
 
@@ -242,6 +246,42 @@ function ButlerProduct() {
                   </>
                 )}
               </button>
+            </div>
+
+            {/* MY LIST toggle */}
+
+
+            {/* MY LIST TOGGLE */}
+            <div className="mt-4">
+              {onList ? (
+                <div className="flex items-center gap-3 rounded-md border border-dashed border-border bg-muted/30 px-4 py-3 text-sm">
+                  <span className="font-semibold text-muted-foreground">
+                    ✓ On Your Regular Purchases List
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      removeProduct(product);
+                      toast("Removed from your regular purchases.");
+                    }}
+                    className="ml-auto text-xs font-semibold underline hover:text-destructive"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    addProduct(product);
+                    toast.success("Added to your regular purchases.");
+                  }}
+                  className="w-full rounded-md border border-dashed border-border bg-[var(--surface)] px-4 py-3 text-sm font-semibold transition-colors hover:border-[var(--brand-accent)] hover:bg-muted"
+                  style={{ color: "var(--brand-accent)" }}
+                >
+                  + Add to My Regular Purchases
+                </button>
+              )}
             </div>
 
             {/* TRUST ROW */}

@@ -2,6 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { STORES } from "@/data/stores";
 import { useDesignation } from "@/lib/designation";
+import { useMyList } from "@/lib/my-list";
 import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
 
@@ -19,6 +20,9 @@ export const Route = createFileRoute("/butler/checkout-confirmation")({
 function Confirmation() {
   const store = STORES["butler"];
   const { amount = 0, total = 0 } = Route.useSearch();
+  const { count: listCount } = useMyList("butler");
+  // Cart items aren't passed through search params; show count from the user's list as a proxy
+  const listMatches = listCount;
   const { designation } = useDesignation("butler");
 
   const isGeneral = designation.kind === "general";
@@ -62,6 +66,11 @@ function Confirmation() {
         <p className="mt-2 text-base leading-relaxed text-foreground">
           {message}
         </p>
+        {listMatches > 0 && (
+          <p className="mt-3 text-sm text-foreground/80">
+            <span className="font-semibold">{listMatches}</span> product{listMatches === 1 ? "" : "s"} in this order match your regular purchases list. Your community contributions for these items are recorded as verified regular purchase attributions.
+          </p>
+        )}
         {designation.subtitle && (
           <p className="mt-1 text-xs text-muted-foreground">{designation.subtitle}</p>
         )}

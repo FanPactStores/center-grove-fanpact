@@ -6,6 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { FEATURED_PRODUCTS } from "@/data/products";
 import { CG_ORGS } from "@/data/center-grove-orgs";
 import { ProductCard } from "@/components/fanpact/ProductCard";
+import { YourRegulars } from "@/components/fanpact/YourRegulars";
 
 export const Route = createFileRoute("/center-grove/")({
   head: () => ({
@@ -213,6 +214,9 @@ function CenterGroveHome() {
           ))}
         </div>
       </section>
+
+      {/* YOUR REGULARS — appears when list has 3+ items */}
+      <YourRegulars store={store} />
 
       {/* FEATURED PRODUCTS */}
       <section className="border-y border-border bg-[var(--surface-2)]">

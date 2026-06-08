@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, ShoppingBag, User, ChevronDown, Menu, X } from "lucide-react";
+import { Heart, ShoppingBag, User, ChevronDown, Menu, X, ListChecks } from "lucide-react";
 import { useState } from "react";
 import type { StoreConfig } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
 import { DesignationBanner } from "./DesignationBanner";
 import { WelcomeModal } from "./WelcomeModal";
+import { useMyList } from "@/lib/my-list";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
@@ -19,6 +20,7 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const { count: listCount } = useMyList(store.id);
 
   const topNav = [
     { label: "Shop", to: `${store.basePath}/shop`, hasDropdown: true },
@@ -116,6 +118,23 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
             >
               <Heart className="h-5 w-5" />
             </button>
+            <Link
+              to={`${store.basePath}/my-list` as "/butler/my-list"}
+              aria-label="My List"
+              className="relative inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold transition-colors hover:bg-muted"
+              style={{ color: "var(--brand-accent)" }}
+            >
+              <ListChecks className="h-5 w-5" />
+              <span className="hidden text-xs sm:inline">My List</span>
+              {listCount > 0 && (
+                <span
+                  className="ml-0.5 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-[10px] font-bold tabular-nums"
+                  style={{ background: "var(--community)", color: "var(--community-foreground)" }}
+                >
+                  {listCount}
+                </span>
+              )}
+            </Link>
             <Link
               to={`${store.basePath}/cart` as "/butler/cart"}
               aria-label="Cart"

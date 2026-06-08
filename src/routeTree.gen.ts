@@ -19,15 +19,19 @@ import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.inde
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
 import { Route as AssaIndexRouteImport } from './routes/assa.index'
 import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
+import { Route as LegacyMyListRouteImport } from './routes/legacy.my-list'
 import { Route as LegacyCheckoutConfirmationRouteImport } from './routes/legacy.checkout-confirmation'
 import { Route as LegacyCartRouteImport } from './routes/legacy.cart'
 import { Route as CenterGroveTeamCardRouteImport } from './routes/center-grove.team-card'
+import { Route as CenterGroveMyListRouteImport } from './routes/center-grove.my-list'
 import { Route as CenterGroveCheckoutConfirmationRouteImport } from './routes/center-grove.checkout-confirmation'
 import { Route as CenterGroveCartRouteImport } from './routes/center-grove.cart'
 import { Route as ButlerTeamCardRouteImport } from './routes/butler.team-card'
+import { Route as ButlerMyListRouteImport } from './routes/butler.my-list'
 import { Route as ButlerCheckoutConfirmationRouteImport } from './routes/butler.checkout-confirmation'
 import { Route as ButlerCartRouteImport } from './routes/butler.cart'
 import { Route as AssaTeamCardRouteImport } from './routes/assa.team-card'
+import { Route as AssaMyListRouteImport } from './routes/assa.my-list'
 import { Route as AssaCheckoutConfirmationRouteImport } from './routes/assa.checkout-confirmation'
 import { Route as AssaCartRouteImport } from './routes/assa.cart'
 import { Route as LegacySponsorsIndexRouteImport } from './routes/legacy.sponsors.index'
@@ -120,6 +124,11 @@ const LegacyTeamCardRoute = LegacyTeamCardRouteImport.update({
   path: '/team-card',
   getParentRoute: () => LegacyRoute,
 } as any)
+const LegacyMyListRoute = LegacyMyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
+  getParentRoute: () => LegacyRoute,
+} as any)
 const LegacyCheckoutConfirmationRoute =
   LegacyCheckoutConfirmationRouteImport.update({
     id: '/checkout-confirmation',
@@ -134,6 +143,11 @@ const LegacyCartRoute = LegacyCartRouteImport.update({
 const CenterGroveTeamCardRoute = CenterGroveTeamCardRouteImport.update({
   id: '/team-card',
   path: '/team-card',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
+const CenterGroveMyListRoute = CenterGroveMyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
   getParentRoute: () => CenterGroveRoute,
 } as any)
 const CenterGroveCheckoutConfirmationRoute =
@@ -152,6 +166,11 @@ const ButlerTeamCardRoute = ButlerTeamCardRouteImport.update({
   path: '/team-card',
   getParentRoute: () => ButlerRoute,
 } as any)
+const ButlerMyListRoute = ButlerMyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
+  getParentRoute: () => ButlerRoute,
+} as any)
 const ButlerCheckoutConfirmationRoute =
   ButlerCheckoutConfirmationRouteImport.update({
     id: '/checkout-confirmation',
@@ -166,6 +185,11 @@ const ButlerCartRoute = ButlerCartRouteImport.update({
 const AssaTeamCardRoute = AssaTeamCardRouteImport.update({
   id: '/team-card',
   path: '/team-card',
+  getParentRoute: () => AssaRoute,
+} as any)
+const AssaMyListRoute = AssaMyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
   getParentRoute: () => AssaRoute,
 } as any)
 const AssaCheckoutConfirmationRoute =
@@ -386,15 +410,19 @@ export interface FileRoutesByFullPath {
   '/legacy': typeof LegacyRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
+  '/assa/my-list': typeof AssaMyListRoute
   '/assa/team-card': typeof AssaTeamCardRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/checkout-confirmation': typeof ButlerCheckoutConfirmationRoute
+  '/butler/my-list': typeof ButlerMyListRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
+  '/center-grove/my-list': typeof CenterGroveMyListRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
+  '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
@@ -444,15 +472,19 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
+  '/assa/my-list': typeof AssaMyListRoute
   '/assa/team-card': typeof AssaTeamCardRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/checkout-confirmation': typeof ButlerCheckoutConfirmationRoute
+  '/butler/my-list': typeof ButlerMyListRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
+  '/center-grove/my-list': typeof CenterGroveMyListRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
+  '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
   '/assa': typeof AssaIndexRoute
   '/butler': typeof ButlerIndexRoute
@@ -507,15 +539,19 @@ export interface FileRoutesById {
   '/legacy': typeof LegacyRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
+  '/assa/my-list': typeof AssaMyListRoute
   '/assa/team-card': typeof AssaTeamCardRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/checkout-confirmation': typeof ButlerCheckoutConfirmationRoute
+  '/butler/my-list': typeof ButlerMyListRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
+  '/center-grove/my-list': typeof CenterGroveMyListRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
+  '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
@@ -571,15 +607,19 @@ export interface FileRouteTypes {
     | '/legacy'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
+    | '/assa/my-list'
     | '/assa/team-card'
     | '/butler/cart'
     | '/butler/checkout-confirmation'
+    | '/butler/my-list'
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/checkout-confirmation'
+    | '/center-grove/my-list'
     | '/center-grove/team-card'
     | '/legacy/cart'
     | '/legacy/checkout-confirmation'
+    | '/legacy/my-list'
     | '/legacy/team-card'
     | '/assa/'
     | '/butler/'
@@ -629,15 +669,19 @@ export interface FileRouteTypes {
     | '/'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
+    | '/assa/my-list'
     | '/assa/team-card'
     | '/butler/cart'
     | '/butler/checkout-confirmation'
+    | '/butler/my-list'
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/checkout-confirmation'
+    | '/center-grove/my-list'
     | '/center-grove/team-card'
     | '/legacy/cart'
     | '/legacy/checkout-confirmation'
+    | '/legacy/my-list'
     | '/legacy/team-card'
     | '/assa'
     | '/butler'
@@ -691,15 +735,19 @@ export interface FileRouteTypes {
     | '/legacy'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
+    | '/assa/my-list'
     | '/assa/team-card'
     | '/butler/cart'
     | '/butler/checkout-confirmation'
+    | '/butler/my-list'
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/checkout-confirmation'
+    | '/center-grove/my-list'
     | '/center-grove/team-card'
     | '/legacy/cart'
     | '/legacy/checkout-confirmation'
+    | '/legacy/my-list'
     | '/legacy/team-card'
     | '/assa/'
     | '/butler/'
@@ -826,6 +874,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegacyTeamCardRouteImport
       parentRoute: typeof LegacyRoute
     }
+    '/legacy/my-list': {
+      id: '/legacy/my-list'
+      path: '/my-list'
+      fullPath: '/legacy/my-list'
+      preLoaderRoute: typeof LegacyMyListRouteImport
+      parentRoute: typeof LegacyRoute
+    }
     '/legacy/checkout-confirmation': {
       id: '/legacy/checkout-confirmation'
       path: '/checkout-confirmation'
@@ -845,6 +900,13 @@ declare module '@tanstack/react-router' {
       path: '/team-card'
       fullPath: '/center-grove/team-card'
       preLoaderRoute: typeof CenterGroveTeamCardRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/my-list': {
+      id: '/center-grove/my-list'
+      path: '/my-list'
+      fullPath: '/center-grove/my-list'
+      preLoaderRoute: typeof CenterGroveMyListRouteImport
       parentRoute: typeof CenterGroveRoute
     }
     '/center-grove/checkout-confirmation': {
@@ -868,6 +930,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButlerTeamCardRouteImport
       parentRoute: typeof ButlerRoute
     }
+    '/butler/my-list': {
+      id: '/butler/my-list'
+      path: '/my-list'
+      fullPath: '/butler/my-list'
+      preLoaderRoute: typeof ButlerMyListRouteImport
+      parentRoute: typeof ButlerRoute
+    }
     '/butler/checkout-confirmation': {
       id: '/butler/checkout-confirmation'
       path: '/checkout-confirmation'
@@ -887,6 +956,13 @@ declare module '@tanstack/react-router' {
       path: '/team-card'
       fullPath: '/assa/team-card'
       preLoaderRoute: typeof AssaTeamCardRouteImport
+      parentRoute: typeof AssaRoute
+    }
+    '/assa/my-list': {
+      id: '/assa/my-list'
+      path: '/my-list'
+      fullPath: '/assa/my-list'
+      preLoaderRoute: typeof AssaMyListRouteImport
       parentRoute: typeof AssaRoute
     }
     '/assa/checkout-confirmation': {
@@ -1217,6 +1293,7 @@ const AssaSponsorsSlugRouteWithChildren =
 interface AssaRouteChildren {
   AssaCartRoute: typeof AssaCartRoute
   AssaCheckoutConfirmationRoute: typeof AssaCheckoutConfirmationRoute
+  AssaMyListRoute: typeof AssaMyListRoute
   AssaTeamCardRoute: typeof AssaTeamCardRoute
   AssaIndexRoute: typeof AssaIndexRoute
   AssaOrgsOrgRoute: typeof AssaOrgsOrgRouteWithChildren
@@ -1231,6 +1308,7 @@ interface AssaRouteChildren {
 const AssaRouteChildren: AssaRouteChildren = {
   AssaCartRoute: AssaCartRoute,
   AssaCheckoutConfirmationRoute: AssaCheckoutConfirmationRoute,
+  AssaMyListRoute: AssaMyListRoute,
   AssaTeamCardRoute: AssaTeamCardRoute,
   AssaIndexRoute: AssaIndexRoute,
   AssaOrgsOrgRoute: AssaOrgsOrgRouteWithChildren,
@@ -1269,6 +1347,7 @@ const ButlerTeamsSportRouteWithChildren =
 interface ButlerRouteChildren {
   ButlerCartRoute: typeof ButlerCartRoute
   ButlerCheckoutConfirmationRoute: typeof ButlerCheckoutConfirmationRoute
+  ButlerMyListRoute: typeof ButlerMyListRoute
   ButlerTeamCardRoute: typeof ButlerTeamCardRoute
   ButlerIndexRoute: typeof ButlerIndexRoute
   ButlerProductSlugRoute: typeof ButlerProductSlugRoute
@@ -1283,6 +1362,7 @@ interface ButlerRouteChildren {
 const ButlerRouteChildren: ButlerRouteChildren = {
   ButlerCartRoute: ButlerCartRoute,
   ButlerCheckoutConfirmationRoute: ButlerCheckoutConfirmationRoute,
+  ButlerMyListRoute: ButlerMyListRoute,
   ButlerTeamCardRoute: ButlerTeamCardRoute,
   ButlerIndexRoute: ButlerIndexRoute,
   ButlerProductSlugRoute: ButlerProductSlugRoute,
@@ -1339,6 +1419,7 @@ const CenterGroveSponsorsSlugRouteWithChildren =
 interface CenterGroveRouteChildren {
   CenterGroveCartRoute: typeof CenterGroveCartRoute
   CenterGroveCheckoutConfirmationRoute: typeof CenterGroveCheckoutConfirmationRoute
+  CenterGroveMyListRoute: typeof CenterGroveMyListRoute
   CenterGroveTeamCardRoute: typeof CenterGroveTeamCardRoute
   CenterGroveIndexRoute: typeof CenterGroveIndexRoute
   CenterGroveOrgsOrgRoute: typeof CenterGroveOrgsOrgRouteWithChildren
@@ -1353,6 +1434,7 @@ interface CenterGroveRouteChildren {
 const CenterGroveRouteChildren: CenterGroveRouteChildren = {
   CenterGroveCartRoute: CenterGroveCartRoute,
   CenterGroveCheckoutConfirmationRoute: CenterGroveCheckoutConfirmationRoute,
+  CenterGroveMyListRoute: CenterGroveMyListRoute,
   CenterGroveTeamCardRoute: CenterGroveTeamCardRoute,
   CenterGroveIndexRoute: CenterGroveIndexRoute,
   CenterGroveOrgsOrgRoute: CenterGroveOrgsOrgRouteWithChildren,
@@ -1405,6 +1487,7 @@ const LegacySponsorsSlugRouteWithChildren =
 interface LegacyRouteChildren {
   LegacyCartRoute: typeof LegacyCartRoute
   LegacyCheckoutConfirmationRoute: typeof LegacyCheckoutConfirmationRoute
+  LegacyMyListRoute: typeof LegacyMyListRoute
   LegacyTeamCardRoute: typeof LegacyTeamCardRoute
   LegacyIndexRoute: typeof LegacyIndexRoute
   LegacyOrgsOrgRoute: typeof LegacyOrgsOrgRouteWithChildren
@@ -1419,6 +1502,7 @@ interface LegacyRouteChildren {
 const LegacyRouteChildren: LegacyRouteChildren = {
   LegacyCartRoute: LegacyCartRoute,
   LegacyCheckoutConfirmationRoute: LegacyCheckoutConfirmationRoute,
+  LegacyMyListRoute: LegacyMyListRoute,
   LegacyTeamCardRoute: LegacyTeamCardRoute,
   LegacyIndexRoute: LegacyIndexRoute,
   LegacyOrgsOrgRoute: LegacyOrgsOrgRouteWithChildren,
