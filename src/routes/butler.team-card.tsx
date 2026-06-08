@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FanPactLogo } from "@/components/FanPactLogo";
 import { Check, CreditCard, Smartphone, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { STORES } from "@/data/stores";
