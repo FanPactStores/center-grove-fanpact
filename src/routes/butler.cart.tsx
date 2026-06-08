@@ -15,7 +15,8 @@ export const Route = createFileRoute("/butler/cart")({
 function ButlerCart() {
   const store = STORES.butler;
   const initial = ["tide-pods-original-81ct", "gatorade-thirst-quencher-variety-24pk", "nike-dri-fit-training-tee"]
-    .map((s) => ({ product: PRODUCTS.find((p) => p.slug === s)!, qty: s === "nike-dri-fit-training-tee" ? 2 : 1 }));
+    .map((s) => ({ product: PRODUCTS.find((p) => p.slug === s)!, qty: s === "nike-dri-fit-training-tee" ? 2 : 1 }))
+    .filter((i) => i.product);
   const [items, setItems] = useState(initial);
 
   const subtotal = items.reduce((s, i) => s + i.product.price * i.qty, 0);

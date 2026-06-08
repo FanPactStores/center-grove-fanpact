@@ -42,22 +42,7 @@ function ButlerHome() {
 
   return (
     <main className="bg-background">
-      {/* DONATION DISCLAIMER STRIP */}
-      <div
-        className="border-b border-border bg-[var(--brand)] text-center text-xs text-white/90"
-        style={{ background: "var(--brand)" }}
-      >
-        <div className="mx-auto max-w-7xl px-4 py-2.5 lg:px-8">
-          We donate{" "}
-          <span className="font-semibold" style={{ color: "var(--brand-accent)" }}>
-            60%
-          </span>{" "}
-          of net earnings from qualifying purchases to support Butler student-athletes. Thank you for
-          shopping with purpose.
-        </div>
-      </div>
-
-      {/* HERO */}
+      {/* HERO (disclaimer now lives in StoreHeader) */}
       <section className="relative isolate overflow-hidden">
         <img
           src={butlerArena}
