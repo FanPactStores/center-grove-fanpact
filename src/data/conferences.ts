@@ -103,6 +103,19 @@ export const YOUTH_LEAGUES: YouthLeague[] = [
     ],
   },
   {
+    id: "mid-atlantic-youth",
+    name: "Mid-Atlantic Youth Leagues",
+    region: "Pennsylvania / New Jersey",
+    alliances: [
+      { name: "All-Star Sports Academy (ASSA Combat)", slug: "assa", href: "/assa" },
+      ...[
+        "Main Line Youth Athletics","Bucks County Baseball Alliance",
+        "South Jersey Diamond Club","Lehigh Valley Youth Sports",
+        "Delco Community Athletics","North Jersey Sports Alliance",
+      ].map((n) => ({ name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, "-") })),
+    ],
+  },
+  {
     id: "southeast-youth",
     name: "Southeast Youth Leagues",
     region: "Southeast",
@@ -113,3 +126,4 @@ export const YOUTH_LEAGUES: YouthLeague[] = [
     ].map((n) => ({ name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, "-") })),
   },
 ];
+
