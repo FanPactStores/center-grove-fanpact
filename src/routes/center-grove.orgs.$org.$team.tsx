@@ -1,6 +1,6 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Check } from "lucide-react";
-import { getCGOrg, getCGTeam } from "@/data/center-grove-orgs";
+import { getCGOrg, getCGTeam, type CGPlayer } from "@/data/center-grove-orgs";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/center-grove/orgs/$org/$team")({
@@ -88,7 +88,7 @@ function TeamRoster() {
 
       <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {team.players.map((p) => (
+          {team.players.map((p: CGPlayer) => (
             <Link
               key={p.slug}
               to="/center-grove/orgs/$org/$team/$player"

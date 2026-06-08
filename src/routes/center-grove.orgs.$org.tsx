@@ -1,6 +1,6 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
-import { getCGOrg } from "@/data/center-grove-orgs";
+import { getCGOrg, type CGTeam } from "@/data/center-grove-orgs";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/center-grove/orgs/$org")({
@@ -77,7 +77,7 @@ function OrgDetail() {
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {org.teams.map((team) => (
+          {org.teams.map((team: CGTeam) => (
             <Link
               key={team.slug}
               to="/center-grove/orgs/$org/$team"
