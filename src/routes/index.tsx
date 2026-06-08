@@ -7,10 +7,11 @@ import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FanPact — Where every purchase powers your team" },
-      { name: "description", content: "Choose your school or your youth alliance and shop everyday products that support athletes and community. You're not spending more — just switching where you shop." },
-      { property: "og:title", content: "FanPact — Community commerce for athletes" },
+      { title: "FanPact — NIL and Youth Sports Commerce Platform" },
+      { name: "description", content: "Collegiate NIL and youth sports commerce funding. Shop everyday products — 60% of net earnings flows to your designated athlete or program. No extra cost. No behavior change." },
+      { property: "og:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
       { property: "og:description", content: "Collegiate athletics. Youth community alliances. One platform. 60% of net earnings back to the team you choose." },
+      { name: "twitter:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
     ],
   }),
   component: MasterHome,
@@ -55,16 +56,20 @@ function MasterHome() {
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
-              Community commerce platform
+              NIL and Youth Sports Commerce Platform
             </div>
             <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-tight text-white">
               WHERE EVERY<br />
-              PURCHASE POWERS<br />
-              <span style={{ color: "var(--gold)" }}>YOUR TEAM &amp; COMMUNITY</span>
+              PURCHASE FUNDS<br />
+              <span style={{ color: "var(--gold)" }}>YOUR ATHLETES</span>
             </h1>
+            <div className="mt-4 flex flex-col gap-1 font-display text-xl font-bold tracking-tight text-white md:flex-row md:gap-4 md:text-2xl lg:text-3xl">
+              <span>Collegiate NIL.</span>
+              <span>Youth Sports.</span>
+              <span>Powered by Commerce.</span>
+            </div>
             <p className="mt-8 max-w-2xl text-lg text-white/85">
-              Choose your school or your local youth alliance and shop everyday products that fund
-              athletes and families. <span className="text-white">You're not spending more — just switching where you shop.</span>
+              60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
@@ -104,10 +109,10 @@ function MasterHome() {
                 <GraduationCap className="h-4 w-4" /> Collegiate
               </div>
               <h2 className="mt-3 font-display text-5xl tracking-tight">
-                Select your school <span style={{ color: "var(--gold)" }}>by conference</span>
+                Select your university — <span style={{ color: "var(--gold)" }}>support student-athlete NIL</span>
               </h2>
               <p className="mt-3 max-w-xl text-muted-foreground">
-                Pick your university to enter its dedicated storefront and start supporting student-athletes.
+                Each university storefront generates verified NIL contributions from fan household purchases. Documented through Stripe. Compliant with the House settlement framework.
               </p>
             </div>
             <div className="rounded-full border border-border bg-card px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground">
@@ -178,7 +183,7 @@ function MasterHome() {
             { icon: Users, n: "02", t: "Designate a beneficiary",
               d: "Send your contribution to the community fund, a specific team, or a single athlete you want to back." },
             { icon: Wallet, n: "03", t: "60% flows back",
-              d: "Of net earnings on every purchase. Verified, automatic, transparent. The commerce does the fundraising." },
+              d: "Of net earnings on every purchase. Verified through Stripe. Documented for NIL compliance. The commerce does the fundraising." },
           ].map((s) => (
             <div key={s.n} className="rounded-2xl border border-border bg-card p-8">
               <div className="flex items-start justify-between">
@@ -198,7 +203,7 @@ function MasterHome() {
           <div>
             <div className="text-xs uppercase tracking-[0.22em] opacity-60">FanPact Team Card</div>
             <h2 className="mt-3 font-display text-5xl tracking-tight">
-              A Visa in Apple &amp; Google Pay that<br />earns contributions <span style={{ color: "var(--gold)" }}>everywhere</span>.
+              A Visa in Apple &amp; Google Pay that<br />earns NIL contributions and youth fund credits <span style={{ color: "var(--gold)" }}>everywhere</span>.
             </h2>
             <p className="mt-6 max-w-lg opacity-80">
               Tap to pay at the grocery store, the gas pump, the pet supply shop. Your team gets credited
@@ -235,8 +240,7 @@ function MasterHome() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-10 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between lg:px-10">
           <div className="font-display text-base tracking-tight text-foreground">FANPACT</div>
-          <div>© {new Date().getFullYear()} FanPact, Inc. Community commerce platform.</div>
-          <div>Demo experience — all products and contributions illustrative.</div>
+          <div>© 2026 FanPact, Inc. NIL and Youth Sports Commerce Platform. Demo experience — all products and contributions illustrative.</div>
         </div>
       </footer>
     </div>
