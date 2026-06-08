@@ -109,7 +109,7 @@ function MasterHome() {
                 <GraduationCap className="h-4 w-4" /> Collegiate
               </div>
               <h2 className="mt-3 font-display text-5xl tracking-tight">
-                Select your school <span style={{ color: "var(--gold)" }}>by conference</span>
+                Select your university — <span style={{ color: "var(--gold)" }}>support student-athlete NIL</span>
               </h2>
               <p className="mt-3 max-w-xl text-muted-foreground">
                 Pick your university to enter its dedicated storefront and start supporting student-athletes.
