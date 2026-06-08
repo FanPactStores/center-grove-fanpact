@@ -44,12 +44,19 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
             >
               FP
             </span>
-            <span
-              className="font-display text-2xl tracking-tight"
-              style={{ color: "var(--brand-accent)" }}
-            >
-              {store.marks.word}
-            </span>
+            <div className="flex flex-col">
+              <span
+                className="font-display text-2xl tracking-tight leading-none"
+                style={{ color: "var(--brand-accent)" }}
+              >
+                {store.marks.word}
+              </span>
+              {store.marks.subtitle && (
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground leading-none mt-0.5">
+                  {store.marks.subtitle}
+                </span>
+              )}
+            </div>
           </Link>
 
           {/* Center nav */}
