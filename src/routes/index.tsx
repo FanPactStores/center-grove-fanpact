@@ -7,10 +7,11 @@ import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FanPact — Where every purchase powers your team" },
-      { name: "description", content: "Choose your school or your youth alliance and shop everyday products that support athletes and community. You're not spending more — just switching where you shop." },
-      { property: "og:title", content: "FanPact — Community commerce for athletes" },
+      { title: "FanPact — NIL and Youth Sports Commerce Platform" },
+      { name: "description", content: "Collegiate NIL and youth sports commerce funding. Shop everyday products — 60% of net earnings flows to your designated athlete or program. No extra cost. No behavior change." },
+      { property: "og:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
       { property: "og:description", content: "Collegiate athletics. Youth community alliances. One platform. 60% of net earnings back to the team you choose." },
+      { name: "twitter:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
     ],
   }),
   component: MasterHome,
