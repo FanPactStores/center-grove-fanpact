@@ -13,7 +13,7 @@ export function StoreFooter({ store }: { store: StoreConfig }) {
         <div className="lg:col-span-2">
           <div className="font-display text-3xl tracking-tight">{store.marks.word}</div>
           <p className="mt-3 text-xs uppercase tracking-[0.24em] opacity-70">
-            Powered by FanPact
+            <Link to="/" className="hover:underline">Powered by FanPact</Link>
           </p>
           <p className="mt-6 max-w-md text-sm opacity-80">
             {store.fundName}. 60% of net earnings on every purchase flows back to the community.

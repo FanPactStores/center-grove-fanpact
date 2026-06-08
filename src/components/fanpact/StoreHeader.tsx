@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, ShoppingBag, User, ChevronDown, Menu, X, ListChecks } from "lucide-react";
+import { Heart, ShoppingBag, User, ChevronDown, Menu, X, ListChecks, Home, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import type { StoreConfig } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
@@ -35,6 +35,18 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
       {/* BAND 1 — white top bar */}
       <div className="bg-[var(--surface)] border-b border-border">
         <div className="mx-auto flex h-16 max-w-7xl items-center px-4 lg:px-8">
+          {/* Home link — platform navigation, visually distinct */}
+          <Link
+            to="/"
+            className="group relative mr-3 hidden items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-normal text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:inline-flex"
+          >
+            <Home className="h-4 w-4 shrink-0" />
+            <span className="hidden font-medium lg:inline">FanPact</span>
+            <span className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 w-max -translate-x-1/2 rounded bg-black px-2 py-1 text-[11px] text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+              Back to FanPact Home
+            </span>
+          </Link>
+
           <Link
             to={store.basePath as "/butler"}
             className="flex items-center gap-3"
@@ -249,6 +261,18 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
       {mobileOpen && (
         <div className="border-b border-border bg-[var(--surface)] md:hidden">
           <div className="mx-auto flex max-w-7xl flex-col px-4 py-3">
+            <Link
+              to="/"
+              className="flex items-center justify-between py-2 text-sm font-semibold text-muted-foreground"
+              onClick={() => setMobileOpen(false)}
+            >
+              <span className="flex items-center gap-2">
+                <Home className="h-4 w-4" />
+                FanPact Home
+              </span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <div className="my-1 border-t border-border" />
             {topNav.map((n) => (
               <Link
                 key={n.label}
