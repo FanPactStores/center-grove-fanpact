@@ -3,6 +3,7 @@ import { STARTER_TILES, starterTileToItem } from "@/lib/my-list";
 import { Button } from "@/components/ui/button";
 import type { StoreId } from "@/data/stores";
 import { useState } from "react";
+import { SuppressCheckbox } from "./SuppressCheckbox";
 
 /**
  * The "stock your personal storefront" step shown after the designation modal.
@@ -12,10 +13,12 @@ export function StarterTileGrid({
   storeId,
   onSave,
   onSkip,
+  suppressCheckbox,
 }: {
   storeId: StoreId;
   onSave: (keys: string[]) => void;
   onSkip: () => void;
+  suppressCheckbox?: { checked: boolean; onChange: (v: boolean) => void };
 }) {
   // Show the first 24 tiles in a 4x6 grid.
   const tiles = STARTER_TILES.slice(0, 24);
