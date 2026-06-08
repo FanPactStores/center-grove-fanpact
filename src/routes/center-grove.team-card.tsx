@@ -3,6 +3,7 @@ import { Check, CreditCard, Smartphone, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { STORES } from "@/data/stores";
 import { Button } from "@/components/ui/button";
+import { EarningLayers } from "@/components/fanpact/EarningLayers";
 
 export const Route = createFileRoute("/center-grove/team-card")({
   head: () => ({
@@ -20,6 +21,7 @@ function TeamCardPage() {
   const steps = ["Intro", "Cardholder", "Wallet", "Done"];
 
   return (
+    <>
     <main className="mx-auto max-w-6xl px-4 py-12 lg:px-8">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr]">
         {/* LEFT: pitch + card */}
@@ -99,6 +101,8 @@ function TeamCardPage() {
         </div>
       </div>
     </main>
+    <EarningLayers fundName={store.fundName} />
+    </>
   );
 }
 
