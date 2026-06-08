@@ -184,11 +184,13 @@ const welcomeKey = (storeId: StoreId) => `fanpact-welcome-seen-${storeId}`;
 
 // ---------- pub/sub so multiple components stay in sync ----------
 const listeners = new Set<() => void>();
+const designationCache = new Map<StoreId, Designation | null>();
 function notify() {
+  designationCache.clear();
   for (const l of listeners) l();
 }
 
-function readStored(storeId: StoreId): Designation | null {
+function readStoredRaw(storeId: StoreId): Designation | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = window.localStorage.getItem(storageKey(storeId));
@@ -199,6 +201,13 @@ function readStored(storeId: StoreId): Designation | null {
   } catch {
     return null;
   }
+}
+
+function readStored(storeId: StoreId): Designation | null {
+  if (designationCache.has(storeId)) return designationCache.get(storeId)!;
+  const fresh = readStoredRaw(storeId);
+  designationCache.set(storeId, fresh);
+  return fresh;
 }
 
 export function setDesignation(storeId: StoreId, value: Designation) {

@@ -18,20 +18,32 @@ export type MyListItem = {
 const storageKey = (storeId: StoreId) => `fanpact-list-${storeId}`;
 
 const listeners = new Set<() => void>();
+const snapshotCache = new Map<StoreId, MyListItem[]>();
+const EMPTY: MyListItem[] = [];
+
 function notify() {
+  snapshotCache.clear();
   for (const l of listeners) l();
 }
 
-function readList(storeId: StoreId): MyListItem[] {
-  if (typeof window === "undefined") return [];
+function readListRaw(storeId: StoreId): MyListItem[] {
+  if (typeof window === "undefined") return EMPTY;
   try {
     const raw = window.localStorage.getItem(storageKey(storeId));
-    if (!raw) return [];
+    if (!raw) return EMPTY;
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as MyListItem[]) : [];
+    return Array.isArray(parsed) ? (parsed as MyListItem[]) : EMPTY;
   } catch {
-    return [];
+    return EMPTY;
   }
+}
+
+function readList(storeId: StoreId): MyListItem[] {
+  const cached = snapshotCache.get(storeId);
+  if (cached) return cached;
+  const fresh = readListRaw(storeId);
+  snapshotCache.set(storeId, fresh);
+  return fresh;
 }
 
 function writeList(storeId: StoreId, items: MyListItem[]) {
@@ -99,8 +111,9 @@ export function useMyList(storeId: StoreId): {
   const items = useSyncExternalStore(
     subscribe,
     () => readList(storeId),
-    () => [],
+    () => EMPTY,
   );
+
 
   const hasKey = (key: string) => items.some((i) => i.key === key);
   const isOnList = (p: Product) =>
