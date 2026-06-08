@@ -55,8 +55,10 @@ import { Route as AssaShopCategoryRouteImport } from './routes/assa.shop.$catego
 import { Route as AssaProductSlugRouteImport } from './routes/assa.product.$slug'
 import { Route as AssaOrgsOrgRouteImport } from './routes/assa.orgs.$org'
 import { Route as LegacyOrgsOrgTeamRouteImport } from './routes/legacy.orgs.$org.$team'
+import { Route as CenterGroveSponsorsSlugClaimRouteImport } from './routes/center-grove.sponsors.$slug.claim'
 import { Route as CenterGroveOrgsOrgTeamRouteImport } from './routes/center-grove.orgs.$org.$team'
 import { Route as ButlerTeamsSportPlayerRouteImport } from './routes/butler.teams.$sport.$player'
+import { Route as ButlerSponsorsSlugClaimRouteImport } from './routes/butler.sponsors.$slug.claim'
 import { Route as AssaOrgsOrgTeamRouteImport } from './routes/assa.orgs.$org.$team'
 import { Route as LegacyOrgsOrgTeamPlayerRouteImport } from './routes/legacy.orgs.$org.$team.$player'
 import { Route as CenterGroveOrgsOrgTeamPlayerRouteImport } from './routes/center-grove.orgs.$org.$team.$player'
@@ -293,6 +295,12 @@ const LegacyOrgsOrgTeamRoute = LegacyOrgsOrgTeamRouteImport.update({
   path: '/$team',
   getParentRoute: () => LegacyOrgsOrgRoute,
 } as any)
+const CenterGroveSponsorsSlugClaimRoute =
+  CenterGroveSponsorsSlugClaimRouteImport.update({
+    id: '/claim',
+    path: '/claim',
+    getParentRoute: () => CenterGroveSponsorsSlugRoute,
+  } as any)
 const CenterGroveOrgsOrgTeamRoute = CenterGroveOrgsOrgTeamRouteImport.update({
   id: '/$team',
   path: '/$team',
@@ -302,6 +310,11 @@ const ButlerTeamsSportPlayerRoute = ButlerTeamsSportPlayerRouteImport.update({
   id: '/$player',
   path: '/$player',
   getParentRoute: () => ButlerTeamsSportRoute,
+} as any)
+const ButlerSponsorsSlugClaimRoute = ButlerSponsorsSlugClaimRouteImport.update({
+  id: '/claim',
+  path: '/claim',
+  getParentRoute: () => ButlerSponsorsSlugRoute,
 } as any)
 const AssaOrgsOrgTeamRoute = AssaOrgsOrgTeamRouteImport.update({
   id: '/$team',
@@ -349,12 +362,12 @@ export interface FileRoutesByFullPath {
   '/assa/sponsors/$slug': typeof AssaSponsorsSlugRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
-  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
+  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRouteWithChildren
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
   '/center-grove/orgs/$org': typeof CenterGroveOrgsOrgRouteWithChildren
   '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
-  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
+  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRouteWithChildren
   '/legacy/orgs/$org': typeof LegacyOrgsOrgRouteWithChildren
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
@@ -372,8 +385,10 @@ export interface FileRoutesByFullPath {
   '/legacy/shop/': typeof LegacyShopIndexRoute
   '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
+  '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
+  '/center-grove/sponsors/$slug/claim': typeof CenterGroveSponsorsSlugClaimRoute
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
@@ -399,12 +414,12 @@ export interface FileRoutesByTo {
   '/assa/sponsors/$slug': typeof AssaSponsorsSlugRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
-  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
+  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRouteWithChildren
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
   '/center-grove/orgs/$org': typeof CenterGroveOrgsOrgRouteWithChildren
   '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
-  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
+  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRouteWithChildren
   '/legacy/orgs/$org': typeof LegacyOrgsOrgRouteWithChildren
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
@@ -422,8 +437,10 @@ export interface FileRoutesByTo {
   '/legacy/shop': typeof LegacyShopIndexRoute
   '/legacy/sponsors': typeof LegacySponsorsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
+  '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
+  '/center-grove/sponsors/$slug/claim': typeof CenterGroveSponsorsSlugClaimRoute
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
@@ -454,12 +471,12 @@ export interface FileRoutesById {
   '/assa/sponsors/$slug': typeof AssaSponsorsSlugRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
-  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
+  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRouteWithChildren
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
   '/center-grove/orgs/$org': typeof CenterGroveOrgsOrgRouteWithChildren
   '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
-  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
+  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRouteWithChildren
   '/legacy/orgs/$org': typeof LegacyOrgsOrgRouteWithChildren
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
@@ -477,8 +494,10 @@ export interface FileRoutesById {
   '/legacy/shop/': typeof LegacyShopIndexRoute
   '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
+  '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
+  '/center-grove/sponsors/$slug/claim': typeof CenterGroveSponsorsSlugClaimRoute
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
@@ -533,8 +552,10 @@ export interface FileRouteTypes {
     | '/legacy/shop/'
     | '/legacy/sponsors/'
     | '/assa/orgs/$org/$team'
+    | '/butler/sponsors/$slug/claim'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
+    | '/center-grove/sponsors/$slug/claim'
     | '/legacy/orgs/$org/$team'
     | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
@@ -583,8 +604,10 @@ export interface FileRouteTypes {
     | '/legacy/shop'
     | '/legacy/sponsors'
     | '/assa/orgs/$org/$team'
+    | '/butler/sponsors/$slug/claim'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
+    | '/center-grove/sponsors/$slug/claim'
     | '/legacy/orgs/$org/$team'
     | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
@@ -637,8 +660,10 @@ export interface FileRouteTypes {
     | '/legacy/shop/'
     | '/legacy/sponsors/'
     | '/assa/orgs/$org/$team'
+    | '/butler/sponsors/$slug/claim'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
+    | '/center-grove/sponsors/$slug/claim'
     | '/legacy/orgs/$org/$team'
     | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
@@ -977,6 +1002,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegacyOrgsOrgTeamRouteImport
       parentRoute: typeof LegacyOrgsOrgRoute
     }
+    '/center-grove/sponsors/$slug/claim': {
+      id: '/center-grove/sponsors/$slug/claim'
+      path: '/claim'
+      fullPath: '/center-grove/sponsors/$slug/claim'
+      preLoaderRoute: typeof CenterGroveSponsorsSlugClaimRouteImport
+      parentRoute: typeof CenterGroveSponsorsSlugRoute
+    }
     '/center-grove/orgs/$org/$team': {
       id: '/center-grove/orgs/$org/$team'
       path: '/$team'
@@ -990,6 +1022,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/teams/$sport/$player'
       preLoaderRoute: typeof ButlerTeamsSportPlayerRouteImport
       parentRoute: typeof ButlerTeamsSportRoute
+    }
+    '/butler/sponsors/$slug/claim': {
+      id: '/butler/sponsors/$slug/claim'
+      path: '/claim'
+      fullPath: '/butler/sponsors/$slug/claim'
+      preLoaderRoute: typeof ButlerSponsorsSlugClaimRouteImport
+      parentRoute: typeof ButlerSponsorsSlugRoute
     }
     '/assa/orgs/$org/$team': {
       id: '/assa/orgs/$org/$team'
@@ -1074,6 +1113,17 @@ const AssaRouteChildren: AssaRouteChildren = {
 
 const AssaRouteWithChildren = AssaRoute._addFileChildren(AssaRouteChildren)
 
+interface ButlerSponsorsSlugRouteChildren {
+  ButlerSponsorsSlugClaimRoute: typeof ButlerSponsorsSlugClaimRoute
+}
+
+const ButlerSponsorsSlugRouteChildren: ButlerSponsorsSlugRouteChildren = {
+  ButlerSponsorsSlugClaimRoute: ButlerSponsorsSlugClaimRoute,
+}
+
+const ButlerSponsorsSlugRouteWithChildren =
+  ButlerSponsorsSlugRoute._addFileChildren(ButlerSponsorsSlugRouteChildren)
+
 interface ButlerTeamsSportRouteChildren {
   ButlerTeamsSportPlayerRoute: typeof ButlerTeamsSportPlayerRoute
 }
@@ -1091,7 +1141,7 @@ interface ButlerRouteChildren {
   ButlerIndexRoute: typeof ButlerIndexRoute
   ButlerProductSlugRoute: typeof ButlerProductSlugRoute
   ButlerShopCategoryRoute: typeof ButlerShopCategoryRoute
-  ButlerSponsorsSlugRoute: typeof ButlerSponsorsSlugRoute
+  ButlerSponsorsSlugRoute: typeof ButlerSponsorsSlugRouteWithChildren
   ButlerTeamsSportRoute: typeof ButlerTeamsSportRouteWithChildren
   ButlerShopIndexRoute: typeof ButlerShopIndexRoute
   ButlerSponsorsIndexRoute: typeof ButlerSponsorsIndexRoute
@@ -1104,7 +1154,7 @@ const ButlerRouteChildren: ButlerRouteChildren = {
   ButlerIndexRoute: ButlerIndexRoute,
   ButlerProductSlugRoute: ButlerProductSlugRoute,
   ButlerShopCategoryRoute: ButlerShopCategoryRoute,
-  ButlerSponsorsSlugRoute: ButlerSponsorsSlugRoute,
+  ButlerSponsorsSlugRoute: ButlerSponsorsSlugRouteWithChildren,
   ButlerTeamsSportRoute: ButlerTeamsSportRouteWithChildren,
   ButlerShopIndexRoute: ButlerShopIndexRoute,
   ButlerSponsorsIndexRoute: ButlerSponsorsIndexRoute,
@@ -1139,6 +1189,20 @@ const CenterGroveOrgsOrgRouteChildren: CenterGroveOrgsOrgRouteChildren = {
 const CenterGroveOrgsOrgRouteWithChildren =
   CenterGroveOrgsOrgRoute._addFileChildren(CenterGroveOrgsOrgRouteChildren)
 
+interface CenterGroveSponsorsSlugRouteChildren {
+  CenterGroveSponsorsSlugClaimRoute: typeof CenterGroveSponsorsSlugClaimRoute
+}
+
+const CenterGroveSponsorsSlugRouteChildren: CenterGroveSponsorsSlugRouteChildren =
+  {
+    CenterGroveSponsorsSlugClaimRoute: CenterGroveSponsorsSlugClaimRoute,
+  }
+
+const CenterGroveSponsorsSlugRouteWithChildren =
+  CenterGroveSponsorsSlugRoute._addFileChildren(
+    CenterGroveSponsorsSlugRouteChildren,
+  )
+
 interface CenterGroveRouteChildren {
   CenterGroveCartRoute: typeof CenterGroveCartRoute
   CenterGroveTeamCardRoute: typeof CenterGroveTeamCardRoute
@@ -1146,7 +1210,7 @@ interface CenterGroveRouteChildren {
   CenterGroveOrgsOrgRoute: typeof CenterGroveOrgsOrgRouteWithChildren
   CenterGroveProductSlugRoute: typeof CenterGroveProductSlugRoute
   CenterGroveShopCategoryRoute: typeof CenterGroveShopCategoryRoute
-  CenterGroveSponsorsSlugRoute: typeof CenterGroveSponsorsSlugRoute
+  CenterGroveSponsorsSlugRoute: typeof CenterGroveSponsorsSlugRouteWithChildren
   CenterGroveOrgsIndexRoute: typeof CenterGroveOrgsIndexRoute
   CenterGroveShopIndexRoute: typeof CenterGroveShopIndexRoute
   CenterGroveSponsorsIndexRoute: typeof CenterGroveSponsorsIndexRoute
@@ -1159,7 +1223,7 @@ const CenterGroveRouteChildren: CenterGroveRouteChildren = {
   CenterGroveOrgsOrgRoute: CenterGroveOrgsOrgRouteWithChildren,
   CenterGroveProductSlugRoute: CenterGroveProductSlugRoute,
   CenterGroveShopCategoryRoute: CenterGroveShopCategoryRoute,
-  CenterGroveSponsorsSlugRoute: CenterGroveSponsorsSlugRoute,
+  CenterGroveSponsorsSlugRoute: CenterGroveSponsorsSlugRouteWithChildren,
   CenterGroveOrgsIndexRoute: CenterGroveOrgsIndexRoute,
   CenterGroveShopIndexRoute: CenterGroveShopIndexRoute,
   CenterGroveSponsorsIndexRoute: CenterGroveSponsorsIndexRoute,
