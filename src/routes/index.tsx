@@ -1,13 +1,16 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ShoppingBag, Users, Wallet } from "lucide-react";
+import { ArrowRight, GraduationCap, Users, ShoppingBag, Wallet, Trophy } from "lucide-react";
+import heroStadium from "@/assets/hero-stadium.jpg";
+import heroYouth from "@/assets/hero-youth.jpg";
+import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FanPact — Community commerce for athletes & programs" },
-      { name: "description", content: "Redirect the spend you already make on groceries, gear, and household goods into verified support for the team you love." },
-      { property: "og:title", content: "FanPact — Community commerce" },
-      { property: "og:description", content: "Two paths. One promise. 60% of net earnings back to the community." },
+      { title: "FanPact — Where every purchase powers your team" },
+      { name: "description", content: "Choose your school or your youth alliance and shop everyday products that support athletes and community. You're not spending more — just switching where you shop." },
+      { property: "og:title", content: "FanPact — Community commerce for athletes" },
+      { property: "og:description", content: "Collegiate athletics. Youth community alliances. One platform. 60% of net earnings back to the team you choose." },
     ],
   }),
   component: MasterHome,
@@ -16,141 +19,164 @@ export const Route = createFileRoute("/")({
 function MasterHome() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
-        <div className="font-display text-2xl tracking-tight">FANPACT</div>
-        <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#how" className="hover:text-foreground">How it works</a>
-          <a href="#paths" className="hover:text-foreground">Storefronts</a>
-          <a href="#card" className="hover:text-foreground">Team Card</a>
-          <a href="#sponsors" className="hover:text-foreground">Sponsors</a>
-        </nav>
-        <Link
-          to="/butler"
-          className="hidden rounded-md border border-border px-3 py-2 text-sm font-medium hover:bg-muted md:inline-flex"
-        >
-          Demo stores →
-        </Link>
+      {/* TOP BAR */}
+      <header className="absolute inset-x-0 top-0 z-30">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+          <div className="flex items-center gap-2 text-white">
+            <Trophy className="h-5 w-5" style={{ color: "var(--gold)" }} />
+            <span className="font-display text-2xl tracking-tight">FANPACT</span>
+          </div>
+          <nav className="hidden gap-8 text-sm text-white/90 md:flex">
+            <a href="#collegiate" className="hover:text-white">Collegiate</a>
+            <a href="#youth" className="hover:text-white">Youth</a>
+            <a href="#how" className="hover:text-white">How it works</a>
+            <a href="#card" className="hover:text-white">Team Card</a>
+          </nav>
+          <a
+            href="#collegiate"
+            className="hidden rounded-md border border-white/30 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 md:inline-flex"
+          >
+            Select your team →
+          </a>
+        </div>
       </header>
 
       {/* HERO */}
-      <section className="mx-auto max-w-7xl px-6 pb-24 pt-12 lg:px-10 lg:pt-16">
-        <div className="grid items-end gap-12 lg:grid-cols-[1.3fr_1fr]">
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--community)" }} />
+      <section className="relative isolate overflow-hidden">
+        <img
+          src={heroStadium}
+          alt="Stadium packed with fans waving team flags under bright lights"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          width={1920}
+          height={1280}
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/55 to-black/85" />
+        <div className="mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-center px-6 pb-24 pt-40 lg:px-10">
+          <div className="max-w-4xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
               Community commerce platform
             </div>
-            <h1 className="font-display text-[clamp(3.5rem,9vw,7.5rem)] leading-[0.88] tracking-tight">
-              Shop the brands you<br />
-              already buy. Fund the<br />
-              <span style={{ color: "var(--community)" }}>team you love.</span>
+            <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-tight text-white">
+              WHERE EVERY<br />
+              PURCHASE POWERS<br />
+              <span style={{ color: "var(--gold)" }}>YOUR TEAM &amp; COMMUNITY</span>
             </h1>
-            <p className="mt-8 max-w-xl text-lg text-muted-foreground text-pretty">
-              FanPact turns everyday household purchases — groceries, gear, pet supplies, personal care —
-              into verified financial support for athletes and programs. No extra cost. No fundraising ask.
-              The commerce does the work.
+            <p className="mt-8 max-w-2xl text-lg text-white/85">
+              Choose your school or your local youth alliance and shop everyday products that fund
+              athletes and families. <span className="text-white">You're not spending more — just switching where you shop.</span>
             </p>
-          </div>
-          <div className="flex items-center gap-6 lg:justify-end">
-            <div
-              className="font-display leading-[0.8] tracking-tight"
-              style={{ color: "var(--community)", fontSize: "clamp(8rem, 18vw, 16rem)" }}
-            >
-              60<span style={{ color: "var(--foreground)", opacity: 0.3 }}>%</span>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href="#collegiate"
+                className="inline-flex items-center gap-2 rounded-md px-6 py-4 text-sm font-semibold uppercase tracking-wider shadow-xl"
+                style={{ background: "var(--gold)", color: "var(--gold-foreground)" }}
+              >
+                <GraduationCap className="h-5 w-5" />
+                Select your school
+              </a>
+              <a
+                href="#youth"
+                className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
+              >
+                <Users className="h-5 w-5" />
+                Select your youth alliance
+              </a>
             </div>
-            <div className="max-w-[14ch] border-l-2 pl-4 text-xs uppercase tracking-[0.22em] text-muted-foreground"
-              style={{ borderColor: "var(--community)" }}>
-              of net earnings flow back to the community fund
+            <div className="mt-12 flex items-center gap-4 text-xs uppercase tracking-[0.22em] text-white/70">
+              <div className="font-display text-5xl leading-none" style={{ color: "var(--gold)" }}>
+                60%
+              </div>
+              <div className="max-w-[28ch] border-l border-white/20 pl-4">
+                of net earnings from qualifying purchases flow back to the team you choose
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TWO PATHS */}
-      <section id="paths" className="border-y border-border bg-card">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="mb-12 flex items-end justify-between gap-6">
+      {/* COLLEGIATE SELECTOR */}
+      <section id="collegiate" className="border-b border-border bg-background py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Choose your path</div>
-              <h2 className="mt-3 font-display text-5xl tracking-tight">Two storefronts. One platform.</h2>
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                <GraduationCap className="h-4 w-4" /> Collegiate
+              </div>
+              <h2 className="mt-3 font-display text-5xl tracking-tight">
+                Select your school <span style={{ color: "var(--gold)" }}>by conference</span>
+              </h2>
+              <p className="mt-3 max-w-xl text-muted-foreground">
+                Pick your university to enter its dedicated storefront and start supporting student-athletes.
+              </p>
             </div>
-            <p className="hidden max-w-md text-sm text-muted-foreground md:block">
-              Both storefronts share the same catalog, Team Card, sponsor pages, and contribution engine.
-              The branding, hierarchy, and fund routing differ.
-            </p>
+            <div className="rounded-full border border-border bg-card px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground">
+              {CONFERENCES.length} conferences · {CONFERENCES.reduce((n, c) => n + c.schools.length, 0)} schools
+            </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Collegiate */}
-            <Link
-              to="/butler"
-              className="group relative overflow-hidden rounded-2xl border border-border p-10 transition-all hover:-translate-y-1 hover:shadow-xl"
-              style={{ background: "oklch(0.22 0.07 260)", color: "oklch(0.99 0 0)" }}
-            >
-              <div className="text-xs uppercase tracking-[0.22em] opacity-70">Collegiate</div>
-              <div className="mt-4 font-display text-6xl tracking-tight">BUTLER</div>
-              <div className="text-xs uppercase tracking-[0.2em] opacity-80">University Bulldogs</div>
-              <p className="mt-8 max-w-md opacity-85">
-                Big East athletics. Designate any Bulldog and watch contributions accrue
-                across men's basketball and football skill positions.
-              </p>
-              <div className="mt-12 flex items-center justify-between">
-                <div className="text-sm font-medium uppercase tracking-wider">Enter Butler store</div>
-                <ArrowRight className="transition-transform group-hover:translate-x-1" />
-              </div>
-              <div
-                className="pointer-events-none absolute -bottom-12 -right-6 font-display text-[18rem] leading-none tracking-tighter opacity-10"
-              >
-                B
-              </div>
-            </Link>
-
-            {/* Youth */}
-            <Link
-              to="/center-grove"
-              className="group relative overflow-hidden rounded-2xl border border-border p-10 transition-all hover:-translate-y-1 hover:shadow-xl"
-              style={{ background: "oklch(0.15 0.005 80)", color: "oklch(0.99 0 0)" }}
-            >
-              <div className="flex items-center gap-3 text-xs uppercase tracking-[0.22em] opacity-70">
-                Youth Community Alliance
-              </div>
-              <div className="mt-4 font-display text-6xl tracking-tight" style={{ color: "oklch(0.82 0.16 85)" }}>
-                CENTER GROVE
-              </div>
-              <div className="text-xs uppercase tracking-[0.2em] opacity-80">Community Alliance</div>
-              <p className="mt-8 max-w-md opacity-85">
-                Youth baseball, softball, and basketball across 8U, 10U, and 12U.
-                Designate sport, division, team, or a specific player.
-              </p>
-              <div className="mt-12 flex items-center justify-between">
-                <div className="text-sm font-medium uppercase tracking-wider" style={{ color: "oklch(0.82 0.16 85)" }}>
-                  Enter Center Grove store
-                </div>
-                <ArrowRight className="transition-transform group-hover:translate-x-1" style={{ color: "oklch(0.82 0.16 85)" }} />
-              </div>
-              <div
-                className="pointer-events-none absolute -bottom-12 -right-6 font-display text-[18rem] leading-none tracking-tighter opacity-10"
-                style={{ color: "oklch(0.82 0.16 85)" }}
-              >
-                CG
-              </div>
-            </Link>
+          <div className="space-y-6">
+            {CONFERENCES.map((conf) => (
+              <ConferenceBlock key={conf.id} conf={conf} />
+            ))}
           </div>
+
+          <p className="mt-8 text-sm text-muted-foreground">More conferences and schools launching soon →</p>
+        </div>
+      </section>
+
+      {/* YOUTH SELECTOR */}
+      <section id="youth" className="relative isolate overflow-hidden border-b border-border py-24">
+        <img
+          src={heroYouth}
+          alt="Youth team celebrating on the field"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          loading="lazy"
+          width={1600}
+          height={1200}
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/85 via-black/80 to-black/95" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6 text-white">
+            <div>
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/70">
+                <Users className="h-4 w-4" /> Youth community alliances
+              </div>
+              <h2 className="mt-3 font-display text-5xl tracking-tight">
+                Select your <span style={{ color: "var(--gold)" }}>youth alliance</span>
+              </h2>
+              <p className="mt-3 max-w-xl text-white/80">
+                Community alliances support local youth baseball, softball, basketball, and more.
+                Designate the fund, a team, or a specific player.
+              </p>
+            </div>
+            <div className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-widest text-white/80 backdrop-blur">
+              {YOUTH_LEAGUES.length} regions · {YOUTH_LEAGUES.reduce((n, l) => n + l.alliances.length, 0)} alliances
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            {YOUTH_LEAGUES.map((league) => (
+              <LeagueBlock key={league.id} league={league} />
+            ))}
+          </div>
+
+          <p className="mt-8 text-sm text-white/70">More regions and alliances launching soon →</p>
         </div>
       </section>
 
       {/* HOW IT WORKS */}
       <section id="how" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="mb-14 max-w-2xl">
-          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">How it works</div>
+          <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">How FanPact works</div>
           <h2 className="mt-3 font-display text-5xl tracking-tight">Three steps. No behavior change.</h2>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
           {[
-            { icon: ShoppingBag, n: "01", t: "Shop your storefront",
-              d: "Browse Tide, Gatorade, Rawlings, Purina, Nike — the brands already in your cart, on your team's branded site." },
+            { icon: ShoppingBag, n: "01", t: "Choose your storefront",
+              d: "Pick your school or your local youth alliance. Each has a branded store with the brands you already buy." },
             { icon: Users, n: "02", t: "Designate a beneficiary",
-              d: "Send your contribution to the full community fund, a specific team, or a single athlete you want to back." },
+              d: "Send your contribution to the community fund, a specific team, or a single athlete you want to back." },
             { icon: Wallet, n: "03", t: "60% flows back",
               d: "Of net earnings on every purchase. Verified, automatic, transparent. The commerce does the fundraising." },
           ].map((s) => (
@@ -172,20 +198,19 @@ function MasterHome() {
           <div>
             <div className="text-xs uppercase tracking-[0.22em] opacity-60">FanPact Team Card</div>
             <h2 className="mt-3 font-display text-5xl tracking-tight">
-              A Visa in Apple & Google Pay that<br />earns contributions <span style={{ color: "var(--community)" }}>everywhere</span>.
+              A Visa in Apple &amp; Google Pay that<br />earns contributions <span style={{ color: "var(--gold)" }}>everywhere</span>.
             </h2>
             <p className="mt-6 max-w-lg opacity-80">
-              Issued through Stripe. Earns community contributions automatically at every merchant —
-              not just on the storefront. Tap to pay at the grocery store, the gas pump, the pet supply
-              shop. Your team gets credited.
+              Tap to pay at the grocery store, the gas pump, the pet supply shop. Your team gets credited
+              automatically — not just on the storefront.
             </p>
           </div>
           <div className="flex items-center justify-end">
             <div
               className="aspect-[1.586/1] w-full max-w-md rounded-2xl p-6 shadow-2xl"
               style={{
-                background: "linear-gradient(135deg, var(--community), color-mix(in oklab, var(--community) 60%, black))",
-                color: "white",
+                background: "linear-gradient(135deg, var(--gold), color-mix(in oklab, var(--gold) 50%, black))",
+                color: "oklch(0.15 0 0)",
               }}
             >
               <div className="flex h-full flex-col justify-between">
@@ -193,43 +218,17 @@ function MasterHome() {
                   <div className="font-display text-xl tracking-tight">FANPACT</div>
                   <div className="text-xs uppercase tracking-widest opacity-80">Team Card</div>
                 </div>
-                <div className="font-mono text-lg tracking-[0.2em]">4242  ••••  ••••  1834</div>
+                <div className="font-mono text-lg tracking-[0.2em]">4242 •••• •••• 1834</div>
                 <div className="flex items-end justify-between">
                   <div>
                     <div className="text-[10px] uppercase tracking-widest opacity-70">Designated to</div>
-                    <div className="text-sm font-semibold">Butler Athletics Fund</div>
+                    <div className="text-sm font-semibold">Your Team Fund</div>
                   </div>
                   <div className="text-xs uppercase tracking-widest opacity-80">VISA</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* SPONSORS */}
-      <section id="sponsors" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <div className="mb-12 flex items-end justify-between">
-          <div>
-            <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Enterprise sponsors</div>
-            <h2 className="mt-3 font-display text-5xl tracking-tight">Brands fund families.</h2>
-          </div>
-          <p className="hidden max-w-sm text-sm text-muted-foreground md:block">
-            Enterprise sponsors prepay community accounts. Families unlock credits when they complete
-            qualifying actions — no purchase required.
-          </p>
-        </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {["USAREC", "Merrill Lynch", "State Farm"].map((s) => (
-            <div key={s} className="rounded-xl border border-border bg-card p-8">
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">Active campaign</div>
-              <div className="mt-2 font-display text-3xl tracking-tight">{s}</div>
-              <div className="mt-6 text-xs uppercase tracking-wider text-muted-foreground">Per-family credit up to</div>
-              <div className="font-display text-4xl tracking-tight" style={{ color: "var(--community)" }}>
-                ${s === "USAREC" ? 250 : s === "Merrill Lynch" ? 200 : 150}
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -240,6 +239,72 @@ function MasterHome() {
           <div>Demo experience — all products and contributions illustrative.</div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function ConferenceBlock({ conf }: { conf: { id: string; name: string; schools: { name: string; slug: string; href?: string }[] } }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-6 py-5">
+        <div className="flex items-baseline gap-4">
+          <h3 className="font-display text-3xl tracking-tight">{conf.name}</h3>
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">
+            {conf.schools.length} schools
+          </span>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        {conf.schools.map((s) => (
+          <SchoolTile key={s.slug} school={s} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LeagueBlock({ league }: { league: { id: string; name: string; region: string; alliances: { name: string; slug: string; href?: string }[] } }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 backdrop-blur">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/15 px-6 py-5 text-white">
+        <div className="flex items-baseline gap-4">
+          <h3 className="font-display text-3xl tracking-tight">{league.name}</h3>
+          <span className="text-xs uppercase tracking-widest text-white/60">
+            {league.alliances.length} alliances
+          </span>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {league.alliances.map((a) => (
+          <SchoolTile key={a.slug} school={a} dark />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SchoolTile({ school, dark = false }: { school: { name: string; slug: string; href?: string }; dark?: boolean }) {
+  const live = !!school.href;
+  const baseClasses = dark
+    ? "bg-black/40 text-white hover:bg-black/60"
+    : "bg-card text-foreground hover:bg-muted";
+  const disabledClasses = dark ? "bg-black/30 text-white/50" : "bg-card text-muted-foreground";
+
+  if (live) {
+    return (
+      <Link
+        to={school.href as "/butler"}
+        className={`group flex items-center justify-between px-5 py-4 transition-colors ${baseClasses}`}
+      >
+        <span className="text-sm font-medium">{school.name}</span>
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" style={{ color: "var(--gold)" }} />
+      </Link>
+    );
+  }
+  return (
+    <div className={`flex items-center justify-between px-5 py-4 ${disabledClasses}`}>
+      <span className="text-sm">{school.name}</span>
+      <span className="text-[10px] uppercase tracking-widest opacity-60">Soon</span>
     </div>
   );
 }
