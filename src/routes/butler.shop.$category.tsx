@@ -41,7 +41,7 @@ function ErrorView() {
 type SortKey = "featured" | "price-asc" | "price-desc" | "name";
 
 function ButlerCategory() {
-  const { category, products } = Route.useLoaderData();
+  const { category, products } = Route.useLoaderData() as { category: Category; products: Product[] };
   const store = STORES.butler;
 
   const [activeSub, setActiveSub] = useState<string>("all");
