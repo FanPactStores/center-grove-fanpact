@@ -305,6 +305,10 @@ export const CG_ORGS: CGOrg[] = [
       // Travel
       t(BSK, { slug: "boys-travel-indy-hoops", name: "Boys Travel — Indy Hoops", ageGroup: "Grades 4–8", coach: "Coach Knight", blurb: "Tryout-only travel in the Indy Hoops league.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "4th–8th", count: 11, startIdx: 10 }),
       t(BSK, { slug: "girls-travel-ighl", name: "Girls Travel — IGHL", ageGroup: "Grades 4–8", coach: "Coach Vance", blurb: "Tryout-only travel in the Indiana Girls Hoops League.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "4th–8th", gender: "f", count: 11, startIdx: 12 }),
+      // Boys grade-specific CGBBL divisions
+      t(BSK, { slug: "boys-4th-grade", name: "Boys 4th Grade", ageGroup: "Grade 4", coach: "Coach Holloway", blurb: "CGBBL boys 4th grade division roster.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "4th", count: 8, startIdx: 14 }),
+      t(BSK, { slug: "boys-6th-grade", name: "Boys 6th Grade", ageGroup: "Grade 6", coach: "Coach Whitaker", blurb: "CGBBL boys 6th grade division roster.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "6th", count: 8, startIdx: 16 }),
+      t(BSK, { slug: "boys-8th-grade", name: "Boys 8th Grade", ageGroup: "Grade 8", coach: "Coach Faulkner", blurb: "CGBBL boys 8th grade division roster.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "8th", count: 8, startIdx: 18 }),
     ],
   },
 
