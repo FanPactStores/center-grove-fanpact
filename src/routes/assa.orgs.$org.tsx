@@ -102,7 +102,7 @@ function OrgDetail() {
                   className="font-display text-2xl tracking-tight"
                   style={{ color: "var(--brand-accent)" }}
                 >
-                  {age} Division
+                  {age}
                 </h3>
                 <span className="text-xs uppercase tracking-widest text-muted-foreground">
                   {groups[age].length} {groups[age].length === 1 ? "roster" : "rosters"}
