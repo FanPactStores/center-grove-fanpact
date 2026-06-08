@@ -12,7 +12,7 @@ export type StoreConfig = {
   heroEyebrow: string;
   heroHeadline: string;
   heroBody: string;
-  marks: { letter: string; word: string };
+  marks: { letter: string; word: string; subtitle?: string };
 };
 
 export const STORES: Record<StoreId, StoreConfig> = {
