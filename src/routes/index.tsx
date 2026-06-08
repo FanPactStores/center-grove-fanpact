@@ -73,7 +73,7 @@ function MasterHome() {
                 style={{ background: "var(--gold)", color: "var(--gold-foreground)" }}
               >
                 <GraduationCap className="h-5 w-5" />
-                Select your school
+                Select your college
               </a>
               <a
                 href="#youth"
