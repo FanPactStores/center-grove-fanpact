@@ -47,16 +47,16 @@ export const STORES: Record<StoreId, StoreConfig> = {
   legacy: {
     id: "legacy",
     basePath: "/legacy",
-    name: "STL Legacy / Klutch Baseball",
-    shortName: "STL Legacy",
+    name: "Legacy Performance Academy",
+    shortName: "Legacy",
     fundName: "Legacy Performance Academy Fund",
-    fundDisplay: "STL Legacy Baseball",
+    fundDisplay: "Legacy Performance Academy athletes",
     tagline: "Shop the brands you already buy. Fuel the diamond.",
     heroEyebrow: "Legacy Performance Academy × FanPact",
     heroHeadline: "From 8U to D1. One ledger.",
     heroBody:
-      "Klutch youth squads, the 14U bridge roster, and the STL Legacy showcase teams — every age group, every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.",
-    marks: { letter: "L", word: "STL LEGACY" },
+      "Klutch youth squads, the 14U bridge roster, and the Legacy showcase teams — every age group, every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.",
+    marks: { letter: "L", word: "LEGACY" },
   },
   assa: {
     id: "assa",
