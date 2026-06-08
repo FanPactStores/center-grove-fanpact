@@ -206,6 +206,9 @@ function AssaHome() {
         </div>
       </section>
 
+      {/* YOUR REGULARS — appears when list has 3+ items */}
+      <YourRegulars store={store} />
+
       {/* FEATURED PRODUCTS */}
       <section className="border-y border-border bg-[var(--surface-2)]">
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
