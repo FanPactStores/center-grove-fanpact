@@ -1,14 +1,14 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { ChevronRight, LayoutGrid, List, ArrowLeft, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
-import { CATEGORIES, getCategory } from "@/data/categories";
-import { getProductsByCategory, productImage } from "@/data/products";
+import { CATEGORIES, getCategory, type Category } from "@/data/categories";
+import { getProductsByCategory, productImage, type Product } from "@/data/products";
 import { STORES } from "@/data/stores";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/butler/shop/$category")({
-  loader: ({ params }) => {
+  loader: ({ params }): { category: Category; products: Product[] } => {
     const cat = getCategory(params.category);
     if (!cat) throw notFound();
     return { category: cat, products: getProductsByCategory(cat.slug) };
