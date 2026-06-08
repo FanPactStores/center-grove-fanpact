@@ -66,7 +66,7 @@ function SponsorDetail() {
             <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Qualifying actions</div>
             <h2 className="mt-2 font-display text-3xl tracking-tight">How families unlock the credit</h2>
             <div className="mt-6 space-y-3">
-              {sponsor.actions.map((a, i) => (
+              {sponsor.actions.map((a: typeof sponsor.actions[number], i: number) => (
                 <div key={a.title} className="flex items-center justify-between rounded-xl border border-border bg-card p-5">
                   <div className="flex items-center gap-4">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted font-display text-sm">{i + 1}</div>

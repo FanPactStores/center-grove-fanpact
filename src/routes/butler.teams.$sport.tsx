@@ -51,7 +51,7 @@ function SportRoster() {
 
       <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {team.players.map((p) => (
+          {team.players.map((p: import("@/data/butler-teams").ButlerPlayer) => (
             <Link
               key={p.slug}
               to="/butler/teams/$sport/$player"

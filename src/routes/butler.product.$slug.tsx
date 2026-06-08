@@ -109,7 +109,7 @@ function ButlerProduct() {
           <div className="mt-10 border-t border-border pt-6">
             <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Product details</div>
             <ul className="mt-3 space-y-1.5 text-sm">
-              {product.details.map((d) => (
+              {product.details.map((d: string) => (
                 <li key={d} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" /> {d}</li>
               ))}
             </ul>
@@ -121,7 +121,7 @@ function ButlerProduct() {
         <section className="mt-24">
           <div className="mb-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">More in {category.name}</div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
-            {related.map((p) => (
+            {related.map((p: typeof product) => (
               <ProductCard key={p.id} product={p} basePath={store.basePath} />
             ))}
           </div>
