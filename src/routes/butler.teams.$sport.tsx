@@ -66,7 +66,7 @@ function SportRoster() {
               </div>
               <div className="p-4">
                 <div className="font-display text-lg leading-tight group-hover:underline">{p.name}</div>
-                <div className="mt-1 text-xs text-muted-foreground">{p.year} · {p.hometown}</div>
+                <div className="mt-1 text-xs text-muted-foreground">#{p.number} · {p.position}</div>
               </div>
             </Link>
           ))}
