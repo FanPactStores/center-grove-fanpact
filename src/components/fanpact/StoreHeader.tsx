@@ -6,6 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { DesignationBanner } from "./DesignationBanner";
 import { WelcomeModal } from "./WelcomeModal";
 import { useMyList } from "@/lib/my-list";
+import { FanPactLogo } from "@/components/FanPactLogo";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
@@ -51,15 +52,7 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
             to={store.basePath as "/butler"}
             className="flex items-center gap-3"
           >
-            <span
-              className="relative flex h-10 w-12 items-center justify-center font-display text-[10px] font-bold tracking-widest text-white"
-              style={{
-                background: "var(--brand)",
-                clipPath: "polygon(0 0, 100% 0, 80% 50%, 100% 100%, 0 100%)",
-              }}
-            >
-              FP
-            </span>
+            <FanPactLogo height={32} pill pillPadding="px-2 py-1" />
             <div className="flex flex-col">
               <span
                 className="font-display text-2xl tracking-tight leading-none"

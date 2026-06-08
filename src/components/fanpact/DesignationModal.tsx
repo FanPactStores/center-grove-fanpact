@@ -8,6 +8,7 @@ import {
 } from "@/lib/designation";
 import { Button } from "@/components/ui/button";
 import { SuppressCheckbox } from "./SuppressCheckbox";
+import { FanPactLogo } from "@/components/FanPactLogo";
 
 export function DesignationModal({
   open,
@@ -70,12 +71,15 @@ export function DesignationModal({
         onClick={(e) => e.stopPropagation()}
         className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border bg-[var(--surface)] shadow-2xl"
       >
-        <div className="flex items-center justify-between border-b border-border px-5 py-4">
-          <div>
-            <h2 className="font-display text-xl tracking-tight">{title}</h2>
-            <p className="mt-0.5 text-xs text-muted-foreground">
-              Your contribution will be tagged to this designee on every purchase.
-            </p>
+        <div className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
+          <div className="flex flex-1 items-start gap-3">
+            <FanPactLogo height={36} />
+            <div>
+              <h2 className="font-display text-xl tracking-tight">{title}</h2>
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                Your contribution will be tagged to this designee on every purchase.
+              </p>
+            </div>
           </div>
           <button
             aria-label="Close"

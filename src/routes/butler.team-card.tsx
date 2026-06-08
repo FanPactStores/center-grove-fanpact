@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { FanPactLogo } from "@/components/FanPactLogo";
 import { Check, CreditCard, Smartphone, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { STORES } from "@/data/stores";
@@ -39,7 +40,7 @@ function TeamCardPage() {
             style={{ background: "linear-gradient(135deg, var(--brand), var(--brand-accent))", color: "white" }}>
             <div className="flex h-full flex-col justify-between">
               <div className="flex items-center justify-between">
-                <div className="font-display text-xl tracking-tight">{store.marks.word}</div>
+                <FanPactLogo height={20} pill pillPadding="px-1.5 py-0.5" />
                 <div className="text-xs uppercase tracking-widest opacity-80">Team Card</div>
               </div>
               <div className="font-mono text-lg tracking-[0.2em]">4242  ••••  ••••  1834</div>
