@@ -92,8 +92,8 @@ function PlayerBio() {
 
           <div className="mt-8 border-t border-border pt-6 text-sm text-muted-foreground">
             <p>
-              Bio coming soon. {player.name} joined the Butler {team.name.toLowerCase()} program from {player.hometown}
-              and is in their {player.year.toLowerCase()} season.
+              Bio coming soon. {player.name} suits up for Butler {team.name} as #{player.number} at {player.position}
+              {player.hometown ? ` out of ${player.hometown}` : ""}.
             </p>
           </div>
 
