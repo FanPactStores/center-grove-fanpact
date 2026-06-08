@@ -101,6 +101,8 @@ function TeamCardPage() {
         </div>
       </div>
     </main>
+    <EarningLayers fundName={store.fundName} />
+    </>
   );
 }
 
