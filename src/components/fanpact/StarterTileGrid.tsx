@@ -3,6 +3,7 @@ import { STARTER_TILES, starterTileToItem } from "@/lib/my-list";
 import { Button } from "@/components/ui/button";
 import type { StoreId } from "@/data/stores";
 import { useState } from "react";
+import { SuppressCheckbox } from "./SuppressCheckbox";
 
 /**
  * The "stock your personal storefront" step shown after the designation modal.
@@ -12,10 +13,12 @@ export function StarterTileGrid({
   storeId,
   onSave,
   onSkip,
+  suppressCheckbox,
 }: {
   storeId: StoreId;
   onSave: (keys: string[]) => void;
   onSkip: () => void;
+  suppressCheckbox?: { checked: boolean; onChange: (v: boolean) => void };
 }) {
   // Show the first 24 tiles in a 4x6 grid.
   const tiles = STARTER_TILES.slice(0, 24);
@@ -100,19 +103,28 @@ export function StarterTileGrid({
         ))}
       </div>
 
-      <div className="flex items-center justify-between gap-3 border-t border-border bg-muted/20 px-6 py-4">
-        <button
-          onClick={onSkip}
-          className="text-xs font-semibold text-muted-foreground underline hover:text-foreground"
-        >
-          Skip for now
-        </button>
-        <Button
-          onClick={save}
-          style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
-        >
-          Save My List and Start Shopping
-        </Button>
+      <div className="flex flex-col gap-3 border-t border-border bg-muted/20 px-6 py-4">
+        {suppressCheckbox && (
+          <SuppressCheckbox
+            checked={suppressCheckbox.checked}
+            onCheckedChange={suppressCheckbox.onChange}
+            id="fp-suppress-starter"
+          />
+        )}
+        <div className="flex items-center justify-between gap-3">
+          <button
+            onClick={onSkip}
+            className="text-xs font-semibold text-muted-foreground underline hover:text-foreground"
+          >
+            Skip for now
+          </button>
+          <Button
+            onClick={save}
+            style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
+          >
+            Save My List and Start Shopping
+          </Button>
+        </div>
       </div>
     </div>
   );

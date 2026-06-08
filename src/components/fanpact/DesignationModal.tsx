@@ -7,6 +7,7 @@ import {
   type Designation,
 } from "@/lib/designation";
 import { Button } from "@/components/ui/button";
+import { SuppressCheckbox } from "./SuppressCheckbox";
 
 export function DesignationModal({
   open,
@@ -14,12 +15,14 @@ export function DesignationModal({
   onClose,
   onConfirm,
   title = "Choose your designation",
+  suppressCheckbox,
 }: {
   open: boolean;
   storeId: StoreId;
   onClose: () => void;
   onConfirm: (d: Designation) => void;
   title?: string;
+  suppressCheckbox?: { checked: boolean; onChange: (v: boolean) => void };
 }) {
   const idx = useMemo(() => getDesignationIndex(storeId), [storeId]);
   const [query, setQuery] = useState("");
@@ -232,6 +235,16 @@ export function DesignationModal({
             instead
           </button>
         </div>
+
+        {suppressCheckbox && (
+          <div className="border-t border-border bg-muted/20 px-5 py-2">
+            <SuppressCheckbox
+              checked={suppressCheckbox.checked}
+              onCheckedChange={suppressCheckbox.onChange}
+              id="fp-suppress-picker"
+            />
+          </div>
+        )}
 
         <div className="flex items-center justify-between gap-3 border-t border-border bg-[var(--surface)] px-5 py-3">
           <div className="min-w-0 text-xs">

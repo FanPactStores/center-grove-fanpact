@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import type { StoreConfig } from "@/data/stores";
 import {
@@ -10,6 +10,7 @@ import { useMyList } from "@/lib/my-list";
 import { Button } from "@/components/ui/button";
 import { DesignationModal } from "./DesignationModal";
 import { StarterTileGrid } from "./StarterTileGrid";
+import { SuppressCheckbox } from "./SuppressCheckbox";
 
 type Stage = "intro" | "picker" | "starter" | "done";
 
@@ -18,9 +19,18 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
   const { set } = useDesignation(store.id);
   const { setMany } = useMyList(store.id);
   const [stage, setStage] = useState<Stage>("done");
+  const [dontShow, setDontShow] = useState(false);
+  // Use a ref so any onClose path reads the latest value at click time.
+  const dontShowRef = useRef(false);
+  useEffect(() => {
+    dontShowRef.current = dontShow;
+  }, [dontShow]);
 
   useEffect(() => {
-    if (!seen) setStage("intro");
+    if (!seen) {
+      setDontShow(false);
+      setStage("intro");
+    }
   }, [seen]);
 
   // Persist starter selections via the StarterTileGrid event bus
@@ -36,7 +46,7 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
   }, [store.id, setMany]);
 
   const finish = () => {
-    markSeen();
+    if (dontShowRef.current) markSeen();
     setStage("done");
   };
 
@@ -134,6 +144,14 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
                 </div>
               )}
             </div>
+
+            <div className="border-t border-border bg-muted/20 px-6 py-3">
+              <SuppressCheckbox
+                checked={dontShow}
+                onCheckedChange={setDontShow}
+                id="fp-suppress-intro"
+              />
+            </div>
           </div>
         </div>
       )}
@@ -141,12 +159,16 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
       <DesignationModal
         open={stage === "picker"}
         storeId={store.id}
-        onClose={() => setStage("starter")}
+        onClose={() => {
+          if (dontShowRef.current) markSeen();
+          setStage("starter");
+        }}
         onConfirm={(d) => {
           set(d);
           setStage("starter");
         }}
         title={`Designate your ${store.shortName} contribution`}
+        suppressCheckbox={{ checked: dontShow, onChange: setDontShow }}
       />
 
       {stage === "starter" && (
@@ -175,7 +197,12 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
                 {store.shortName} × FanPact · Step 2 of 2
               </div>
             </div>
-            <StarterTileGrid storeId={store.id} onSave={finish} onSkip={finish} />
+            <StarterTileGrid
+              storeId={store.id}
+              onSave={finish}
+              onSkip={finish}
+              suppressCheckbox={{ checked: dontShow, onChange: setDontShow }}
+            />
           </div>
         </div>
       )}

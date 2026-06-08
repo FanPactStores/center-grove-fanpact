@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { StoreConfig } from "@/data/stores";
+import { resetStoreState } from "@/lib/designation";
+import { toast } from "sonner";
 
 export function StoreFooter({ store }: { store: StoreConfig }) {
   return (
@@ -39,7 +41,18 @@ export function StoreFooter({ store }: { store: StoreConfig }) {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs opacity-70 md:flex-row md:items-center md:justify-between lg:px-8">
           <span>© {new Date().getFullYear()} FanPact, Inc. All brand marks belong to their owners.</span>
-          <span>Demo storefront — products and contributions are illustrative.</span>
+          <span className="flex items-center gap-3">
+            <span>Demo storefront — products and contributions are illustrative.</span>
+            <button
+              onClick={() => {
+                resetStoreState(store.id);
+                toast.success("Demo reset — refresh to see the welcome flow.");
+              }}
+              className="rounded border border-white/30 px-2 py-0.5 font-semibold uppercase tracking-wider hover:bg-white/10"
+            >
+              Reset demo
+            </button>
+          </span>
         </div>
       </div>
     </footer>

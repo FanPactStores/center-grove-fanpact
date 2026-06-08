@@ -277,6 +277,17 @@ export function useWelcomeSeen(storeId: StoreId): {
   return { seen, markSeen };
 }
 
+/** Clear every per-store localStorage flag so the demo flow restarts fresh. */
+export function resetStoreState(storeId: StoreId) {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(welcomeKey(storeId));
+    window.localStorage.removeItem(storageKey(storeId));
+    window.localStorage.removeItem(`fanpact-list-${storeId}`);
+  } catch {}
+  notify();
+}
+
 export function storeForId(storeId: StoreId): StoreConfig {
   return STORES[storeId];
 }
