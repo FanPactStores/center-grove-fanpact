@@ -109,7 +109,7 @@ function AssaHome() {
             </div>
 
             <p className="mt-5 max-w-xl text-[11px] text-white/55">
-              ASSA / Combat is a ASSA Performance Academy storefront. Demo experience; all products
+              ASSA / Combat is a All-Star Sports Academy storefront. Demo experience; all products
               and contributions are illustrative.
             </p>
           </div>
