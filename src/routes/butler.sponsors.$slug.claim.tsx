@@ -56,7 +56,7 @@ function Confirmation() {
         <div className="mt-8 rounded-2xl border border-border bg-background p-6 text-left">
           <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Next steps</div>
           <ol className="mt-3 space-y-3">
-            {sponsor.actions.map((a, i) => (
+            {sponsor.actions.map((a: typeof sponsor.actions[number], i: number) => (
               <li key={a.title} className="flex items-start gap-3 text-sm">
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted font-display text-xs">
                   {i + 1}
