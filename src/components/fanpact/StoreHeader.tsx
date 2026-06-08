@@ -257,6 +257,9 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
           </div>
         </div>
       )}
+
+      {/* First-visit welcome modal */}
+      <WelcomeModal store={store} />
     </header>
   );
 }
