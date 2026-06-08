@@ -183,6 +183,9 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
         </div>
       </div>
 
+      {/* DESIGNATION BANNER */}
+      <DesignationBanner store={store} />
+
       {/* DISCLAIMER BAR */}
       {!dismissed && (
         <div
