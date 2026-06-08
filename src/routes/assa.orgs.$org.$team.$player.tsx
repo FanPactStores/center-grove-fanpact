@@ -79,7 +79,7 @@ function PlayerBio() {
             }}
           >
             <div className="text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--community)" }}>
-              Contributions this season
+              Community Contributions This Season
             </div>
             <div className="mt-2 font-display text-6xl tracking-tight" style={{ color: "var(--community)" }}>
               {usd(0)}
