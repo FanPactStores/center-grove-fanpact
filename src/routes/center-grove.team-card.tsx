@@ -3,6 +3,7 @@ import { Check, CreditCard, Smartphone, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { STORES } from "@/data/stores";
 import { Button } from "@/components/ui/button";
+import { EarningLayers } from "@/components/fanpact/EarningLayers";
 
 export const Route = createFileRoute("/center-grove/team-card")({
   head: () => ({
