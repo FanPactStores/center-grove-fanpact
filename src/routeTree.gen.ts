@@ -22,6 +22,7 @@ import { Route as CenterGroveTeamCardRouteImport } from './routes/center-grove.t
 import { Route as CenterGroveCartRouteImport } from './routes/center-grove.cart'
 import { Route as ButlerTeamCardRouteImport } from './routes/butler.team-card'
 import { Route as ButlerCartRouteImport } from './routes/butler.cart'
+import { Route as AssaCartRouteImport } from './routes/assa.cart'
 import { Route as LegacySponsorsIndexRouteImport } from './routes/legacy.sponsors.index'
 import { Route as LegacyShopIndexRouteImport } from './routes/legacy.shop.index'
 import { Route as LegacyOrgsIndexRouteImport } from './routes/legacy.orgs.index'
@@ -113,6 +114,11 @@ const ButlerCartRoute = ButlerCartRouteImport.update({
   id: '/cart',
   path: '/cart',
   getParentRoute: () => ButlerRoute,
+} as any)
+const AssaCartRoute = AssaCartRouteImport.update({
+  id: '/assa/cart',
+  path: '/assa/cart',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LegacySponsorsIndexRoute = LegacySponsorsIndexRouteImport.update({
   id: '/sponsors/',
@@ -252,6 +258,7 @@ export interface FileRoutesByFullPath {
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
+  '/assa/cart': typeof AssaCartRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
@@ -290,6 +297,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assa/cart': typeof AssaCartRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
@@ -332,6 +340,7 @@ export interface FileRoutesById {
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
+  '/assa/cart': typeof AssaCartRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
@@ -375,6 +384,7 @@ export interface FileRouteTypes {
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/assa/cart'
     | '/butler/cart'
     | '/butler/team-card'
     | '/center-grove/cart'
@@ -413,6 +423,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/assa/cart'
     | '/butler/cart'
     | '/butler/team-card'
     | '/center-grove/cart'
@@ -454,6 +465,7 @@ export interface FileRouteTypes {
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/assa/cart'
     | '/butler/cart'
     | '/butler/team-card'
     | '/center-grove/cart'
@@ -496,6 +508,7 @@ export interface RootRouteChildren {
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
+  AssaCartRoute: typeof AssaCartRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -590,6 +603,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/cart'
       preLoaderRoute: typeof ButlerCartRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/assa/cart': {
+      id: '/assa/cart'
+      path: '/assa/cart'
+      fullPath: '/assa/cart'
+      preLoaderRoute: typeof AssaCartRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/legacy/sponsors/': {
       id: '/legacy/sponsors/'
@@ -928,7 +948,18 @@ const rootRouteChildren: RootRouteChildren = {
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
+  AssaCartRoute: AssaCartRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
