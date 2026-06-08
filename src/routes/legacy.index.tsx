@@ -6,6 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { FEATURED_PRODUCTS } from "@/data/products";
 import { LEGACY_ORGS } from "@/data/legacy-orgs";
 import { ProductCard } from "@/components/fanpact/ProductCard";
+import { YourRegulars } from "@/components/fanpact/YourRegulars";
 
 export const Route = createFileRoute("/legacy/")({
   head: () => ({

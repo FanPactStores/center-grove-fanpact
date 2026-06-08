@@ -6,6 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { FEATURED_PRODUCTS } from "@/data/products";
 import { sponsorsForStore } from "@/data/sponsors";
 import { ProductCard } from "@/components/fanpact/ProductCard";
+import { YourRegulars } from "@/components/fanpact/YourRegulars";
 
 export const Route = createFileRoute("/butler/")({
   head: () => ({
@@ -184,6 +185,9 @@ function ButlerHome() {
           ))}
         </div>
       </section>
+
+      {/* YOUR REGULARS — appears when list has 3+ items */}
+      <YourRegulars store={store} />
 
       {/* EVERYDAY ESSENTIALS */}
       <section className="border-y border-border bg-[var(--surface-2)]">
