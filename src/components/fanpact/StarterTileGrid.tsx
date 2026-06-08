@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import type { StoreId } from "@/data/stores";
 import { useState } from "react";
 import { SuppressCheckbox } from "./SuppressCheckbox";
+import { FanPactLogo } from "@/components/FanPactLogo";
 
 /**
  * The "stock your personal storefront" step shown after the designation modal.
@@ -50,7 +51,10 @@ export function StarterTileGrid({
 
   return (
     <div className="flex max-h-[80vh] flex-col">
-      <div className="px-6 pt-5">
+      <div className="px-6 pt-5 text-center">
+        <div className="mb-3 flex justify-center">
+          <FanPactLogo height={36} />
+        </div>
         <h2 className="font-display text-2xl tracking-tight">
           Stock your personal storefront. Tap what you already buy.
         </h2>
