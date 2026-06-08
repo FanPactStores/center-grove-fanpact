@@ -220,6 +220,10 @@ export const CG_ORGS: CGOrg[] = [
       t(BB, { slug: "seniors", name: "Seniors", ageGroup: "Grades 7–8", coach: "Coach Sutton", blurb: "Pre-high school prep on intermediate fields.", positions: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"], grade: "7th–8th", count: 13, startIdx: 10 }),
       t(BB, { slug: "high-school-division", name: "High School Division", ageGroup: "Grades 9–12", coach: "Coach Mercer", blurb: "Rec league for older players not on the varsity roster.", positions: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH"], grade: "9th–12th", count: 14, startIdx: 12 }),
       t(BB, { slug: "cg-travel-baseball", name: "CG Travel Baseball — Trojans Select", ageGroup: "8U–14U", coach: "Coach Knight", blurb: "Tryout-based travel under the Center Grove Trojans select banner.", positions: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"], grade: "8U–14U", count: 13, startIdx: 14 }),
+      // Nationals travel divisions
+      t(BB, { slug: "8u-nationals", name: "8U Nationals", ageGroup: "8U", coach: "Coach Donovan", blurb: "Elite 8U travel — Trojans Nationals tryout roster.", positions: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF"], grade: "8U", count: 8, startIdx: 16 }),
+      t(BB, { slug: "10u-nationals", name: "10U Nationals", ageGroup: "10U", coach: "Coach Pritchard", blurb: "Elite 10U travel — Trojans Nationals tryout roster.", positions: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF"], grade: "10U", count: 8, startIdx: 18 }),
+      t(BB, { slug: "12u-nationals", name: "12U Nationals", ageGroup: "12U", coach: "Coach Sutton", blurb: "Elite 12U travel — Trojans Nationals tryout roster.", positions: ["P", "C", "1B", "2B", "3B", "SS", "LF", "CF"], grade: "12U", count: 8, startIdx: 20 }),
     ],
   },
 
@@ -301,6 +305,10 @@ export const CG_ORGS: CGOrg[] = [
       // Travel
       t(BSK, { slug: "boys-travel-indy-hoops", name: "Boys Travel — Indy Hoops", ageGroup: "Grades 4–8", coach: "Coach Knight", blurb: "Tryout-only travel in the Indy Hoops league.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "4th–8th", count: 11, startIdx: 10 }),
       t(BSK, { slug: "girls-travel-ighl", name: "Girls Travel — IGHL", ageGroup: "Grades 4–8", coach: "Coach Vance", blurb: "Tryout-only travel in the Indiana Girls Hoops League.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "4th–8th", gender: "f", count: 11, startIdx: 12 }),
+      // Boys grade-specific CGBBL divisions
+      t(BSK, { slug: "boys-4th-grade", name: "Boys 4th Grade", ageGroup: "Grade 4", coach: "Coach Holloway", blurb: "CGBBL boys 4th grade division roster.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "4th", count: 8, startIdx: 14 }),
+      t(BSK, { slug: "boys-6th-grade", name: "Boys 6th Grade", ageGroup: "Grade 6", coach: "Coach Whitaker", blurb: "CGBBL boys 6th grade division roster.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "6th", count: 8, startIdx: 16 }),
+      t(BSK, { slug: "boys-8th-grade", name: "Boys 8th Grade", ageGroup: "Grade 8", coach: "Coach Faulkner", blurb: "CGBBL boys 8th grade division roster.", positions: ["PG", "SG", "SF", "PF", "C"], grade: "8th", count: 8, startIdx: 18 }),
     ],
   },
 
