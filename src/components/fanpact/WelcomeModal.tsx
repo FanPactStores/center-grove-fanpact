@@ -6,41 +6,57 @@ import {
   useDesignation,
   useWelcomeSeen,
 } from "@/lib/designation";
+import { useMyList } from "@/lib/my-list";
 import { Button } from "@/components/ui/button";
 import { DesignationModal } from "./DesignationModal";
+import { StarterTileGrid } from "./StarterTileGrid";
+
+type Stage = "intro" | "picker" | "starter" | "done";
 
 export function WelcomeModal({ store }: { store: StoreConfig }) {
   const { seen, markSeen } = useWelcomeSeen(store.id);
   const { set } = useDesignation(store.id);
-  const [open, setOpen] = useState(false);
-  const [pickerOpen, setPickerOpen] = useState(false);
+  const { setMany } = useMyList(store.id);
+  const [stage, setStage] = useState<Stage>("done");
 
   useEffect(() => {
-    if (!seen) setOpen(true);
+    if (!seen) setStage("intro");
   }, [seen]);
 
-  const close = () => {
+  // Persist starter selections via the StarterTileGrid event bus
+  useEffect(() => {
+    const onSave = (e: Event) => {
+      const ev = e as CustomEvent<{ storeId: string; items: any[] }>;
+      if (ev.detail?.storeId === store.id) {
+        setMany(ev.detail.items);
+      }
+    };
+    window.addEventListener("fanpact:starter-save", onSave);
+    return () => window.removeEventListener("fanpact:starter-save", onSave);
+  }, [store.id, setMany]);
+
+  const finish = () => {
     markSeen();
-    setOpen(false);
+    setStage("done");
   };
 
   const supportFund = () => {
     set(defaultDesignation(store.id));
-    close();
+    setStage("starter");
   };
 
-  if (!open && !pickerOpen) return null;
+  if (stage === "done") return null;
 
   const isCollegiate = store.id === "butler";
 
   return (
     <>
-      {open && (
+      {stage === "intro" && (
         <div
           role="dialog"
           aria-modal="true"
           className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-4"
-          onClick={close}
+          onClick={finish}
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -52,13 +68,13 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
             >
               <button
                 aria-label="Close"
-                onClick={close}
+                onClick={finish}
                 className="absolute right-3 top-3 rounded-md p-1.5 text-white/80 hover:bg-white/10"
               >
                 <X className="h-4 w-4" />
               </button>
               <div className="text-[10px] font-semibold uppercase tracking-widest text-white/70">
-                {store.shortName} × FanPact
+                {store.shortName} × FanPact · Step 1 of 2
               </div>
               <h2 className="mt-1 font-display text-2xl tracking-tight">
                 {isCollegiate
@@ -78,11 +94,7 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
                 <div className="mt-5 space-y-2">
                   <Button
                     size="lg"
-                    onClick={() => {
-                      markSeen();
-                      setOpen(false);
-                      setPickerOpen(true);
-                    }}
+                    onClick={() => setStage("picker")}
                     className="w-full"
                     style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
                   >
@@ -100,22 +112,14 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
               ) : (
                 <div className="mt-5 space-y-3">
                   <button
-                    onClick={() => {
-                      markSeen();
-                      setOpen(false);
-                      setPickerOpen(true);
-                    }}
+                    onClick={() => setStage("picker")}
                     className="w-full rounded-md border border-border bg-muted/30 px-3 py-3 text-left text-sm text-muted-foreground transition-colors hover:border-[var(--brand-accent)] hover:bg-muted/50"
                   >
                     Player name, team, or age group...
                   </button>
                   <Button
                     size="lg"
-                    onClick={() => {
-                      markSeen();
-                      setOpen(false);
-                      setPickerOpen(true);
-                    }}
+                    onClick={() => setStage("picker")}
                     className="w-full"
                     style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
                   >
@@ -133,17 +137,48 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
           </div>
         </div>
       )}
+
       <DesignationModal
-        open={pickerOpen}
+        open={stage === "picker"}
         storeId={store.id}
-        onClose={() => setPickerOpen(false)}
+        onClose={() => setStage("starter")}
         onConfirm={(d) => {
           set(d);
-          markSeen();
-          setPickerOpen(false);
+          setStage("starter");
         }}
         title={`Designate your ${store.shortName} contribution`}
       />
+
+      {stage === "starter" && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-4"
+          onClick={finish}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="flex w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-border bg-[var(--surface)] shadow-2xl"
+          >
+            <div
+              className="relative px-6 py-4 text-white"
+              style={{ background: "var(--brand)" }}
+            >
+              <button
+                aria-label="Close"
+                onClick={finish}
+                className="absolute right-3 top-3 rounded-md p-1.5 text-white/80 hover:bg-white/10"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <div className="text-[10px] font-semibold uppercase tracking-widest text-white/70">
+                {store.shortName} × FanPact · Step 2 of 2
+              </div>
+            </div>
+            <StarterTileGrid storeId={store.id} onSave={finish} onSkip={finish} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
