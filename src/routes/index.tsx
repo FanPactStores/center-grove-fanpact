@@ -78,6 +78,9 @@ function MasterHome() {
             <p className="mt-6 max-w-2xl text-lg text-white/85">
               60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
+            <p className="mt-2 max-w-2xl text-[0.85rem] text-white/60">
+              Groceries. Pet food. Household essentials. Personal care. Not team merch.
+            </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#collegiate"
