@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, ShoppingBag, User, ChevronDown, Menu, X } from "lucide-react";
+import { Heart, ShoppingBag, User, ChevronDown, Menu, X, ListChecks } from "lucide-react";
 import { useState } from "react";
 import type { StoreConfig } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
 import { DesignationBanner } from "./DesignationBanner";
 import { WelcomeModal } from "./WelcomeModal";
+import { useMyList } from "@/lib/my-list";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
