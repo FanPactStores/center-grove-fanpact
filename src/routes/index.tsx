@@ -1,8 +1,10 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, GraduationCap, Users, ShoppingBag, Wallet, Trophy } from "lucide-react";
+import { ArrowRight, GraduationCap, Users, ShoppingBag, Wallet } from "lucide-react";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import heroYouth from "@/assets/hero-youth.jpg";
+import ogImage from "@/assets/fanpact-og.jpg.asset.json";
 import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
+import { FanPactLogo } from "@/components/FanPactLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -11,7 +13,10 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Collegiate NIL and youth sports commerce funding. Shop everyday products — 60% of net earnings flows to your designated athlete or program. No extra cost. No behavior change." },
       { property: "og:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
       { property: "og:description", content: "Collegiate athletics. Youth community alliances. One platform. 60% of net earnings back to the team you choose." },
+      { property: "og:image", content: ogImage.url },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
+      { name: "twitter:image", content: ogImage.url },
     ],
   }),
   component: MasterHome,
@@ -23,10 +28,9 @@ function MasterHome() {
       {/* TOP BAR */}
       <header className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <div className="flex items-center gap-2 text-white">
-            <Trophy className="h-5 w-5" style={{ color: "var(--gold)" }} />
-            <span className="font-display text-2xl tracking-tight">FANPACT</span>
-          </div>
+          <Link to="/" aria-label="FanPact home" className="inline-flex">
+            <FanPactLogo height={40} pill pillPadding="px-3 py-1.5" />
+          </Link>
           <nav className="hidden gap-8 text-sm text-white/90 md:flex">
             <a href="#collegiate" className="hover:text-white">Collegiate</a>
             <a href="#youth" className="hover:text-white">Youth</a>
@@ -68,7 +72,10 @@ function MasterHome() {
               <span>Youth Sports.</span>
               <span>Powered by Commerce.</span>
             </div>
-            <p className="mt-8 max-w-2xl text-lg text-white/85">
+            <div className="mt-8 flex justify-center md:justify-start">
+              <FanPactLogo height={64} pill pillPadding="px-4 py-2" />
+            </div>
+            <p className="mt-6 max-w-2xl text-lg text-white/85">
               60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -220,7 +227,7 @@ function MasterHome() {
             >
               <div className="flex h-full flex-col justify-between">
                 <div className="flex items-center justify-between">
-                  <div className="font-display text-xl tracking-tight">FANPACT</div>
+                  <FanPactLogo height={20} pill pillPadding="px-1.5 py-0.5" />
                   <div className="text-xs uppercase tracking-widest opacity-80">Team Card</div>
                 </div>
                 <div className="font-mono text-lg tracking-[0.2em]">4242 •••• •••• 1834</div>
@@ -239,7 +246,9 @@ function MasterHome() {
 
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-10 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between lg:px-10">
-          <div className="font-display text-base tracking-tight text-foreground">FANPACT</div>
+          <Link to="/" aria-label="FanPact home" className="inline-flex">
+            <FanPactLogo height={28} />
+          </Link>
           <div>© 2026 FanPact, Inc. NIL and Youth Sports Commerce Platform. Demo experience — all products and contributions illustrative.</div>
         </div>
       </footer>

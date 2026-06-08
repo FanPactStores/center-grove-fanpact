@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { StoreConfig } from "@/data/stores";
 import { resetStoreState } from "@/lib/designation";
 import { toast } from "sonner";
+import { FanPactLogo } from "@/components/FanPactLogo";
 
 export function StoreFooter({ store }: { store: StoreConfig }) {
   return (
@@ -12,9 +13,10 @@ export function StoreFooter({ store }: { store: StoreConfig }) {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-2">
           <div className="font-display text-3xl tracking-tight">{store.marks.word}</div>
-          <p className="mt-3 text-xs uppercase tracking-[0.24em] opacity-70">
-            <Link to="/" className="hover:underline">Powered by FanPact</Link>
-          </p>
+          <Link to="/" className="mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] opacity-90 hover:opacity-100">
+            <FanPactLogo height={24} pill pillPadding="px-1.5 py-0.5" />
+            <span>Powered by FanPact</span>
+          </Link>
           <p className="mt-6 max-w-md text-sm opacity-80">
             {store.fundName}. 60% of net earnings on every purchase flows back to the community.
             No extra cost, no fundraising ask, no behavior change required.
