@@ -183,7 +183,7 @@ function MasterHome() {
             { icon: Users, n: "02", t: "Designate a beneficiary",
               d: "Send your contribution to the community fund, a specific team, or a single athlete you want to back." },
             { icon: Wallet, n: "03", t: "60% flows back",
-              d: "Of net earnings on every purchase. Verified, automatic, transparent. The commerce does the fundraising." },
+              d: "Of net earnings on every purchase. Verified through Stripe. Documented for NIL compliance. The commerce does the fundraising." },
           ].map((s) => (
             <div key={s.n} className="rounded-2xl border border-border bg-card p-8">
               <div className="flex items-start justify-between">
