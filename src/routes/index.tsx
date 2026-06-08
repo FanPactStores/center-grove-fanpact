@@ -240,8 +240,7 @@ function MasterHome() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-10 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between lg:px-10">
           <div className="font-display text-base tracking-tight text-foreground">FANPACT</div>
-          <div>© {new Date().getFullYear()} FanPact, Inc. Community commerce platform.</div>
-          <div>Demo experience — all products and contributions illustrative.</div>
+          <div>© 2026 FanPact, Inc. NIL and Youth Sports Commerce Platform. Demo experience — all products and contributions illustrative.</div>
         </div>
       </footer>
     </div>
