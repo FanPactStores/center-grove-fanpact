@@ -56,13 +56,18 @@ function MasterHome() {
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
-              Community commerce platform
+              NIL and Youth Sports Commerce Platform
             </div>
             <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-tight text-white">
               WHERE EVERY<br />
-              PURCHASE POWERS<br />
-              <span style={{ color: "var(--gold)" }}>YOUR TEAM &amp; COMMUNITY</span>
+              PURCHASE FUNDS<br />
+              <span style={{ color: "var(--gold)" }}>YOUR ATHLETES</span>
             </h1>
+            <div className="mt-4 flex flex-col gap-1 font-display text-xl font-bold tracking-tight text-white md:flex-row md:gap-4 md:text-2xl lg:text-3xl">
+              <span>Collegiate NIL.</span>
+              <span>Youth Sports.</span>
+              <span>Powered by Commerce.</span>
+            </div>
             <p className="mt-8 max-w-2xl text-lg text-white/85">
               Choose your school or your local youth alliance and shop everyday products that fund
               athletes and families. <span className="text-white">You're not spending more — just switching where you shop.</span>
