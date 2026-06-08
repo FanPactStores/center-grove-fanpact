@@ -63,13 +63,13 @@ export const STORES: Record<StoreId, StoreConfig> = {
     basePath: "/assa",
     name: "All-Star Sports Academy",
     shortName: "ASSA",
-    fundName: "All-Star Sports Academy Fund",
+    fundName: "All-Star Sports Academy Community Fund",
     fundDisplay: "ASSA Combat Families",
     tagline: "Shop the brands you already buy. Fuel Combat baseball and softball.",
     heroEyebrow: "ASSA Combat × FanPact",
     heroHeadline: "Every hub. Every roster. One ledger.",
     heroBody:
       "From West Chester to Cherry Hill, Downingtown to Warminster, and every Combat Futures showcase team — pick your hub, your roster, or your athlete. 60% of net earnings on every purchase flows to your designation.",
-    marks: { letter: "A", word: "ASSA COMBAT" },
+    marks: { letter: "A", word: "ASSA" },
   },
 };
