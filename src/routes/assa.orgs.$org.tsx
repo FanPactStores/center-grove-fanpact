@@ -87,60 +87,116 @@ function OrgDetail() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-        <div className="mb-8">
-          <h2 className="font-display text-3xl tracking-tight">Rosters by age group</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Drill into a team to designate at the team level or pick an individual athlete.
-          </p>
-        </div>
-
-        <div className="space-y-12">
-          {groupKeys.map((age) => (
-            <div key={age}>
-              <div className="mb-4 flex items-baseline gap-3">
-                <h3
-                  className="font-display text-2xl tracking-tight"
-                  style={{ color: "var(--brand-accent)" }}
-                >
-                  {age}
-                </h3>
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">
-                  {groups[age].length} {groups[age].length === 1 ? "roster" : "rosters"}
-                </span>
-              </div>
-              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {groups[age].map((team: AssaTeam) => (
-                  <Link
-                    key={team.slug}
-                    to="/assa/orgs/$org/$team"
-                    params={{ org: org.slug, team: team.slug }}
-                    className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg"
-                  >
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                      {team.ageGroup} · {team.coach}
-                    </div>
-                    <div className="mt-2 font-display text-2xl tracking-tight">{team.name}</div>
-                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{team.blurb}</p>
-                    <div className="mt-4 flex items-center justify-between text-xs">
-                      <span className="text-muted-foreground">{team.players.length} players</span>
-                      <span
-                        className="inline-flex items-center gap-1 font-semibold uppercase tracking-wider"
-                        style={{ color: "var(--brand-accent)" }}
-                      >
-                        View roster <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                      </span>
-                    </div>
-                    <div className="mt-3 font-mono text-[10px] text-muted-foreground/70">
-                      {team.designationCode}
-                    </div>
-                  </Link>
-                ))}
-              </div>
+      {comingSoon ? (
+        <section className="mx-auto max-w-3xl px-4 py-16 lg:px-8">
+          <div className="rounded-2xl border border-border bg-card p-8 text-center">
+            <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+              Rosters publishing soon
             </div>
-          ))}
-        </div>
-      </section>
+            <h2 className="mt-3 font-display text-3xl tracking-tight">
+              Rosters coming soon — contact your hub coordinator
+            </h2>
+            {org.address ? (
+              <p className="mt-3 text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{org.hub}</span>
+                <br />
+                {org.address}
+              </p>
+            ) : null}
+          </div>
+
+          <form
+            className="mt-8 rounded-2xl border border-border bg-card p-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Thanks — your hub coordinator will be in touch.");
+            }}
+          >
+            <h3 className="font-display text-xl tracking-tight">Contact the hub coordinator</h3>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <label className="flex flex-col gap-1 text-xs uppercase tracking-widest text-muted-foreground">
+                Name
+                <input required className="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground" />
+              </label>
+              <label className="flex flex-col gap-1 text-xs uppercase tracking-widest text-muted-foreground">
+                Email
+                <input type="email" required className="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground" />
+              </label>
+              <label className="flex flex-col gap-1 text-xs uppercase tracking-widest text-muted-foreground sm:col-span-2">
+                Player age / division of interest
+                <input className="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground" />
+              </label>
+              <label className="flex flex-col gap-1 text-xs uppercase tracking-widest text-muted-foreground sm:col-span-2">
+                Message
+                <textarea rows={4} className="rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground" />
+              </label>
+            </div>
+            <Button
+              type="submit"
+              size="lg"
+              className="mt-6"
+              style={{ background: "var(--brand-accent)", color: "white" }}
+            >
+              Request roster updates
+            </Button>
+          </form>
+        </section>
+      ) : (
+        <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
+          <div className="mb-8">
+            <h2 className="font-display text-3xl tracking-tight">Rosters by age group</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Drill into a team to designate at the team level or pick an individual athlete.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {groupKeys.map((age) => (
+              <div key={age}>
+                <div className="mb-4 flex items-baseline gap-3">
+                  <h3
+                    className="font-display text-2xl tracking-tight"
+                    style={{ color: "var(--brand-accent)" }}
+                  >
+                    {age}
+                  </h3>
+                  <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                    {groups[age].length} {groups[age].length === 1 ? "roster" : "rosters"}
+                  </span>
+                </div>
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  {groups[age].map((team: AssaTeam) => (
+                    <Link
+                      key={team.slug}
+                      to="/assa/orgs/$org/$team"
+                      params={{ org: org.slug, team: team.slug }}
+                      className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                    >
+                      <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                        {team.ageGroup} · {team.coach}
+                      </div>
+                      <div className="mt-2 font-display text-2xl tracking-tight">{team.name}</div>
+                      <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{team.blurb}</p>
+                      <div className="mt-4 flex items-center justify-between text-xs">
+                        <span className="text-muted-foreground">{team.players.length} players</span>
+                        <span
+                          className="inline-flex items-center gap-1 font-semibold uppercase tracking-wider"
+                          style={{ color: "var(--brand-accent)" }}
+                        >
+                          View roster <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                        </span>
+                      </div>
+                      <div className="mt-3 font-mono text-[10px] text-muted-foreground/70">
+                        {team.designationCode}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }
