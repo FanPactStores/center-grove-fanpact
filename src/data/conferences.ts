@@ -94,10 +94,13 @@ export const YOUTH_LEAGUES: YouthLeague[] = [
     name: "Midwest Youth Leagues",
     region: "Midwest",
     alliances: [
-      "Naperville Community","Oak Park Athletic","Bloomington Youth","Ann Arbor Alliance",
-      "Columbus Youth Sports","Cincinnati Community","Louisville Youth Alliance",
-      "Nashville Community Sports",
-    ].map((n) => ({ name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, "-") })),
+      { name: "STL Legacy / Klutch Baseball", slug: "legacy", href: "/legacy" },
+      ...[
+        "Naperville Community","Oak Park Athletic","Bloomington Youth","Ann Arbor Alliance",
+        "Columbus Youth Sports","Cincinnati Community","Louisville Youth Alliance",
+        "Nashville Community Sports",
+      ].map((n) => ({ name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, "-") })),
+    ],
   },
   {
     id: "southeast-youth",
