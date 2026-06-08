@@ -1,20 +1,20 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Check } from "lucide-react";
-import { getLegacyOrg, getLegacyTeam, getLegacyPlayer } from "@/data/legacy-orgs";
+import { getAssaOrg, getAssaTeam, getAssaPlayer } from "@/data/assa-orgs";
 import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/assa/orgs/$org/$team/$player")({
   loader: ({ params }) => {
-    const org = getLegacyOrg(params.org);
-    const team = getLegacyTeam(params.org, params.team);
-    const player = getLegacyPlayer(params.org, params.team, params.player);
+    const org = getAssaOrg(params.org);
+    const team = getAssaTeam(params.org, params.team);
+    const player = getAssaPlayer(params.org, params.team, params.player);
     if (!org || !team || !player) throw notFound();
     return { org, team, player };
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.player.name ?? "Player"} — STL Legacy × FanPact` },
+      { title: `${loaderData?.player.name ?? "Player"} — ASSA × FanPact` },
       { name: "description", content: `${loaderData?.player.name}, #${loaderData?.player.number}, ${loaderData?.player.position}. Designate this athlete and contributions flow directly to them.` },
     ],
   }),
@@ -27,7 +27,7 @@ function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Player not found</h1>
-      <Link to="/legacy/orgs" className="mt-6 inline-block text-sm underline">All tracks</Link>
+      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">All tracks</Link>
     </main>
   );
 }
@@ -39,13 +39,13 @@ function PlayerBio() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 lg:px-8">
       <nav className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-        <Link to="/legacy/orgs" className="hover:text-foreground">Tracks</Link>
+        <Link to="/assa/orgs" className="hover:text-foreground">Tracks</Link>
         <span className="mx-2">/</span>
-        <Link to="/legacy/orgs/$org" params={{ org: org.slug }} className="hover:text-foreground">
+        <Link to="/assa/orgs/$org" params={{ org: org.slug }} className="hover:text-foreground">
           {org.shortName}
         </Link>
         <span className="mx-2">/</span>
-        <Link to="/legacy/orgs/$org/$team" params={{ org: org.slug, team: team.slug }} className="hover:text-foreground">
+        <Link to="/assa/orgs/$org/$team" params={{ org: org.slug, team: team.slug }} className="hover:text-foreground">
           {team.name}
         </Link>
       </nav>
@@ -86,7 +86,7 @@ function PlayerBio() {
             </div>
             <p className="mt-2 text-sm text-foreground/80">
               Designate {firstName} as your beneficiary and 60% of net earnings on every purchase you
-              make at the Legacy store flows directly to their account.
+              make at the ASSA store flows directly to their account.
             </p>
             <div className="mt-4 rounded-md border border-border bg-white/60 px-3 py-2 text-[11px] font-mono text-muted-foreground">
               {player.designationCode}
@@ -110,12 +110,12 @@ function PlayerBio() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild variant="outline">
-              <Link to="/legacy/orgs/$org/$team" params={{ org: org.slug, team: team.slug }}>
+              <Link to="/assa/orgs/$org/$team" params={{ org: org.slug, team: team.slug }}>
                 ← Back to roster
               </Link>
             </Button>
             <Button asChild variant="ghost">
-              <Link to="/legacy/shop">Shop the store →</Link>
+              <Link to="/assa/shop">Shop the store →</Link>
             </Button>
           </div>
         </div>

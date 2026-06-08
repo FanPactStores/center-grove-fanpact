@@ -12,16 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as CenterGroveRouteImport } from './routes/center-grove'
 import { Route as ButlerRouteImport } from './routes/butler'
+import { Route as AssaRouteImport } from './routes/assa'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
+import { Route as AssaIndexRouteImport } from './routes/assa.index'
 import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
 import { Route as LegacyCartRouteImport } from './routes/legacy.cart'
 import { Route as CenterGroveTeamCardRouteImport } from './routes/center-grove.team-card'
 import { Route as CenterGroveCartRouteImport } from './routes/center-grove.cart'
 import { Route as ButlerTeamCardRouteImport } from './routes/butler.team-card'
 import { Route as ButlerCartRouteImport } from './routes/butler.cart'
+import { Route as AssaTeamCardRouteImport } from './routes/assa.team-card'
 import { Route as AssaCartRouteImport } from './routes/assa.cart'
 import { Route as LegacySponsorsIndexRouteImport } from './routes/legacy.sponsors.index'
 import { Route as LegacyShopIndexRouteImport } from './routes/legacy.shop.index'
@@ -32,6 +35,9 @@ import { Route as CenterGroveOrgsIndexRouteImport } from './routes/center-grove.
 import { Route as ButlerTeamsIndexRouteImport } from './routes/butler.teams.index'
 import { Route as ButlerSponsorsIndexRouteImport } from './routes/butler.sponsors.index'
 import { Route as ButlerShopIndexRouteImport } from './routes/butler.shop.index'
+import { Route as AssaSponsorsIndexRouteImport } from './routes/assa.sponsors.index'
+import { Route as AssaShopIndexRouteImport } from './routes/assa.shop.index'
+import { Route as AssaOrgsIndexRouteImport } from './routes/assa.orgs.index'
 import { Route as LegacySponsorsSlugRouteImport } from './routes/legacy.sponsors.$slug'
 import { Route as LegacyShopCategoryRouteImport } from './routes/legacy.shop.$category'
 import { Route as LegacyProductSlugRouteImport } from './routes/legacy.product.$slug'
@@ -44,11 +50,17 @@ import { Route as ButlerTeamsSportRouteImport } from './routes/butler.teams.$spo
 import { Route as ButlerSponsorsSlugRouteImport } from './routes/butler.sponsors.$slug'
 import { Route as ButlerShopCategoryRouteImport } from './routes/butler.shop.$category'
 import { Route as ButlerProductSlugRouteImport } from './routes/butler.product.$slug'
+import { Route as AssaSponsorsSlugRouteImport } from './routes/assa.sponsors.$slug'
+import { Route as AssaShopCategoryRouteImport } from './routes/assa.shop.$category'
+import { Route as AssaProductSlugRouteImport } from './routes/assa.product.$slug'
+import { Route as AssaOrgsOrgRouteImport } from './routes/assa.orgs.$org'
 import { Route as LegacyOrgsOrgTeamRouteImport } from './routes/legacy.orgs.$org.$team'
 import { Route as CenterGroveOrgsOrgTeamRouteImport } from './routes/center-grove.orgs.$org.$team'
 import { Route as ButlerTeamsSportPlayerRouteImport } from './routes/butler.teams.$sport.$player'
+import { Route as AssaOrgsOrgTeamRouteImport } from './routes/assa.orgs.$org.$team'
 import { Route as LegacyOrgsOrgTeamPlayerRouteImport } from './routes/legacy.orgs.$org.$team.$player'
 import { Route as CenterGroveOrgsOrgTeamPlayerRouteImport } from './routes/center-grove.orgs.$org.$team.$player'
+import { Route as AssaOrgsOrgTeamPlayerRouteImport } from './routes/assa.orgs.$org.$team.$player'
 
 const LegacyRoute = LegacyRouteImport.update({
   id: '/legacy',
@@ -63,6 +75,11 @@ const CenterGroveRoute = CenterGroveRouteImport.update({
 const ButlerRoute = ButlerRouteImport.update({
   id: '/butler',
   path: '/butler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssaRoute = AssaRouteImport.update({
+  id: '/assa',
+  path: '/assa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -84,6 +101,11 @@ const ButlerIndexRoute = ButlerIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ButlerRoute,
+} as any)
+const AssaIndexRoute = AssaIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AssaRoute,
 } as any)
 const LegacyTeamCardRoute = LegacyTeamCardRouteImport.update({
   id: '/team-card',
@@ -115,10 +137,15 @@ const ButlerCartRoute = ButlerCartRouteImport.update({
   path: '/cart',
   getParentRoute: () => ButlerRoute,
 } as any)
+const AssaTeamCardRoute = AssaTeamCardRouteImport.update({
+  id: '/team-card',
+  path: '/team-card',
+  getParentRoute: () => AssaRoute,
+} as any)
 const AssaCartRoute = AssaCartRouteImport.update({
-  id: '/assa/cart',
-  path: '/assa/cart',
-  getParentRoute: () => rootRouteImport,
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => AssaRoute,
 } as any)
 const LegacySponsorsIndexRoute = LegacySponsorsIndexRouteImport.update({
   id: '/sponsors/',
@@ -165,6 +192,21 @@ const ButlerShopIndexRoute = ButlerShopIndexRouteImport.update({
   id: '/shop/',
   path: '/shop/',
   getParentRoute: () => ButlerRoute,
+} as any)
+const AssaSponsorsIndexRoute = AssaSponsorsIndexRouteImport.update({
+  id: '/sponsors/',
+  path: '/sponsors/',
+  getParentRoute: () => AssaRoute,
+} as any)
+const AssaShopIndexRoute = AssaShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => AssaRoute,
+} as any)
+const AssaOrgsIndexRoute = AssaOrgsIndexRouteImport.update({
+  id: '/orgs/',
+  path: '/orgs/',
+  getParentRoute: () => AssaRoute,
 } as any)
 const LegacySponsorsSlugRoute = LegacySponsorsSlugRouteImport.update({
   id: '/sponsors/$slug',
@@ -226,6 +268,26 @@ const ButlerProductSlugRoute = ButlerProductSlugRouteImport.update({
   path: '/product/$slug',
   getParentRoute: () => ButlerRoute,
 } as any)
+const AssaSponsorsSlugRoute = AssaSponsorsSlugRouteImport.update({
+  id: '/sponsors/$slug',
+  path: '/sponsors/$slug',
+  getParentRoute: () => AssaRoute,
+} as any)
+const AssaShopCategoryRoute = AssaShopCategoryRouteImport.update({
+  id: '/shop/$category',
+  path: '/shop/$category',
+  getParentRoute: () => AssaRoute,
+} as any)
+const AssaProductSlugRoute = AssaProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => AssaRoute,
+} as any)
+const AssaOrgsOrgRoute = AssaOrgsOrgRouteImport.update({
+  id: '/orgs/$org',
+  path: '/orgs/$org',
+  getParentRoute: () => AssaRoute,
+} as any)
 const LegacyOrgsOrgTeamRoute = LegacyOrgsOrgTeamRouteImport.update({
   id: '/$team',
   path: '/$team',
@@ -241,6 +303,11 @@ const ButlerTeamsSportPlayerRoute = ButlerTeamsSportPlayerRouteImport.update({
   path: '/$player',
   getParentRoute: () => ButlerTeamsSportRoute,
 } as any)
+const AssaOrgsOrgTeamRoute = AssaOrgsOrgTeamRouteImport.update({
+  id: '/$team',
+  path: '/$team',
+  getParentRoute: () => AssaOrgsOrgRoute,
+} as any)
 const LegacyOrgsOrgTeamPlayerRoute = LegacyOrgsOrgTeamPlayerRouteImport.update({
   id: '/$player',
   path: '/$player',
@@ -252,22 +319,34 @@ const CenterGroveOrgsOrgTeamPlayerRoute =
     path: '/$player',
     getParentRoute: () => CenterGroveOrgsOrgTeamRoute,
   } as any)
+const AssaOrgsOrgTeamPlayerRoute = AssaOrgsOrgTeamPlayerRouteImport.update({
+  id: '/$player',
+  path: '/$player',
+  getParentRoute: () => AssaOrgsOrgTeamRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assa': typeof AssaRouteWithChildren
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
+  '/assa/team-card': typeof AssaTeamCardRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
+  '/assa/product/$slug': typeof AssaProductSlugRoute
+  '/assa/shop/$category': typeof AssaShopCategoryRoute
+  '/assa/sponsors/$slug': typeof AssaSponsorsSlugRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
@@ -280,6 +359,9 @@ export interface FileRoutesByFullPath {
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
   '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRoute
+  '/assa/orgs/': typeof AssaOrgsIndexRoute
+  '/assa/shop/': typeof AssaShopIndexRoute
+  '/assa/sponsors/': typeof AssaSponsorsIndexRoute
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
@@ -289,24 +371,32 @@ export interface FileRoutesByFullPath {
   '/legacy/orgs/': typeof LegacyOrgsIndexRoute
   '/legacy/shop/': typeof LegacyShopIndexRoute
   '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
+  '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
+  '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
   '/legacy/orgs/$org/$team/$player': typeof LegacyOrgsOrgTeamPlayerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assa/cart': typeof AssaCartRoute
+  '/assa/team-card': typeof AssaTeamCardRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/assa': typeof AssaIndexRoute
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
   '/legacy': typeof LegacyIndexRoute
+  '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
+  '/assa/product/$slug': typeof AssaProductSlugRoute
+  '/assa/shop/$category': typeof AssaShopCategoryRoute
+  '/assa/sponsors/$slug': typeof AssaSponsorsSlugRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
@@ -319,6 +409,9 @@ export interface FileRoutesByTo {
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
   '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRoute
+  '/assa/orgs': typeof AssaOrgsIndexRoute
+  '/assa/shop': typeof AssaShopIndexRoute
+  '/assa/sponsors': typeof AssaSponsorsIndexRoute
   '/butler/shop': typeof ButlerShopIndexRoute
   '/butler/sponsors': typeof ButlerSponsorsIndexRoute
   '/butler/teams': typeof ButlerTeamsIndexRoute
@@ -328,28 +421,37 @@ export interface FileRoutesByTo {
   '/legacy/orgs': typeof LegacyOrgsIndexRoute
   '/legacy/shop': typeof LegacyShopIndexRoute
   '/legacy/sponsors': typeof LegacySponsorsIndexRoute
+  '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
+  '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
   '/legacy/orgs/$org/$team/$player': typeof LegacyOrgsOrgTeamPlayerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assa': typeof AssaRouteWithChildren
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
+  '/assa/team-card': typeof AssaTeamCardRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
+  '/assa/product/$slug': typeof AssaProductSlugRoute
+  '/assa/shop/$category': typeof AssaShopCategoryRoute
+  '/assa/sponsors/$slug': typeof AssaSponsorsSlugRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
@@ -362,6 +464,9 @@ export interface FileRoutesById {
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
   '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRoute
+  '/assa/orgs/': typeof AssaOrgsIndexRoute
+  '/assa/shop/': typeof AssaShopIndexRoute
+  '/assa/sponsors/': typeof AssaSponsorsIndexRoute
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
@@ -371,9 +476,11 @@ export interface FileRoutesById {
   '/legacy/orgs/': typeof LegacyOrgsIndexRoute
   '/legacy/shop/': typeof LegacyShopIndexRoute
   '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
+  '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
+  '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
   '/legacy/orgs/$org/$team/$player': typeof LegacyOrgsOrgTeamPlayerRoute
 }
@@ -381,19 +488,26 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/assa'
     | '/butler'
     | '/center-grove'
     | '/legacy'
     | '/assa/cart'
+    | '/assa/team-card'
     | '/butler/cart'
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/team-card'
     | '/legacy/cart'
     | '/legacy/team-card'
+    | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/assa/orgs/$org'
+    | '/assa/product/$slug'
+    | '/assa/shop/$category'
+    | '/assa/sponsors/$slug'
     | '/butler/product/$slug'
     | '/butler/shop/$category'
     | '/butler/sponsors/$slug'
@@ -406,6 +520,9 @@ export interface FileRouteTypes {
     | '/legacy/product/$slug'
     | '/legacy/shop/$category'
     | '/legacy/sponsors/$slug'
+    | '/assa/orgs/'
+    | '/assa/shop/'
+    | '/assa/sponsors/'
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
@@ -415,24 +532,32 @@ export interface FileRouteTypes {
     | '/legacy/orgs/'
     | '/legacy/shop/'
     | '/legacy/sponsors/'
+    | '/assa/orgs/$org/$team'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
     | '/legacy/orgs/$org/$team'
+    | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
     | '/legacy/orgs/$org/$team/$player'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/assa/cart'
+    | '/assa/team-card'
     | '/butler/cart'
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/team-card'
     | '/legacy/cart'
     | '/legacy/team-card'
+    | '/assa'
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/assa/orgs/$org'
+    | '/assa/product/$slug'
+    | '/assa/shop/$category'
+    | '/assa/sponsors/$slug'
     | '/butler/product/$slug'
     | '/butler/shop/$category'
     | '/butler/sponsors/$slug'
@@ -445,6 +570,9 @@ export interface FileRouteTypes {
     | '/legacy/product/$slug'
     | '/legacy/shop/$category'
     | '/legacy/sponsors/$slug'
+    | '/assa/orgs'
+    | '/assa/shop'
+    | '/assa/sponsors'
     | '/butler/shop'
     | '/butler/sponsors'
     | '/butler/teams'
@@ -454,27 +582,36 @@ export interface FileRouteTypes {
     | '/legacy/orgs'
     | '/legacy/shop'
     | '/legacy/sponsors'
+    | '/assa/orgs/$org/$team'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
     | '/legacy/orgs/$org/$team'
+    | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
     | '/legacy/orgs/$org/$team/$player'
   id:
     | '__root__'
     | '/'
+    | '/assa'
     | '/butler'
     | '/center-grove'
     | '/legacy'
     | '/assa/cart'
+    | '/assa/team-card'
     | '/butler/cart'
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/team-card'
     | '/legacy/cart'
     | '/legacy/team-card'
+    | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/assa/orgs/$org'
+    | '/assa/product/$slug'
+    | '/assa/shop/$category'
+    | '/assa/sponsors/$slug'
     | '/butler/product/$slug'
     | '/butler/shop/$category'
     | '/butler/sponsors/$slug'
@@ -487,6 +624,9 @@ export interface FileRouteTypes {
     | '/legacy/product/$slug'
     | '/legacy/shop/$category'
     | '/legacy/sponsors/$slug'
+    | '/assa/orgs/'
+    | '/assa/shop/'
+    | '/assa/sponsors/'
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
@@ -496,19 +636,21 @@ export interface FileRouteTypes {
     | '/legacy/orgs/'
     | '/legacy/shop/'
     | '/legacy/sponsors/'
+    | '/assa/orgs/$org/$team'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
     | '/legacy/orgs/$org/$team'
+    | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
     | '/legacy/orgs/$org/$team/$player'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssaRoute: typeof AssaRouteWithChildren
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
-  AssaCartRoute: typeof AssaCartRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -532,6 +674,13 @@ declare module '@tanstack/react-router' {
       path: '/butler'
       fullPath: '/butler'
       preLoaderRoute: typeof ButlerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assa': {
+      id: '/assa'
+      path: '/assa'
+      fullPath: '/assa'
+      preLoaderRoute: typeof AssaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -561,6 +710,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/'
       preLoaderRoute: typeof ButlerIndexRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/assa/': {
+      id: '/assa/'
+      path: '/'
+      fullPath: '/assa/'
+      preLoaderRoute: typeof AssaIndexRouteImport
+      parentRoute: typeof AssaRoute
     }
     '/legacy/team-card': {
       id: '/legacy/team-card'
@@ -604,12 +760,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButlerCartRouteImport
       parentRoute: typeof ButlerRoute
     }
+    '/assa/team-card': {
+      id: '/assa/team-card'
+      path: '/team-card'
+      fullPath: '/assa/team-card'
+      preLoaderRoute: typeof AssaTeamCardRouteImport
+      parentRoute: typeof AssaRoute
+    }
     '/assa/cart': {
       id: '/assa/cart'
-      path: '/assa/cart'
+      path: '/cart'
       fullPath: '/assa/cart'
       preLoaderRoute: typeof AssaCartRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AssaRoute
     }
     '/legacy/sponsors/': {
       id: '/legacy/sponsors/'
@@ -673,6 +836,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/shop/'
       preLoaderRoute: typeof ButlerShopIndexRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/assa/sponsors/': {
+      id: '/assa/sponsors/'
+      path: '/sponsors'
+      fullPath: '/assa/sponsors/'
+      preLoaderRoute: typeof AssaSponsorsIndexRouteImport
+      parentRoute: typeof AssaRoute
+    }
+    '/assa/shop/': {
+      id: '/assa/shop/'
+      path: '/shop'
+      fullPath: '/assa/shop/'
+      preLoaderRoute: typeof AssaShopIndexRouteImport
+      parentRoute: typeof AssaRoute
+    }
+    '/assa/orgs/': {
+      id: '/assa/orgs/'
+      path: '/orgs'
+      fullPath: '/assa/orgs/'
+      preLoaderRoute: typeof AssaOrgsIndexRouteImport
+      parentRoute: typeof AssaRoute
     }
     '/legacy/sponsors/$slug': {
       id: '/legacy/sponsors/$slug'
@@ -758,6 +942,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButlerProductSlugRouteImport
       parentRoute: typeof ButlerRoute
     }
+    '/assa/sponsors/$slug': {
+      id: '/assa/sponsors/$slug'
+      path: '/sponsors/$slug'
+      fullPath: '/assa/sponsors/$slug'
+      preLoaderRoute: typeof AssaSponsorsSlugRouteImport
+      parentRoute: typeof AssaRoute
+    }
+    '/assa/shop/$category': {
+      id: '/assa/shop/$category'
+      path: '/shop/$category'
+      fullPath: '/assa/shop/$category'
+      preLoaderRoute: typeof AssaShopCategoryRouteImport
+      parentRoute: typeof AssaRoute
+    }
+    '/assa/product/$slug': {
+      id: '/assa/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/assa/product/$slug'
+      preLoaderRoute: typeof AssaProductSlugRouteImport
+      parentRoute: typeof AssaRoute
+    }
+    '/assa/orgs/$org': {
+      id: '/assa/orgs/$org'
+      path: '/orgs/$org'
+      fullPath: '/assa/orgs/$org'
+      preLoaderRoute: typeof AssaOrgsOrgRouteImport
+      parentRoute: typeof AssaRoute
+    }
     '/legacy/orgs/$org/$team': {
       id: '/legacy/orgs/$org/$team'
       path: '/$team'
@@ -779,6 +991,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButlerTeamsSportPlayerRouteImport
       parentRoute: typeof ButlerTeamsSportRoute
     }
+    '/assa/orgs/$org/$team': {
+      id: '/assa/orgs/$org/$team'
+      path: '/$team'
+      fullPath: '/assa/orgs/$org/$team'
+      preLoaderRoute: typeof AssaOrgsOrgTeamRouteImport
+      parentRoute: typeof AssaOrgsOrgRoute
+    }
     '/legacy/orgs/$org/$team/$player': {
       id: '/legacy/orgs/$org/$team/$player'
       path: '/$player'
@@ -793,8 +1012,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CenterGroveOrgsOrgTeamPlayerRouteImport
       parentRoute: typeof CenterGroveOrgsOrgTeamRoute
     }
+    '/assa/orgs/$org/$team/$player': {
+      id: '/assa/orgs/$org/$team/$player'
+      path: '/$player'
+      fullPath: '/assa/orgs/$org/$team/$player'
+      preLoaderRoute: typeof AssaOrgsOrgTeamPlayerRouteImport
+      parentRoute: typeof AssaOrgsOrgTeamRoute
+    }
   }
 }
+
+interface AssaOrgsOrgTeamRouteChildren {
+  AssaOrgsOrgTeamPlayerRoute: typeof AssaOrgsOrgTeamPlayerRoute
+}
+
+const AssaOrgsOrgTeamRouteChildren: AssaOrgsOrgTeamRouteChildren = {
+  AssaOrgsOrgTeamPlayerRoute: AssaOrgsOrgTeamPlayerRoute,
+}
+
+const AssaOrgsOrgTeamRouteWithChildren = AssaOrgsOrgTeamRoute._addFileChildren(
+  AssaOrgsOrgTeamRouteChildren,
+)
+
+interface AssaOrgsOrgRouteChildren {
+  AssaOrgsOrgTeamRoute: typeof AssaOrgsOrgTeamRouteWithChildren
+}
+
+const AssaOrgsOrgRouteChildren: AssaOrgsOrgRouteChildren = {
+  AssaOrgsOrgTeamRoute: AssaOrgsOrgTeamRouteWithChildren,
+}
+
+const AssaOrgsOrgRouteWithChildren = AssaOrgsOrgRoute._addFileChildren(
+  AssaOrgsOrgRouteChildren,
+)
+
+interface AssaRouteChildren {
+  AssaCartRoute: typeof AssaCartRoute
+  AssaTeamCardRoute: typeof AssaTeamCardRoute
+  AssaIndexRoute: typeof AssaIndexRoute
+  AssaOrgsOrgRoute: typeof AssaOrgsOrgRouteWithChildren
+  AssaProductSlugRoute: typeof AssaProductSlugRoute
+  AssaShopCategoryRoute: typeof AssaShopCategoryRoute
+  AssaSponsorsSlugRoute: typeof AssaSponsorsSlugRoute
+  AssaOrgsIndexRoute: typeof AssaOrgsIndexRoute
+  AssaShopIndexRoute: typeof AssaShopIndexRoute
+  AssaSponsorsIndexRoute: typeof AssaSponsorsIndexRoute
+}
+
+const AssaRouteChildren: AssaRouteChildren = {
+  AssaCartRoute: AssaCartRoute,
+  AssaTeamCardRoute: AssaTeamCardRoute,
+  AssaIndexRoute: AssaIndexRoute,
+  AssaOrgsOrgRoute: AssaOrgsOrgRouteWithChildren,
+  AssaProductSlugRoute: AssaProductSlugRoute,
+  AssaShopCategoryRoute: AssaShopCategoryRoute,
+  AssaSponsorsSlugRoute: AssaSponsorsSlugRoute,
+  AssaOrgsIndexRoute: AssaOrgsIndexRoute,
+  AssaShopIndexRoute: AssaShopIndexRoute,
+  AssaSponsorsIndexRoute: AssaSponsorsIndexRoute,
+}
+
+const AssaRouteWithChildren = AssaRoute._addFileChildren(AssaRouteChildren)
 
 interface ButlerTeamsSportRouteChildren {
   ButlerTeamsSportPlayerRoute: typeof ButlerTeamsSportPlayerRoute
@@ -945,10 +1223,10 @@ const LegacyRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssaRoute: AssaRouteWithChildren,
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
-  AssaCartRoute: AssaCartRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

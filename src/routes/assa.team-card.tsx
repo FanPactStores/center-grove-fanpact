@@ -7,15 +7,15 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/assa/team-card")({
   head: () => ({
     meta: [
-      { title: "Team Card — STL Legacy × FanPact" },
-      { name: "description", content: "A Visa in Apple Pay and Google Pay that earns community contributions for Legacy everywhere." },
+      { title: "Team Card — ASSA × FanPact" },
+      { name: "description", content: "A Visa in Apple Pay and Google Pay that earns community contributions for ASSA everywhere." },
     ],
   }),
   component: TeamCardPage,
 });
 
 function TeamCardPage() {
-  const store = STORES.legacy;
+  const store = STORES.assa;
   const [step, setStep] = useState(0);
   const steps = ["Intro", "Cardholder", "Wallet", "Done"];
 
@@ -147,7 +147,7 @@ function Wallet({ onNext, onBack }: { onNext: () => void; onBack: () => void }) 
   );
 }
 
-function Done({ store, onReset }: { store: typeof STORES["legacy"]; onReset: () => void }) {
+function Done({ store, onReset }: { store: typeof STORES["assa"]; onReset: () => void }) {
   return (
     <div className="text-center">
       <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full" style={{ background: "var(--community-soft)", color: "var(--community)" }}>

@@ -7,20 +7,20 @@ import { CategorySidebar } from "@/components/fanpact/CategorySidebar";
 export const Route = createFileRoute("/assa/shop/")({
   head: () => ({
     meta: [
-      { title: "Shop — STL Legacy × FanPact" },
-      { name: "description", content: "Browse every product. 60% of net earnings flows to STL Legacy / Klutch." },
+      { title: "Shop — ASSA × FanPact" },
+      { name: "description", content: "Browse every product. 60% of net earnings flows to ASSA / Combat." },
     ],
   }),
-  component: LegacyShop,
+  component: AssaShop,
 });
 
-function LegacyShop() {
-  const store = STORES.legacy;
+function AssaShop() {
+  const store = STORES.assa;
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
       <div className="mb-8">
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">All categories</div>
-        <h1 className="mt-2 font-display text-5xl tracking-tight">The Legacy store</h1>
+        <h1 className="mt-2 font-display text-5xl tracking-tight">The ASSA store</h1>
         <p className="mt-3 max-w-xl text-muted-foreground">
           {PRODUCTS.length} products across 7 categories. Every purchase contributes to {store.fundName}.
         </p>

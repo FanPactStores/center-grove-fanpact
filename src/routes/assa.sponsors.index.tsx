@@ -6,8 +6,8 @@ import { usd } from "@/lib/format";
 export const Route = createFileRoute("/assa/sponsors/")({
   head: () => ({
     meta: [
-      { title: "Enterprise sponsors — STL Legacy × FanPact" },
-      { name: "description", content: "Brands prepay community accounts. Legacy families unlock credits by completing qualifying actions." },
+      { title: "Enterprise sponsors — ASSA × FanPact" },
+      { name: "description", content: "Brands prepay community accounts. ASSA families unlock credits by completing qualifying actions." },
     ],
   }),
   component: SponsorsIndex,
@@ -18,7 +18,7 @@ function SponsorsIndex() {
     <main className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
       <div className="max-w-2xl">
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Enterprise sponsors</div>
-        <h1 className="mt-2 font-display text-5xl tracking-tight">Brands fund Legacy families.</h1>
+        <h1 className="mt-2 font-display text-5xl tracking-tight">Brands fund ASSA families.</h1>
         <p className="mt-4 text-muted-foreground">
           Sponsors prepay community accounts. Families unlock credits when they complete qualifying actions — no purchase required.
         </p>
@@ -28,7 +28,7 @@ function SponsorsIndex() {
         {SPONSORS.map((s) => {
           const pct = Math.round((s.fundReleased / s.fundTotal) * 100);
           return (
-            <Link key={s.slug} to="/legacy/sponsors/$slug" params={{ slug: s.slug }} className="group rounded-2xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:shadow-xl">
+            <Link key={s.slug} to="/assa/sponsors/$slug" params={{ slug: s.slug }} className="group rounded-2xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="mb-6 inline-flex h-10 items-center justify-center rounded-md px-3 font-display text-sm tracking-wider text-white" style={{ background: s.color }}>
                 {s.name}
               </div>

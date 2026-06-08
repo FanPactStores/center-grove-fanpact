@@ -15,29 +15,29 @@ export const Route = createFileRoute("/assa/shop/$category")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.category.name ?? "Category"} — STL Legacy × FanPact` },
+      { title: `${loaderData?.category.name ?? "Category"} — ASSA × FanPact` },
       { name: "description", content: loaderData?.category.blurb ?? "" },
     ],
   }),
   errorComponent: () => <ErrorView />,
   notFoundComponent: () => <ErrorView />,
-  component: LegacyCategory,
+  component: AssaCategory,
 });
 
 function ErrorView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Category not found</h1>
-      <Link to="/legacy/shop" className="mt-6 inline-block text-sm underline">Back to all products</Link>
+      <Link to="/assa/shop" className="mt-6 inline-block text-sm underline">Back to all products</Link>
     </main>
   );
 }
 
 type SortKey = "featured" | "price-asc" | "price-desc" | "name";
 
-function LegacyCategory() {
+function AssaCategory() {
   const { category, products } = Route.useLoaderData() as { category: Category; products: Product[] };
-  const store = STORES.legacy;
+  const store = STORES.assa;
 
   const [activeSub, setActiveSub] = useState<string>("all");
   const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
@@ -76,7 +76,7 @@ function LegacyCategory() {
           {CATEGORIES.map((c) => (
             <Link
               key={c.slug}
-              to="/legacy/shop/$category"
+              to="/assa/shop/$category"
               params={{ category: c.slug }}
               className="shrink-0 rounded-full px-4 py-1.5 text-sm transition-colors hover:bg-white/10"
               style={
@@ -93,7 +93,7 @@ function LegacyCategory() {
 
       <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
         <nav className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Link to="/legacy" className="hover:text-foreground">Store</Link>
+          <Link to="/assa" className="hover:text-foreground">Store</Link>
           <ChevronRight className="h-3 w-3" />
           <span className="text-foreground">{category.name}</span>
         </nav>
@@ -103,7 +103,7 @@ function LegacyCategory() {
             <h1 className="font-display text-5xl tracking-tight">{category.name}</h1>
             <p className="mt-3 max-w-2xl text-muted-foreground">{category.blurb}</p>
           </div>
-          <Link to="/legacy" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: "var(--brand-accent)" }}>
+          <Link to="/assa" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: "var(--brand-accent)" }}>
             <ArrowLeft className="h-4 w-4" /> Back to Store
           </Link>
         </div>
@@ -204,7 +204,7 @@ function LegacyCategory() {
             ) : (
               <div className="divide-y divide-border rounded-xl border border-border bg-card">
                 {visible.map((p: Product) => (
-                  <Link key={p.id} to="/legacy/product/$slug" params={{ slug: p.slug }} className="flex items-center gap-4 p-4 transition-colors hover:bg-muted/50">
+                  <Link key={p.id} to="/assa/product/$slug" params={{ slug: p.slug }} className="flex items-center gap-4 p-4 transition-colors hover:bg-muted/50">
                     <img src={productImage(p, 240)} alt={p.name} width={96} height={96} loading="lazy" className="h-24 w-24 shrink-0 rounded-md bg-white object-contain p-1" />
                     <div className="min-w-0 flex-1">
                       <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{p.brand}</div>

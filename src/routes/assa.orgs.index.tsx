@@ -1,12 +1,12 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { LEGACY_ORGS } from "@/data/legacy-orgs";
+import { ASSA_ORGS } from "@/data/assa-orgs";
 
 export const Route = createFileRoute("/assa/orgs/")({
   head: () => ({
     meta: [
-      { title: "Tracks — STL Legacy × FanPact" },
-      { name: "description", content: "Klutch youth and STL Legacy showcase tracks. Designate where your contributions go." },
+      { title: "Tracks — ASSA × FanPact" },
+      { name: "description", content: "Combat youth and ASSA showcase tracks. Designate where your contributions go." },
     ],
   }),
   component: OrgsIndex,
@@ -19,16 +19,16 @@ function OrgsIndex() {
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Tracks</div>
         <h1 className="mt-2 font-display text-5xl tracking-tight">Designate your roster.</h1>
         <p className="mt-4 text-muted-foreground">
-          The Legacy Performance Academy operates {LEGACY_ORGS.length} tracks. Pick one, then drill into
+          The ASSA Performance Academy operates {ASSA_ORGS.length} tracks. Pick one, then drill into
           the age-group roster or athlete you want your contributions to support.
         </p>
       </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {LEGACY_ORGS.map((org) => (
+        {ASSA_ORGS.map((org) => (
           <Link
             key={org.slug}
-            to="/legacy/orgs/$org"
+            to="/assa/orgs/$org"
             params={{ org: org.slug }}
             className="group relative overflow-hidden rounded-2xl border border-border p-10 transition-all hover:-translate-y-1 hover:shadow-xl"
             style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}

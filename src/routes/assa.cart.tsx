@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/assa/cart")({
-  head: () => ({ meta: [{ title: "Cart — STL Legacy × FanPact" }] }),
-  component: LegacyCart,
+  head: () => ({ meta: [{ title: "Cart — ASSA × FanPact" }] }),
+  component: AssaCart,
 });
 
-function LegacyCart() {
-  const store = STORES.legacy;
+function AssaCart() {
+  const store = STORES.assa;
   const initial = ["tide-pods-original-81ct", "gatorade-thirst-quencher-variety-24pk", "nike-dri-fit-training-tee"]
     .map((s) => ({ product: PRODUCTS.find((p) => p.slug === s)!, qty: s === "nike-dri-fit-training-tee" ? 2 : 1 }))
     .filter((i) => i.product);
@@ -37,7 +37,7 @@ function LegacyCart() {
       {items.length === 0 ? (
         <div className="mt-12 rounded-xl border border-dashed border-border p-12 text-center">
           <p className="text-muted-foreground">Your cart is empty.</p>
-          <Button asChild className="mt-4"><Link to="/legacy/shop">Browse the store</Link></Button>
+          <Button asChild className="mt-4"><Link to="/assa/shop">Browse the store</Link></Button>
         </div>
       ) : (
         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_380px]">
@@ -47,7 +47,7 @@ function LegacyCart() {
                 <img src={productImage(product, 200)} alt={product.name} width={96} height={96} loading="lazy" className="h-24 w-24 shrink-0 rounded-md bg-white object-contain p-1" />
                 <div className="min-w-0 flex-1">
                   <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{product.brand}</div>
-                  <Link to="/legacy/product/$slug" params={{ slug: product.slug }} className="line-clamp-1 text-sm font-medium hover:underline">
+                  <Link to="/assa/product/$slug" params={{ slug: product.slug }} className="line-clamp-1 text-sm font-medium hover:underline">
                     {product.name}
                   </Link>
                   <div className="mt-1 text-xs font-medium" style={{ color: "var(--community)" }}>+{usd(product.contribution * qty)} community contribution</div>

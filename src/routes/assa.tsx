@@ -4,13 +4,13 @@ import { StoreFooter } from "@/components/fanpact/StoreFooter";
 import { STORES } from "@/data/stores";
 
 export const Route = createFileRoute("/assa")({
-  component: LegacyLayout,
+  component: AssaLayout,
 });
 
-function LegacyLayout() {
-  const store = STORES.legacy;
+function AssaLayout() {
+  const store = STORES.assa;
   return (
-    <div data-store="legacy" className="min-h-screen bg-[var(--surface)] text-foreground">
+    <div data-store="assa" className="min-h-screen bg-[var(--surface)] text-foreground">
       <StoreHeader store={store} />
       <Outlet />
       <StoreFooter store={store} />

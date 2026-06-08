@@ -19,30 +19,30 @@ export const Route = createFileRoute("/assa/product/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.product.name ?? "Product"} — STL Legacy × FanPact` },
+      { title: `${loaderData?.product.name ?? "Product"} — ASSA × FanPact` },
       { name: "description", content: loaderData?.product.description ?? "" },
       { property: "og:image", content: loaderData ? productImage(loaderData.product, 1200) : "" },
     ],
   }),
   errorComponent: () => <NotFoundView />,
   notFoundComponent: () => <NotFoundView />,
-  component: LegacyProduct,
+  component: AssaProduct,
 });
 
 function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Product not found</h1>
-      <Link to="/legacy/shop" className="mt-6 inline-block text-sm underline">Back to shop</Link>
+      <Link to="/assa/shop" className="mt-6 inline-block text-sm underline">Back to shop</Link>
     </main>
   );
 }
 
 type TabKey = "description" | "specifications" | "shipping";
 
-function LegacyProduct() {
+function AssaProduct() {
   const { product, category, related } = Route.useLoaderData();
-  const store = STORES.legacy;
+  const store = STORES.assa;
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
@@ -52,9 +52,9 @@ function LegacyProduct() {
     <main className="bg-background">
       <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
         <nav className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-          <Link to="/legacy" className="hover:text-foreground">Store</Link>
+          <Link to="/assa" className="hover:text-foreground">Store</Link>
           <ChevronRight className="h-3 w-3" />
-          <Link to="/legacy/shop/$category" params={{ category: category.slug }} className="hover:text-foreground">
+          <Link to="/assa/shop/$category" params={{ category: category.slug }} className="hover:text-foreground">
             {category.name}
           </Link>
           <ChevronRight className="h-3 w-3" />
@@ -161,7 +161,7 @@ function LegacyProduct() {
               <div className="space-y-4">
                 <p>{product.description}</p>
                 <p className="text-muted-foreground">
-                  Every purchase of {product.brand} {product.name} through the STL Legacy FanPact storefront contributes {usd(product.contribution)} to {store.fundName}.
+                  Every purchase of {product.brand} {product.name} through the ASSA FanPact storefront contributes {usd(product.contribution)} to {store.fundName}.
                 </p>
               </div>
             )}
@@ -196,7 +196,7 @@ function LegacyProduct() {
                 <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">More in {category.name}</div>
                 <h2 className="mt-2 font-display text-3xl tracking-tight" style={{ color: "var(--brand-accent)" }}>You might also like</h2>
               </div>
-              <Link to="/legacy/shop/$category" params={{ category: category.slug }} className="text-sm font-semibold" style={{ color: "var(--brand-accent)" }}>View all →</Link>
+              <Link to="/assa/shop/$category" params={{ category: category.slug }} className="text-sm font-semibold" style={{ color: "var(--brand-accent)" }}>View all →</Link>
             </div>
             <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
               {related.map((p: typeof product) => (

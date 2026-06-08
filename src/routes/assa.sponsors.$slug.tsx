@@ -12,7 +12,7 @@ export const Route = createFileRoute("/assa/sponsors/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.sponsor.name ?? "Sponsor"} — STL Legacy × FanPact` },
+      { title: `${loaderData?.sponsor.name ?? "Sponsor"} — ASSA × FanPact` },
       { name: "description", content: loaderData?.sponsor.description ?? "" },
     ],
   }),
@@ -25,7 +25,7 @@ function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Sponsor not found</h1>
-      <Link to="/legacy/sponsors" className="mt-6 inline-block text-sm underline">All sponsors</Link>
+      <Link to="/assa/sponsors" className="mt-6 inline-block text-sm underline">All sponsors</Link>
     </main>
   );
 }
@@ -38,7 +38,7 @@ function SponsorDetail() {
     <main>
       <section className="border-b border-border" style={{ background: sponsor.color, color: "white" }}>
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <Link to="/legacy/sponsors" className="text-xs uppercase tracking-[0.2em] opacity-80 hover:opacity-100">← All sponsors</Link>
+          <Link to="/assa/sponsors" className="text-xs uppercase tracking-[0.2em] opacity-80 hover:opacity-100">← All sponsors</Link>
           <div className="mt-6 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <div className="text-xs uppercase tracking-[0.22em] opacity-70">{sponsor.tagline}</div>

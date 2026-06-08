@@ -1,18 +1,18 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Check } from "lucide-react";
-import { getLegacyOrg, getLegacyTeam, type LegacyPlayer } from "@/data/legacy-orgs";
+import { getAssaOrg, getAssaTeam, type AssaPlayer } from "@/data/assa-orgs";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/assa/orgs/$org/$team")({
   loader: ({ params }) => {
-    const org = getLegacyOrg(params.org);
-    const team = getLegacyTeam(params.org, params.team);
+    const org = getAssaOrg(params.org);
+    const team = getAssaTeam(params.org, params.team);
     if (!org || !team) throw notFound();
     return { org, team };
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.team.name ?? "Team"} — STL Legacy × FanPact` },
+      { title: `${loaderData?.team.name ?? "Team"} — ASSA × FanPact` },
       { name: "description", content: loaderData?.team.blurb ?? "" },
     ],
   }),
@@ -25,7 +25,7 @@ function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Team not found</h1>
-      <Link to="/legacy/orgs" className="mt-6 inline-block text-sm underline">All tracks</Link>
+      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">All tracks</Link>
     </main>
   );
 }
@@ -40,9 +40,9 @@ function TeamRoster() {
       >
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
           <nav className="text-xs uppercase tracking-[0.18em] opacity-80">
-            <Link to="/legacy/orgs" className="hover:opacity-100">Tracks</Link>
+            <Link to="/assa/orgs" className="hover:opacity-100">Tracks</Link>
             <span className="mx-2 opacity-60">/</span>
-            <Link to="/legacy/orgs/$org" params={{ org: org.slug }} className="hover:opacity-100">
+            <Link to="/assa/orgs/$org" params={{ org: org.slug }} className="hover:opacity-100">
               {org.shortName}
             </Link>
           </nav>
@@ -76,10 +76,10 @@ function TeamRoster() {
 
       <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {team.players.map((p: LegacyPlayer) => (
+          {team.players.map((p: AssaPlayer) => (
             <Link
               key={p.slug}
-              to="/legacy/orgs/$org/$team/$player"
+              to="/assa/orgs/$org/$team/$player"
               params={{ org: org.slug, team: team.slug, player: p.slug }}
               className="group overflow-hidden rounded-xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >

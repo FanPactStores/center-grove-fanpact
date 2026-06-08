@@ -1,17 +1,17 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
-import { getLegacyOrg, type LegacyTeam } from "@/data/legacy-orgs";
+import { getAssaOrg, type AssaTeam } from "@/data/assa-orgs";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/assa/orgs/$org")({
   loader: ({ params }) => {
-    const org = getLegacyOrg(params.org);
+    const org = getAssaOrg(params.org);
     if (!org) throw notFound();
     return { org };
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.org.name ?? "Track"} — STL Legacy × FanPact` },
+      { title: `${loaderData?.org.name ?? "Track"} — ASSA × FanPact` },
       { name: "description", content: loaderData?.org.blurb ?? "" },
     ],
   }),
@@ -24,7 +24,7 @@ function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Track not found</h1>
-      <Link to="/legacy/orgs" className="mt-6 inline-block text-sm underline">
+      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">
         All tracks
       </Link>
     </main>
@@ -35,8 +35,8 @@ function OrgDetail() {
   const { org } = Route.useLoaderData();
 
   // Group teams by age (e.g. "8U", "15U")
-  const groups: Record<string, LegacyTeam[]> = {};
-  for (const team of org.teams as LegacyTeam[]) {
+  const groups: Record<string, AssaTeam[]> = {};
+  for (const team of org.teams as AssaTeam[]) {
     const ageMatch = team.name.match(/(\d{1,2}U)/);
     const key = ageMatch ? ageMatch[1] : "Other";
     (groups[key] ??= []).push(team);
@@ -50,7 +50,7 @@ function OrgDetail() {
         style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
       >
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-          <Link to="/legacy/orgs" className="text-xs uppercase tracking-[0.2em] opacity-80 hover:opacity-100">
+          <Link to="/assa/orgs" className="text-xs uppercase tracking-[0.2em] opacity-80 hover:opacity-100">
             ← All tracks
           </Link>
           <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
@@ -98,10 +98,10 @@ function OrgDetail() {
                 </span>
               </div>
               <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {groups[age].map((team: LegacyTeam) => (
+                {groups[age].map((team: AssaTeam) => (
                   <Link
                     key={team.slug}
-                    to="/legacy/orgs/$org/$team"
+                    to="/assa/orgs/$org/$team"
                     params={{ org: org.slug, team: team.slug }}
                     className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg"
                   >
