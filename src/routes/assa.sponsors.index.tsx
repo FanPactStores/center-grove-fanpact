@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { SPONSORS } from "@/data/sponsors";
+import { sponsorsForStore } from "@/data/sponsors";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/assa/sponsors/")({
@@ -25,7 +25,7 @@ function SponsorsIndex() {
       </div>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
-        {SPONSORS.map((s) => {
+        {sponsorsForStore("assa").map((s) => {
           const pct = Math.round((s.fundReleased / s.fundTotal) * 100);
           return (
             <Link key={s.slug} to="/assa/sponsors/$slug" params={{ slug: s.slug }} className="group rounded-2xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:shadow-xl">
