@@ -1,6 +1,9 @@
+export type StoreId = "butler" | "center-grove" | "legacy";
+export type StoreBasePath = "/butler" | "/center-grove" | "/legacy";
+
 export type StoreConfig = {
-  id: "butler" | "center-grove";
-  basePath: "/butler" | "/center-grove";
+  id: StoreId;
+  basePath: StoreBasePath;
   name: string;
   shortName: string;
   fundName: string;
@@ -12,7 +15,7 @@ export type StoreConfig = {
   marks: { letter: string; word: string };
 };
 
-export const STORES: Record<"butler" | "center-grove", StoreConfig> = {
+export const STORES: Record<StoreId, StoreConfig> = {
   butler: {
     id: "butler",
     basePath: "/butler",
@@ -40,5 +43,19 @@ export const STORES: Record<"butler" | "center-grove", StoreConfig> = {
     heroBody:
       "60% of net earnings on every purchase flows to the Center Grove Community Alliance Fund — or to the team or athlete you designate. No extra cost. No fundraising ask.",
     marks: { letter: "CG", word: "CENTER GROVE" },
+  },
+  legacy: {
+    id: "legacy",
+    basePath: "/legacy",
+    name: "STL Legacy / Klutch Baseball",
+    shortName: "STL Legacy",
+    fundName: "Legacy Performance Academy Fund",
+    fundDisplay: "STL Legacy Baseball",
+    tagline: "Shop the brands you already buy. Fuel the diamond.",
+    heroEyebrow: "Legacy Performance Academy × FanPact",
+    heroHeadline: "From 8U to D1. One ledger.",
+    heroBody:
+      "Klutch youth squads, the 14U bridge roster, and the STL Legacy showcase teams — every age group, every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.",
+    marks: { letter: "L", word: "STL LEGACY" },
   },
 };

@@ -123,6 +123,18 @@
   --gold-foreground: oklch(0.15 0.005 80);
 }
 
+/* ---------- STL LEGACY / KLUTCH THEME ---------- */
+[data-store="legacy"] {
+  --brand: oklch(0.22 0.06 250);           /* Legacy navy */
+  --brand-foreground: oklch(0.99 0 0);
+  --brand-accent: oklch(0.55 0.20 27);     /* Cardinal red */
+  --ink: oklch(0.16 0.04 250);
+  --surface: oklch(0.99 0.003 250);
+  --surface-2: oklch(0.96 0.008 250);
+  --gold: oklch(0.78 0.14 80);
+  --gold-foreground: oklch(0.18 0.06 250);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
