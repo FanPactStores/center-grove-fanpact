@@ -3,6 +3,8 @@ import { Heart, ShoppingBag, User, ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import type { StoreConfig } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
+import { DesignationBanner } from "./DesignationBanner";
+import { WelcomeModal } from "./WelcomeModal";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
