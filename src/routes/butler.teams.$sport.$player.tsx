@@ -60,8 +60,8 @@ function PlayerBio() {
           <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-widest">
             <Pill>#{player.number}</Pill>
             <Pill>{player.position}</Pill>
-            <Pill>{player.year}</Pill>
-            <Pill>{player.hometown}</Pill>
+            {player.year ? <Pill>{player.year}</Pill> : null}
+            {player.hometown ? <Pill>{player.hometown}</Pill> : null}
           </div>
 
           <div
