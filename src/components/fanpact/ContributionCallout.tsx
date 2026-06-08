@@ -1,14 +1,23 @@
+import { Pencil } from "lucide-react";
 import { usd } from "@/lib/format";
 
 export function ContributionCallout({
   amount,
   fundName,
   designee,
+  designationName,
+  designationSubtitle,
+  onEditDesignation,
 }: {
   amount: number;
   fundName: string;
+  /** @deprecated prefer designationName */
   designee?: string;
+  designationName?: string;
+  designationSubtitle?: string;
+  onEditDesignation?: () => void;
 }) {
+  const target = designationName ?? designee ?? fundName;
   return (
     <div
       className="rounded-xl border p-5"
@@ -34,9 +43,37 @@ export function ContributionCallout({
             </span>
             <span className="text-sm text-muted-foreground">from this purchase</span>
           </div>
-          <p className="mt-2 text-sm text-foreground/80">
-            Flows to <span className="font-semibold">{designee ?? fundName}</span> — 60% of net earnings,
-            automatically, at no extra cost to you.
+          <div className="mt-3 rounded-lg border border-dashed bg-white/40 px-3 py-2"
+            style={{ borderColor: "color-mix(in oklab, var(--community) 35%, transparent)" }}
+          >
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Contributing to
+                </div>
+                <div className="truncate text-sm font-semibold" style={{ color: "var(--community)" }}>
+                  {target}
+                </div>
+                {designationSubtitle && (
+                  <div className="truncate text-[11px] text-muted-foreground">
+                    {designationSubtitle}
+                  </div>
+                )}
+              </div>
+              {onEditDesignation && (
+                <button
+                  type="button"
+                  onClick={onEditDesignation}
+                  className="inline-flex shrink-0 items-center gap-1 rounded-md px-2 py-1 text-[11px] font-semibold transition-colors hover:bg-black/5"
+                  style={{ color: "var(--community)" }}
+                >
+                  <Pencil className="h-3 w-3" /> Edit designation
+                </button>
+              )}
+            </div>
+          </div>
+          <p className="mt-2 text-xs text-foreground/70">
+            60% of net earnings, automatically — at no extra cost to you.
           </p>
         </div>
       </div>

@@ -6,6 +6,9 @@ import { STORES } from "@/data/stores";
 import { ContributionCallout } from "@/components/fanpact/ContributionCallout";
 import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
+import { useDesignation } from "@/lib/designation";
+import { DesignationModal } from "@/components/fanpact/DesignationModal";
+import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/butler/cart")({
   head: () => ({ meta: [{ title: "Cart — Butler × FanPact" }] }),
@@ -18,6 +21,9 @@ function ButlerCart() {
     .map((s) => ({ product: PRODUCTS.find((p) => p.slug === s)!, qty: s === "nike-dri-fit-training-tee" ? 2 : 1 }))
     .filter((i) => i.product);
   const [items, setItems] = useState(initial);
+  const { designation, set: setDesignation } = useDesignation("butler");
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const navigate = useNavigate();
 
   const subtotal = items.reduce((s, i) => s + i.product.price * i.qty, 0);
   const contribution = items.reduce((s, i) => s + i.product.contribution * i.qty, 0);
@@ -80,7 +86,13 @@ function ButlerCart() {
           </div>
 
           <aside className="space-y-4">
-            <ContributionCallout amount={contribution} fundName={store.fundName} />
+            <ContributionCallout
+              amount={contribution}
+              fundName={store.fundName}
+              designationName={designation.name}
+              designationSubtitle={designation.subtitle}
+              onEditDesignation={() => setPickerOpen(true)}
+            />
             <div className="rounded-xl border border-border bg-card p-5">
               <div className="space-y-2 text-sm">
                 <Row label="Subtotal" value={usd(subtotal)} />
@@ -91,7 +103,17 @@ function ButlerCart() {
                 <div className="my-2 h-px bg-border" />
                 <Row label="Total" value={usd(total)} large />
               </div>
-              <Button size="lg" className="mt-5 w-full" style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}>
+              <Button
+                size="lg"
+                className="mt-5 w-full"
+                style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
+                onClick={() =>
+                  navigate({
+                    to: "/butler/checkout-confirmation",
+                    search: { amount: contribution, total },
+                  })
+                }
+              >
                 Checkout
               </Button>
               <p className="mt-3 text-center text-[11px] text-muted-foreground">
@@ -101,6 +123,17 @@ function ButlerCart() {
           </aside>
         </div>
       )}
+      <DesignationModal
+        open={pickerOpen}
+        storeId="butler"
+        onClose={() => setPickerOpen(false)}
+        onConfirm={(d) => {
+          setDesignation(d);
+          setPickerOpen(false);
+        }}
+        title="Edit cart designation"
+      />
+
     </main>
   );
 }
