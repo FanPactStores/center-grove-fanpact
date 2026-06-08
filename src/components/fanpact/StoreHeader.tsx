@@ -20,6 +20,7 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const { count: listCount } = useMyList(store.id);
 
   const topNav = [
     { label: "Shop", to: `${store.basePath}/shop`, hasDropdown: true },
