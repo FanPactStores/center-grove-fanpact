@@ -261,6 +261,18 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
       {mobileOpen && (
         <div className="border-b border-border bg-[var(--surface)] md:hidden">
           <div className="mx-auto flex max-w-7xl flex-col px-4 py-3">
+            <Link
+              to="/"
+              className="flex items-center justify-between py-2 text-sm font-semibold text-muted-foreground"
+              onClick={() => setMobileOpen(false)}
+            >
+              <span className="flex items-center gap-2">
+                <Home className="h-4 w-4" />
+                FanPact Home
+              </span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <div className="my-1 border-t border-border" />
             {topNav.map((n) => (
               <Link
                 key={n.label}
