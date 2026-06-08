@@ -69,8 +69,7 @@ function MasterHome() {
               <span>Powered by Commerce.</span>
             </div>
             <p className="mt-8 max-w-2xl text-lg text-white/85">
-              Choose your school or your local youth alliance and shop everyday products that fund
-              athletes and families. <span className="text-white">You're not spending more — just switching where you shop.</span>
+              60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
