@@ -14,7 +14,7 @@ export function StoreFooter({ store }: { store: StoreConfig }) {
         <div className="lg:col-span-2">
           <div className="font-display text-3xl tracking-tight">{store.marks.word}</div>
           <Link to="/" className="mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-[0.24em] opacity-90 hover:opacity-100">
-            <FanPactLogo height={24} pill pillPadding="px-1.5 py-0.5" />
+            <FanPactLogo variant="white-compact" height={20} />
             <span>Powered by FanPact</span>
           </Link>
           <p className="mt-6 max-w-md text-sm opacity-80">
