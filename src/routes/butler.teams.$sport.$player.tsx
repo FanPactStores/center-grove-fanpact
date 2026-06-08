@@ -60,8 +60,8 @@ function PlayerBio() {
           <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-widest">
             <Pill>#{player.number}</Pill>
             <Pill>{player.position}</Pill>
-            <Pill>{player.year}</Pill>
-            <Pill>{player.hometown}</Pill>
+            {player.year ? <Pill>{player.year}</Pill> : null}
+            {player.hometown ? <Pill>{player.hometown}</Pill> : null}
           </div>
 
           <div
@@ -92,8 +92,8 @@ function PlayerBio() {
 
           <div className="mt-8 border-t border-border pt-6 text-sm text-muted-foreground">
             <p>
-              Bio coming soon. {player.name} joined the Butler {team.name.toLowerCase()} program from {player.hometown}
-              and is in their {player.year.toLowerCase()} season.
+              Bio coming soon. {player.name} suits up for Butler {team.name} as #{player.number} at {player.position}
+              {player.hometown ? ` out of ${player.hometown}` : ""}.
             </p>
           </div>
 
