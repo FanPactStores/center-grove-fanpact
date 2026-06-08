@@ -25,7 +25,7 @@ function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Team not found</h1>
-      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">All tracks</Link>
+      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">All hubs</Link>
     </main>
   );
 }
@@ -40,7 +40,7 @@ function TeamRoster() {
       >
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
           <nav className="text-xs uppercase tracking-[0.18em] opacity-80">
-            <Link to="/assa/orgs" className="hover:opacity-100">Tracks</Link>
+            <Link to="/assa/orgs" className="hover:opacity-100">Hubs</Link>
             <span className="mx-2 opacity-60">/</span>
             <Link to="/assa/orgs/$org" params={{ org: org.slug }} className="hover:opacity-100">
               {org.shortName}

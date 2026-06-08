@@ -7,7 +7,7 @@ export const Route = createFileRoute("/assa/sponsors/")({
   head: () => ({
     meta: [
       { title: "Enterprise sponsors — ASSA × FanPact" },
-      { name: "description", content: "Brands prepay community accounts. ASSA families unlock credits by completing qualifying actions." },
+      { name: "description", content: "Brands prepay community accounts. Combat families unlock credits by completing qualifying actions." },
     ],
   }),
   component: SponsorsIndex,
@@ -18,7 +18,7 @@ function SponsorsIndex() {
     <main className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
       <div className="max-w-2xl">
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Enterprise sponsors</div>
-        <h1 className="mt-2 font-display text-5xl tracking-tight">Brands fund ASSA families.</h1>
+        <h1 className="mt-2 font-display text-5xl tracking-tight">Brands fund ASSA Combat families.</h1>
         <p className="mt-4 text-muted-foreground">
           Sponsors prepay community accounts. Families unlock credits when they complete qualifying actions — no purchase required.
         </p>

@@ -58,11 +58,10 @@ function AssaHome() {
               className="mt-5 font-display text-[clamp(3rem,8vw,7rem)] leading-[0.92] tracking-tight"
               style={{ color: "var(--brand-accent)" }}
             >
-              From 8U<br />to D1.
+              Every hub.<br />Every roster.
             </h1>
             <p className="mt-6 max-w-xl text-base text-white/85 md:text-lg">
-              Combat youth squads, the 14U bridge roster, and ASSA showcase teams — every age,
-              every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.
+              From West Chester to Cherry Hill, Downingtown to Warminster, plus Combat Futures showcase rosters — every hub, every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.
             </p>
 
             <form
@@ -122,16 +121,16 @@ function AssaHome() {
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <div className="mb-10 text-center">
             <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-              {ASSA_ORGS.length} tracks · {ASSA_ORGS.reduce((s, o) => s + o.teams.length, 0)} rosters · {totalPlayers}+ athletes
+              {ASSA_ORGS.length} hubs · {ASSA_ORGS.reduce((s, o) => s + o.teams.length, 0)} rosters · {totalPlayers}+ athletes
             </div>
             <h2
               className="mt-3 font-display text-4xl tracking-tight md:text-5xl"
               style={{ color: "var(--brand-accent)" }}
             >
-              Choose your track, then your team
+              Choose your hub, then your team
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-              Combat youth or ASSA showcase — drill into the specific age group, coach, or athlete you
+              Pick a youth hub or the Combat Futures showcase — drill into the specific age group, coach, or athlete you
               want your contributions to support.
             </p>
           </div>
@@ -146,7 +145,7 @@ function AssaHome() {
                 style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
               >
                 <div className="text-xs uppercase tracking-[0.22em] opacity-70">
-                  {org.category} · {org.season}
+                  {org.category} · {org.hub}
                 </div>
                 <div className="mt-4 font-display text-4xl tracking-tight">{org.name}</div>
                 <p className="mt-4 max-w-md opacity-85">{org.blurb}</p>
@@ -214,7 +213,7 @@ function AssaHome() {
               className="font-display text-4xl tracking-tight md:text-5xl"
               style={{ color: "var(--brand-accent)" }}
             >
-              Everyday Essentials Powering ASSA
+              Everyday Essentials Powering ASSA Combat
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               Shop the products you already love — every purchase makes a difference.
@@ -241,7 +240,7 @@ function AssaHome() {
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {[
-            { t: "Pick Your Team", d: "Choose Combat youth or ASSA showcase, then drill into the specific roster or athlete." },
+            { t: "Pick Your Team", d: "Choose Pick a youth hub or the Combat Futures showcase, then drill into the specific roster or athlete." },
             { t: "Shop Everyday Products", d: "Browse the ASSA storefront for the brands you already buy." },
             { t: "Contributions Flow Automatically", d: "60% of net earnings is allocated to your designation — every purchase, every time." },
           ].map((s, i) => (

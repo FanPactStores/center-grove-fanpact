@@ -23,9 +23,9 @@ export const Route = createFileRoute("/assa/orgs/$org")({
 function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
-      <h1 className="font-display text-4xl tracking-tight">Track not found</h1>
+      <h1 className="font-display text-4xl tracking-tight">Hub not found</h1>
       <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">
-        All tracks
+        All hubs
       </Link>
     </main>
   );
@@ -51,12 +51,12 @@ function OrgDetail() {
       >
         <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
           <Link to="/assa/orgs" className="text-xs uppercase tracking-[0.2em] opacity-80 hover:opacity-100">
-            ← All tracks
+            ← All hubs
           </Link>
           <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
             <div>
               <div className="text-xs uppercase tracking-[0.22em] opacity-70">
-                {org.category} · {org.season}
+                {org.category} · {org.hub}
               </div>
               <h1 className="mt-2 font-display text-6xl tracking-tight">{org.name}</h1>
               <p className="mt-4 max-w-2xl opacity-85">{org.about}</p>

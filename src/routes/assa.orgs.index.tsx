@@ -5,8 +5,8 @@ import { ASSA_ORGS } from "@/data/assa-orgs";
 export const Route = createFileRoute("/assa/orgs/")({
   head: () => ({
     meta: [
-      { title: "Tracks — ASSA × FanPact" },
-      { name: "description", content: "Combat youth and ASSA showcase tracks. Designate where your contributions go." },
+      { title: "Hubs — ASSA × FanPact" },
+      { name: "description", content: "Combat youth and ASSA showcase hubs. Designate where your contributions go." },
     ],
   }),
   component: OrgsIndex,
@@ -16,10 +16,10 @@ function OrgsIndex() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
       <div className="max-w-2xl">
-        <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Tracks</div>
-        <h1 className="mt-2 font-display text-5xl tracking-tight">Designate your roster.</h1>
+        <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Hubs</div>
+        <h1 className="mt-2 font-display text-5xl tracking-tight">Designate your hub.</h1>
         <p className="mt-4 text-muted-foreground">
-          The ASSA Performance Academy operates {ASSA_ORGS.length} tracks. Pick one, then drill into
+          All-Star Sports Academy runs {ASSA_ORGS.length} location hubs across PA and NJ — including the centralized Combat Futures HS showcase track. Pick one, then drill into
           the age-group roster or athlete you want your contributions to support.
         </p>
       </div>
@@ -34,7 +34,7 @@ function OrgsIndex() {
             style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}
           >
             <div className="text-xs uppercase tracking-[0.22em] opacity-70">
-              {org.category} · {org.season}
+              {org.category} · {org.hub}
             </div>
             <div className="mt-4 font-display text-4xl tracking-tight">{org.name}</div>
             <p className="mt-4 max-w-md opacity-85">{org.blurb}</p>

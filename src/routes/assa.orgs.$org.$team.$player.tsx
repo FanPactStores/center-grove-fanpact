@@ -27,7 +27,7 @@ function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Player not found</h1>
-      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">All tracks</Link>
+      <Link to="/assa/orgs" className="mt-6 inline-block text-sm underline">All hubs</Link>
     </main>
   );
 }
@@ -39,7 +39,7 @@ function PlayerBio() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 lg:px-8">
       <nav className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-        <Link to="/assa/orgs" className="hover:text-foreground">Tracks</Link>
+        <Link to="/assa/orgs" className="hover:text-foreground">Hubs</Link>
         <span className="mx-2">/</span>
         <Link to="/assa/orgs/$org" params={{ org: org.slug }} className="hover:text-foreground">
           {org.shortName}
