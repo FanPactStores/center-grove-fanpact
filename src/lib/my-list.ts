@@ -111,8 +111,9 @@ export function useMyList(storeId: StoreId): {
   const items = useSyncExternalStore(
     subscribe,
     () => readList(storeId),
-    () => [],
+    () => EMPTY,
   );
+
 
   const hasKey = (key: string) => items.some((i) => i.key === key);
   const isOnList = (p: Product) =>
