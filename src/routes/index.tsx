@@ -203,7 +203,7 @@ function MasterHome() {
           <div>
             <div className="text-xs uppercase tracking-[0.22em] opacity-60">FanPact Team Card</div>
             <h2 className="mt-3 font-display text-5xl tracking-tight">
-              A Visa in Apple &amp; Google Pay that<br />earns contributions <span style={{ color: "var(--gold)" }}>everywhere</span>.
+              A Visa in Apple &amp; Google Pay that<br />earns NIL contributions and youth fund credits <span style={{ color: "var(--gold)" }}>everywhere</span>.
             </h2>
             <p className="mt-6 max-w-lg opacity-80">
               Tap to pay at the grocery store, the gas pump, the pet supply shop. Your team gets credited
