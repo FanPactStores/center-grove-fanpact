@@ -84,8 +84,12 @@ function SponsorDetail() {
           <aside className="rounded-2xl border border-border bg-card p-6">
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Available per family</div>
             <div className="font-display text-5xl tracking-tight" style={{ color: "var(--community)" }}>{usd(sponsor.perFamily)}</div>
-            <p className="mt-3 text-sm text-muted-foreground">Credit is released to your community account as soon as each qualifying action is verified.</p>
-            <Button size="lg" className="mt-6 w-full" style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}>Claim this campaign</Button>
+            <p className="mt-3 text-sm text-muted-foreground">Credit is released to your community account as soon as each qualifying action is verified. No purchase. No commitment. The brand pays.</p>
+            <Button asChild size="lg" className="mt-6 w-full" style={{ background: "var(--brand)", color: "var(--brand-foreground)" }}>
+              <Link to="/legacy/sponsors/$slug/claim" params={{ slug: sponsor.slug }}>
+                Claim Your Credit
+              </Link>
+            </Button>
             <ul className="mt-6 space-y-2 text-xs text-muted-foreground">
               <li className="flex gap-2"><Check className="mt-0.5 h-3.5 w-3.5 text-[var(--community)]" /> Eligibility verified instantly</li>
               <li className="flex gap-2"><Check className="mt-0.5 h-3.5 w-3.5 text-[var(--community)]" /> Credits land in your community account</li>
