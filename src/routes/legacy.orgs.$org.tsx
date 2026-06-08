@@ -34,13 +34,13 @@ function NotFoundView() {
 function OrgDetail() {
   const { org } = Route.useLoaderData();
 
-  // Group teams by age (everything before the first " — ")
-  const groups = org.teams.reduce<Record<string, LegacyTeam[]>>((acc, team) => {
+  // Group teams by age (e.g. "8U", "15U")
+  const groups: Record<string, LegacyTeam[]> = {};
+  for (const team of org.teams as LegacyTeam[]) {
     const ageMatch = team.name.match(/(\d{1,2}U)/);
     const key = ageMatch ? ageMatch[1] : "Other";
-    (acc[key] ??= []).push(team);
-    return acc;
-  }, {});
+    (groups[key] ??= []).push(team);
+  }
   const groupKeys = Object.keys(groups).sort((a, b) => parseInt(a) - parseInt(b));
 
   return (
