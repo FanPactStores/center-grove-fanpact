@@ -9,20 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CenterGroveRouteImport } from './routes/center-grove'
 import { Route as ButlerRouteImport } from './routes/butler'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
+import { Route as CenterGroveTeamCardRouteImport } from './routes/center-grove.team-card'
+import { Route as CenterGroveCartRouteImport } from './routes/center-grove.cart'
 import { Route as ButlerTeamCardRouteImport } from './routes/butler.team-card'
 import { Route as ButlerCartRouteImport } from './routes/butler.cart'
+import { Route as CenterGroveSponsorsIndexRouteImport } from './routes/center-grove.sponsors.index'
+import { Route as CenterGroveShopIndexRouteImport } from './routes/center-grove.shop.index'
+import { Route as CenterGroveOrgsIndexRouteImport } from './routes/center-grove.orgs.index'
 import { Route as ButlerTeamsIndexRouteImport } from './routes/butler.teams.index'
 import { Route as ButlerSponsorsIndexRouteImport } from './routes/butler.sponsors.index'
 import { Route as ButlerShopIndexRouteImport } from './routes/butler.shop.index'
+import { Route as CenterGroveSponsorsSlugRouteImport } from './routes/center-grove.sponsors.$slug'
+import { Route as CenterGroveShopCategoryRouteImport } from './routes/center-grove.shop.$category'
+import { Route as CenterGroveProductSlugRouteImport } from './routes/center-grove.product.$slug'
+import { Route as CenterGroveOrgsOrgRouteImport } from './routes/center-grove.orgs.$org'
 import { Route as ButlerTeamsSportRouteImport } from './routes/butler.teams.$sport'
 import { Route as ButlerSponsorsSlugRouteImport } from './routes/butler.sponsors.$slug'
 import { Route as ButlerShopCategoryRouteImport } from './routes/butler.shop.$category'
 import { Route as ButlerProductSlugRouteImport } from './routes/butler.product.$slug'
+import { Route as CenterGroveOrgsOrgTeamRouteImport } from './routes/center-grove.orgs.$org.$team'
 import { Route as ButlerTeamsSportPlayerRouteImport } from './routes/butler.teams.$sport.$player'
+import { Route as CenterGroveOrgsOrgTeamPlayerRouteImport } from './routes/center-grove.orgs.$org.$team.$player'
 
+const CenterGroveRoute = CenterGroveRouteImport.update({
+  id: '/center-grove',
+  path: '/center-grove',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ButlerRoute = ButlerRouteImport.update({
   id: '/butler',
   path: '/butler',
@@ -33,10 +51,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CenterGroveIndexRoute = CenterGroveIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
 const ButlerIndexRoute = ButlerIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ButlerRoute,
+} as any)
+const CenterGroveTeamCardRoute = CenterGroveTeamCardRouteImport.update({
+  id: '/team-card',
+  path: '/team-card',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
+const CenterGroveCartRoute = CenterGroveCartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => CenterGroveRoute,
 } as any)
 const ButlerTeamCardRoute = ButlerTeamCardRouteImport.update({
   id: '/team-card',
@@ -47,6 +80,22 @@ const ButlerCartRoute = ButlerCartRouteImport.update({
   id: '/cart',
   path: '/cart',
   getParentRoute: () => ButlerRoute,
+} as any)
+const CenterGroveSponsorsIndexRoute =
+  CenterGroveSponsorsIndexRouteImport.update({
+    id: '/sponsors/',
+    path: '/sponsors/',
+    getParentRoute: () => CenterGroveRoute,
+  } as any)
+const CenterGroveShopIndexRoute = CenterGroveShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
+const CenterGroveOrgsIndexRoute = CenterGroveOrgsIndexRouteImport.update({
+  id: '/orgs/',
+  path: '/orgs/',
+  getParentRoute: () => CenterGroveRoute,
 } as any)
 const ButlerTeamsIndexRoute = ButlerTeamsIndexRouteImport.update({
   id: '/teams/',
@@ -62,6 +111,26 @@ const ButlerShopIndexRoute = ButlerShopIndexRouteImport.update({
   id: '/shop/',
   path: '/shop/',
   getParentRoute: () => ButlerRoute,
+} as any)
+const CenterGroveSponsorsSlugRoute = CenterGroveSponsorsSlugRouteImport.update({
+  id: '/sponsors/$slug',
+  path: '/sponsors/$slug',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
+const CenterGroveShopCategoryRoute = CenterGroveShopCategoryRouteImport.update({
+  id: '/shop/$category',
+  path: '/shop/$category',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
+const CenterGroveProductSlugRoute = CenterGroveProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => CenterGroveRoute,
+} as any)
+const CenterGroveOrgsOrgRoute = CenterGroveOrgsOrgRouteImport.update({
+  id: '/orgs/$org',
+  path: '/orgs/$org',
+  getParentRoute: () => CenterGroveRoute,
 } as any)
 const ButlerTeamsSportRoute = ButlerTeamsSportRouteImport.update({
   id: '/teams/$sport',
@@ -83,111 +152,206 @@ const ButlerProductSlugRoute = ButlerProductSlugRouteImport.update({
   path: '/product/$slug',
   getParentRoute: () => ButlerRoute,
 } as any)
+const CenterGroveOrgsOrgTeamRoute = CenterGroveOrgsOrgTeamRouteImport.update({
+  id: '/$team',
+  path: '/$team',
+  getParentRoute: () => CenterGroveOrgsOrgRoute,
+} as any)
 const ButlerTeamsSportPlayerRoute = ButlerTeamsSportPlayerRouteImport.update({
   id: '/$player',
   path: '/$player',
   getParentRoute: () => ButlerTeamsSportRoute,
 } as any)
+const CenterGroveOrgsOrgTeamPlayerRoute =
+  CenterGroveOrgsOrgTeamPlayerRouteImport.update({
+    id: '/$player',
+    path: '/$player',
+    getParentRoute: () => CenterGroveOrgsOrgTeamRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/butler': typeof ButlerRouteWithChildren
+  '/center-grove': typeof CenterGroveRouteWithChildren
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
+  '/center-grove/cart': typeof CenterGroveCartRoute
+  '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/butler/': typeof ButlerIndexRoute
+  '/center-grove/': typeof CenterGroveIndexRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
+  '/center-grove/orgs/$org': typeof CenterGroveOrgsOrgRouteWithChildren
+  '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
+  '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
+  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
+  '/center-grove/orgs/': typeof CenterGroveOrgsIndexRoute
+  '/center-grove/shop/': typeof CenterGroveShopIndexRoute
+  '/center-grove/sponsors/': typeof CenterGroveSponsorsIndexRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
+  '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
+  '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
+  '/center-grove/cart': typeof CenterGroveCartRoute
+  '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/butler': typeof ButlerIndexRoute
+  '/center-grove': typeof CenterGroveIndexRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
+  '/center-grove/orgs/$org': typeof CenterGroveOrgsOrgRouteWithChildren
+  '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
+  '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
+  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
   '/butler/shop': typeof ButlerShopIndexRoute
   '/butler/sponsors': typeof ButlerSponsorsIndexRoute
   '/butler/teams': typeof ButlerTeamsIndexRoute
+  '/center-grove/orgs': typeof CenterGroveOrgsIndexRoute
+  '/center-grove/shop': typeof CenterGroveShopIndexRoute
+  '/center-grove/sponsors': typeof CenterGroveSponsorsIndexRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
+  '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
+  '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/butler': typeof ButlerRouteWithChildren
+  '/center-grove': typeof CenterGroveRouteWithChildren
   '/butler/cart': typeof ButlerCartRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
+  '/center-grove/cart': typeof CenterGroveCartRoute
+  '/center-grove/team-card': typeof CenterGroveTeamCardRoute
   '/butler/': typeof ButlerIndexRoute
+  '/center-grove/': typeof CenterGroveIndexRoute
   '/butler/product/$slug': typeof ButlerProductSlugRoute
   '/butler/shop/$category': typeof ButlerShopCategoryRoute
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
+  '/center-grove/orgs/$org': typeof CenterGroveOrgsOrgRouteWithChildren
+  '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
+  '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
+  '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
+  '/center-grove/orgs/': typeof CenterGroveOrgsIndexRoute
+  '/center-grove/shop/': typeof CenterGroveShopIndexRoute
+  '/center-grove/sponsors/': typeof CenterGroveSponsorsIndexRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
+  '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
+  '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/butler'
+    | '/center-grove'
     | '/butler/cart'
     | '/butler/team-card'
+    | '/center-grove/cart'
+    | '/center-grove/team-card'
     | '/butler/'
+    | '/center-grove/'
     | '/butler/product/$slug'
     | '/butler/shop/$category'
     | '/butler/sponsors/$slug'
     | '/butler/teams/$sport'
+    | '/center-grove/orgs/$org'
+    | '/center-grove/product/$slug'
+    | '/center-grove/shop/$category'
+    | '/center-grove/sponsors/$slug'
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
+    | '/center-grove/orgs/'
+    | '/center-grove/shop/'
+    | '/center-grove/sponsors/'
     | '/butler/teams/$sport/$player'
+    | '/center-grove/orgs/$org/$team'
+    | '/center-grove/orgs/$org/$team/$player'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/butler/cart'
     | '/butler/team-card'
+    | '/center-grove/cart'
+    | '/center-grove/team-card'
     | '/butler'
+    | '/center-grove'
     | '/butler/product/$slug'
     | '/butler/shop/$category'
     | '/butler/sponsors/$slug'
     | '/butler/teams/$sport'
+    | '/center-grove/orgs/$org'
+    | '/center-grove/product/$slug'
+    | '/center-grove/shop/$category'
+    | '/center-grove/sponsors/$slug'
     | '/butler/shop'
     | '/butler/sponsors'
     | '/butler/teams'
+    | '/center-grove/orgs'
+    | '/center-grove/shop'
+    | '/center-grove/sponsors'
     | '/butler/teams/$sport/$player'
+    | '/center-grove/orgs/$org/$team'
+    | '/center-grove/orgs/$org/$team/$player'
   id:
     | '__root__'
     | '/'
     | '/butler'
+    | '/center-grove'
     | '/butler/cart'
     | '/butler/team-card'
+    | '/center-grove/cart'
+    | '/center-grove/team-card'
     | '/butler/'
+    | '/center-grove/'
     | '/butler/product/$slug'
     | '/butler/shop/$category'
     | '/butler/sponsors/$slug'
     | '/butler/teams/$sport'
+    | '/center-grove/orgs/$org'
+    | '/center-grove/product/$slug'
+    | '/center-grove/shop/$category'
+    | '/center-grove/sponsors/$slug'
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
+    | '/center-grove/orgs/'
+    | '/center-grove/shop/'
+    | '/center-grove/sponsors/'
     | '/butler/teams/$sport/$player'
+    | '/center-grove/orgs/$org/$team'
+    | '/center-grove/orgs/$org/$team/$player'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ButlerRoute: typeof ButlerRouteWithChildren
+  CenterGroveRoute: typeof CenterGroveRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/center-grove': {
+      id: '/center-grove'
+      path: '/center-grove'
+      fullPath: '/center-grove'
+      preLoaderRoute: typeof CenterGroveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/butler': {
       id: '/butler'
       path: '/butler'
@@ -202,12 +366,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/center-grove/': {
+      id: '/center-grove/'
+      path: '/'
+      fullPath: '/center-grove/'
+      preLoaderRoute: typeof CenterGroveIndexRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
     '/butler/': {
       id: '/butler/'
       path: '/'
       fullPath: '/butler/'
       preLoaderRoute: typeof ButlerIndexRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/center-grove/team-card': {
+      id: '/center-grove/team-card'
+      path: '/team-card'
+      fullPath: '/center-grove/team-card'
+      preLoaderRoute: typeof CenterGroveTeamCardRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/cart': {
+      id: '/center-grove/cart'
+      path: '/cart'
+      fullPath: '/center-grove/cart'
+      preLoaderRoute: typeof CenterGroveCartRouteImport
+      parentRoute: typeof CenterGroveRoute
     }
     '/butler/team-card': {
       id: '/butler/team-card'
@@ -222,6 +407,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/cart'
       preLoaderRoute: typeof ButlerCartRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/center-grove/sponsors/': {
+      id: '/center-grove/sponsors/'
+      path: '/sponsors'
+      fullPath: '/center-grove/sponsors/'
+      preLoaderRoute: typeof CenterGroveSponsorsIndexRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/shop/': {
+      id: '/center-grove/shop/'
+      path: '/shop'
+      fullPath: '/center-grove/shop/'
+      preLoaderRoute: typeof CenterGroveShopIndexRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/orgs/': {
+      id: '/center-grove/orgs/'
+      path: '/orgs'
+      fullPath: '/center-grove/orgs/'
+      preLoaderRoute: typeof CenterGroveOrgsIndexRouteImport
+      parentRoute: typeof CenterGroveRoute
     }
     '/butler/teams/': {
       id: '/butler/teams/'
@@ -243,6 +449,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/shop/'
       preLoaderRoute: typeof ButlerShopIndexRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/center-grove/sponsors/$slug': {
+      id: '/center-grove/sponsors/$slug'
+      path: '/sponsors/$slug'
+      fullPath: '/center-grove/sponsors/$slug'
+      preLoaderRoute: typeof CenterGroveSponsorsSlugRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/shop/$category': {
+      id: '/center-grove/shop/$category'
+      path: '/shop/$category'
+      fullPath: '/center-grove/shop/$category'
+      preLoaderRoute: typeof CenterGroveShopCategoryRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/product/$slug': {
+      id: '/center-grove/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/center-grove/product/$slug'
+      preLoaderRoute: typeof CenterGroveProductSlugRouteImport
+      parentRoute: typeof CenterGroveRoute
+    }
+    '/center-grove/orgs/$org': {
+      id: '/center-grove/orgs/$org'
+      path: '/orgs/$org'
+      fullPath: '/center-grove/orgs/$org'
+      preLoaderRoute: typeof CenterGroveOrgsOrgRouteImport
+      parentRoute: typeof CenterGroveRoute
     }
     '/butler/teams/$sport': {
       id: '/butler/teams/$sport'
@@ -272,12 +506,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButlerProductSlugRouteImport
       parentRoute: typeof ButlerRoute
     }
+    '/center-grove/orgs/$org/$team': {
+      id: '/center-grove/orgs/$org/$team'
+      path: '/$team'
+      fullPath: '/center-grove/orgs/$org/$team'
+      preLoaderRoute: typeof CenterGroveOrgsOrgTeamRouteImport
+      parentRoute: typeof CenterGroveOrgsOrgRoute
+    }
     '/butler/teams/$sport/$player': {
       id: '/butler/teams/$sport/$player'
       path: '/$player'
       fullPath: '/butler/teams/$sport/$player'
       preLoaderRoute: typeof ButlerTeamsSportPlayerRouteImport
       parentRoute: typeof ButlerTeamsSportRoute
+    }
+    '/center-grove/orgs/$org/$team/$player': {
+      id: '/center-grove/orgs/$org/$team/$player'
+      path: '/$player'
+      fullPath: '/center-grove/orgs/$org/$team/$player'
+      preLoaderRoute: typeof CenterGroveOrgsOrgTeamPlayerRouteImport
+      parentRoute: typeof CenterGroveOrgsOrgTeamRoute
     }
   }
 }
@@ -322,9 +570,65 @@ const ButlerRouteChildren: ButlerRouteChildren = {
 const ButlerRouteWithChildren =
   ButlerRoute._addFileChildren(ButlerRouteChildren)
 
+interface CenterGroveOrgsOrgTeamRouteChildren {
+  CenterGroveOrgsOrgTeamPlayerRoute: typeof CenterGroveOrgsOrgTeamPlayerRoute
+}
+
+const CenterGroveOrgsOrgTeamRouteChildren: CenterGroveOrgsOrgTeamRouteChildren =
+  {
+    CenterGroveOrgsOrgTeamPlayerRoute: CenterGroveOrgsOrgTeamPlayerRoute,
+  }
+
+const CenterGroveOrgsOrgTeamRouteWithChildren =
+  CenterGroveOrgsOrgTeamRoute._addFileChildren(
+    CenterGroveOrgsOrgTeamRouteChildren,
+  )
+
+interface CenterGroveOrgsOrgRouteChildren {
+  CenterGroveOrgsOrgTeamRoute: typeof CenterGroveOrgsOrgTeamRouteWithChildren
+}
+
+const CenterGroveOrgsOrgRouteChildren: CenterGroveOrgsOrgRouteChildren = {
+  CenterGroveOrgsOrgTeamRoute: CenterGroveOrgsOrgTeamRouteWithChildren,
+}
+
+const CenterGroveOrgsOrgRouteWithChildren =
+  CenterGroveOrgsOrgRoute._addFileChildren(CenterGroveOrgsOrgRouteChildren)
+
+interface CenterGroveRouteChildren {
+  CenterGroveCartRoute: typeof CenterGroveCartRoute
+  CenterGroveTeamCardRoute: typeof CenterGroveTeamCardRoute
+  CenterGroveIndexRoute: typeof CenterGroveIndexRoute
+  CenterGroveOrgsOrgRoute: typeof CenterGroveOrgsOrgRouteWithChildren
+  CenterGroveProductSlugRoute: typeof CenterGroveProductSlugRoute
+  CenterGroveShopCategoryRoute: typeof CenterGroveShopCategoryRoute
+  CenterGroveSponsorsSlugRoute: typeof CenterGroveSponsorsSlugRoute
+  CenterGroveOrgsIndexRoute: typeof CenterGroveOrgsIndexRoute
+  CenterGroveShopIndexRoute: typeof CenterGroveShopIndexRoute
+  CenterGroveSponsorsIndexRoute: typeof CenterGroveSponsorsIndexRoute
+}
+
+const CenterGroveRouteChildren: CenterGroveRouteChildren = {
+  CenterGroveCartRoute: CenterGroveCartRoute,
+  CenterGroveTeamCardRoute: CenterGroveTeamCardRoute,
+  CenterGroveIndexRoute: CenterGroveIndexRoute,
+  CenterGroveOrgsOrgRoute: CenterGroveOrgsOrgRouteWithChildren,
+  CenterGroveProductSlugRoute: CenterGroveProductSlugRoute,
+  CenterGroveShopCategoryRoute: CenterGroveShopCategoryRoute,
+  CenterGroveSponsorsSlugRoute: CenterGroveSponsorsSlugRoute,
+  CenterGroveOrgsIndexRoute: CenterGroveOrgsIndexRoute,
+  CenterGroveShopIndexRoute: CenterGroveShopIndexRoute,
+  CenterGroveSponsorsIndexRoute: CenterGroveSponsorsIndexRoute,
+}
+
+const CenterGroveRouteWithChildren = CenterGroveRoute._addFileChildren(
+  CenterGroveRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ButlerRoute: ButlerRouteWithChildren,
+  CenterGroveRoute: CenterGroveRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
