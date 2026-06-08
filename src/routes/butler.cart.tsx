@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { PRODUCTS } from "@/data/products";
+import { PRODUCTS, productImage } from "@/data/products";
 import { STORES } from "@/data/stores";
 import { ContributionCallout } from "@/components/fanpact/ContributionCallout";
 import { Button } from "@/components/ui/button";
@@ -43,11 +43,14 @@ function ButlerCart() {
           <div className="divide-y divide-border rounded-xl border border-border bg-card">
             {items.map(({ product, qty }) => (
               <div key={product.slug} className="flex gap-4 p-4">
-                <div className="h-24 w-24 shrink-0 overflow-hidden rounded-md" style={{ background: product.swatch }}>
-                  <div className="flex h-full items-center justify-center font-display text-xl text-white/80">
-                    {product.brand.split(" ")[0].slice(0, 4)}
-                  </div>
-                </div>
+                <img
+                  src={productImage(product, 200)}
+                  alt={product.name}
+                  width={96}
+                  height={96}
+                  loading="lazy"
+                  className="h-24 w-24 shrink-0 rounded-md bg-white object-contain p-1"
+                />
                 <div className="min-w-0 flex-1">
                   <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{product.brand}</div>
                   <Link to="/butler/product/$slug" params={{ slug: product.slug }} className="line-clamp-1 text-sm font-medium hover:underline">
