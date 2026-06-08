@@ -40,8 +40,8 @@ function TeamsIndex() {
               <span className="text-sm">{t.players.length} players</span>
               <ArrowRight className="transition-transform group-hover:translate-x-1" />
             </div>
-            <div className="pointer-events-none absolute -bottom-12 -right-6 font-display text-[16rem] leading-none tracking-tighter opacity-[0.06]">
-              {t.slug === "mens-basketball" ? "MB" : "FB"}
+            <div className="pointer-events-none absolute -bottom-12 -right-6 font-display text-[14rem] leading-none tracking-tighter opacity-[0.06]">
+              {t.shortName.slice(0, 2).toUpperCase()}
             </div>
           </Link>
         ))}
