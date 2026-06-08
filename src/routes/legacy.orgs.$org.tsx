@@ -98,7 +98,7 @@ function OrgDetail() {
                 </span>
               </div>
               <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {groups[age].map((team) => (
+                {groups[age].map((team: LegacyTeam) => (
                   <Link
                     key={team.slug}
                     to="/legacy/orgs/$org/$team"
