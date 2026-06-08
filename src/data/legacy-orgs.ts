@@ -150,29 +150,13 @@ export const LEGACY_ORGS: LegacyOrg[] = [
     about:
       "The Klutch Baseball youth track spans 8U through 14U. Rosters are organized by age classification and head coach. The 14U Shockley team — branded STL Legacy — serves as the bridge roster, transitioning players from Klutch youth parameters into full high-school dimensions and rules.",
     teams: teamsFromBlocks(KLUTCH, [
-      { age: "8U",  coach: "Brown",        brand: "Klutch",     ageGroup: "Birth year 2017", grade: "2nd / 3rd", count: 11 },
-
-      { age: "9U",  coach: "Gerner",       brand: "Klutch",     ageGroup: "Birth year 2016", grade: "3rd / 4th", count: 11 },
-      { age: "9U",  coach: "Kreikemeier",  brand: "Klutch",     ageGroup: "Birth year 2016", grade: "3rd / 4th", count: 11 },
-
-      { age: "10U", coach: "Kranawetter",  brand: "Klutch",     ageGroup: "Birth year 2015", grade: "4th / 5th", count: 12 },
-      { age: "10U", coach: "Plappert",     brand: "Klutch",     ageGroup: "Birth year 2015", grade: "4th / 5th", count: 12 },
-      { age: "10U", coach: "Walters",      brand: "Klutch",     ageGroup: "Birth year 2015", grade: "4th / 5th", count: 12 },
-
-      { age: "11U", coach: "Grimshaw",     brand: "Klutch",     ageGroup: "Birth year 2014", grade: "5th / 6th", count: 12 },
-      { age: "11U", coach: "Jungermann",   brand: "Klutch",     ageGroup: "Birth year 2014", grade: "5th / 6th", count: 12 },
-      { age: "11U", coach: "Scale",        brand: "Klutch",     ageGroup: "Birth year 2014", grade: "5th / 6th", count: 12 },
-      { age: "11U", coach: "Sanders",      brand: "Klutch",     ageGroup: "Birth year 2014", grade: "5th / 6th", count: 12 },
-
-      { age: "12U", coach: "Brown",        brand: "Klutch",     ageGroup: "Birth year 2013", grade: "6th / 7th", count: 12 },
-      { age: "12U", coach: "Kreikemeier",  brand: "Klutch",     ageGroup: "Birth year 2013", grade: "6th / 7th", count: 12 },
-      { age: "12U", coach: "McClellan",    brand: "Klutch",     ageGroup: "Birth year 2013", grade: "6th / 7th", count: 12 },
-      { age: "12U", coach: "Ott",          brand: "Klutch",     ageGroup: "Birth year 2013", grade: "6th / 7th", count: 12 },
-
-      { age: "13U", coach: "Lees",         brand: "Klutch",     ageGroup: "Birth year 2012", grade: "7th / 8th", count: 13 },
-      { age: "13U", coach: "Thompson",     brand: "Klutch",     ageGroup: "Birth year 2012", grade: "7th / 8th", count: 13 },
-
-      { age: "14U", coach: "Shockley",     brand: "STL Legacy", ageGroup: "Bridge roster — full HS dimensions", grade: "8th / 9th", count: 13 },
+      { age: "8U",  coach: "Nationals", brand: "Klutch", ageGroup: "Birth year 2017", grade: "2nd / 3rd", count: 10 },
+      { age: "10U", coach: "Nationals", brand: "Klutch", ageGroup: "Birth year 2015", grade: "4th / 5th", count: 10 },
+      { age: "12U", coach: "Nationals", brand: "Klutch", ageGroup: "Birth year 2013", grade: "6th / 7th", count: 10 },
+      { age: "12U", coach: "Elite",     brand: "Klutch", ageGroup: "Birth year 2013", grade: "6th / 7th", count: 10 },
+      { age: "13U", coach: "Nationals", brand: "Klutch", ageGroup: "Birth year 2012", grade: "7th / 8th", count: 10 },
+      { age: "13U", coach: "Elite",     brand: "Klutch", ageGroup: "Birth year 2012", grade: "7th / 8th", count: 10 },
+      { age: "14U", coach: "Nationals", brand: "STL Legacy", ageGroup: "Bridge roster — full HS dimensions", grade: "8th / 9th", count: 10 },
     ]),
   },
 
@@ -188,16 +172,10 @@ export const LEGACY_ORGS: LegacyOrg[] = [
     about:
       "The upper tier of the Virtual Combine structure operates entirely under the STL Legacy banner. These teams are organized strictly for college scout exposure, tournament placement, and data-tracking profiles — culminating in the 17U Select Showcase and the 18U Scout Team.",
     teams: teamsFromBlocks(LEGACY, [
-      { age: "15U", coach: "Colyer",   brand: "STL Legacy", ageGroup: "Freshman / Sophomore",       grade: "9th / 10th", count: 14 },
-      { age: "15U", coach: "Murphy",   brand: "STL Legacy", ageGroup: "Freshman / Sophomore",       grade: "9th / 10th", count: 14 },
-      { age: "15U", coach: "Whorton",  brand: "STL Legacy", ageGroup: "Freshman / Sophomore",       grade: "9th / 10th", count: 14 },
-
-      { age: "16U", coach: "Kessler",  brand: "STL Legacy", ageGroup: "Sophomore / Junior",         grade: "10th / 11th", count: 14 },
-      { age: "16U", coach: "Rogers",   brand: "STL Legacy", ageGroup: "Sophomore / Junior",         grade: "10th / 11th", count: 14 },
-      { age: "16U", coach: "Sipe",     brand: "STL Legacy", ageGroup: "Sophomore / Junior",         grade: "10th / 11th", count: 14 },
-
-      { age: "17U", coach: "Select Showcase", brand: "STL Legacy", ageGroup: "Junior — primary recruiting window", grade: "11th", count: 16 },
-      { age: "18U", coach: "Scout Team",      brand: "STL Legacy", ageGroup: "Senior commits & unsigned",          grade: "12th", count: 16 },
+      { age: "15U", coach: "Showcase",        brand: "STL Legacy", ageGroup: "Freshman / Sophomore", grade: "9th / 10th",  count: 12 },
+      { age: "16U", coach: "Showcase",        brand: "STL Legacy", ageGroup: "Sophomore / Junior",   grade: "10th / 11th", count: 12 },
+      { age: "17U", coach: "Select Showcase", brand: "STL Legacy", ageGroup: "Junior — primary recruiting window", grade: "11th", count: 12 },
+      { age: "18U", coach: "Scout Team",      brand: "STL Legacy", ageGroup: "Senior commits & unsigned",          grade: "12th", count: 12 },
     ]),
   },
 ];
