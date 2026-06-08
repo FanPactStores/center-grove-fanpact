@@ -5,7 +5,7 @@ export type ButlerPlayer = {
   position: string;
   sport: string;
   sportSlug: "mens-basketball" | "football";
-  year: "Freshman" | "Sophomore" | "Junior" | "Senior" | "Graduate";
+  year: string;
   hometown: string;
   swatch: string;
 };
