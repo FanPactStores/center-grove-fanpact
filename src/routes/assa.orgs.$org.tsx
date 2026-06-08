@@ -34,14 +34,25 @@ function NotFoundView() {
 function OrgDetail() {
   const { org } = Route.useLoaderData();
 
-  // Group teams by age (e.g. "8U", "15U")
+  // Group teams by ageGroup (e.g. "9U", "Class of 2028") then by division
   const groups: Record<string, AssaTeam[]> = {};
   for (const team of org.teams as AssaTeam[]) {
-    const ageMatch = team.name.match(/(\d{1,2}U)/);
-    const key = ageMatch ? ageMatch[1] : "Other";
+    const key = `${team.division} · ${team.ageGroup}`;
     (groups[key] ??= []).push(team);
   }
-  const groupKeys = Object.keys(groups).sort((a, b) => parseInt(a) - parseInt(b));
+  const ageOrder = (k: string): number => {
+    const u = k.match(/(\d{1,2})U/);
+    if (u) return parseInt(u[1]);
+    const c = k.match(/Class of (\d{4})/);
+    if (c) return 100 - (parseInt(c[1]) - 2025); // later class first? simple ordering
+    return 99;
+  };
+  const groupKeys = Object.keys(groups).sort((a, b) => {
+    const da = a.split(" · ")[0]; const db = b.split(" · ")[0];
+    if (da !== db) return da.localeCompare(db);
+    return ageOrder(a.split(" · ")[1]) - ageOrder(b.split(" · ")[1]);
+  });
+
 
   return (
     <main>
