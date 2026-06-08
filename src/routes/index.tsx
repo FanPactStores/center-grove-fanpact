@@ -163,7 +163,8 @@ function MasterHome() {
               </h2>
               <p className="mt-3 max-w-xl text-white/80">
                 Community alliances support local youth baseball, softball, basketball, and more.
-                Designate the fund, a team, or a specific player.
+                Designate the fund, a team, or a specific player.{" "}
+                <span className="font-semibold" style={{ color: "#13294B" }}>Pet food, not pennants.</span>
               </p>
             </div>
             <div className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-widest text-white/80 backdrop-blur">
