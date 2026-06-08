@@ -4,7 +4,7 @@ import { STORES } from "@/data/stores";
 import { useDesignation } from "@/lib/designation";
 import { useMyList } from "@/lib/my-list";
 import { Button } from "@/components/ui/button";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 import { usd } from "@/lib/format";
 
 type Search = { amount?: number; total?: number };
@@ -34,7 +34,7 @@ function Confirmation() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16 lg:px-8">
       <div className="flex flex-col items-center text-center">
-        <div className="mb-6"><FanPactLogo height={48} /></div>
+        <div className="mb-6"><FanPactLogo variant="horizontal" height={44} /></div>
         <div
           className="flex h-16 w-16 items-center justify-center rounded-full"
           style={{ background: "var(--community-soft)" }}

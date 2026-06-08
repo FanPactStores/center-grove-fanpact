@@ -4,7 +4,7 @@ import heroStadium from "@/assets/hero-stadium.jpg";
 import heroYouth from "@/assets/hero-youth.jpg";
 import ogImage from "@/assets/fanpact-og.jpg.asset.json";
 import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({

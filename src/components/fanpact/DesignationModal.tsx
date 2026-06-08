@@ -8,7 +8,7 @@ import {
 } from "@/lib/designation";
 import { Button } from "@/components/ui/button";
 import { SuppressCheckbox } from "./SuppressCheckbox";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 
 export function DesignationModal({
   open,
@@ -73,7 +73,7 @@ export function DesignationModal({
       >
         <div className="flex items-start justify-between gap-3 border-b border-border px-5 py-4">
           <div className="flex flex-1 items-start gap-3">
-            <FanPactLogo height={36} />
+            <FanPactLogo variant="horizontal" height={32} />
             <div>
               <h2 className="font-display text-xl tracking-tight">{title}</h2>
               <p className="mt-0.5 text-xs text-muted-foreground">

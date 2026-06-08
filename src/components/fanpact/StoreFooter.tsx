@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { StoreConfig } from "@/data/stores";
 import { resetStoreState } from "@/lib/designation";
 import { toast } from "sonner";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 
 export function StoreFooter({ store }: { store: StoreConfig }) {
   return (

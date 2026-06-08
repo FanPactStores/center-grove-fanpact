@@ -6,7 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { DesignationBanner } from "./DesignationBanner";
 import { WelcomeModal } from "./WelcomeModal";
 import { useMyList } from "@/lib/my-list";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
