@@ -4,7 +4,7 @@ import butlerArena from "@/assets/butler-arena.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
 import { FEATURED_PRODUCTS } from "@/data/products";
-import { SPONSORS } from "@/data/sponsors";
+import { sponsorsForStore } from "@/data/sponsors";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 
 export const Route = createFileRoute("/butler/")({
@@ -349,7 +349,7 @@ function ButlerHome() {
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
-          {SPONSORS.map((s) => (
+          {sponsorsForStore("butler").map((s) => (
             <Link
               key={s.slug}
               to="/butler/sponsors/$slug"
