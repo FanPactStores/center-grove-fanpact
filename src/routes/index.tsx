@@ -78,6 +78,9 @@ function MasterHome() {
             <p className="mt-6 max-w-2xl text-lg text-white/85">
               60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
+            <p className="mt-2 max-w-2xl text-[0.85rem] text-white/60">
+              Groceries. Pet food. Household essentials. Personal care. Not team merch.
+            </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#collegiate"
@@ -119,7 +122,8 @@ function MasterHome() {
                 Select your university — <span style={{ color: "var(--gold)" }}>support student-athlete NIL</span>
               </h2>
               <p className="mt-3 max-w-xl text-muted-foreground">
-                Each university storefront generates verified NIL contributions from fan household purchases. Documented through Stripe. Compliant with the House settlement framework.
+                Each university storefront generates verified NIL contributions from fan household purchases. Documented through Stripe. Compliant with the House settlement framework.{" "}
+                <span className="font-semibold" style={{ color: "#13294B" }}>Groceries, not gear.</span>
               </p>
             </div>
             <div className="rounded-full border border-border bg-card px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground">
@@ -159,7 +163,8 @@ function MasterHome() {
               </h2>
               <p className="mt-3 max-w-xl text-white/80">
                 Community alliances support local youth baseball, softball, basketball, and more.
-                Designate the fund, a team, or a specific player.
+                Designate the fund, a team, or a specific player.{" "}
+                <span className="font-semibold" style={{ color: "#13294B" }}>Pet food, not pennants.</span>
               </p>
             </div>
             <div className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs uppercase tracking-widest text-white/80 backdrop-blur">
