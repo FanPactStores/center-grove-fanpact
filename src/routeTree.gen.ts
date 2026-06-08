@@ -16,10 +16,14 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
+import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
+import { Route as LegacyCartRouteImport } from './routes/legacy.cart'
 import { Route as CenterGroveTeamCardRouteImport } from './routes/center-grove.team-card'
 import { Route as CenterGroveCartRouteImport } from './routes/center-grove.cart'
 import { Route as ButlerTeamCardRouteImport } from './routes/butler.team-card'
 import { Route as ButlerCartRouteImport } from './routes/butler.cart'
+import { Route as LegacySponsorsIndexRouteImport } from './routes/legacy.sponsors.index'
+import { Route as LegacyShopIndexRouteImport } from './routes/legacy.shop.index'
 import { Route as LegacyOrgsIndexRouteImport } from './routes/legacy.orgs.index'
 import { Route as CenterGroveSponsorsIndexRouteImport } from './routes/center-grove.sponsors.index'
 import { Route as CenterGroveShopIndexRouteImport } from './routes/center-grove.shop.index'
@@ -27,6 +31,9 @@ import { Route as CenterGroveOrgsIndexRouteImport } from './routes/center-grove.
 import { Route as ButlerTeamsIndexRouteImport } from './routes/butler.teams.index'
 import { Route as ButlerSponsorsIndexRouteImport } from './routes/butler.sponsors.index'
 import { Route as ButlerShopIndexRouteImport } from './routes/butler.shop.index'
+import { Route as LegacySponsorsSlugRouteImport } from './routes/legacy.sponsors.$slug'
+import { Route as LegacyShopCategoryRouteImport } from './routes/legacy.shop.$category'
+import { Route as LegacyProductSlugRouteImport } from './routes/legacy.product.$slug'
 import { Route as LegacyOrgsOrgRouteImport } from './routes/legacy.orgs.$org'
 import { Route as CenterGroveSponsorsSlugRouteImport } from './routes/center-grove.sponsors.$slug'
 import { Route as CenterGroveShopCategoryRouteImport } from './routes/center-grove.shop.$category'
@@ -77,6 +84,16 @@ const ButlerIndexRoute = ButlerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ButlerRoute,
 } as any)
+const LegacyTeamCardRoute = LegacyTeamCardRouteImport.update({
+  id: '/team-card',
+  path: '/team-card',
+  getParentRoute: () => LegacyRoute,
+} as any)
+const LegacyCartRoute = LegacyCartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => LegacyRoute,
+} as any)
 const CenterGroveTeamCardRoute = CenterGroveTeamCardRouteImport.update({
   id: '/team-card',
   path: '/team-card',
@@ -96,6 +113,16 @@ const ButlerCartRoute = ButlerCartRouteImport.update({
   id: '/cart',
   path: '/cart',
   getParentRoute: () => ButlerRoute,
+} as any)
+const LegacySponsorsIndexRoute = LegacySponsorsIndexRouteImport.update({
+  id: '/sponsors/',
+  path: '/sponsors/',
+  getParentRoute: () => LegacyRoute,
+} as any)
+const LegacyShopIndexRoute = LegacyShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => LegacyRoute,
 } as any)
 const LegacyOrgsIndexRoute = LegacyOrgsIndexRouteImport.update({
   id: '/orgs/',
@@ -132,6 +159,21 @@ const ButlerShopIndexRoute = ButlerShopIndexRouteImport.update({
   id: '/shop/',
   path: '/shop/',
   getParentRoute: () => ButlerRoute,
+} as any)
+const LegacySponsorsSlugRoute = LegacySponsorsSlugRouteImport.update({
+  id: '/sponsors/$slug',
+  path: '/sponsors/$slug',
+  getParentRoute: () => LegacyRoute,
+} as any)
+const LegacyShopCategoryRoute = LegacyShopCategoryRouteImport.update({
+  id: '/shop/$category',
+  path: '/shop/$category',
+  getParentRoute: () => LegacyRoute,
+} as any)
+const LegacyProductSlugRoute = LegacyProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => LegacyRoute,
 } as any)
 const LegacyOrgsOrgRoute = LegacyOrgsOrgRouteImport.update({
   id: '/orgs/$org',
@@ -214,6 +256,8 @@ export interface FileRoutesByFullPath {
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
+  '/legacy/cart': typeof LegacyCartRoute
+  '/legacy/team-card': typeof LegacyTeamCardRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
@@ -226,6 +270,9 @@ export interface FileRoutesByFullPath {
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
   '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
   '/legacy/orgs/$org': typeof LegacyOrgsOrgRouteWithChildren
+  '/legacy/product/$slug': typeof LegacyProductSlugRoute
+  '/legacy/shop/$category': typeof LegacyShopCategoryRoute
+  '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRoute
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
@@ -233,6 +280,8 @@ export interface FileRoutesByFullPath {
   '/center-grove/shop/': typeof CenterGroveShopIndexRoute
   '/center-grove/sponsors/': typeof CenterGroveSponsorsIndexRoute
   '/legacy/orgs/': typeof LegacyOrgsIndexRoute
+  '/legacy/shop/': typeof LegacyShopIndexRoute
+  '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
@@ -245,6 +294,8 @@ export interface FileRoutesByTo {
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
+  '/legacy/cart': typeof LegacyCartRoute
+  '/legacy/team-card': typeof LegacyTeamCardRoute
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
   '/legacy': typeof LegacyIndexRoute
@@ -257,6 +308,9 @@ export interface FileRoutesByTo {
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
   '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
   '/legacy/orgs/$org': typeof LegacyOrgsOrgRouteWithChildren
+  '/legacy/product/$slug': typeof LegacyProductSlugRoute
+  '/legacy/shop/$category': typeof LegacyShopCategoryRoute
+  '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRoute
   '/butler/shop': typeof ButlerShopIndexRoute
   '/butler/sponsors': typeof ButlerSponsorsIndexRoute
   '/butler/teams': typeof ButlerTeamsIndexRoute
@@ -264,6 +318,8 @@ export interface FileRoutesByTo {
   '/center-grove/shop': typeof CenterGroveShopIndexRoute
   '/center-grove/sponsors': typeof CenterGroveSponsorsIndexRoute
   '/legacy/orgs': typeof LegacyOrgsIndexRoute
+  '/legacy/shop': typeof LegacyShopIndexRoute
+  '/legacy/sponsors': typeof LegacySponsorsIndexRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
@@ -280,6 +336,8 @@ export interface FileRoutesById {
   '/butler/team-card': typeof ButlerTeamCardRoute
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
+  '/legacy/cart': typeof LegacyCartRoute
+  '/legacy/team-card': typeof LegacyTeamCardRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
@@ -292,6 +350,9 @@ export interface FileRoutesById {
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
   '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRoute
   '/legacy/orgs/$org': typeof LegacyOrgsOrgRouteWithChildren
+  '/legacy/product/$slug': typeof LegacyProductSlugRoute
+  '/legacy/shop/$category': typeof LegacyShopCategoryRoute
+  '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRoute
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
@@ -299,6 +360,8 @@ export interface FileRoutesById {
   '/center-grove/shop/': typeof CenterGroveShopIndexRoute
   '/center-grove/sponsors/': typeof CenterGroveSponsorsIndexRoute
   '/legacy/orgs/': typeof LegacyOrgsIndexRoute
+  '/legacy/shop/': typeof LegacyShopIndexRoute
+  '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
   '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
   '/center-grove/orgs/$org/$team': typeof CenterGroveOrgsOrgTeamRouteWithChildren
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
@@ -316,6 +379,8 @@ export interface FileRouteTypes {
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/team-card'
+    | '/legacy/cart'
+    | '/legacy/team-card'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
@@ -328,6 +393,9 @@ export interface FileRouteTypes {
     | '/center-grove/shop/$category'
     | '/center-grove/sponsors/$slug'
     | '/legacy/orgs/$org'
+    | '/legacy/product/$slug'
+    | '/legacy/shop/$category'
+    | '/legacy/sponsors/$slug'
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
@@ -335,6 +403,8 @@ export interface FileRouteTypes {
     | '/center-grove/shop/'
     | '/center-grove/sponsors/'
     | '/legacy/orgs/'
+    | '/legacy/shop/'
+    | '/legacy/sponsors/'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
     | '/legacy/orgs/$org/$team'
@@ -347,6 +417,8 @@ export interface FileRouteTypes {
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/team-card'
+    | '/legacy/cart'
+    | '/legacy/team-card'
     | '/butler'
     | '/center-grove'
     | '/legacy'
@@ -359,6 +431,9 @@ export interface FileRouteTypes {
     | '/center-grove/shop/$category'
     | '/center-grove/sponsors/$slug'
     | '/legacy/orgs/$org'
+    | '/legacy/product/$slug'
+    | '/legacy/shop/$category'
+    | '/legacy/sponsors/$slug'
     | '/butler/shop'
     | '/butler/sponsors'
     | '/butler/teams'
@@ -366,6 +441,8 @@ export interface FileRouteTypes {
     | '/center-grove/shop'
     | '/center-grove/sponsors'
     | '/legacy/orgs'
+    | '/legacy/shop'
+    | '/legacy/sponsors'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
     | '/legacy/orgs/$org/$team'
@@ -381,6 +458,8 @@ export interface FileRouteTypes {
     | '/butler/team-card'
     | '/center-grove/cart'
     | '/center-grove/team-card'
+    | '/legacy/cart'
+    | '/legacy/team-card'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
@@ -393,6 +472,9 @@ export interface FileRouteTypes {
     | '/center-grove/shop/$category'
     | '/center-grove/sponsors/$slug'
     | '/legacy/orgs/$org'
+    | '/legacy/product/$slug'
+    | '/legacy/shop/$category'
+    | '/legacy/sponsors/$slug'
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
@@ -400,6 +482,8 @@ export interface FileRouteTypes {
     | '/center-grove/shop/'
     | '/center-grove/sponsors/'
     | '/legacy/orgs/'
+    | '/legacy/shop/'
+    | '/legacy/sponsors/'
     | '/butler/teams/$sport/$player'
     | '/center-grove/orgs/$org/$team'
     | '/legacy/orgs/$org/$team'
@@ -465,6 +549,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ButlerIndexRouteImport
       parentRoute: typeof ButlerRoute
     }
+    '/legacy/team-card': {
+      id: '/legacy/team-card'
+      path: '/team-card'
+      fullPath: '/legacy/team-card'
+      preLoaderRoute: typeof LegacyTeamCardRouteImport
+      parentRoute: typeof LegacyRoute
+    }
+    '/legacy/cart': {
+      id: '/legacy/cart'
+      path: '/cart'
+      fullPath: '/legacy/cart'
+      preLoaderRoute: typeof LegacyCartRouteImport
+      parentRoute: typeof LegacyRoute
+    }
     '/center-grove/team-card': {
       id: '/center-grove/team-card'
       path: '/team-card'
@@ -492,6 +590,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/cart'
       preLoaderRoute: typeof ButlerCartRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/legacy/sponsors/': {
+      id: '/legacy/sponsors/'
+      path: '/sponsors'
+      fullPath: '/legacy/sponsors/'
+      preLoaderRoute: typeof LegacySponsorsIndexRouteImport
+      parentRoute: typeof LegacyRoute
+    }
+    '/legacy/shop/': {
+      id: '/legacy/shop/'
+      path: '/shop'
+      fullPath: '/legacy/shop/'
+      preLoaderRoute: typeof LegacyShopIndexRouteImport
+      parentRoute: typeof LegacyRoute
     }
     '/legacy/orgs/': {
       id: '/legacy/orgs/'
@@ -541,6 +653,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/butler/shop/'
       preLoaderRoute: typeof ButlerShopIndexRouteImport
       parentRoute: typeof ButlerRoute
+    }
+    '/legacy/sponsors/$slug': {
+      id: '/legacy/sponsors/$slug'
+      path: '/sponsors/$slug'
+      fullPath: '/legacy/sponsors/$slug'
+      preLoaderRoute: typeof LegacySponsorsSlugRouteImport
+      parentRoute: typeof LegacyRoute
+    }
+    '/legacy/shop/$category': {
+      id: '/legacy/shop/$category'
+      path: '/shop/$category'
+      fullPath: '/legacy/shop/$category'
+      preLoaderRoute: typeof LegacyShopCategoryRouteImport
+      parentRoute: typeof LegacyRoute
+    }
+    '/legacy/product/$slug': {
+      id: '/legacy/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/legacy/product/$slug'
+      preLoaderRoute: typeof LegacyProductSlugRouteImport
+      parentRoute: typeof LegacyRoute
     }
     '/legacy/orgs/$org': {
       id: '/legacy/orgs/$org'
@@ -762,15 +895,29 @@ const LegacyOrgsOrgRouteWithChildren = LegacyOrgsOrgRoute._addFileChildren(
 )
 
 interface LegacyRouteChildren {
+  LegacyCartRoute: typeof LegacyCartRoute
+  LegacyTeamCardRoute: typeof LegacyTeamCardRoute
   LegacyIndexRoute: typeof LegacyIndexRoute
   LegacyOrgsOrgRoute: typeof LegacyOrgsOrgRouteWithChildren
+  LegacyProductSlugRoute: typeof LegacyProductSlugRoute
+  LegacyShopCategoryRoute: typeof LegacyShopCategoryRoute
+  LegacySponsorsSlugRoute: typeof LegacySponsorsSlugRoute
   LegacyOrgsIndexRoute: typeof LegacyOrgsIndexRoute
+  LegacyShopIndexRoute: typeof LegacyShopIndexRoute
+  LegacySponsorsIndexRoute: typeof LegacySponsorsIndexRoute
 }
 
 const LegacyRouteChildren: LegacyRouteChildren = {
+  LegacyCartRoute: LegacyCartRoute,
+  LegacyTeamCardRoute: LegacyTeamCardRoute,
   LegacyIndexRoute: LegacyIndexRoute,
   LegacyOrgsOrgRoute: LegacyOrgsOrgRouteWithChildren,
+  LegacyProductSlugRoute: LegacyProductSlugRoute,
+  LegacyShopCategoryRoute: LegacyShopCategoryRoute,
+  LegacySponsorsSlugRoute: LegacySponsorsSlugRoute,
   LegacyOrgsIndexRoute: LegacyOrgsIndexRoute,
+  LegacyShopIndexRoute: LegacyShopIndexRoute,
+  LegacySponsorsIndexRoute: LegacySponsorsIndexRoute,
 }
 
 const LegacyRouteWithChildren =
@@ -785,3 +932,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
