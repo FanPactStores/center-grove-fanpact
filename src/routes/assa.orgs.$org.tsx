@@ -33,6 +33,7 @@ function NotFoundView() {
 
 function OrgDetail() {
   const { org } = Route.useLoaderData();
+  const comingSoon = org.teams.length === 0;
 
   // Group teams by ageGroup (e.g. "9U", "Class of 2028") then by division
   const groups: Record<string, AssaTeam[]> = {};
