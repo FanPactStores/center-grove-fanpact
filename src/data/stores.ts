@@ -1,5 +1,5 @@
-export type StoreId = "butler" | "center-grove" | "legacy";
-export type StoreBasePath = "/butler" | "/center-grove" | "/legacy";
+export type StoreId = "butler" | "center-grove" | "legacy" | "assa";
+export type StoreBasePath = "/butler" | "/center-grove" | "/legacy" | "/assa";
 
 export type StoreConfig = {
   id: StoreId;
@@ -57,5 +57,19 @@ export const STORES: Record<StoreId, StoreConfig> = {
     heroBody:
       "Klutch youth squads, the 14U bridge roster, and the STL Legacy showcase teams — every age group, every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.",
     marks: { letter: "L", word: "STL LEGACY" },
+  },
+  assa: {
+    id: "assa",
+    basePath: "/assa",
+    name: "All-Star Sports Academy",
+    shortName: "ASSA",
+    fundName: "All-Star Sports Academy Fund",
+    fundDisplay: "ASSA Combat Families",
+    tagline: "Shop the brands you already buy. Fuel Combat baseball and softball.",
+    heroEyebrow: "ASSA Combat × FanPact",
+    heroHeadline: "Every hub. Every roster. One ledger.",
+    heroBody:
+      "From West Chester to Cherry Hill, Downingtown to Warminster, and every Combat Futures showcase team — pick your hub, your roster, or your athlete. 60% of net earnings on every purchase flows to your designation.",
+    marks: { letter: "A", word: "ASSA COMBAT" },
   },
 };
