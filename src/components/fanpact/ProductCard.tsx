@@ -1,17 +1,26 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Check } from "lucide-react";
 import { useState } from "react";
 import type { Product } from "@/data/products";
 import { productImage } from "@/data/products";
+import type { StoreId } from "@/data/stores";
+import { useMyList } from "@/lib/my-list";
 import { usd } from "@/lib/format";
 
 export function ProductCard({
   product,
   basePath,
+  storeId,
 }: {
   product: Product;
   basePath: string;
+  storeId?: StoreId;
 }) {
+  // storeId optional for backward compatibility; default per basePath
+  const inferredStore = (storeId ??
+    (basePath.replace(/^\//, "") as StoreId)) as StoreId;
+  const { isOnList } = useMyList(inferredStore);
+  const onList = isOnList(product);
   const [added, setAdded] = useState(false);
   const handleAdd = (e: React.MouseEvent) => {
     e.preventDefault();
