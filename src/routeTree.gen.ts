@@ -9,38 +9,192 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ButlerRouteImport } from './routes/butler'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ButlerIndexRouteImport } from './routes/butler.index'
+import { Route as ButlerTeamCardRouteImport } from './routes/butler.team-card'
+import { Route as ButlerCartRouteImport } from './routes/butler.cart'
+import { Route as ButlerTeamsIndexRouteImport } from './routes/butler.teams.index'
+import { Route as ButlerSponsorsIndexRouteImport } from './routes/butler.sponsors.index'
+import { Route as ButlerShopIndexRouteImport } from './routes/butler.shop.index'
+import { Route as ButlerTeamsSportRouteImport } from './routes/butler.teams.$sport'
+import { Route as ButlerSponsorsSlugRouteImport } from './routes/butler.sponsors.$slug'
+import { Route as ButlerShopCategoryRouteImport } from './routes/butler.shop.$category'
+import { Route as ButlerProductSlugRouteImport } from './routes/butler.product.$slug'
+import { Route as ButlerTeamsSportPlayerRouteImport } from './routes/butler.teams.$sport.$player'
 
+const ButlerRoute = ButlerRouteImport.update({
+  id: '/butler',
+  path: '/butler',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ButlerIndexRoute = ButlerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerTeamCardRoute = ButlerTeamCardRouteImport.update({
+  id: '/team-card',
+  path: '/team-card',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerCartRoute = ButlerCartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerTeamsIndexRoute = ButlerTeamsIndexRouteImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerSponsorsIndexRoute = ButlerSponsorsIndexRouteImport.update({
+  id: '/sponsors/',
+  path: '/sponsors/',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerShopIndexRoute = ButlerShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerTeamsSportRoute = ButlerTeamsSportRouteImport.update({
+  id: '/teams/$sport',
+  path: '/teams/$sport',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerSponsorsSlugRoute = ButlerSponsorsSlugRouteImport.update({
+  id: '/sponsors/$slug',
+  path: '/sponsors/$slug',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerShopCategoryRoute = ButlerShopCategoryRouteImport.update({
+  id: '/shop/$category',
+  path: '/shop/$category',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerProductSlugRoute = ButlerProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => ButlerRoute,
+} as any)
+const ButlerTeamsSportPlayerRoute = ButlerTeamsSportPlayerRouteImport.update({
+  id: '/$player',
+  path: '/$player',
+  getParentRoute: () => ButlerTeamsSportRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/butler': typeof ButlerRouteWithChildren
+  '/butler/cart': typeof ButlerCartRoute
+  '/butler/team-card': typeof ButlerTeamCardRoute
+  '/butler/': typeof ButlerIndexRoute
+  '/butler/product/$slug': typeof ButlerProductSlugRoute
+  '/butler/shop/$category': typeof ButlerShopCategoryRoute
+  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
+  '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
+  '/butler/shop/': typeof ButlerShopIndexRoute
+  '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
+  '/butler/teams/': typeof ButlerTeamsIndexRoute
+  '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/butler/cart': typeof ButlerCartRoute
+  '/butler/team-card': typeof ButlerTeamCardRoute
+  '/butler': typeof ButlerIndexRoute
+  '/butler/product/$slug': typeof ButlerProductSlugRoute
+  '/butler/shop/$category': typeof ButlerShopCategoryRoute
+  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
+  '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
+  '/butler/shop': typeof ButlerShopIndexRoute
+  '/butler/sponsors': typeof ButlerSponsorsIndexRoute
+  '/butler/teams': typeof ButlerTeamsIndexRoute
+  '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/butler': typeof ButlerRouteWithChildren
+  '/butler/cart': typeof ButlerCartRoute
+  '/butler/team-card': typeof ButlerTeamCardRoute
+  '/butler/': typeof ButlerIndexRoute
+  '/butler/product/$slug': typeof ButlerProductSlugRoute
+  '/butler/shop/$category': typeof ButlerShopCategoryRoute
+  '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRoute
+  '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
+  '/butler/shop/': typeof ButlerShopIndexRoute
+  '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
+  '/butler/teams/': typeof ButlerTeamsIndexRoute
+  '/butler/teams/$sport/$player': typeof ButlerTeamsSportPlayerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/butler'
+    | '/butler/cart'
+    | '/butler/team-card'
+    | '/butler/'
+    | '/butler/product/$slug'
+    | '/butler/shop/$category'
+    | '/butler/sponsors/$slug'
+    | '/butler/teams/$sport'
+    | '/butler/shop/'
+    | '/butler/sponsors/'
+    | '/butler/teams/'
+    | '/butler/teams/$sport/$player'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/butler/cart'
+    | '/butler/team-card'
+    | '/butler'
+    | '/butler/product/$slug'
+    | '/butler/shop/$category'
+    | '/butler/sponsors/$slug'
+    | '/butler/teams/$sport'
+    | '/butler/shop'
+    | '/butler/sponsors'
+    | '/butler/teams'
+    | '/butler/teams/$sport/$player'
+  id:
+    | '__root__'
+    | '/'
+    | '/butler'
+    | '/butler/cart'
+    | '/butler/team-card'
+    | '/butler/'
+    | '/butler/product/$slug'
+    | '/butler/shop/$category'
+    | '/butler/sponsors/$slug'
+    | '/butler/teams/$sport'
+    | '/butler/shop/'
+    | '/butler/sponsors/'
+    | '/butler/teams/'
+    | '/butler/teams/$sport/$player'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ButlerRoute: typeof ButlerRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/butler': {
+      id: '/butler'
+      path: '/butler'
+      fullPath: '/butler'
+      preLoaderRoute: typeof ButlerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +202,130 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/butler/': {
+      id: '/butler/'
+      path: '/'
+      fullPath: '/butler/'
+      preLoaderRoute: typeof ButlerIndexRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/team-card': {
+      id: '/butler/team-card'
+      path: '/team-card'
+      fullPath: '/butler/team-card'
+      preLoaderRoute: typeof ButlerTeamCardRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/cart': {
+      id: '/butler/cart'
+      path: '/cart'
+      fullPath: '/butler/cart'
+      preLoaderRoute: typeof ButlerCartRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/teams/': {
+      id: '/butler/teams/'
+      path: '/teams'
+      fullPath: '/butler/teams/'
+      preLoaderRoute: typeof ButlerTeamsIndexRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/sponsors/': {
+      id: '/butler/sponsors/'
+      path: '/sponsors'
+      fullPath: '/butler/sponsors/'
+      preLoaderRoute: typeof ButlerSponsorsIndexRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/shop/': {
+      id: '/butler/shop/'
+      path: '/shop'
+      fullPath: '/butler/shop/'
+      preLoaderRoute: typeof ButlerShopIndexRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/teams/$sport': {
+      id: '/butler/teams/$sport'
+      path: '/teams/$sport'
+      fullPath: '/butler/teams/$sport'
+      preLoaderRoute: typeof ButlerTeamsSportRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/sponsors/$slug': {
+      id: '/butler/sponsors/$slug'
+      path: '/sponsors/$slug'
+      fullPath: '/butler/sponsors/$slug'
+      preLoaderRoute: typeof ButlerSponsorsSlugRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/shop/$category': {
+      id: '/butler/shop/$category'
+      path: '/shop/$category'
+      fullPath: '/butler/shop/$category'
+      preLoaderRoute: typeof ButlerShopCategoryRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/product/$slug': {
+      id: '/butler/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/butler/product/$slug'
+      preLoaderRoute: typeof ButlerProductSlugRouteImport
+      parentRoute: typeof ButlerRoute
+    }
+    '/butler/teams/$sport/$player': {
+      id: '/butler/teams/$sport/$player'
+      path: '/$player'
+      fullPath: '/butler/teams/$sport/$player'
+      preLoaderRoute: typeof ButlerTeamsSportPlayerRouteImport
+      parentRoute: typeof ButlerTeamsSportRoute
+    }
   }
 }
 
+interface ButlerTeamsSportRouteChildren {
+  ButlerTeamsSportPlayerRoute: typeof ButlerTeamsSportPlayerRoute
+}
+
+const ButlerTeamsSportRouteChildren: ButlerTeamsSportRouteChildren = {
+  ButlerTeamsSportPlayerRoute: ButlerTeamsSportPlayerRoute,
+}
+
+const ButlerTeamsSportRouteWithChildren =
+  ButlerTeamsSportRoute._addFileChildren(ButlerTeamsSportRouteChildren)
+
+interface ButlerRouteChildren {
+  ButlerCartRoute: typeof ButlerCartRoute
+  ButlerTeamCardRoute: typeof ButlerTeamCardRoute
+  ButlerIndexRoute: typeof ButlerIndexRoute
+  ButlerProductSlugRoute: typeof ButlerProductSlugRoute
+  ButlerShopCategoryRoute: typeof ButlerShopCategoryRoute
+  ButlerSponsorsSlugRoute: typeof ButlerSponsorsSlugRoute
+  ButlerTeamsSportRoute: typeof ButlerTeamsSportRouteWithChildren
+  ButlerShopIndexRoute: typeof ButlerShopIndexRoute
+  ButlerSponsorsIndexRoute: typeof ButlerSponsorsIndexRoute
+  ButlerTeamsIndexRoute: typeof ButlerTeamsIndexRoute
+}
+
+const ButlerRouteChildren: ButlerRouteChildren = {
+  ButlerCartRoute: ButlerCartRoute,
+  ButlerTeamCardRoute: ButlerTeamCardRoute,
+  ButlerIndexRoute: ButlerIndexRoute,
+  ButlerProductSlugRoute: ButlerProductSlugRoute,
+  ButlerShopCategoryRoute: ButlerShopCategoryRoute,
+  ButlerSponsorsSlugRoute: ButlerSponsorsSlugRoute,
+  ButlerTeamsSportRoute: ButlerTeamsSportRouteWithChildren,
+  ButlerShopIndexRoute: ButlerShopIndexRoute,
+  ButlerSponsorsIndexRoute: ButlerSponsorsIndexRoute,
+  ButlerTeamsIndexRoute: ButlerTeamsIndexRoute,
+}
+
+const ButlerRouteWithChildren =
+  ButlerRoute._addFileChildren(ButlerRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ButlerRoute: ButlerRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

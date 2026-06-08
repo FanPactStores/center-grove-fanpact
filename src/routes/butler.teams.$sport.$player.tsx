@@ -1,0 +1,120 @@
+import { Link, createFileRoute, notFound } from "@tanstack/react-router";
+import { getButlerPlayer, getButlerTeam } from "@/data/butler-teams";
+import { STORES } from "@/data/stores";
+import { Button } from "@/components/ui/button";
+import { usd } from "@/lib/format";
+
+export const Route = createFileRoute("/butler/teams/$sport/$player")({
+  loader: ({ params }) => {
+    const team = getButlerTeam(params.sport);
+    const player = getButlerPlayer(params.sport, params.player);
+    if (!team || !player) throw notFound();
+    return { team, player };
+  },
+  head: ({ loaderData }) => ({
+    meta: [
+      { title: `${loaderData?.player.name ?? "Player"} — Butler × FanPact` },
+      { name: "description", content: `${loaderData?.player.name}, #${loaderData?.player.number}, ${loaderData?.player.position}. Designate this Bulldog and your community contributions flow directly to them.` },
+    ],
+  }),
+  errorComponent: () => <NotFoundView />,
+  notFoundComponent: () => <NotFoundView />,
+  component: PlayerBio,
+});
+
+function NotFoundView() {
+  return (
+    <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
+      <h1 className="font-display text-4xl tracking-tight">Player not found</h1>
+      <Link to="/butler/teams" className="mt-6 inline-block text-sm underline">All teams</Link>
+    </main>
+  );
+}
+
+function PlayerBio() {
+  const { team, player } = Route.useLoaderData();
+  const store = STORES.butler;
+
+  return (
+    <main className="mx-auto max-w-6xl px-4 py-10 lg:px-8">
+      <nav className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+        <Link to="/butler/teams" className="hover:text-foreground">Teams</Link>
+        <span className="mx-2">/</span>
+        <Link to="/butler/teams/$sport" params={{ sport: team.slug }} className="hover:text-foreground">{team.name}</Link>
+      </nav>
+
+      <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+        {/* photo */}
+        <div className="relative aspect-[3/4] overflow-hidden rounded-2xl" style={{ background: player.swatch }}>
+          <div className="absolute left-6 top-6 font-display text-8xl leading-none text-white">{player.number}</div>
+          <div className="absolute bottom-6 left-6 right-6">
+            <div className="text-xs uppercase tracking-[0.22em] text-white/80">{player.position}</div>
+            <div className="font-display text-4xl tracking-tight text-white">{player.name.split(" ")[1]}</div>
+          </div>
+        </div>
+
+        {/* bio */}
+        <div>
+          <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Butler {team.name}</div>
+          <h1 className="mt-2 font-display text-6xl leading-[0.95] tracking-tight">{player.name}</h1>
+          <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-widest">
+            <Pill>#{player.number}</Pill>
+            <Pill>{player.position}</Pill>
+            <Pill>{player.year}</Pill>
+            <Pill>{player.hometown}</Pill>
+          </div>
+
+          <div
+            className="mt-8 rounded-2xl border p-6"
+            style={{
+              background: "var(--community-soft)",
+              borderColor: "color-mix(in oklab, var(--community) 40%, transparent)",
+            }}
+          >
+            <div className="text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--community)" }}>
+              Community contributions this season
+            </div>
+            <div className="mt-2 font-display text-6xl tracking-tight" style={{ color: "var(--community)" }}>
+              {usd(0)}
+            </div>
+            <p className="mt-2 text-sm text-foreground/80">
+              Designate {player.name.split(" ")[0]} as your beneficiary and 60% of net earnings on every
+              purchase you make at the Butler store flows directly to their community account.
+            </p>
+            <Button
+              size="lg"
+              className="mt-6 w-full sm:w-auto"
+              style={{ background: "var(--gold)", color: "var(--gold-foreground)" }}
+            >
+              Designate {player.name.split(" ")[0]}
+            </Button>
+          </div>
+
+          <div className="mt-8 border-t border-border pt-6 text-sm text-muted-foreground">
+            <p>
+              Bio coming soon. {player.name} joined the Butler {team.name.toLowerCase()} program from {player.hometown}
+              and is in their {player.year.toLowerCase()} season.
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button asChild variant="outline">
+              <Link to="/butler/teams/$sport" params={{ sport: team.slug }}>← Back to roster</Link>
+            </Button>
+            <Button asChild variant="ghost">
+              <Link to="/butler/shop">Shop the store →</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function Pill({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="rounded-full border border-border bg-card px-3 py-1 text-[10px] font-semibold text-foreground">
+      {children}
+    </span>
+  );
+}
