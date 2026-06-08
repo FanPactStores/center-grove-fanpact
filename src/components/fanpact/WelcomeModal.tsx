@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { DesignationModal } from "./DesignationModal";
 import { StarterTileGrid } from "./StarterTileGrid";
 import { SuppressCheckbox } from "./SuppressCheckbox";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 
 type Stage = "intro" | "picker" | "starter" | "done";
 
@@ -85,7 +85,7 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
                 <X className="h-4 w-4" />
               </button>
               <div className="mb-3 flex justify-center">
-                <FanPactLogo height={36} pill pillPadding="px-2 py-1" />
+                <FanPactLogo variant="horizontal" height={32} />
               </div>
               <div className="text-center text-[10px] font-semibold uppercase tracking-widest text-white/70">
                 {store.shortName} × FanPact · Step 1 of 2

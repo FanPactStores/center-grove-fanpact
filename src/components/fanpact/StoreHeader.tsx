@@ -6,7 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { DesignationBanner } from "./DesignationBanner";
 import { WelcomeModal } from "./WelcomeModal";
 import { useMyList } from "@/lib/my-list";
-import { FanPactLogo } from "@/components/FanPactLogo";
+import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
@@ -50,22 +50,22 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
 
           <Link
             to={store.basePath as "/butler"}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 rounded-md px-2 py-1"
+            style={{ background: "var(--brand)" }}
           >
-            <FanPactLogo height={32} pill pillPadding="px-2 py-1" />
-            <div className="flex flex-col">
-              <span
-                className="font-display text-2xl tracking-tight leading-none"
-                style={{ color: "var(--brand-accent)" }}
-              >
-                {store.marks.word}
-              </span>
-              {store.marks.subtitle && (
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground leading-none mt-0.5">
-                  {store.marks.subtitle}
-                </span>
-              )}
-            </div>
+            <FanPactLogo variant="white" height={32} />
+            <span
+              style={{
+                borderLeft: "1px solid rgba(255,255,255,0.3)",
+                paddingLeft: "12px",
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "2px",
+                color: "white",
+              }}
+            >
+              {store.marks.word.toUpperCase()}
+            </span>
           </Link>
 
           {/* Center nav */}
