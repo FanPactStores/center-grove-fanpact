@@ -112,7 +112,7 @@ function MasterHome() {
                 Select your university — <span style={{ color: "var(--gold)" }}>support student-athlete NIL</span>
               </h2>
               <p className="mt-3 max-w-xl text-muted-foreground">
-                Pick your university to enter its dedicated storefront and start supporting student-athletes.
+                Each university storefront generates verified NIL contributions from fan household purchases. Documented through Stripe. Compliant with the House settlement framework.
               </p>
             </div>
             <div className="rounded-full border border-border bg-card px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground">
