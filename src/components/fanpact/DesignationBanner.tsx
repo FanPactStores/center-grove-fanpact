@@ -2,13 +2,11 @@ import { useState } from "react";
 import { Pencil, Target } from "lucide-react";
 import type { StoreConfig } from "@/data/stores";
 import { useDesignation } from "@/lib/designation";
-import { useMyList } from "@/lib/my-list";
 import { DesignationModal } from "./DesignationModal";
 import { StarterModal } from "./StarterModal";
 
 export function DesignationBanner({ store }: { store: StoreConfig }) {
   const { designation, isCustom, set } = useDesignation(store.id);
-  const { count: listCount } = useMyList(store.id);
   const [open, setOpen] = useState(false);
   const [starterOpen, setStarterOpen] = useState(false);
 
@@ -59,7 +57,7 @@ export function DesignationBanner({ store }: { store: StoreConfig }) {
         onConfirm={(d) => {
           set(d);
           setOpen(false);
-          if (listCount === 0) setStarterOpen(true);
+          setStarterOpen(true);
         }}
         title={`Choose your ${store.shortName} designation`}
       />
