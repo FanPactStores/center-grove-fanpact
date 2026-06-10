@@ -59,9 +59,16 @@ export function DesignationBanner({ store }: { store: StoreConfig }) {
         onConfirm={(d) => {
           set(d);
           setOpen(false);
+          if (listCount === 0) setStarterOpen(true);
         }}
         title={`Choose your ${store.shortName} designation`}
+      />
+      <StarterModal
+        open={starterOpen}
+        storeId={store.id}
+        onClose={() => setStarterOpen(false)}
       />
     </>
   );
 }
+
