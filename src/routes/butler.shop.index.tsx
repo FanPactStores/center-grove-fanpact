@@ -21,9 +21,6 @@ function ButlerShop() {
       <div className="mb-8">
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">All categories</div>
         <h1 className="mt-2 font-display text-5xl tracking-tight">The Butler store</h1>
-        <p className="mt-3 max-w-xl text-muted-foreground">
-          {PRODUCTS.length} products across 7 categories. Every purchase contributes to {store.fundName}.
-        </p>
       </div>
       <div className="grid gap-10 lg:grid-cols-[220px_1fr]">
         <CategorySidebar basePath={store.basePath} />
