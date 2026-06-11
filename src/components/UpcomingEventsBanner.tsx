@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+
 import { Zap, Star, Calendar, ArrowRight } from "lucide-react";
 import { eventsForStore, type StoreEvent } from "@/data/events";
 import type { StoreId } from "@/data/stores";
@@ -97,15 +97,14 @@ export function UpcomingEventsBanner({ store }: UpcomingEventsBannerProps) {
             </span>
           </div>
 
-          <Link
-            to="/$store/events/$slug"
-            params={{ store, slug: e.slug }}
+          <a
+            href={`/${store}/events/${e.slug}`}
             className="inline-flex w-full items-center justify-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider md:w-auto"
             style={{ background: GOLD, color: "#0b1220" }}
           >
             {e.kind === "camp" ? "Register" : "Learn More"}
             <ArrowRight className="h-3 w-3" />
-          </Link>
+          </a>
         </div>
 
         {/* Dots */}
@@ -127,14 +126,13 @@ export function UpcomingEventsBanner({ store }: UpcomingEventsBannerProps) {
         </div>
 
         {/* View All */}
-        <Link
-          to="/$store/events"
-          params={{ store }}
+        <a
+          href={`/${store}/events`}
           className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold uppercase tracking-wider hover:underline"
           style={{ color: GOLD }}
         >
           View All Events <ArrowRight className="h-3 w-3" />
-        </Link>
+        </a>
       </div>
     </div>
   );
