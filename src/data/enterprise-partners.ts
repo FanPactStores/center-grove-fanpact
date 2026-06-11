@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import usarecHero from "@/assets/usarec-hero.jpg";
 import {
   Star,
   GraduationCap,
