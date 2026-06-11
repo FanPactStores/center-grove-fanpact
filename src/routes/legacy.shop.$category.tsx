@@ -1,13 +1,17 @@
-import { Link, createFileRoute, notFound } from "@tanstack/react-router";
+import { Link, createFileRoute, notFound, useNavigate } from "@tanstack/react-router";
 import { ChevronRight, LayoutGrid, List, ArrowLeft, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CATEGORIES, getCategory, type Category } from "@/data/categories";
 import { getProductsByCategory, productImage, type Product } from "@/data/products";
 import { STORES } from "@/data/stores";
 import { ProductCard } from "@/components/fanpact/ProductCard";
+import { PageSearchBar, matchesSearch } from "@/components/fanpact/SearchBar";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/legacy/shop/$category")({
+  validateSearch: (search: Record<string, unknown>): { search?: string } => ({
+    search: typeof search.search === "string" && search.search ? search.search : undefined,
+  }),
   loader: ({ params }): { category: Category; products: Product[] } => {
     const cat = getCategory(params.category);
     if (!cat) throw notFound();
@@ -38,6 +42,19 @@ type SortKey = "featured" | "price-asc" | "price-desc" | "name";
 function LegacyCategory() {
   const { category, products } = Route.useLoaderData() as { category: Category; products: Product[] };
   const store = STORES.legacy;
+  const urlSearch = (Route.useSearch() as { search?: string }).search;
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState(urlSearch ?? "");
+
+  const handleSearchChange = (v: string) => {
+    setSearchQuery(v);
+    navigate({
+      to: "/legacy/shop/$category",
+      params: { category: category.slug },
+      search: v ? { search: v } : {},
+      replace: true,
+    });
+  };
 
   const [activeSub, setActiveSub] = useState<string>("all");
   const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
@@ -52,6 +69,7 @@ function LegacyCategory() {
 
   const visible = useMemo(() => {
     let list = products.slice();
+    if (searchQuery.trim()) list = list.filter((p) => matchesSearch(searchQuery, [p.name, p.brand]));
     if (activeSub !== "all") list = list.filter((p) => p.subcategory === activeSub);
     if (selectedBrands.size > 0) list = list.filter((p) => selectedBrands.has(p.brand));
     switch (sort) {
@@ -60,7 +78,7 @@ function LegacyCategory() {
       case "name": list.sort((a, b) => a.name.localeCompare(b.name)); break;
     }
     return list;
-  }, [products, activeSub, selectedBrands, sort]);
+  }, [products, activeSub, selectedBrands, sort, searchQuery]);
 
   const toggleBrand = (b: string) =>
     setSelectedBrands((prev) => {

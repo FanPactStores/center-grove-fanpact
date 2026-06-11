@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Search, ShoppingBag, LayoutGrid, Users } from "lucide-react";
+import { ArrowRight, ShoppingBag, LayoutGrid, Users } from "lucide-react";
 import legacyHero from "@/assets/legacy-baseball.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
@@ -66,25 +66,6 @@ function LegacyHome() {
               every coach. 60% of net earnings on every purchase flows to the team or athlete you designate.
             </p>
 
-            <form
-              className="mt-8 flex max-w-xl items-center gap-2 rounded-full border border-white/20 bg-white/95 p-1.5 pl-5 shadow-2xl"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <Search className="h-4 w-4 text-muted-foreground" />
-              <input
-                type="search"
-                placeholder="Search all products..."
-                className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
-              />
-              <Link
-                to="/legacy/shop"
-                className="rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow"
-                style={{ background: "var(--brand-accent)" }}
-              >
-                Search
-              </Link>
-            </form>
-
             <div className="mt-5 flex flex-wrap gap-3">
               <Link
                 to="/legacy/shop"
@@ -92,7 +73,7 @@ function LegacyHome() {
                 style={{ background: "var(--brand-accent)" }}
               >
                 <ShoppingBag className="h-4 w-4" />
-                Start Shopping
+                Shop Now
               </Link>
               <Link
                 to="/legacy/orgs"
