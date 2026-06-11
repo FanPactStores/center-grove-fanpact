@@ -117,23 +117,26 @@ export function EnterpriseSponsorPage({ store, partner }: Props) {
         />
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: `${NAVY}`, opacity: 0.65 }}
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(0,0,0,0.88) 0%, rgba(13,29,54,0.78) 55%, rgba(19,41,75,0.7) 100%)",
+          }}
         />
         <div className="mx-auto max-w-7xl px-4 pb-24 pt-24 lg:px-8 lg:pt-32">
-          <div className="max-w-3xl text-white">
+          <div className="max-w-3xl text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.55)]">
             <span
               className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em]"
               style={{ background: GOLD_SOFT, color: GOLD, border: `1px solid ${GOLD}` }}
             >
               <Star className="h-3 w-3" /> {partner.badge}
             </span>
-            <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tight">
+            <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] tracking-tight text-white">
               {partner.headline}
             </h1>
-            <p className="mt-4 font-display text-xl tracking-tight md:text-2xl" style={{ color: GOLD }}>
+            <p className="mt-4 font-display text-xl tracking-tight md:text-2xl" style={{ color: "#FACC15" }}>
               {partner.subheadline}
             </p>
-            <p className="mt-6 max-w-2xl text-base text-white/85 md:text-lg">{partner.body}</p>
+            <p className="mt-6 max-w-2xl text-base text-white md:text-lg">{partner.body}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <button
                 type="button"
