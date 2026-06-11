@@ -1,37 +1,58 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { getSponsor } from "@/data/sponsors";
+import { getEnterprisePartner } from "@/data/enterprise-partners";
+import { EnterpriseSponsorPage } from "@/components/fanpact/EnterpriseSponsorPage";
+import { STORES } from "@/data/stores";
 import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/center-grove/sponsors/$slug")({
   loader: ({ params }) => {
+    const enterprise = getEnterprisePartner(params.slug);
+    if (enterprise) return { enterprise, sponsor: null };
     const sponsor = getSponsor(params.slug);
     if (!sponsor) throw notFound();
-    return { sponsor };
+    return { enterprise: null, sponsor };
   },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: `${loaderData?.sponsor.name ?? "Sponsor"} — Center Grove × FanPact` },
-      { name: "description", content: loaderData?.sponsor.description ?? "" },
-    ],
-  }),
+  head: ({ loaderData }) => {
+    const name = loaderData?.enterprise?.name ?? loaderData?.sponsor?.name ?? "Sponsor";
+    const desc =
+      loaderData?.enterprise?.body ?? loaderData?.sponsor?.description ?? "";
+    return {
+      meta: [
+        { title: `${name} — Center Grove × FanPact` },
+        { name: "description", content: desc },
+      ],
+    };
+  },
   errorComponent: () => <NotFoundView />,
   notFoundComponent: () => <NotFoundView />,
-  component: SponsorDetail,
+  component: SponsorRouter,
 });
 
 function NotFoundView() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-24 text-center lg:px-8">
       <h1 className="font-display text-4xl tracking-tight">Sponsor not found</h1>
-      <Link to="/center-grove/sponsors" className="mt-6 inline-block text-sm underline">All sponsors</Link>
+      <Link to="/center-grove/sponsors" className="mt-6 inline-block text-sm underline">
+        All sponsors
+      </Link>
     </main>
   );
 }
 
+function SponsorRouter() {
+  const { enterprise } = Route.useLoaderData();
+  if (enterprise) {
+    return <EnterpriseSponsorPage store={STORES["center-grove"]} partner={enterprise} />;
+  }
+  return <SponsorDetail />;
+}
+
 function SponsorDetail() {
   const { sponsor } = Route.useLoaderData();
+  if (!sponsor) return null;
   const pct = Math.round((sponsor.fundReleased / sponsor.fundTotal) * 100);
 
   return (
