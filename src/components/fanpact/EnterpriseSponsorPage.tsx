@@ -67,7 +67,7 @@ export function EnterpriseSponsorPage({ store, partner }: Props) {
     }, 700);
   };
 
-  const partnerHrefBack = `${store.basePath}/sponsors` as const;
+  const partnerHrefBack = `${store.basePath}/sponsors`;
 
   const StepArrow = () => (
     <div className="hidden items-center justify-center md:flex">
@@ -87,18 +87,18 @@ export function EnterpriseSponsorPage({ store, partner }: Props) {
               </li>
               <li aria-hidden>/</li>
               <li>
-                <Link to={store.basePath} className="hover:text-foreground">{store.shortName}</Link>
+                <Link to={store.basePath as string} className="hover:text-foreground">{store.shortName}</Link>
               </li>
               <li aria-hidden>/</li>
               <li>
-                <Link to={partnerHrefBack} className="hover:text-foreground">Sponsors</Link>
+                <Link to={partnerHrefBack as string} className="hover:text-foreground">Sponsors</Link>
               </li>
               <li aria-hidden>/</li>
               <li className="font-medium text-foreground">{partner.shortName}</li>
             </ol>
           </nav>
           <Link
-            to={partnerHrefBack}
+            to={partnerHrefBack as string}
             className="mt-2 inline-flex items-center gap-1 text-sm font-medium hover:underline"
             style={{ color: NAVY }}
           >
