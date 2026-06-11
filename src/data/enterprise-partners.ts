@@ -125,30 +125,30 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
     subheadline: "Serve. Lead. Rise.",
     body: "USAREC connects America's next generation of Soldiers, Officers, and Reserve warriors with the careers, education, and benefits that built a nation. Explore your path and unlock a future bigger than yourself.",
     primaryCta: "Explore Your Options",
-    creditBadge: "Earn up to $575 in community credits",
+    creditBadge: "Earn up to $575 in your FanPact account",
     heroImage: usarecHero,
     heroAlt: "U.S. Soldiers in training formation at sunrise",
     steps: [
       {
         label: "Step 1",
         title: "Express Interest",
-        body: "Submit the information form below. A USAREC recruiter will contact you within 24-48 hours with personalized information on bonuses, education benefits, and the path that fits you.",
-        credit: "$75 Community Credit",
+        body: "Submit the information form below.",
+        credit: "$50 in your FanPact account",
       },
       {
         label: "Step 2",
         title: "Meet Your Recruiter",
-        body: "Complete a one-on-one conversation with your local USAREC recruiter — in person, by phone, or video. Learn your specific MOS options, bonus eligibility, and education benefits.",
-        credit: "$200 Community Credit",
+        body: "Complete a one-on-one conversation with your local USAREC recruiter.",
+        credit: "$125 in your FanPact account",
       },
       {
         label: "Step 3",
         title: "Take the Next Step",
-        body: "Sign an enlistment contract, ROTC commitment, or Officer candidacy agreement and begin your Army career.",
-        credit: "$300 Community Credit",
+        body: "Sign an enlistment contract, ROTC commitment, or Officer candidacy agreement.",
+        credit: "$400 in your FanPact account",
       },
     ],
-    totalCredits: "Total potential community credits: $575",
+    totalCredits: "Earn up to $575 in your FanPact account across all three steps — spend it on anything in the store.",
     creditsDisclaimer: STEP_CREDIT_DISCLAIMER_USAREC,
 
     middleSectionTitle: "The Army Reserve: Citizen. Soldier. You.",
@@ -205,7 +205,7 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
     formBody:
       "Fill out the form and a USAREC recruiter will reach out with personalized info on bonuses, education benefits, and the path that fits you.",
     formCreditCallout:
-      "$75 Community Credit — Step 1 of 3. Completing this form begins your credit journey toward $575 total.",
+      "Earn $50 in your FanPact account — Step 1 of 3. Complete all three steps to earn up to $575 total.",
     formFields: [
       { name: "firstName", label: "First name", type: "text", required: true, half: true },
       { name: "lastName", label: "Last name", type: "text", required: true, half: true },
@@ -227,7 +227,7 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
       },
       { name: "notes", label: "Questions or notes", type: "textarea" },
     ],
-    submitLabel: "Submit & Claim $75 Community Credit",
+    submitLabel: "Submit & Earn $50 in Your FanPact Account",
     formFootnotes: [
       "By submitting, you consent to USAREC contacting you about Army opportunities. See full privacy notice at recruiting.army.mil.",
       "1-888-550-ARMY (2769)",
