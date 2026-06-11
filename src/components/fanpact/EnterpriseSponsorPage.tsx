@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, ChevronRight, Star } from "lucide-react";
 import { toast } from "sonner";
@@ -168,9 +168,8 @@ export function EnterpriseSponsorPage({ store, partner }: Props) {
 
           <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
             {partner.steps.map((s, i) => (
-              <>
+              <Fragment key={s.title}>
                 <div
-                  key={s.title}
                   className="flex flex-col rounded-2xl border p-6"
                   style={{
                     background: NAVY_DEEPER,
@@ -194,8 +193,8 @@ export function EnterpriseSponsorPage({ store, partner }: Props) {
                     {s.credit}
                   </div>
                 </div>
-                {i < partner.steps.length - 1 && <StepArrow key={`a-${i}`} />}
-              </>
+                {i < partner.steps.length - 1 && <StepArrow />}
+              </Fragment>
             ))}
           </div>
 
