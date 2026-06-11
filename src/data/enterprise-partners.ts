@@ -205,7 +205,7 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
     formBody:
       "Fill out the form and a USAREC recruiter will reach out with personalized info on bonuses, education benefits, and the path that fits you.",
     formCreditCallout:
-      "$75 Community Credit — Step 1 of 3. Completing this form begins your credit journey toward $575 total.",
+      "Earn $50 in your FanPact account — Step 1 of 3. Complete all three steps to earn up to $575 total.",
     formFields: [
       { name: "firstName", label: "First name", type: "text", required: true, half: true },
       { name: "lastName", label: "Last name", type: "text", required: true, half: true },
@@ -227,7 +227,7 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
       },
       { name: "notes", label: "Questions or notes", type: "textarea" },
     ],
-    submitLabel: "Submit & Claim $75 Community Credit",
+    submitLabel: "Submit & Earn $50 in Your FanPact Account",
     formFootnotes: [
       "By submitting, you consent to USAREC contacting you about Army opportunities. See full privacy notice at recruiting.army.mil.",
       "1-888-550-ARMY (2769)",
