@@ -20,6 +20,10 @@ import {
   Users,
   TrendingUp,
   School,
+  LineChart,
+  Trophy,
+  Shield,
+  BookOpen,
 } from "lucide-react";
 
 export type FormField = {
