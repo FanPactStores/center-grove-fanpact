@@ -10,15 +10,17 @@ import { usd } from "@/lib/format";
 export const Route = createFileRoute("/assa/sponsors/$slug")({
   loader: ({ params }) => {
     const enterprise = getEnterprisePartner(params.slug);
-    if (enterprise) return { enterprise, sponsor: null };
+    if (enterprise) return { enterpriseSlug: enterprise.slug, sponsor: null };
     const sponsor = getSponsor(params.slug);
     if (!sponsor) throw notFound();
-    return { enterprise: null, sponsor };
+    return { enterpriseSlug: null, sponsor };
   },
   head: ({ loaderData }) => {
-    const name = loaderData?.enterprise?.name ?? loaderData?.sponsor?.name ?? "Sponsor";
-    const desc =
-      loaderData?.enterprise?.body ?? loaderData?.sponsor?.description ?? "";
+    const enterprise = loaderData?.enterpriseSlug
+      ? getEnterprisePartner(loaderData.enterpriseSlug)
+      : null;
+    const name = enterprise?.name ?? loaderData?.sponsor?.name ?? "Sponsor";
+    const desc = enterprise?.body ?? loaderData?.sponsor?.description ?? "";
     return {
       meta: [
         { title: `${name} — ASSA × FanPact` },
@@ -43,7 +45,8 @@ function NotFoundView() {
 }
 
 function SponsorRouter() {
-  const { enterprise } = Route.useLoaderData();
+  const { enterpriseSlug } = Route.useLoaderData();
+  const enterprise = enterpriseSlug ? getEnterprisePartner(enterpriseSlug) : null;
   if (enterprise) {
     return <EnterpriseSponsorPage store={STORES["assa"]} partner={enterprise} />;
   }
