@@ -7,6 +7,7 @@ import { FEATURED_PRODUCTS } from "@/data/products";
 import { LEGACY_ORGS } from "@/data/legacy-orgs";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
+import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/legacy/")({
   head: () => ({
@@ -98,6 +99,8 @@ function LegacyHome() {
           </div>
         </div>
       </section>
+
+      <EnterprisePartnerBanner store="legacy" />
 
       {/* ORG SELECTOR */}
       <section id="orgs" className="border-y border-border bg-[var(--surface-2)]">

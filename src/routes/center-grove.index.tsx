@@ -7,6 +7,7 @@ import { FEATURED_PRODUCTS } from "@/data/products";
 import { CG_ORGS } from "@/data/center-grove-orgs";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
+import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/center-grove/")({
   head: () => ({
@@ -98,6 +99,8 @@ function CenterGroveHome() {
           </div>
         </div>
       </section>
+
+      <EnterprisePartnerBanner store="center-grove" />
 
       {/* ORG SELECTOR */}
       <section id="orgs" className="border-y border-border bg-[var(--surface-2)]">

@@ -7,6 +7,7 @@ import { FEATURED_PRODUCTS } from "@/data/products";
 import { ASSA_ORGS } from "@/data/assa-orgs";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
+import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/assa/")({
   head: () => ({
@@ -97,6 +98,8 @@ function AssaHome() {
           </div>
         </div>
       </section>
+
+      <EnterprisePartnerBanner store="assa" />
 
       {/* ORG SELECTOR */}
       <section id="orgs" className="border-y border-border bg-[var(--surface-2)]">

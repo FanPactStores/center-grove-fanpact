@@ -7,6 +7,7 @@ import { FEATURED_PRODUCTS } from "@/data/products";
 import { sponsorsForStore } from "@/data/sponsors";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
+import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/butler/")({
   head: () => ({
@@ -124,6 +125,8 @@ function ButlerHome() {
           </div>
         </div>
       </section>
+
+      <EnterprisePartnerBanner store="butler" />
 
       {/* CATEGORIES */}
       <section id="categories" className="mx-auto max-w-7xl px-4 py-24 lg:px-8">
