@@ -3,18 +3,10 @@ import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 /**
- * Search input used in the StoreHeader.
- * - variant="desktop": inline pill input, constrained width — sits next to icons on md+
- * - variant="mobile": full-width pill input — sits on its own row on small screens
+ * Full-width search input used in the dedicated StoreHeader search row.
  * On submit, navigates to `${basePath}/shop?search=<query>`.
  */
-export function NavSearchBar({
-  basePath,
-  variant,
-}: {
-  basePath: string;
-  variant: "desktop" | "mobile";
-}) {
+export function NavSearchBar({ basePath }: { basePath: string }) {
   const navigate = useNavigate();
   const [q, setQ] = useState("");
 
@@ -32,11 +24,7 @@ export function NavSearchBar({
         e.preventDefault();
         go(q);
       }}
-      className={
-        variant === "desktop"
-          ? "flex w-full items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1.5 transition-colors focus-within:border-[var(--brand-accent)]"
-          : "flex w-full items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-2 transition-colors focus-within:border-[var(--brand-accent)]"
-      }
+      className="flex w-full items-center gap-2 rounded-full border border-border bg-[var(--surface)] px-3 py-2 shadow-sm transition-colors focus-within:border-[var(--brand-accent)]"
       role="search"
     >
       <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
