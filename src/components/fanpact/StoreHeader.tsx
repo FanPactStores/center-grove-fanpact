@@ -70,7 +70,7 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
           </Link>
 
           {/* Center nav */}
-          <nav className="ml-8 hidden items-center gap-6 md:flex lg:ml-12 lg:gap-8">
+          <nav className="ml-12 hidden flex-1 items-center justify-center gap-8 md:flex">
             {topNav.map((n) => (
               <div
                 key={n.label}
@@ -115,13 +115,8 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
             ))}
           </nav>
 
-          {/* Desktop search — flexes between nav and icons, capped at 280px, icons stay rightmost */}
-          <div className="ml-auto hidden w-full max-w-[280px] md:flex md:pl-6">
-            <NavSearchBar basePath={store.basePath} variant="desktop" />
-          </div>
-
-          {/* Right icons — always last, never shrink */}
-          <div className="ml-2 flex shrink-0 items-center gap-1">
+          {/* Right icons */}
+          <div className="ml-auto flex items-center gap-1">
             <button
               aria-label="Wishlist"
               className="hidden rounded-full p-2 text-foreground transition-colors hover:bg-muted md:inline-flex"
@@ -172,9 +167,11 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
         </div>
       </div>
 
-      {/* MOBILE SEARCH ROW — full width, second row below main nav */}
-      <div className="border-b border-border bg-[var(--surface)] px-4 py-2 md:hidden">
-        <NavSearchBar basePath={store.basePath} variant="mobile" />
+      {/* SEARCH ROW — dedicated band below the untouched main nav */}
+      <div className="border-b border-border bg-muted/40 px-4 py-2.5 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <NavSearchBar basePath={store.basePath} />
+        </div>
       </div>
 
       {/* BAND 2 — black sub-nav */}
