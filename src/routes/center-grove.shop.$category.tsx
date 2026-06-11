@@ -1,13 +1,17 @@
-import { Link, createFileRoute, notFound } from "@tanstack/react-router";
+import { Link, createFileRoute, notFound, useNavigate } from "@tanstack/react-router";
 import { ChevronRight, LayoutGrid, List, ArrowLeft, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CATEGORIES, getCategory, type Category } from "@/data/categories";
 import { getProductsByCategory, productImage, type Product } from "@/data/products";
 import { STORES } from "@/data/stores";
 import { ProductCard } from "@/components/fanpact/ProductCard";
+import { PageSearchBar, matchesSearch } from "@/components/fanpact/SearchBar";
 import { usd } from "@/lib/format";
 
 export const Route = createFileRoute("/center-grove/shop/$category")({
+  validateSearch: (search: Record<string, unknown>): { search?: string } => ({
+    search: typeof search.search === "string" && search.search ? search.search : undefined,
+  }),
   loader: ({ params }): { category: Category; products: Product[] } => {
     const cat = getCategory(params.category);
     if (!cat) throw notFound();
@@ -43,6 +47,19 @@ type SortKey = "featured" | "price-asc" | "price-desc" | "name";
 function ButlerCategory() {
   const { category, products } = Route.useLoaderData() as { category: Category; products: Product[] };
   const store = STORES["center-grove"];
+  const urlSearch = (Route.useSearch() as { search?: string }).search;
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState(urlSearch ?? "");
+
+  const handleSearchChange = (v: string) => {
+    setSearchQuery(v);
+    navigate({
+      to: "/center-grove/shop/$category",
+      params: { category: category.slug },
+      search: v ? { search: v } : {},
+      replace: true,
+    });
+  };
 
   const [activeSub, setActiveSub] = useState<string>("all");
   const [selectedBrands, setSelectedBrands] = useState<Set<string>>(new Set());
@@ -57,6 +74,7 @@ function ButlerCategory() {
 
   const visible = useMemo(() => {
     let list = products.slice();
+    if (searchQuery.trim()) list = list.filter((p) => matchesSearch(searchQuery, [p.name, p.brand]));
     if (activeSub !== "all") list = list.filter((p) => p.subcategory === activeSub);
     if (selectedBrands.size > 0)
       list = list.filter((p) => selectedBrands.has(p.brand));
@@ -72,7 +90,7 @@ function ButlerCategory() {
         break;
     }
     return list;
-  }, [products, activeSub, selectedBrands, sort]);
+  }, [products, activeSub, selectedBrands, sort, searchQuery]);
 
   const toggleBrand = (b: string) =>
     setSelectedBrands((prev) => {
@@ -127,6 +145,11 @@ function ButlerCategory() {
           >
             <ArrowLeft className="h-4 w-4" /> Back to Store
           </Link>
+        </div>
+
+        {/* PAGE SEARCH */}
+        <div className="mt-6">
+          <PageSearchBar value={searchQuery} onChange={handleSearchChange} />
         </div>
 
         {/* SUBCATEGORY CHIPS */}
