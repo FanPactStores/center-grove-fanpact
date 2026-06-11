@@ -107,8 +107,7 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
     body: "USAREC connects America's next generation of Soldiers, Officers, and Reserve warriors with the careers, education, and benefits that built a nation. Explore your path and unlock a future bigger than yourself.",
     primaryCta: "Explore Your Options",
     creditBadge: "Earn up to $575 in community credits",
-    heroImage:
-      "https://images.unsplash.com/photo-1579912437766-7896df6d3cd6?auto=format&fit=crop&w=2400&q=80",
+    heroImage: usarecHero,
     heroAlt: "U.S. Soldiers in training formation at sunrise",
     steps: [
       {
