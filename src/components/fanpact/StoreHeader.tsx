@@ -117,6 +117,7 @@ export function StoreHeader({ store }: { store: StoreConfig }) {
 
           {/* Right icons */}
           <div className="ml-auto flex items-center gap-1">
+            <NavSearchBar basePath={store.basePath} />
             <button
               aria-label="Wishlist"
               className="hidden rounded-full p-2 text-foreground transition-colors hover:bg-muted md:inline-flex"
