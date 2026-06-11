@@ -327,6 +327,160 @@ export function EnterpriseSponsorPage({ store, partner }: Props) {
         </section>
       )}
 
+      {/* AUDIENCE GRID (Edward Jones) */}
+      {partner.audienceSection && (
+        <section className="bg-white py-20">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-12 max-w-3xl">
+              <h2 className="font-display text-3xl tracking-tight md:text-4xl" style={{ color: NAVY }}>
+                {partner.audienceSection.title}
+              </h2>
+              <p className="mt-4 text-muted-foreground">{partner.audienceSection.subhead}</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {partner.audienceSection.cards.map((c) => (
+                <div
+                  key={c.title}
+                  className="rounded-2xl border-t-4 bg-white p-7 shadow-sm"
+                  style={{ borderTopColor: c.accent, borderColor: "rgba(19,41,75,0.12)" }}
+                >
+                  <div
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-lg"
+                    style={{ background: `${c.accent}1a`, color: c.accent }}
+                  >
+                    <c.Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 font-display text-xl tracking-tight" style={{ color: NAVY }}>
+                    {c.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-muted-foreground">{c.body}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {c.pills.map((p) => (
+                      <span
+                        key={p}
+                        className="rounded-full border px-3 py-1 text-[11px] font-medium"
+                        style={{ borderColor: c.accent, color: c.accent }}
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* EDUCATION SECTION */}
+      {partner.educationSection && (
+        <section className="py-20" style={{ background: "#f6f7f9" }}>
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-10 max-w-3xl">
+              <h2 className="font-display text-3xl tracking-tight md:text-4xl" style={{ color: NAVY }}>
+                {partner.educationSection.title}
+              </h2>
+              <p className="mt-4 text-muted-foreground">{partner.educationSection.subhead}</p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {partner.educationSection.cards.map((c) => (
+                <div
+                  key={c.title}
+                  className="flex flex-col rounded-2xl border bg-white p-6"
+                  style={{ borderColor: "rgba(19,41,75,0.12)" }}
+                >
+                  <span
+                    className="self-start rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest"
+                    style={{ background: GOLD_SOFT, color: GOLD }}
+                  >
+                    {c.tag}
+                  </span>
+                  <h3 className="mt-4 font-display text-lg tracking-tight" style={{ color: NAVY }}>
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm text-muted-foreground">{c.body}</p>
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="mt-4 inline-flex items-center gap-1 self-start text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: GOLD }}
+                  >
+                    Learn More <ArrowRight className="h-3 w-3" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ACCOUNT TYPES */}
+      {partner.accountTypesSection && (
+        <section className="bg-white py-20">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-10 max-w-3xl">
+              <h2 className="font-display text-3xl tracking-tight md:text-4xl" style={{ color: NAVY }}>
+                {partner.accountTypesSection.title}
+              </h2>
+              <p className="mt-4 text-muted-foreground">{partner.accountTypesSection.subhead}</p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {partner.accountTypesSection.items.map((it) => (
+                <div
+                  key={it.title}
+                  className="rounded-xl border p-5"
+                  style={{ borderColor: "rgba(19,41,75,0.15)", background: "white" }}
+                >
+                  <h3 className="font-display text-base tracking-tight" style={{ color: NAVY }}>
+                    {it.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{it.body}</p>
+                </div>
+              ))}
+            </div>
+            <div
+              className="mt-8 rounded-2xl border p-7 text-center"
+              style={{ background: GOLD, color: "#0b1220", borderColor: GOLD }}
+            >
+              <p className="mx-auto max-w-3xl font-display text-lg md:text-xl">
+                {partner.accountTypesSection.callout}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* COMPLIANCE NOTE */}
+      {partner.complianceNote && (
+        <section className="py-14" style={{ background: NAVY_DEEPER }}>
+          <div className="mx-auto max-w-4xl px-4 text-center text-white lg:px-8">
+            <h3 className="font-display text-2xl tracking-tight" style={{ color: GOLD }}>
+              {partner.complianceNote.title}
+            </h3>
+            <p className="mx-auto mt-4 max-w-3xl text-sm text-white/80">
+              {partner.complianceNote.body}
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* STATS BAR */}
+      {partner.statsBar && (
+        <section className="border-y py-10" style={{ background: NAVY, borderColor: GOLD }}>
+          <div className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+            {partner.statsBar.map((s) => (
+              <div
+                key={s}
+                className="rounded-full px-5 py-3 text-center text-sm font-semibold"
+                style={{ background: NAVY_DEEPER, color: GOLD, border: `1px solid ${GOLD}` }}
+              >
+                {s}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* FORM */}
       <section id="partner-form" className="py-20" style={{ background: "#f6f7f9" }}>
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
