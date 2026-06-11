@@ -298,14 +298,13 @@ export function UnifiedSponsorsPage({ store }: Props) {
                       </span>
                     ))}
                   </div>
-                  <Link
-                    to="/$store/sponsors/$slug" as any
+                  <a
                     href={`${sponsorBase}/${p.slug}`}
                     className="mt-6 inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                     style={{ background: NAVY }}
                   >
                     View Partner Page <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  </a>
                 </div>
               ))}
             </div>
