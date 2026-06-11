@@ -1,5 +1,4 @@
 import { ArrowRight, Star, LineChart, ShieldCheck, TrendingUp, Mail, type LucideIcon } from "lucide-react";
-import { ArrowRight, Star, LineChart, ShieldCheck, TrendingUp, Mail, type LucideIcon } from "lucide-react";
 import type { StoreConfig } from "@/data/stores";
 
 const NAVY = "#13294B";
