@@ -7,6 +7,7 @@ import { DesignationBanner } from "./DesignationBanner";
 import { WelcomeModal } from "./WelcomeModal";
 import { useMyList } from "@/lib/my-list";
 import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
+import { NavSearchBar } from "@/components/fanpact/SearchBar";
 
 const SUBNAV = [
   { label: "SHOP", to: "shop", live: true },
