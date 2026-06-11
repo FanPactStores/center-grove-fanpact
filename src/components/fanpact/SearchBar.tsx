@@ -3,15 +3,20 @@ import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 /**
- * Compact search bar used in the StoreHeader.
- * - Desktop: visible input
- * - Mobile: collapses to a search icon that toggles a full-width input row
+ * Search input used in the StoreHeader.
+ * - variant="desktop": inline pill input, constrained width — sits next to icons on md+
+ * - variant="mobile": full-width pill input — sits on its own row on small screens
  * On submit, navigates to `${basePath}/shop?search=<query>`.
  */
-export function NavSearchBar({ basePath }: { basePath: string }) {
+export function NavSearchBar({
+  basePath,
+  variant,
+}: {
+  basePath: string;
+  variant: "desktop" | "mobile";
+}) {
   const navigate = useNavigate();
   const [q, setQ] = useState("");
-  const [open, setOpen] = useState(false);
 
   const go = (query: string) => {
     const trimmed = query.trim();
@@ -22,72 +27,38 @@ export function NavSearchBar({ basePath }: { basePath: string }) {
   };
 
   return (
-    <>
-      {/* Mobile icon trigger */}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        go(q);
+      }}
+      className={
+        variant === "desktop"
+          ? "flex w-full items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1.5 transition-colors focus-within:border-[var(--brand-accent)]"
+          : "flex w-full items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-2 transition-colors focus-within:border-[var(--brand-accent)]"
+      }
+      role="search"
+    >
+      <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+      <input
+        type="search"
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        placeholder="Search products..."
+        className="w-full min-w-0 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
         aria-label="Search products"
-        className="rounded-full p-2 transition-colors hover:bg-muted md:hidden"
-        style={{ color: "var(--brand-accent)" }}
-      >
-        <Search className="h-5 w-5" />
-      </button>
-
-      {/* Desktop inline input */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          go(q);
-        }}
-        className="hidden items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1.5 transition-colors focus-within:border-[var(--brand-accent)] md:flex md:w-56 lg:w-72"
-        role="search"
-      >
-        <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
-        <input
-          type="search"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Search products..."
-          className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
-          aria-label="Search products"
-        />
-      </form>
-
-      {/* Mobile expanded panel */}
-      {open && (
-        <div className="absolute inset-x-0 top-full z-40 border-b border-border bg-[var(--surface)] p-3 shadow-md md:hidden">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              go(q);
-              setOpen(false);
-            }}
-            className="flex items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-2"
-            role="search"
-          >
-            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
-            <input
-              autoFocus
-              type="search"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search products..."
-              className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
-              aria-label="Search products"
-            />
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Close search"
-              className="rounded-full p-1 text-muted-foreground hover:bg-muted"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </form>
-        </div>
+      />
+      {q && (
+        <button
+          type="button"
+          onClick={() => setQ("")}
+          aria-label="Clear search"
+          className="shrink-0 rounded-full p-1 text-muted-foreground hover:bg-muted"
+        >
+          <X className="h-3.5 w-3.5" />
+        </button>
       )}
-    </>
+    </form>
   );
 }
 
