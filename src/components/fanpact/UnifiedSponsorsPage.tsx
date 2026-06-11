@@ -1,6 +1,4 @@
 import { Link } from "@tanstack/react-router";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _Link = Link;
 import { ArrowRight, Star, LineChart, ShieldCheck, TrendingUp, Mail, type LucideIcon } from "lucide-react";
 import type { StoreConfig } from "@/data/stores";
 
