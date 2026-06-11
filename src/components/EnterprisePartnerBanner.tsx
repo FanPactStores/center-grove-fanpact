@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Star, LineChart, ShieldCheck, ArrowRight, type LucideIcon } from "lucide-react";
+import { Star, LineChart, ShieldCheck, TrendingUp, ArrowRight, type LucideIcon } from "lucide-react";
 
 type Partner = {
   key: string;
@@ -46,6 +46,18 @@ const PARTNERS: Partner[] = [
     ],
     cta: "Learn More + Earn $50",
     slug: "state-farm",
+  },
+  {
+    key: "edward-jones",
+    name: "Edward Jones",
+    Icon: TrendingUp,
+    bullets: [
+      "Free Financial Planning Consultation",
+      "NIL Income & Retirement Strategies",
+      "529 + Investment Accounts Linked to FanPact",
+    ],
+    cta: "Learn More + Earn $75",
+    slug: "edward-jones",
   },
 ];
 

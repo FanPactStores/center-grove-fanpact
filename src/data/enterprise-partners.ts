@@ -20,6 +20,10 @@ import {
   Users,
   TrendingUp,
   School,
+  LineChart,
+  Trophy,
+  Shield,
+  BookOpen,
 } from "lucide-react";
 
 export type FormField = {
@@ -45,8 +49,19 @@ export type Benefit = {
   body: string;
 };
 
+export type AudienceCard = {
+  accent: string;
+  Icon: LucideIcon;
+  title: string;
+  body: string;
+  pills: string[];
+};
+
+export type EducationCard = { tag: string; title: string; body: string };
+export type AccountTypeItem = { title: string; body: string };
+
 export type EnterprisePartner = {
-  slug: "usarec" | "merrill-lynch" | "state-farm";
+  slug: "usarec" | "merrill-lynch" | "state-farm" | "edward-jones";
   name: string;
   shortName: string;
   badge: string;
@@ -67,7 +82,6 @@ export type EnterprisePartner = {
   benefitsCalloutBody: string;
   benefitsCalloutCta?: string;
 
-  // Optional "Choose Your Path" (USAREC only)
   pathSection?: {
     title: string;
     body: string;
@@ -78,7 +92,12 @@ export type EnterprisePartner = {
     }[];
   };
 
-  // Form section
+  audienceSection?: { title: string; subhead: string; cards: AudienceCard[] };
+  educationSection?: { title: string; subhead: string; cards: EducationCard[] };
+  accountTypesSection?: { title: string; subhead: string; items: AccountTypeItem[]; callout: string };
+  complianceNote?: { title: string; body: string };
+  statsBar?: string[];
+
   formTitle: string;
   formBody: string;
   formCreditCallout: string;
@@ -372,14 +391,193 @@ export const ENTERPRISE_PARTNERS: Record<EnterprisePartner["slug"], EnterprisePa
       "Local agent follow-up within 24 hours.",
     ],
   },
+  "edward-jones": {
+    slug: "edward-jones",
+    name: "Edward Jones",
+    shortName: "Edward Jones",
+    badge: "Premier Enterprise Partner",
+    headline: "Building Futures, One Relationship at a Time.",
+    subheadline:
+      "From your child's first 529 contribution to an athlete's NIL retirement strategy — Edward Jones advisors are in your community, built for your goals.",
+    body: "With 19,000 financial advisors nationwide, $2.2 trillion in assets under management, and Sports and Entertainment certified advisors who specialize in athlete wealth management, Edward Jones is the financial partner built for every stage of the FanPact community.",
+    primaryCta: "Schedule Your Free Consultation",
+    creditBadge: "Earn up to $500 in community credits",
+    heroImage:
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=2400&q=80",
+    heroAlt: "Financial advisor meeting with a family in a professional office",
+    steps: [
+      {
+        label: "Step 1",
+        title: "Schedule Your Consultation",
+        body: "Book a free, no-obligation consultation with a local Edward Jones financial advisor. Whether you are a youth sports parent planning for college, a student athlete managing NIL income, or a fan building a retirement account — your advisor meets you where you are.",
+        credit: "$75 Community Credit",
+      },
+      {
+        label: "Step 2",
+        title: "Meet Your Advisor",
+        body: "Complete your first meeting with your Edward Jones advisor. Review your financial goals — 529 education savings, NIL income management, IRA or Roth IRA setup, or a broader wealth strategy. Your advisor builds a personalized plan around your timeline and goals.",
+        credit: "$175 Community Credit",
+      },
+      {
+        label: "Step 3",
+        title: "Open Your Account",
+        body: "Open an Edward Jones account — 529 education savings, traditional or Roth IRA, brokerage account, or NIL wealth management account — and link it to your FanPact wallet. FanPact community credits can route directly to your designated Edward Jones account from that point forward.",
+        credit: "$250 Community Credit + account routing activated",
+      },
+    ],
+    totalCredits: "$500 total potential community credits",
+    creditsDisclaimer:
+      "Credits release upon verified completion of each step through Edward Jones advisor confirmation. Step 2 and Step 3 credits require advisor verification.",
+
+    middleSectionTitle: "Why Edward Jones",
+    middleSectionSubhead:
+      "A personal advisor for every stage of life — from the first 529 deposit to NIL wealth planning and retirement.",
+    benefits: [
+      { Icon: Users, title: "19,000+ Advisors", body: "A local advisor near you — not a call center." },
+      { Icon: TrendingUp, title: "$2.2T Under Management", body: "Decades of disciplined, long-term investment strategy." },
+      { Icon: Trophy, title: "Sports & Entertainment Certified", body: "Advisors who specialize in athlete wealth management." },
+      { Icon: PiggyBank, title: "529 Education Savings", body: "Tax-free college savings linked directly to your FanPact wallet." },
+      { Icon: Shield, title: "Career Transition Planning", body: "Roadmaps for life after athletics — wealth preservation and income strategy." },
+      { Icon: ArrowUpRight, title: "FanPact Routing", body: "Route community credits straight into 529, IRA, Roth, or brokerage accounts." },
+    ],
+    benefitsCalloutBody:
+      "FanPact community credits earned through household purchases can route to any linked Edward Jones account — 529, IRA, Roth IRA, or brokerage — automatically at settlement.",
+
+    audienceSection: {
+      title: "One Platform. Every Stage of Life.",
+      subhead:
+        "Edward Jones serves every member of the FanPact community — from the youngest athlete to the most loyal fan.",
+      cards: [
+        {
+          accent: "#BA7517",
+          Icon: GraduationCap,
+          title: "529 College Savings",
+          body: "Start your child's college savings today. Edward Jones 529 plans grow tax-free and withdraw tax-free for qualified education expenses. Link your 529 to your FanPact wallet and every qualifying household purchase contributes automatically to college savings. The grocery run funds the team and the future simultaneously.",
+          pills: ["Tax-Free Growth", "Any Accredited School", "FanPact Integrated"],
+        },
+        {
+          accent: "#1A7A4A",
+          Icon: Trophy,
+          title: "NIL Income to Retirement",
+          body: "NIL income is taxable income. Without a plan, most of it disappears to taxes and lifestyle spending. Edward Jones Sports and Entertainment certified advisors help student athletes route NIL earnings into Roth IRAs, traditional IRAs, and investment accounts before the earning window closes. A student athlete who invests $10,000 in NIL income at 19 in a Roth IRA has decades of tax-free compounding ahead. FanPact community contributions can route directly to a designated athlete investment account.",
+          pills: ["Roth IRA Setup", "NIL Tax Strategy", "Sports-Certified Advisor", "FanPact Routing"],
+        },
+        {
+          accent: "#1F5C8B",
+          Icon: Users,
+          title: "Investment & Retirement Accounts",
+          body: "Every FanPact fan who opens an Edward Jones brokerage, IRA, or retirement account can link it to their FanPact wallet. Community credits earned through household purchases can route to your investment account rather than a cash disbursement — putting your everyday spending to work in the market. Edward Jones advisors work with you on asset allocation, risk tolerance, and a long-term wealth strategy built around your goals.",
+          pills: ["IRA & Roth IRA", "Brokerage Account", "Community Credits to Investments", "Retirement Planning"],
+        },
+        {
+          accent: "#5C3D7A",
+          Icon: Shield,
+          title: "Career Transition Planning",
+          body: "The transition out of athletics is one of the highest-risk financial moments in a young person's life. Edward Jones advisors with Sports and Entertainment certification specialize in the unique challenges athletes face — irregular income history, short earning windows, and the psychological transition from athlete to professional. Career transition planning with an Edward Jones advisor creates a financial roadmap for life after athletics.",
+          pills: ["Sports-Certified Advisor", "Wealth Preservation", "Estate Considerations", "Long-Term Income Strategy"],
+        },
+      ],
+    },
+
+    educationSection: {
+      title: "Financial Literacy for Athletes and Families",
+      subhead:
+        "Edward Jones is committed to helping athletes, families, and fans understand and build their financial futures.",
+      cards: [
+        { tag: "Monthly Workshops", title: "NIL Income Management", body: "NIL income, budgeting basics, and tax preparation workshops for student athletes and their families." },
+        { tag: "Quarterly Seminars", title: "Investment Fundamentals", body: "Introduction to investing, retirement planning, and wealth building strategies for athletes and community members at every income level." },
+        { tag: "On-Demand Resources", title: "Protecting Your NIL", body: "Contract review basics, insurance considerations, and financial protection strategies for student athletes managing NIL relationships." },
+        { tag: "1-on-1 Consultations", title: "529 and College Savings Planning", body: "Personalized college savings planning for youth sports families — linking FanPact commerce contributions to tax-advantaged education accounts." },
+      ],
+    },
+
+    accountTypesSection: {
+      title: "Every Account Type. One Advisor.",
+      subhead:
+        "Edward Jones offers the full spectrum of financial accounts — all linkable to your FanPact wallet.",
+      items: [
+        { title: "529 Education Savings", body: "Tax-free college savings linked to FanPact community credits." },
+        { title: "Traditional IRA", body: "Tax-deferred retirement savings for fans and athletes." },
+        { title: "Roth IRA", body: "Tax-free retirement growth — ideal for NIL earners at the start of their earning window." },
+        { title: "Brokerage Account", body: "Flexible investment account with access to stocks, bonds, mutual funds, and ETFs." },
+        { title: "Custodial Account", body: "Invest on behalf of a minor youth athlete — starts building wealth from the first season." },
+        { title: "401k Rollover", body: "Roll existing retirement accounts into an Edward Jones managed portfolio with your advisor." },
+      ],
+      callout:
+        "FanPact community credits earned through household purchases can route to any linked Edward Jones account — 529, IRA, Roth IRA, or brokerage — automatically at settlement. The grocery run becomes a retirement contribution. The pet food order funds college. Every purchase works harder.",
+    },
+
+    complianceNote: {
+      title: "Building Financial Futures Responsibly",
+      body: "All Edward Jones programming complies with NCAA NIL guidelines, applicable state regulations, and institutional policies. Edward Jones financial education initiatives are designed to benefit athletes, families, and community members at every income level — not only those with existing NIL arrangements. Edward Jones advisors hold industry-leading credentials including the Sports and Entertainment Accredited Wealth Management Advisor designation for athlete-specific financial planning.",
+    },
+
+    statsBar: [
+      "19,000+ Financial Advisors Nationwide",
+      "$2.2 Trillion Assets Under Management",
+      "9 Million+ Clients Served",
+      "Sports & Entertainment Certified Advisors",
+    ],
+
+    formTitle: "Schedule Your Free Consultation",
+    formBody:
+      "A local Edward Jones financial advisor will contact you within one business day to schedule your free, no-obligation consultation.",
+    formCreditCallout: "$75 Community Credit — Step 1 of 3 toward $500 total.",
+    formFields: [
+      { name: "firstName", label: "First name", type: "text", required: true, half: true },
+      { name: "lastName", label: "Last name", type: "text", required: true, half: true },
+      { name: "email", label: "Email", type: "email", required: true },
+      { name: "phone", label: "Phone", type: "tel", half: true },
+      { name: "zip", label: "ZIP code", type: "text", required: true, half: true },
+      {
+        name: "audience",
+        label: "I am a",
+        type: "select",
+        options: [
+          "Youth Sports Parent",
+          "Student Athlete with NIL Income",
+          "Fan or Community Supporter",
+          "Post-College Athlete",
+          "Other",
+        ],
+      },
+      {
+        name: "goal",
+        label: "Primary financial goal",
+        type: "select",
+        options: [
+          "529 College Savings",
+          "NIL Income Management",
+          "IRA or Retirement Account",
+          "General Investment Account",
+          "Career Transition Planning",
+          "Not sure — need guidance",
+        ],
+      },
+      { name: "hasAdvisor", label: "Do you currently work with a financial advisor?", type: "radio", options: ["Yes", "No"] },
+      { name: "contactMethod", label: "Preferred contact method", type: "select", options: ["Phone", "Video", "In-person at local branch"] },
+      { name: "notes", label: "Questions or notes", type: "textarea" },
+    ],
+    submitLabel: "Schedule Consultation & Claim $75 Credit",
+    formFootnotes: [
+      "Edward Jones financial advisors hold industry-leading credentials and serve clients across every income level.",
+      "edwardjones.com  |  Local advisor follow-up within 1 business day.",
+      "Edward Jones, Member SIPC.",
+    ],
+  },
 };
 
 export function getEnterprisePartner(slug: string): EnterprisePartner | null {
-  if (slug === "usarec" || slug === "merrill-lynch" || slug === "state-farm") {
+  if (
+    slug === "usarec" ||
+    slug === "merrill-lynch" ||
+    slug === "state-farm" ||
+    slug === "edward-jones"
+  ) {
     return ENTERPRISE_PARTNERS[slug];
   }
   return null;
 }
 
 // Brand icon per partner (used in hero label/cta)
-export { Star, Building2 };
+export { Star, Building2, LineChart, BookOpen };
