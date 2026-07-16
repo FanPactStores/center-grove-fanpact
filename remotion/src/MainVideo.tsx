@@ -18,17 +18,17 @@ const { fontFamily: oswald } = loadOswald("normal", { weights: ["500", "600", "7
 
 const NAVY = "#13294B";
 const GOLD = "#BA7517";
-const CREAM = "#F5EFE4";
+const BUTLER_BLUE = "#13B5EA";
 
 // scene durations at 30fps — tuned to VO clip lengths with breathing room
-const S1 = 210; //  7.0s — home
-const S2 = 270; //  9.0s — CG landing
-const S3 = 300; // 10.0s — designation picker
-const S4 = 360; // 12.0s — shop + product
-const S5 = 300; // 10.0s — 60% strip
-const S6 = 300; // 10.0s — team card
-const S7 = 210; //  7.0s — end card
-export const TOTAL_FRAMES = S1 + S2 + S3 + S4 + S5 + S6 + S7; // 1950 = 65s
+const S1 = 255; //  8.5s — Butler home hero + stats  (VO 6.9s)
+const S2 = 330; // 11.0s — shop → product → cart      (VO 9.8s)
+const S3 = 300; // 10.0s — sponsors grid              (VO 8.9s)
+const S4 = 780; // 26.0s — Edward Jones 3-step flow   (VO 25.0s)
+const S5 = 300; // 10.0s — disclaimer zoom            (VO 8.7s)
+const S6 = 480; // 16.0s — FMV callout                (VO 14.6s)
+const S7 = 225; //  7.5s — end card                   (VO 6.4s)
+export const TOTAL_FRAMES = S1 + S2 + S3 + S4 + S5 + S6 + S7; // 2670 = 89s
 
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
@@ -39,7 +39,8 @@ const KenBurns: React.FC<{
   toScale?: number;
   panX?: number;
   panY?: number;
-}> = ({ src, duration, fromScale = 1.05, toScale = 1.15, panX = -20, panY = 0 }) => {
+  objectPosition?: string;
+}> = ({ src, duration, fromScale = 1.05, toScale = 1.15, panX = -20, panY = 0, objectPosition = "top center" }) => {
   const frame = useCurrentFrame();
   const t = easeInOut(Math.max(0, Math.min(1, frame / duration)));
   const scale = fromScale + (toScale - fromScale) * t;
@@ -53,7 +54,7 @@ const KenBurns: React.FC<{
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          objectPosition: "top center",
+          objectPosition,
           transform: `scale(${scale}) translate(${x}px, ${y}px)`,
           transformOrigin: "center",
         }}
@@ -95,8 +96,8 @@ const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, scen
             style={{
               fontFamily: inter,
               color: "white",
-              fontSize: 40,
-              lineHeight: 1.25,
+              fontSize: 38,
+              lineHeight: 1.28,
               fontWeight: 500,
               letterSpacing: -0.3,
             }}
@@ -143,7 +144,8 @@ const Highlight: React.FC<{
   h: number;
   delay?: number;
   label?: string;
-}> = ({ x, y, w, h, delay = 0, label }) => {
+  color?: string;
+}> = ({ x, y, w, h, delay = 0, label, color = GOLD }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = spring({ frame: frame - delay, fps, config: { damping: 20, stiffness: 120 } });
@@ -158,9 +160,9 @@ const Highlight: React.FC<{
           top: y,
           width: w,
           height: h,
-          border: `4px solid ${GOLD}`,
+          border: `4px solid ${color}`,
           borderRadius: 14,
-          boxShadow: `0 0 0 6px rgba(186,117,23,0.18), 0 20px 60px rgba(0,0,0,0.35)`,
+          boxShadow: `0 0 0 6px ${color}30, 0 20px 60px rgba(0,0,0,0.35)`,
           opacity: op,
           transform: `scale(${scale})`,
           transformOrigin: "center",
@@ -173,7 +175,7 @@ const Highlight: React.FC<{
             left: x,
             top: y - 60,
             padding: "8px 16px",
-            background: GOLD,
+            background: color,
             color: NAVY,
             fontFamily: oswald,
             fontWeight: 700,
@@ -191,161 +193,251 @@ const Highlight: React.FC<{
   );
 };
 
-// ---------------- scenes (youth path only, Center Grove) ----------------
+// ---------------- scenes (collegiate — Butler only) ----------------
 
+// S1: Butler home hero → stats
 const Scene1: React.FC = () => {
   const op = useSceneOpacity(S1, 20, 20);
   const frame = useCurrentFrame();
-  // Cross-dissolve homepage hero → youth-selector view around mid-scene
-  const swap = interpolate(frame, [S1 * 0.55, S1 * 0.75], [0, 1], {
+  const swap = interpolate(frame, [S1 * 0.5, S1 * 0.7], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/01_home_hero.png")} duration={S1} fromScale={1.02} toScale={1.1} />
+      <KenBurns src={staticFile("shots/c1_butler_home.png")} duration={S1} fromScale={1.02} toScale={1.1} />
       <AbsoluteFill style={{ opacity: swap }}>
-        <KenBurns src={staticFile("shots/03_home_youth.png")} duration={S1} fromScale={1.04} toScale={1.12} />
+        <KenBurns
+          src={staticFile("shots/c2_butler_home_stats.png")}
+          duration={S1}
+          fromScale={1.04}
+          toScale={1.12}
+          panY={-30}
+        />
       </AbsoluteFill>
-      <Caption text="Your league's own branded storefront." sceneDuration={S1} />
+      <Highlight x={355} y={425} w={790} h={135} delay={S1 * 0.55} color={BUTLER_BLUE} label="$127,450 EARNED" />
+      <Caption
+        text="This is the Butler FanPact storefront — where every purchase generates verified NIL support."
+        sceneDuration={S1}
+      />
     </AbsoluteFill>
   );
 };
 
+// S2: shop grid → product card
 const Scene2: React.FC = () => {
   const op = useSceneOpacity(S2, 20, 20);
+  const frame = useCurrentFrame();
+  const swap = interpolate(frame, [S2 * 0.5, S2 * 0.7], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/05_center_grove.png")} duration={S2} fromScale={1.05} toScale={1.15} panX={-20} />
+      <KenBurns src={staticFile("shots/c4_butler_shop_grid.png")} duration={S2} fromScale={1.03} toScale={1.12} panY={-20} />
+      <AbsoluteFill style={{ opacity: swap }}>
+        <KenBurns src={staticFile("shots/c5_butler_product.png")} duration={S2} fromScale={1.04} toScale={1.14} />
+      </AbsoluteFill>
       <Caption
-        text="Every family picks their program — like Center Grove — and shops the purchases they already make."
+        text="Fans shop the same everyday brands they already buy — every purchase is a documented, attributable transaction."
         sceneDuration={S2}
       />
     </AbsoluteFill>
   );
 };
 
+// S3: sponsors grid
 const Scene3: React.FC = () => {
   const op = useSceneOpacity(S3, 20, 20);
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/07_cg_orgs.png")} duration={S3} fromScale={1.04} toScale={1.14} panY={-30} />
-      <Highlight x={260} y={620} w={860} h={430} delay={45} label="DESIGNATE A TEAM" />
+      <KenBurns src={staticFile("shots/c7_butler_sponsors_grid.png")} duration={S3} fromScale={1.03} toScale={1.12} panY={-30} />
       <Caption
-        text="Designate exactly where it goes — a team, a club, or one specific athlete."
+        text="Enterprise partners are already here. Four premier partners are live on this one storefront alone."
         sceneDuration={S3}
       />
     </AbsoluteFill>
   );
 };
 
+// S4: Edward Jones 3-step flow
 const Scene4: React.FC = () => {
   const op = useSceneOpacity(S4, 20, 20);
+  const frame = useCurrentFrame();
+  // Cross-dissolve from hero into the steps view mid-scene
+  const swap = interpolate(frame, [90, 150], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/09_cg_shop.png")} duration={S4} fromScale={1.05} toScale={1.18} panY={-40} />
-      <Highlight x={1360} y={480} w={340} h={520} delay={60} label="+ CONTRIBUTION" />
+      <KenBurns src={staticFile("shots/c8_edward_jones_hero.png")} duration={S4} fromScale={1.03} toScale={1.1} />
+      <AbsoluteFill style={{ opacity: swap }}>
+        <KenBurns src={staticFile("shots/c9_edward_jones_steps.png")} duration={S4} fromScale={1.03} toScale={1.15} panY={-60} />
+      </AbsoluteFill>
+      {/* Staggered highlights over each step card */}
+      <Highlight x={352} y={624} w={355} h={315} delay={210} label="STEP 1 · $75" />
+      <Highlight x={782} y={624} w={355} h={315} delay={330} label="STEP 2 · $175" />
+      <Highlight x={1215} y={624} w={355} h={315} delay={450} label="STEP 3 · $250" />
       <Caption
-        text="Groceries, pet supplies, home goods — the same brands, just through this storefront."
+        text="Every step is a trigger event — schedule a consultation, meet an advisor, open an account. Each one verified. Each one worth a specific credit."
         sceneDuration={S4}
       />
     </AbsoluteFill>
   );
 };
 
+// S5: disclaimer zoom
 const Scene5: React.FC = () => {
   const op = useSceneOpacity(S5, 20, 20);
   const frame = useCurrentFrame();
-  const bigNum = spring({ frame: frame - 30, fps: 30, config: { damping: 12, stiffness: 100 } });
-  const numScale = interpolate(bigNum, [0, 1], [0.7, 1]);
-  const numOp = interpolate(bigNum, [0, 1], [0, 1]);
+  const t = easeInOut(Math.max(0, Math.min(1, frame / S5)));
+  const scale = 1.4 + t * 0.15;
   return (
-    <AbsoluteFill style={{ opacity: op, background: CREAM }}>
-      <KenBurns src={staticFile("shots/10_home_how.png")} duration={S5} fromScale={1.02} toScale={1.1} />
+    <AbsoluteFill style={{ opacity: op, background: NAVY }}>
+      <AbsoluteFill style={{ overflow: "hidden" }}>
+        <Img
+          src={staticFile("shots/c10_edward_jones_disclaimer.png")}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 42%",
+            transform: `scale(${scale})`,
+            transformOrigin: "center 45%",
+          }}
+        />
+      </AbsoluteFill>
+      {/* Subtle vignette to focus the eye */}
       <AbsoluteFill
         style={{
           background:
-            "linear-gradient(180deg, rgba(245,239,228,0.2) 0%, rgba(245,239,228,0.85) 55%, rgba(245,239,228,0.98) 100%)",
+            "radial-gradient(ellipse at center 45%, rgba(0,0,0,0) 20%, rgba(19,41,75,0.55) 65%, rgba(19,41,75,0.9) 100%)",
         }}
       />
-      <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
-        <div style={{ textAlign: "center", transform: `scale(${numScale})`, opacity: numOp }}>
-          <div
-            style={{
-              fontFamily: oswald,
-              fontSize: 380,
-              fontWeight: 700,
-              color: NAVY,
-              lineHeight: 0.9,
-              letterSpacing: -6,
-            }}
-          >
-            60<span style={{ color: GOLD }}>%</span>
-          </div>
-          <div
-            style={{
-              fontFamily: inter,
-              fontSize: 32,
-              color: NAVY,
-              marginTop: 12,
-              fontWeight: 500,
-              letterSpacing: 4,
-              textTransform: "uppercase",
-            }}
-          >
-            of net earnings — routed weekly, verified through Stripe
-          </div>
-        </div>
-      </AbsoluteFill>
+      <Highlight x={430} y={470} w={1060} h={130} delay={30} />
       <Caption
-        text="60% of net earnings routes automatically every week — no fundraiser required."
+        text="Every credit only pays out on verified completion. That's real return on investment — not an estimate."
         sceneDuration={S5}
       />
     </AbsoluteFill>
   );
 };
 
+// S6: FMV callout — Stripe / timestamp / auditable
 const Scene6: React.FC = () => {
   const op = useSceneOpacity(S6, 20, 20);
   const frame = useCurrentFrame();
-  const tap = Math.sin((frame / 30) * Math.PI * 1.4) * 0.5 + 0.5;
-  const tapScale = 1 + tap * 0.5;
-  const tapOp = 0.6 - tap * 0.6;
+  const { fps } = useVideoConfig();
+
+  const badge = spring({ frame: frame - 20, fps, config: { damping: 18, stiffness: 100 } });
+  const badgeY = interpolate(badge, [0, 1], [40, 0]);
+
+  const chip = (delay: number) => {
+    const s = spring({ frame: frame - delay, fps, config: { damping: 20 } });
+    return {
+      opacity: s,
+      transform: `translateY(${interpolate(s, [0, 1], [24, 0])}px) scale(${interpolate(s, [0, 1], [0.94, 1])})`,
+    };
+  };
+
   return (
-    <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/11_home_card.png")} duration={S6} fromScale={1.05} toScale={1.15} panX={40} />
-      <AbsoluteFill style={{ justifyContent: "center", alignItems: "flex-end", paddingRight: 320 }}>
-        <div style={{ position: "relative", width: 260, height: 260 }}>
+    <AbsoluteFill style={{ opacity: op, background: NAVY }}>
+      {/* animated grid backdrop */}
+      <AbsoluteFill
+        style={{
+          background: `radial-gradient(ellipse at 30% 20%, #1e3a6b 0%, ${NAVY} 55%, #0a1730 100%)`,
+        }}
+      />
+      <AbsoluteFill style={{ opacity: 0.08 }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
+        />
+      </AbsoluteFill>
+
+      <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", padding: "0 160px" }}>
+        <div style={{ textAlign: "center", opacity: badge, transform: `translateY(${badgeY}px)` }}>
           <div
             style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: "50%",
-              border: `4px solid ${GOLD}`,
-              transform: `scale(${tapScale})`,
-              opacity: tapOp,
+              fontFamily: oswald,
+              color: GOLD,
+              letterSpacing: 8,
+              fontSize: 26,
+              fontWeight: 600,
+              marginBottom: 28,
             }}
-          />
+          >
+            FAIR MARKET VALUE · ON RECORD
+          </div>
           <div
             style={{
-              position: "absolute",
-              inset: 60,
-              borderRadius: "50%",
-              border: `3px solid ${GOLD}`,
-              transform: `scale(${1 + tap * 0.3})`,
-              opacity: tapOp * 0.7,
+              fontFamily: oswald,
+              color: "white",
+              fontSize: 108,
+              fontWeight: 700,
+              lineHeight: 1.02,
+              letterSpacing: -2,
             }}
-          />
+          >
+            Every transaction:
+          </div>
+          <div
+            style={{
+              fontFamily: oswald,
+              color: GOLD,
+              fontSize: 108,
+              fontWeight: 700,
+              lineHeight: 1.02,
+              letterSpacing: -2,
+              marginTop: 6,
+            }}
+          >
+            timestamped. priced. auditable.
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: 22, marginTop: 90 }}>
+          {[
+            { label: "STRIPE", delay: 90 },
+            { label: "TIMESTAMP", delay: 115 },
+            { label: "VERIFIED PRICE", delay: 140 },
+            { label: "NIL COMPLIANCE READY", delay: 165 },
+          ].map((c) => (
+            <div
+              key={c.label}
+              style={{
+                ...chip(c.delay),
+                padding: "16px 26px",
+                border: `2px solid ${GOLD}`,
+                borderRadius: 999,
+                background: "rgba(186,117,23,0.1)",
+                fontFamily: oswald,
+                color: "white",
+                fontWeight: 600,
+                letterSpacing: 3,
+                fontSize: 22,
+              }}
+            >
+              {c.label}
+            </div>
+          ))}
         </div>
       </AbsoluteFill>
       <Caption
-        text="The FanPact Team Card — grandparents and neighbors tap to support that same player, anywhere."
+        text="Every transaction runs through Stripe with a timestamp and a verified price — a fair market value record NIL compliance actually needs."
         sceneDuration={S6}
       />
     </AbsoluteFill>
   );
 };
 
+// S7: end card
 const Scene7: React.FC = () => {
   const op = useSceneOpacity(S7, 20, 30);
   const frame = useCurrentFrame();
@@ -353,9 +445,7 @@ const Scene7: React.FC = () => {
   const titleY = interpolate(s, [0, 1], [30, 0]);
   const line2 = spring({ frame: frame - 20, fps: 30, config: { damping: 200 } });
   const line2Y = interpolate(line2, [0, 1], [30, 0]);
-  const line3 = spring({ frame: frame - 40, fps: 30, config: { damping: 200 } });
-  const line3Y = interpolate(line3, [0, 1], [30, 0]);
-  const urlS = spring({ frame: frame - 70, fps: 30, config: { damping: 200 } });
+  const urlS = spring({ frame: frame - 60, fps: 30, config: { damping: 200 } });
   return (
     <AbsoluteFill
       style={{
@@ -385,7 +475,7 @@ const Scene7: React.FC = () => {
           color: GOLD,
           letterSpacing: 8,
           fontWeight: 600,
-          marginBottom: 40,
+          marginBottom: 44,
           opacity: s,
           transform: `translateY(${titleY}px)`,
         }}
@@ -395,7 +485,7 @@ const Scene7: React.FC = () => {
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 88,
+          fontSize: 96,
           color: "white",
           fontWeight: 700,
           textAlign: "center",
@@ -404,13 +494,13 @@ const Scene7: React.FC = () => {
           opacity: s,
         }}
       >
-        No extra cost.
+        Verified commerce,
       </div>
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 88,
-          color: "white",
+          fontSize: 96,
+          color: GOLD,
           fontWeight: 700,
           textAlign: "center",
           lineHeight: 1.05,
@@ -418,28 +508,15 @@ const Scene7: React.FC = () => {
           opacity: line2,
         }}
       >
-        No behavior change.
-      </div>
-      <div
-        style={{
-          fontFamily: inter,
-          fontSize: 40,
-          color: "rgba(255,255,255,0.9)",
-          marginTop: 36,
-          fontWeight: 400,
-          opacity: line3,
-          transform: `translateY(${line3Y}px)`,
-        }}
-      >
-        Just a different place to shop.
+        for every side of the transaction.
       </div>
       <div
         style={{
           fontFamily: inter,
           fontSize: 32,
-          color: GOLD,
+          color: "rgba(255,255,255,0.75)",
           marginTop: 70,
-          fontWeight: 600,
+          fontWeight: 500,
           letterSpacing: 4,
           opacity: urlS,
           transform: `translateY(${interpolate(urlS, [0, 1], [20, 0])}px)`,
@@ -455,13 +532,13 @@ const Scene7: React.FC = () => {
 
 export const MainVideo: React.FC = () => {
   const scenes: { dur: number; el: React.ReactNode; voice: string; voiceDelay?: number }[] = [
-    { dur: S1, el: <Scene1 />, voice: "audio/vo1.mp3", voiceDelay: 18 },
-    { dur: S2, el: <Scene2 />, voice: "audio/vo2.mp3", voiceDelay: 15 },
-    { dur: S3, el: <Scene3 />, voice: "audio/vo3.mp3", voiceDelay: 15 },
-    { dur: S4, el: <Scene4 />, voice: "audio/vo4.mp3", voiceDelay: 15 },
-    { dur: S5, el: <Scene5 />, voice: "audio/vo5.mp3", voiceDelay: 15 },
-    { dur: S6, el: <Scene6 />, voice: "audio/vo6.mp3", voiceDelay: 15 },
-    { dur: S7, el: <Scene7 />, voice: "audio/vo7.mp3", voiceDelay: 10 },
+    { dur: S1, el: <Scene1 />, voice: "audio/b1.mp3", voiceDelay: 18 },
+    { dur: S2, el: <Scene2 />, voice: "audio/b2.mp3", voiceDelay: 15 },
+    { dur: S3, el: <Scene3 />, voice: "audio/b3.mp3", voiceDelay: 15 },
+    { dur: S4, el: <Scene4 />, voice: "audio/b4.mp3", voiceDelay: 18 },
+    { dur: S5, el: <Scene5 />, voice: "audio/b5.mp3", voiceDelay: 15 },
+    { dur: S6, el: <Scene6 />, voice: "audio/b6.mp3", voiceDelay: 18 },
+    { dur: S7, el: <Scene7 />, voice: "audio/b7.mp3", voiceDelay: 10 },
   ];
   let from = 0;
   return (
