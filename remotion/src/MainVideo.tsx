@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
   Img,
   Sequence,
   staticFile,
@@ -19,21 +20,18 @@ const NAVY = "#13294B";
 const GOLD = "#BA7517";
 const CREAM = "#F5EFE4";
 
-// scene durations at 30fps
-const S1 = 180; //  6s home
-const S2 = 240; //  8s storefront
-const S3 = 300; // 10s designation
-const S4 = 360; // 12s shop + product
-const S5 = 300; // 10s how it works
-const S6 = 270; //  9s team card
-const S7 = 150; //  5s end card
-export const TOTAL_FRAMES = S1 + S2 + S3 + S4 + S5 + S6 + S7; // 1800 = 60s
-
-// ---------------- helpers ----------------
+// scene durations at 30fps — tuned to VO clip lengths with breathing room
+const S1 = 210; //  7.0s — home
+const S2 = 270; //  9.0s — CG landing
+const S3 = 300; // 10.0s — designation picker
+const S4 = 360; // 12.0s — shop + product
+const S5 = 300; // 10.0s — 60% strip
+const S6 = 300; // 10.0s — team card
+const S7 = 210; //  7.0s — end card
+export const TOTAL_FRAMES = S1 + S2 + S3 + S4 + S5 + S6 + S7; // 1950 = 65s
 
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
-// Ken Burns: smooth scale + slight pan over the scene lifetime
 const KenBurns: React.FC<{
   src: string;
   duration: number;
@@ -41,8 +39,7 @@ const KenBurns: React.FC<{
   toScale?: number;
   panX?: number;
   panY?: number;
-  alt?: string;
-}> = ({ src, duration, fromScale = 1.05, toScale = 1.15, panX = -20, panY = 0, alt }) => {
+}> = ({ src, duration, fromScale = 1.05, toScale = 1.15, panX = -20, panY = 0 }) => {
   const frame = useCurrentFrame();
   const t = easeInOut(Math.max(0, Math.min(1, frame / duration)));
   const scale = fromScale + (toScale - fromScale) * t;
@@ -52,7 +49,6 @@ const KenBurns: React.FC<{
     <AbsoluteFill style={{ overflow: "hidden", background: NAVY }}>
       <Img
         src={src}
-        alt={alt}
         style={{
           width: "100%",
           height: "100%",
@@ -66,7 +62,6 @@ const KenBurns: React.FC<{
   );
 };
 
-// Fade in over `inFrames`, hold, fade out over `outFrames`
 const useSceneOpacity = (duration: number, inF = 15, outF = 15) => {
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, inF], [0, 1], { extrapolateRight: "clamp" });
@@ -74,31 +69,17 @@ const useSceneOpacity = (duration: number, inF = 15, outF = 15) => {
   return Math.min(fadeIn, fadeOut);
 };
 
-// Bottom caption bar with slide-up + progress line
 const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, sceneDuration }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const s = spring({ frame: frame - 10, fps, config: { damping: 200 } });
+  const s = spring({ frame: frame - 6, fps, config: { damping: 200 } });
   const y = interpolate(s, [0, 1], [40, 0]);
   const op = interpolate(s, [0, 1], [0, 1]);
   const progress = Math.max(0, Math.min(1, frame / sceneDuration));
 
   return (
-    <AbsoluteFill
-      style={{
-        justifyContent: "flex-end",
-        alignItems: "center",
-        pointerEvents: "none",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          padding: "0 120px 90px",
-          transform: `translateY(${y}px)`,
-          opacity: op,
-        }}
-      >
+    <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", pointerEvents: "none" }}>
+      <div style={{ width: "100%", padding: "0 120px 90px", transform: `translateY(${y}px)`, opacity: op }}>
         <div
           style={{
             background: "rgba(19, 41, 75, 0.94)",
@@ -122,23 +103,8 @@ const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, scen
           >
             {text}
           </div>
-          <div
-            style={{
-              height: 3,
-              background: "rgba(255,255,255,0.15)",
-              borderRadius: 999,
-              marginTop: 22,
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                width: `${progress * 100}%`,
-                height: "100%",
-                background: GOLD,
-                borderRadius: 999,
-              }}
-            />
+          <div style={{ height: 3, background: "rgba(255,255,255,0.15)", borderRadius: 999, marginTop: 22, overflow: "hidden" }}>
+            <div style={{ width: `${progress * 100}%`, height: "100%", background: GOLD, borderRadius: 999 }} />
           </div>
         </div>
       </div>
@@ -146,7 +112,6 @@ const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, scen
   );
 };
 
-// Persistent brand chip in top-left
 const BrandChip: React.FC = () => (
   <AbsoluteFill style={{ pointerEvents: "none" }}>
     <div
@@ -163,30 +128,14 @@ const BrandChip: React.FC = () => (
         border: `1px solid rgba(255,255,255,0.15)`,
       }}
     >
-      <div
-        style={{
-          width: 10,
-          height: 10,
-          borderRadius: 999,
-          background: GOLD,
-        }}
-      />
-      <div
-        style={{
-          fontFamily: oswald,
-          color: "white",
-          fontSize: 22,
-          fontWeight: 600,
-          letterSpacing: 3,
-        }}
-      >
+      <div style={{ width: 10, height: 10, borderRadius: 999, background: GOLD }} />
+      <div style={{ fontFamily: oswald, color: "white", fontSize: 22, fontWeight: 600, letterSpacing: 3 }}>
         FANPACT
       </div>
     </div>
   </AbsoluteFill>
 );
 
-// Optional highlight rectangle to draw the eye
 const Highlight: React.FC<{
   x: number;
   y: number;
@@ -242,55 +191,50 @@ const Highlight: React.FC<{
   );
 };
 
-// ---------------- scenes ----------------
+// ---------------- scenes (youth path only, Center Grove) ----------------
 
 const Scene1: React.FC = () => {
   const op = useSceneOpacity(S1, 20, 20);
+  const frame = useCurrentFrame();
+  // Cross-dissolve homepage hero → youth-selector view around mid-scene
+  const swap = interpolate(frame, [S1 * 0.55, S1 * 0.75], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/01_home_hero.png")} duration={S1} fromScale={1.02} toScale={1.12} />
-      <Caption
-        text="One platform. Two paths — collegiate NIL, or youth sports."
-        sceneDuration={S1}
-      />
+      <KenBurns src={staticFile("shots/01_home_hero.png")} duration={S1} fromScale={1.02} toScale={1.1} />
+      <AbsoluteFill style={{ opacity: swap }}>
+        <KenBurns src={staticFile("shots/03_home_youth.png")} duration={S1} fromScale={1.04} toScale={1.12} />
+      </AbsoluteFill>
+      <Caption text="Your league's own branded storefront." sceneDuration={S1} />
     </AbsoluteFill>
   );
 };
 
 const Scene2: React.FC = () => {
   const op = useSceneOpacity(S2, 20, 20);
-  const frame = useCurrentFrame();
-  // Cross-dissolve Butler → Center Grove halfway
-  const swap = interpolate(frame, [S2 / 2 - 20, S2 / 2 + 20], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/04_butler.png")} duration={S2} fromScale={1.06} toScale={1.14} panX={-30} />
-      <AbsoluteFill style={{ opacity: swap }}>
-        <KenBurns src={staticFile("shots/05_center_grove.png")} duration={S2} fromScale={1.06} toScale={1.14} panX={30} />
-      </AbsoluteFill>
-      <Caption text="Pick your school, or your local youth alliance." sceneDuration={S2} />
+      <KenBurns src={staticFile("shots/05_center_grove.png")} duration={S2} fromScale={1.05} toScale={1.15} panX={-20} />
+      <Caption
+        text="Every family picks their program — like Center Grove — and shops the purchases they already make."
+        sceneDuration={S2}
+      />
     </AbsoluteFill>
   );
 };
 
 const Scene3: React.FC = () => {
   const op = useSceneOpacity(S3, 20, 20);
-  const frame = useCurrentFrame();
-  const swap = interpolate(frame, [S3 / 2 - 20, S3 / 2 + 20], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/06_butler_teams.png")} duration={S3} fromScale={1.04} toScale={1.14} panY={-30} />
-      <AbsoluteFill style={{ opacity: swap }}>
-        <KenBurns src={staticFile("shots/07_cg_orgs.png")} duration={S3} fromScale={1.04} toScale={1.14} panY={-30} />
-      </AbsoluteFill>
-      <Highlight x={260} y={620} w={860} h={430} delay={30} label="CHOOSE A TEAM" />
-      <Caption text="Designate a team, a club, or a specific athlete." sceneDuration={S3} />
+      <KenBurns src={staticFile("shots/07_cg_orgs.png")} duration={S3} fromScale={1.04} toScale={1.14} panY={-30} />
+      <Highlight x={260} y={620} w={860} h={430} delay={45} label="DESIGNATE A TEAM" />
+      <Caption
+        text="Designate exactly where it goes — a team, a club, or one specific athlete."
+        sceneDuration={S3}
+      />
     </AbsoluteFill>
   );
 };
@@ -299,10 +243,10 @@ const Scene4: React.FC = () => {
   const op = useSceneOpacity(S4, 20, 20);
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/08_butler_shop.png")} duration={S4} fromScale={1.05} toScale={1.18} panY={-40} />
-      <Highlight x={1360} y={480} w={340} h={520} delay={40} label="+ CONTRIBUTION" />
+      <KenBurns src={staticFile("shots/09_cg_shop.png")} duration={S4} fromScale={1.05} toScale={1.18} panY={-40} />
+      <Highlight x={1360} y={480} w={340} h={520} delay={60} label="+ CONTRIBUTION" />
       <Caption
-        text="Shop the everyday brands you already buy — groceries, pet food, home goods. Not team merch."
+        text="Groceries, pet supplies, home goods — the same brands, just through this storefront."
         sceneDuration={S4}
       />
     </AbsoluteFill>
@@ -320,7 +264,8 @@ const Scene5: React.FC = () => {
       <KenBurns src={staticFile("shots/10_home_how.png")} duration={S5} fromScale={1.02} toScale={1.1} />
       <AbsoluteFill
         style={{
-          background: "linear-gradient(180deg, rgba(245,239,228,0.2) 0%, rgba(245,239,228,0.85) 55%, rgba(245,239,228,0.98) 100%)",
+          background:
+            "linear-gradient(180deg, rgba(245,239,228,0.2) 0%, rgba(245,239,228,0.85) 55%, rgba(245,239,228,0.98) 100%)",
         }}
       />
       <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
@@ -340,7 +285,7 @@ const Scene5: React.FC = () => {
           <div
             style={{
               fontFamily: inter,
-              fontSize: 36,
+              fontSize: 32,
               color: NAVY,
               marginTop: 12,
               fontWeight: 500,
@@ -348,12 +293,12 @@ const Scene5: React.FC = () => {
               textTransform: "uppercase",
             }}
           >
-            of net earnings → your designation
+            of net earnings — routed weekly, verified through Stripe
           </div>
         </div>
       </AbsoluteFill>
       <Caption
-        text="60% of net earnings flows to your designation — every purchase, verified through Stripe."
+        text="60% of net earnings routes automatically every week — no fundraiser required."
         sceneDuration={S5}
       />
     </AbsoluteFill>
@@ -363,13 +308,12 @@ const Scene5: React.FC = () => {
 const Scene6: React.FC = () => {
   const op = useSceneOpacity(S6, 20, 20);
   const frame = useCurrentFrame();
-  const tap = Math.sin((frame / 30) * Math.PI * 1.4) * 0.5 + 0.5; // pulses
+  const tap = Math.sin((frame / 30) * Math.PI * 1.4) * 0.5 + 0.5;
   const tapScale = 1 + tap * 0.5;
   const tapOp = 0.6 - tap * 0.6;
   return (
     <AbsoluteFill style={{ opacity: op }}>
       <KenBurns src={staticFile("shots/11_home_card.png")} duration={S6} fromScale={1.05} toScale={1.15} panX={40} />
-      {/* Tap ripple over card area (right side of the frame) */}
       <AbsoluteFill style={{ justifyContent: "center", alignItems: "flex-end", paddingRight: 320 }}>
         <div style={{ position: "relative", width: 260, height: 260 }}>
           <div
@@ -394,7 +338,10 @@ const Scene6: React.FC = () => {
           />
         </div>
       </AbsoluteFill>
-      <Caption text="Tap your FanPact Team Card anywhere — it counts too." sceneDuration={S6} />
+      <Caption
+        text="The FanPact Team Card — grandparents and neighbors tap to support that same player, anywhere."
+        sceneDuration={S6}
+      />
     </AbsoluteFill>
   );
 };
@@ -406,7 +353,9 @@ const Scene7: React.FC = () => {
   const titleY = interpolate(s, [0, 1], [30, 0]);
   const line2 = spring({ frame: frame - 20, fps: 30, config: { damping: 200 } });
   const line2Y = interpolate(line2, [0, 1], [30, 0]);
-  const urlS = spring({ frame: frame - 45, fps: 30, config: { damping: 200 } });
+  const line3 = spring({ frame: frame - 40, fps: 30, config: { damping: 200 } });
+  const line3Y = interpolate(line3, [0, 1], [30, 0]);
+  const urlS = spring({ frame: frame - 70, fps: 30, config: { damping: 200 } });
   return (
     <AbsoluteFill
       style={{
@@ -416,7 +365,6 @@ const Scene7: React.FC = () => {
         alignItems: "center",
       }}
     >
-      {/* subtle gold accent */}
       <div
         style={{
           position: "absolute",
@@ -447,12 +395,11 @@ const Scene7: React.FC = () => {
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 96,
+          fontSize: 88,
           color: "white",
           fontWeight: 700,
           textAlign: "center",
           lineHeight: 1.05,
-          maxWidth: 1500,
           transform: `translateY(${titleY}px)`,
           opacity: s,
         }}
@@ -462,7 +409,7 @@ const Scene7: React.FC = () => {
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 96,
+          fontSize: 88,
           color: "white",
           fontWeight: 700,
           textAlign: "center",
@@ -477,11 +424,11 @@ const Scene7: React.FC = () => {
         style={{
           fontFamily: inter,
           fontSize: 40,
-          color: "rgba(255,255,255,0.85)",
-          marginTop: 44,
+          color: "rgba(255,255,255,0.9)",
+          marginTop: 36,
           fontWeight: 400,
-          opacity: line2,
-          transform: `translateY(${line2Y}px)`,
+          opacity: line3,
+          transform: `translateY(${line3Y}px)`,
         }}
       >
         Just a different place to shop.
@@ -507,16 +454,16 @@ const Scene7: React.FC = () => {
 // ---------------- root composition ----------------
 
 export const MainVideo: React.FC = () => {
-  let from = 0;
-  const scenes: { dur: number; el: React.ReactNode }[] = [
-    { dur: S1, el: <Scene1 /> },
-    { dur: S2, el: <Scene2 /> },
-    { dur: S3, el: <Scene3 /> },
-    { dur: S4, el: <Scene4 /> },
-    { dur: S5, el: <Scene5 /> },
-    { dur: S6, el: <Scene6 /> },
-    { dur: S7, el: <Scene7 /> },
+  const scenes: { dur: number; el: React.ReactNode; voice: string; voiceDelay?: number }[] = [
+    { dur: S1, el: <Scene1 />, voice: "audio/vo1.mp3", voiceDelay: 18 },
+    { dur: S2, el: <Scene2 />, voice: "audio/vo2.mp3", voiceDelay: 15 },
+    { dur: S3, el: <Scene3 />, voice: "audio/vo3.mp3", voiceDelay: 15 },
+    { dur: S4, el: <Scene4 />, voice: "audio/vo4.mp3", voiceDelay: 15 },
+    { dur: S5, el: <Scene5 />, voice: "audio/vo5.mp3", voiceDelay: 15 },
+    { dur: S6, el: <Scene6 />, voice: "audio/vo6.mp3", voiceDelay: 15 },
+    { dur: S7, el: <Scene7 />, voice: "audio/vo7.mp3", voiceDelay: 10 },
   ];
+  let from = 0;
   return (
     <AbsoluteFill style={{ background: NAVY, fontFamily: inter }}>
       {scenes.map((s, i) => {
@@ -524,6 +471,9 @@ export const MainVideo: React.FC = () => {
           <Sequence key={i} from={from} durationInFrames={s.dur}>
             {s.el}
             {i < scenes.length - 1 && <BrandChip />}
+            <Sequence from={s.voiceDelay ?? 0}>
+              <Audio src={staticFile(s.voice)} volume={1} />
+            </Sequence>
           </Sequence>
         );
         from += s.dur;
