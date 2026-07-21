@@ -1,7 +1,6 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Audio,
   Img,
   Sequence,
   staticFile,
@@ -18,17 +17,18 @@ const { fontFamily: oswald } = loadOswald("normal", { weights: ["500", "600", "7
 
 const NAVY = "#13294B";
 const GOLD = "#BA7517";
-const BUTLER_BLUE = "#13B5EA";
+const CG_GOLD = "#C89A3C";
 
-// scene durations at 30fps — tuned to VO clip lengths with breathing room
-const S1 = 255; //  8.5s — Butler home hero + stats  (VO 6.9s)
-const S2 = 330; // 11.0s — shop → product → cart      (VO 9.8s)
-const S3 = 300; // 10.0s — sponsors grid              (VO 8.9s)
-const S4 = 780; // 26.0s — Edward Jones 3-step flow   (VO 25.0s)
-const S5 = 300; // 10.0s — disclaimer zoom            (VO 8.7s)
-const S6 = 480; // 16.0s — FMV callout                (VO 14.6s)
-const S7 = 225; //  7.5s — end card                   (VO 6.4s)
-export const TOTAL_FRAMES = S1 + S2 + S3 + S4 + S5 + S6 + S7; // 2670 = 89s
+// scene durations at 30fps — synced to caption pacing (no VO)
+const S1 = 450; // 15s — home hero → categories
+const S2 = 390; // 13s — product grid
+const S3 = 420; // 14s — 60% banner + org picker
+const S4 = 300; // 10s — how it works 3-step
+const S5 = 300; // 10s — community stats
+const S6 = 600; // 20s — team card hero + steps + layers
+const S7 = 300; // 10s — USAREC + sponsors
+const S8 = 240; //  8s — footer / end card
+export const TOTAL_FRAMES = S1 + S2 + S3 + S4 + S5 + S6 + S7 + S8; // 3000 = 100s
 
 const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
@@ -40,7 +40,15 @@ const KenBurns: React.FC<{
   panX?: number;
   panY?: number;
   objectPosition?: string;
-}> = ({ src, duration, fromScale = 1.05, toScale = 1.15, panX = -20, panY = 0, objectPosition = "top center" }) => {
+}> = ({
+  src,
+  duration,
+  fromScale = 1.05,
+  toScale = 1.15,
+  panX = -20,
+  panY = 0,
+  objectPosition = "top center",
+}) => {
   const frame = useCurrentFrame();
   const t = easeInOut(Math.max(0, Math.min(1, frame / duration)));
   const scale = fromScale + (toScale - fromScale) * t;
@@ -66,7 +74,9 @@ const KenBurns: React.FC<{
 const useSceneOpacity = (duration: number, inF = 15, outF = 15) => {
   const frame = useCurrentFrame();
   const fadeIn = interpolate(frame, [0, inF], [0, 1], { extrapolateRight: "clamp" });
-  const fadeOut = interpolate(frame, [duration - outF, duration], [1, 0], { extrapolateLeft: "clamp" });
+  const fadeOut = interpolate(frame, [duration - outF, duration], [1, 0], {
+    extrapolateLeft: "clamp",
+  });
   return Math.min(fadeIn, fadeOut);
 };
 
@@ -84,9 +94,9 @@ const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, scen
         <div
           style={{
             background: "rgba(19, 41, 75, 0.94)",
-            borderLeft: `6px solid ${GOLD}`,
+            borderLeft: `6px solid ${CG_GOLD}`,
             borderRadius: 8,
-            padding: "28px 36px 30px",
+            padding: "30px 38px 32px",
             boxShadow: "0 30px 80px rgba(0,0,0,0.45)",
             maxWidth: 1500,
             margin: "0 auto",
@@ -96,7 +106,7 @@ const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, scen
             style={{
               fontFamily: inter,
               color: "white",
-              fontSize: 38,
+              fontSize: 40,
               lineHeight: 1.28,
               fontWeight: 500,
               letterSpacing: -0.3,
@@ -104,8 +114,23 @@ const Caption: React.FC<{ text: string; sceneDuration: number }> = ({ text, scen
           >
             {text}
           </div>
-          <div style={{ height: 3, background: "rgba(255,255,255,0.15)", borderRadius: 999, marginTop: 22, overflow: "hidden" }}>
-            <div style={{ width: `${progress * 100}%`, height: "100%", background: GOLD, borderRadius: 999 }} />
+          <div
+            style={{
+              height: 3,
+              background: "rgba(255,255,255,0.15)",
+              borderRadius: 999,
+              marginTop: 22,
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                width: `${progress * 100}%`,
+                height: "100%",
+                background: CG_GOLD,
+                borderRadius: 999,
+              }}
+            />
           </div>
         </div>
       </div>
@@ -129,9 +154,9 @@ const BrandChip: React.FC = () => (
         border: `1px solid rgba(255,255,255,0.15)`,
       }}
     >
-      <div style={{ width: 10, height: 10, borderRadius: 999, background: GOLD }} />
+      <div style={{ width: 10, height: 10, borderRadius: 999, background: CG_GOLD }} />
       <div style={{ fontFamily: oswald, color: "white", fontSize: 22, fontWeight: 600, letterSpacing: 3 }}>
-        FANPACT
+        FANPACT · CENTER GROVE
       </div>
     </div>
   </AbsoluteFill>
@@ -145,7 +170,7 @@ const Highlight: React.FC<{
   delay?: number;
   label?: string;
   color?: string;
-}> = ({ x, y, w, h, delay = 0, label, color = GOLD }) => {
+}> = ({ x, y, w, h, delay = 0, label, color = CG_GOLD }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = spring({ frame: frame - delay, fps, config: { damping: 20, stiffness: 120 } });
@@ -193,259 +218,217 @@ const Highlight: React.FC<{
   );
 };
 
-// ---------------- scenes (collegiate — Butler only) ----------------
-
-// S1: Butler home hero → stats
-const Scene1: React.FC = () => {
-  const op = useSceneOpacity(S1, 20, 20);
+// Two-shot crossfade helper for a scene
+const CrossKen: React.FC<{
+  a: string;
+  b: string;
+  duration: number;
+  swapStart?: number;
+  swapEnd?: number;
+  aOpts?: Partial<React.ComponentProps<typeof KenBurns>>;
+  bOpts?: Partial<React.ComponentProps<typeof KenBurns>>;
+}> = ({ a, b, duration, swapStart, swapEnd, aOpts, bOpts }) => {
   const frame = useCurrentFrame();
-  const swap = interpolate(frame, [S1 * 0.5, S1 * 0.7], [0, 1], {
+  const start = swapStart ?? duration * 0.45;
+  const end = swapEnd ?? duration * 0.65;
+  const swap = interpolate(frame, [start, end], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
   return (
-    <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/c1_butler_home.png")} duration={S1} fromScale={1.02} toScale={1.1} />
+    <>
+      <KenBurns src={a} duration={duration} fromScale={1.03} toScale={1.12} {...aOpts} />
       <AbsoluteFill style={{ opacity: swap }}>
-        <KenBurns
-          src={staticFile("shots/c2_butler_home_stats.png")}
-          duration={S1}
-          fromScale={1.04}
-          toScale={1.12}
-          panY={-30}
-        />
+        <KenBurns src={b} duration={duration} fromScale={1.04} toScale={1.14} {...bOpts} />
       </AbsoluteFill>
-      <Highlight x={355} y={425} w={790} h={135} delay={S1 * 0.55} color={BUTLER_BLUE} label="$127,450 EARNED" />
+    </>
+  );
+};
+
+// ---------------- scenes ----------------
+
+// S1: home hero → categories
+const Scene1: React.FC = () => {
+  const op = useSceneOpacity(S1, 20, 20);
+  return (
+    <AbsoluteFill style={{ opacity: op }}>
+      <CrossKen
+        a={staticFile("shots/cg1_home_hero.png")}
+        b={staticFile("shots/cg2_home_categories.png")}
+        duration={S1}
+        swapStart={S1 * 0.55}
+        swapEnd={S1 * 0.75}
+        aOpts={{ panY: -20 }}
+        bOpts={{ panY: -40 }}
+      />
       <Caption
-        text="This is the Butler FanPact storefront — where every purchase generates verified NIL support."
+        text="Your families already spend money every week on stuff they need anyway. Right now, that money goes to Amazon or Walmart, and your league sees none of it."
         sceneDuration={S1}
       />
     </AbsoluteFill>
   );
 };
 
-// S2: shop grid → product card
+// S2: product grid
 const Scene2: React.FC = () => {
   const op = useSceneOpacity(S2, 20, 20);
-  const frame = useCurrentFrame();
-  const swap = interpolate(frame, [S2 * 0.5, S2 * 0.7], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/c4_butler_shop_grid.png")} duration={S2} fromScale={1.03} toScale={1.12} panY={-20} />
-      <AbsoluteFill style={{ opacity: swap }}>
-        <KenBurns src={staticFile("shots/c5_butler_product.png")} duration={S2} fromScale={1.04} toScale={1.14} />
-      </AbsoluteFill>
+      <KenBurns
+        src={staticFile("shots/cg3_shop_grid.png")}
+        duration={S2}
+        fromScale={1.04}
+        toScale={1.16}
+        panY={-40}
+      />
       <Caption
-        text="Fans shop the same everyday brands they already buy — every purchase is a documented, attributable transaction."
+        text="Your league gets its own version of that same store. Same brands, same prices. The only thing that changes is where they click buy."
         sceneDuration={S2}
       />
     </AbsoluteFill>
   );
 };
 
-// S3: sponsors grid
+// S3: 60% banner + org picker
 const Scene3: React.FC = () => {
   const op = useSceneOpacity(S3, 20, 20);
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/c7_butler_sponsors_grid.png")} duration={S3} fromScale={1.03} toScale={1.12} panY={-30} />
+      <CrossKen
+        a={staticFile("shots/cg4_home_60_banner.png")}
+        b={staticFile("shots/cg5_home_orgs.png")}
+        duration={S3}
+        swapStart={S3 * 0.45}
+        swapEnd={S3 * 0.65}
+        aOpts={{ panY: -30 }}
+        bOpts={{ panY: -30 }}
+      />
       <Caption
-        text="Enterprise partners are already here. Four premier partners are live on this one storefront alone."
+        text="Every purchase automatically comes back, every week. Part to your league, part straight into that kid's own account."
         sceneDuration={S3}
       />
     </AbsoluteFill>
   );
 };
 
-// S4: Edward Jones 3-step flow
+// S4: How it works 3-step
 const Scene4: React.FC = () => {
   const op = useSceneOpacity(S4, 20, 20);
-  const frame = useCurrentFrame();
-  // Cross-dissolve from hero into the steps view mid-scene
-  const swap = interpolate(frame, [90, 150], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
   return (
     <AbsoluteFill style={{ opacity: op }}>
-      <KenBurns src={staticFile("shots/c8_edward_jones_hero.png")} duration={S4} fromScale={1.03} toScale={1.1} />
-      <AbsoluteFill style={{ opacity: swap }}>
-        <KenBurns src={staticFile("shots/c9_edward_jones_steps.png")} duration={S4} fromScale={1.03} toScale={1.15} panY={-60} />
-      </AbsoluteFill>
-      {/* Staggered highlights over each step card */}
-      <Highlight x={352} y={624} w={355} h={315} delay={210} label="STEP 1 · $75" />
-      <Highlight x={782} y={624} w={355} h={315} delay={330} label="STEP 2 · $175" />
-      <Highlight x={1215} y={624} w={355} h={315} delay={450} label="STEP 3 · $250" />
+      <KenBurns
+        src={staticFile("shots/cg6_home_how.png")}
+        duration={S4}
+        fromScale={1.03}
+        toScale={1.12}
+        panY={-30}
+      />
       <Caption
-        text="Every step is a trigger event — schedule a consultation, meet an advisor, open an account. Each one verified. Each one worth a specific credit."
+        text="No extra spending. No fundraiser. Just a different place to shop."
         sceneDuration={S4}
       />
     </AbsoluteFill>
   );
 };
 
-// S5: disclaimer zoom
+// S5: Community stats
 const Scene5: React.FC = () => {
   const op = useSceneOpacity(S5, 20, 20);
-  const frame = useCurrentFrame();
-  const t = easeInOut(Math.max(0, Math.min(1, frame / S5)));
-  const scale = 1.4 + t * 0.15;
   return (
-    <AbsoluteFill style={{ opacity: op, background: NAVY }}>
-      <AbsoluteFill style={{ overflow: "hidden" }}>
-        <Img
-          src={staticFile("shots/c10_edward_jones_disclaimer.png")}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center 42%",
-            transform: `scale(${scale})`,
-            transformOrigin: "center 45%",
-          }}
-        />
-      </AbsoluteFill>
-      {/* Subtle vignette to focus the eye */}
-      <AbsoluteFill
-        style={{
-          background:
-            "radial-gradient(ellipse at center 45%, rgba(0,0,0,0) 20%, rgba(19,41,75,0.55) 65%, rgba(19,41,75,0.9) 100%)",
-        }}
+    <AbsoluteFill style={{ opacity: op }}>
+      <KenBurns
+        src={staticFile("shots/cg7_home_stats.png")}
+        duration={S5}
+        fromScale={1.04}
+        toScale={1.14}
+        panY={-20}
       />
-      <Highlight x={430} y={470} w={1060} h={130} delay={30} />
       <Caption
-        text="Every credit only pays out on verified completion. That's real return on investment — not an estimate."
+        text="Real, ongoing money for your league. Every week, all season."
         sceneDuration={S5}
       />
     </AbsoluteFill>
   );
 };
 
-// S6: FMV callout — Stripe / timestamp / auditable
+// S6: Team Card hero → steps → layers
 const Scene6: React.FC = () => {
   const op = useSceneOpacity(S6, 20, 20);
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  const badge = spring({ frame: frame - 20, fps, config: { damping: 18, stiffness: 100 } });
-  const badgeY = interpolate(badge, [0, 1], [40, 0]);
-
-  const chip = (delay: number) => {
-    const s = spring({ frame: frame - delay, fps, config: { damping: 20 } });
-    return {
-      opacity: s,
-      transform: `translateY(${interpolate(s, [0, 1], [24, 0])}px) scale(${interpolate(s, [0, 1], [0.94, 1])})`,
-    };
-  };
-
+  const swap1 = interpolate(frame, [S6 * 0.32, S6 * 0.42], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const swap2 = interpolate(frame, [S6 * 0.66, S6 * 0.76], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
   return (
-    <AbsoluteFill style={{ opacity: op, background: NAVY }}>
-      {/* animated grid backdrop */}
-      <AbsoluteFill
-        style={{
-          background: `radial-gradient(ellipse at 30% 20%, #1e3a6b 0%, ${NAVY} 55%, #0a1730 100%)`,
-        }}
+    <AbsoluteFill style={{ opacity: op }}>
+      <KenBurns
+        src={staticFile("shots/cg8_teamcard_hero.png")}
+        duration={S6}
+        fromScale={1.03}
+        toScale={1.1}
       />
-      <AbsoluteFill style={{ opacity: 0.08 }}>
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
+      <AbsoluteFill style={{ opacity: swap1 }}>
+        <KenBurns
+          src={staticFile("shots/cg9_teamcard_steps.png")}
+          duration={S6}
+          fromScale={1.03}
+          toScale={1.14}
+          panY={-40}
         />
       </AbsoluteFill>
-
-      <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", padding: "0 160px" }}>
-        <div style={{ textAlign: "center", opacity: badge, transform: `translateY(${badgeY}px)` }}>
-          <div
-            style={{
-              fontFamily: oswald,
-              color: GOLD,
-              letterSpacing: 8,
-              fontSize: 26,
-              fontWeight: 600,
-              marginBottom: 28,
-            }}
-          >
-            FAIR MARKET VALUE · ON RECORD
-          </div>
-          <div
-            style={{
-              fontFamily: oswald,
-              color: "white",
-              fontSize: 108,
-              fontWeight: 700,
-              lineHeight: 1.02,
-              letterSpacing: -2,
-            }}
-          >
-            Every transaction:
-          </div>
-          <div
-            style={{
-              fontFamily: oswald,
-              color: GOLD,
-              fontSize: 108,
-              fontWeight: 700,
-              lineHeight: 1.02,
-              letterSpacing: -2,
-              marginTop: 6,
-            }}
-          >
-            timestamped. priced. auditable.
-          </div>
-        </div>
-
-        <div style={{ display: "flex", gap: 22, marginTop: 90 }}>
-          {[
-            { label: "STRIPE", delay: 90 },
-            { label: "TIMESTAMP", delay: 115 },
-            { label: "VERIFIED PRICE", delay: 140 },
-            { label: "NIL COMPLIANCE READY", delay: 165 },
-          ].map((c) => (
-            <div
-              key={c.label}
-              style={{
-                ...chip(c.delay),
-                padding: "16px 26px",
-                border: `2px solid ${GOLD}`,
-                borderRadius: 999,
-                background: "rgba(186,117,23,0.1)",
-                fontFamily: oswald,
-                color: "white",
-                fontWeight: 600,
-                letterSpacing: 3,
-                fontSize: 22,
-              }}
-            >
-              {c.label}
-            </div>
-          ))}
-        </div>
+      <AbsoluteFill style={{ opacity: swap2 }}>
+        <KenBurns
+          src={staticFile("shots/cg10_teamcard_layers.png")}
+          duration={S6}
+          fromScale={1.03}
+          toScale={1.14}
+          panY={-40}
+        />
       </AbsoluteFill>
       <Caption
-        text="Every transaction runs through Stripe with a timestamp and a verified price — a fair market value record NIL compliance actually needs."
+        text="Grandparents, neighbors, anyone in the community can help too. Shop the platform, or link a card they already have."
         sceneDuration={S6}
       />
     </AbsoluteFill>
   );
 };
 
-// S7: end card
+// S7: USAREC banner + Sponsors page
 const Scene7: React.FC = () => {
-  const op = useSceneOpacity(S7, 20, 30);
+  const op = useSceneOpacity(S7, 20, 20);
+  return (
+    <AbsoluteFill style={{ opacity: op }}>
+      <CrossKen
+        a={staticFile("shots/cg11_usarec.png")}
+        b={staticFile("shots/cg12_sponsors.png")}
+        duration={S7}
+        swapStart={S7 * 0.5}
+        swapEnd={S7 * 0.7}
+        aOpts={{ panY: -20 }}
+        bOpts={{ panY: -30 }}
+      />
+      <Caption
+        text="Real companies pay real money to be part of something verified, not just a logo on a jersey."
+        sceneDuration={S7}
+      />
+    </AbsoluteFill>
+  );
+};
+
+// S8: End card
+const Scene8: React.FC = () => {
+  const op = useSceneOpacity(S8, 20, 30);
   const frame = useCurrentFrame();
-  const s = spring({ frame, fps: 30, config: { damping: 200 } });
+  const { fps } = useVideoConfig();
+  const s = spring({ frame, fps, config: { damping: 200 } });
   const titleY = interpolate(s, [0, 1], [30, 0]);
-  const line2 = spring({ frame: frame - 20, fps: 30, config: { damping: 200 } });
+  const line2 = spring({ frame: frame - 20, fps, config: { damping: 200 } });
   const line2Y = interpolate(line2, [0, 1], [30, 0]);
-  const urlS = spring({ frame: frame - 60, fps: 30, config: { damping: 200 } });
+  const urlS = spring({ frame: frame - 60, fps, config: { damping: 200 } });
   return (
     <AbsoluteFill
       style={{
@@ -463,7 +446,7 @@ const Scene7: React.FC = () => {
           transform: "translateX(-50%)",
           width: 60,
           height: 4,
-          background: GOLD,
+          background: CG_GOLD,
           borderRadius: 999,
           opacity: s,
         }}
@@ -471,21 +454,21 @@ const Scene7: React.FC = () => {
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 42,
-          color: GOLD,
+          fontSize: 40,
+          color: CG_GOLD,
           letterSpacing: 8,
           fontWeight: 600,
-          marginBottom: 44,
+          marginBottom: 40,
           opacity: s,
           transform: `translateY(${titleY}px)`,
         }}
       >
-        FANPACT
+        FANPACT · CENTER GROVE
       </div>
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 96,
+          fontSize: 88,
           color: "white",
           fontWeight: 700,
           textAlign: "center",
@@ -494,26 +477,27 @@ const Scene7: React.FC = () => {
           opacity: s,
         }}
       >
-        Verified commerce,
+        Nothing to buy. Nothing to install.
       </div>
       <div
         style={{
           fontFamily: oswald,
-          fontSize: 96,
-          color: GOLD,
+          fontSize: 88,
+          color: CG_GOLD,
           fontWeight: 700,
           textAlign: "center",
           lineHeight: 1.05,
+          marginTop: 10,
           transform: `translateY(${line2Y}px)`,
           opacity: line2,
         }}
       >
-        for every side of the transaction.
+        Just shopping, in a different place.
       </div>
       <div
         style={{
           fontFamily: inter,
-          fontSize: 32,
+          fontSize: 30,
           color: "rgba(255,255,255,0.75)",
           marginTop: 70,
           fontWeight: 500,
@@ -531,14 +515,15 @@ const Scene7: React.FC = () => {
 // ---------------- root composition ----------------
 
 export const MainVideo: React.FC = () => {
-  const scenes: { dur: number; el: React.ReactNode; voice: string; voiceDelay?: number }[] = [
-    { dur: S1, el: <Scene1 />, voice: "audio/b1.mp3", voiceDelay: 18 },
-    { dur: S2, el: <Scene2 />, voice: "audio/b2.mp3", voiceDelay: 15 },
-    { dur: S3, el: <Scene3 />, voice: "audio/b3.mp3", voiceDelay: 15 },
-    { dur: S4, el: <Scene4 />, voice: "audio/b4.mp3", voiceDelay: 18 },
-    { dur: S5, el: <Scene5 />, voice: "audio/b5.mp3", voiceDelay: 15 },
-    { dur: S6, el: <Scene6 />, voice: "audio/b6.mp3", voiceDelay: 18 },
-    { dur: S7, el: <Scene7 />, voice: "audio/b7.mp3", voiceDelay: 10 },
+  const scenes: { dur: number; el: React.ReactNode }[] = [
+    { dur: S1, el: <Scene1 /> },
+    { dur: S2, el: <Scene2 /> },
+    { dur: S3, el: <Scene3 /> },
+    { dur: S4, el: <Scene4 /> },
+    { dur: S5, el: <Scene5 /> },
+    { dur: S6, el: <Scene6 /> },
+    { dur: S7, el: <Scene7 /> },
+    { dur: S8, el: <Scene8 /> },
   ];
   let from = 0;
   return (
@@ -548,9 +533,6 @@ export const MainVideo: React.FC = () => {
           <Sequence key={i} from={from} durationInFrames={s.dur}>
             {s.el}
             {i < scenes.length - 1 && <BrandChip />}
-            <Sequence from={s.voiceDelay ?? 0}>
-              <Audio src={staticFile(s.voice)} volume={1} />
-            </Sequence>
           </Sequence>
         );
         from += s.dur;
