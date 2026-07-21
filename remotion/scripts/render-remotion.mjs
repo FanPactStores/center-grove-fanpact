@@ -28,9 +28,9 @@ await renderMedia({
   composition,
   serveUrl: bundled,
   codec: "h264",
-  outputLocation: "/mnt/documents/fanpact-tutorial-collegiate.mp4",
+  outputLocation: "/mnt/documents/fanpact-tutorial-youth-captions.mp4",
   puppeteerInstance: browser,
-  muted: false,
+  muted: true,
   concurrency: 1,
 });
 
