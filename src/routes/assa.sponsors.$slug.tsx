@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { getSponsor } from "@/data/sponsors";
 import { getEnterprisePartner } from "@/data/enterprise-partners";
 import { EnterpriseSponsorPage } from "@/components/fanpact/EnterpriseSponsorPage";
+import { EdwardJonesPage } from "@/components/fanpact/EdwardJonesPage";
 import { STORES } from "@/data/stores";
 import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
@@ -46,6 +47,9 @@ function NotFoundView() {
 
 function SponsorRouter() {
   const { enterpriseSlug } = Route.useLoaderData();
+  if (enterpriseSlug === "edward-jones") {
+    return <EdwardJonesPage store={STORES["assa"]} variant="youth" />;
+  }
   const enterprise = enterpriseSlug ? getEnterprisePartner(enterpriseSlug) : null;
   if (enterprise) {
     return <EnterpriseSponsorPage store={STORES["assa"]} partner={enterprise} />;
