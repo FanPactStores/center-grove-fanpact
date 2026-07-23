@@ -47,6 +47,9 @@ function NotFoundView() {
 
 function SponsorRouter() {
   const { enterpriseSlug } = Route.useLoaderData();
+  if (enterpriseSlug === "edward-jones") {
+    return <EdwardJonesPage store={STORES["butler"]} variant="collegiate" />;
+  }
   const enterprise = enterpriseSlug ? getEnterprisePartner(enterpriseSlug) : null;
   if (enterprise) {
     return <EnterpriseSponsorPage store={STORES["butler"]} partner={enterprise} />;
