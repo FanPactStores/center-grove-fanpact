@@ -23,12 +23,23 @@ export type Product = {
 // contribution ≈ 6% of price (60% of ~10% net margin)
 const c = (price: number, pct = 0.06) => Math.round(price * pct * 100) / 100;
 
-// Reliable, keyword-relevant product photos via LoremFlickr (Creative Commons Flickr photos).
-// Deterministic per product via `lock` seed → image won't change between renders.
+// Studio product photos generated per product, keyed by slug.
+const LOCAL_IMAGES = import.meta.glob<string>("../assets/products/*.jpg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+const localImage = (slug: string): string | undefined =>
+  LOCAL_IMAGES[`../assets/products/${slug}.jpg`];
+
 export const productImage = (p: Product, size = 600, variant = 0) => {
+  const local = localImage(p.slug);
+  if (local) return local;
   const lock = p.imageSeed * 100 + variant;
   return `https://loremflickr.com/${size}/${size}/${encodeURIComponent(p.imageQuery)}?lock=${lock}`;
 };
+
 
 const sku = (id: string) => {
   let h = 0;
