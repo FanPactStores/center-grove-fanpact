@@ -21,15 +21,6 @@ export const Route = createFileRoute("/center-grove/")({
   component: CenterGroveHome,
 });
 
-const CATEGORY_TONES = [
-  "from-amber-900 to-stone-950",
-  "from-slate-800 to-slate-950",
-  "from-yellow-900 to-stone-950",
-  "from-stone-800 to-black",
-  "from-amber-800 to-stone-950",
-  "from-zinc-800 to-stone-950",
-  "from-orange-900 to-stone-950",
-];
 
 function CenterGroveHome() {
   const store = STORES["center-grove"];
