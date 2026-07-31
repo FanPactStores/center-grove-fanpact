@@ -143,15 +143,21 @@ function ButlerHome() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
-          {CATEGORIES.map((c, i) => (
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+          {CATEGORIES.map((c) => (
             <Link
               key={c.slug}
               to="/butler/shop/$category"
               params={{ category: c.slug }}
-              className={`group relative flex aspect-square flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-br ${CATEGORY_TONES[i % CATEGORY_TONES.length]} p-4 text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl`}
+              className="group relative flex aspect-square flex-col justify-end overflow-hidden rounded-xl bg-stone-900 p-4 text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-xl"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_60%)] opacity-70 transition-opacity group-hover:opacity-100" />
+              <img
+                src={c.image}
+                alt={c.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
               <div className="relative">
                 <div className="font-display text-[10px] uppercase tracking-widest opacity-70">
                   {c.short}
@@ -167,6 +173,7 @@ function ButlerHome() {
             </Link>
           ))}
         </div>
+
       </section>
 
       {/* YOUR REGULARS — appears when list has 3+ items */}
