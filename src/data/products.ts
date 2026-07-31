@@ -20,8 +20,8 @@ export type Product = {
   specs: Spec[];
 };
 
-// contribution ≈ 6% of price (60% of ~10% net margin)
-const c = (price: number, pct = 0.06) => Math.round(price * pct * 100) / 100;
+// contribution = 60% of 25% of listed price (15% of price)
+const c = (price: number, pct = 0.6 * 0.25) => Math.round(price * pct * 100) / 100;
 
 // Studio product photos generated per product, keyed by slug.
 const LOCAL_IMAGES = import.meta.glob<string>("../assets/products/*.jpg", {
