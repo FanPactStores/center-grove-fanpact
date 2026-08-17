@@ -26,6 +26,7 @@ import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
 import { Route as LegacyMyListRouteImport } from './routes/legacy.my-list'
 import { Route as LegacyCheckoutConfirmationRouteImport } from './routes/legacy.checkout-confirmation'
 import { Route as LegacyCartRouteImport } from './routes/legacy.cart'
+import { Route as CmnStJohnsRouteImport } from './routes/cmn.st-johns'
 import { Route as CenterGroveTeamCardRouteImport } from './routes/center-grove.team-card'
 import { Route as CenterGroveMyListRouteImport } from './routes/center-grove.my-list'
 import { Route as CenterGroveCheckoutConfirmationRouteImport } from './routes/center-grove.checkout-confirmation'
@@ -171,6 +172,11 @@ const LegacyCartRoute = LegacyCartRouteImport.update({
   id: '/cart',
   path: '/cart',
   getParentRoute: () => LegacyRoute,
+} as any)
+const CmnStJohnsRoute = CmnStJohnsRouteImport.update({
+  id: '/cmn/st-johns',
+  path: '/cmn/st-johns',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CenterGroveTeamCardRoute = CenterGroveTeamCardRouteImport.update({
   id: '/team-card',
@@ -493,6 +499,7 @@ export interface FileRoutesByFullPath {
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
   '/center-grove/my-list': typeof CenterGroveMyListRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
+  '/cmn/st-johns': typeof CmnStJohnsRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
@@ -567,6 +574,7 @@ export interface FileRoutesByTo {
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
   '/center-grove/my-list': typeof CenterGroveMyListRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
+  '/cmn/st-johns': typeof CmnStJohnsRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
@@ -646,6 +654,7 @@ export interface FileRoutesById {
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
   '/center-grove/my-list': typeof CenterGroveMyListRoute
   '/center-grove/team-card': typeof CenterGroveTeamCardRoute
+  '/cmn/st-johns': typeof CmnStJohnsRoute
   '/legacy/cart': typeof LegacyCartRoute
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
@@ -726,6 +735,7 @@ export interface FileRouteTypes {
     | '/center-grove/checkout-confirmation'
     | '/center-grove/my-list'
     | '/center-grove/team-card'
+    | '/cmn/st-johns'
     | '/legacy/cart'
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
@@ -800,6 +810,7 @@ export interface FileRouteTypes {
     | '/center-grove/checkout-confirmation'
     | '/center-grove/my-list'
     | '/center-grove/team-card'
+    | '/cmn/st-johns'
     | '/legacy/cart'
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
@@ -878,6 +889,7 @@ export interface FileRouteTypes {
     | '/center-grove/checkout-confirmation'
     | '/center-grove/my-list'
     | '/center-grove/team-card'
+    | '/cmn/st-johns'
     | '/legacy/cart'
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
@@ -945,6 +957,7 @@ export interface RootRouteChildren {
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
+  CmnStJohnsRoute: typeof CmnStJohnsRoute
   OnboardingCollegiateRoute: typeof OnboardingCollegiateRoute
   OnboardingYouthRoute: typeof OnboardingYouthRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
@@ -1070,6 +1083,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/legacy/cart'
       preLoaderRoute: typeof LegacyCartRouteImport
       parentRoute: typeof LegacyRoute
+    }
+    '/cmn/st-johns': {
+      id: '/cmn/st-johns'
+      path: '/cmn/st-johns'
+      fullPath: '/cmn/st-johns'
+      preLoaderRoute: typeof CmnStJohnsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/center-grove/team-card': {
       id: '/center-grove/team-card'
@@ -1772,6 +1792,7 @@ const rootRouteChildren: RootRouteChildren = {
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
+  CmnStJohnsRoute: CmnStJohnsRoute,
   OnboardingCollegiateRoute: OnboardingCollegiateRoute,
   OnboardingYouthRoute: OnboardingYouthRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
