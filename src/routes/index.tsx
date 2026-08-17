@@ -304,7 +304,7 @@ function MasterHome() {
           <div className="flex flex-wrap items-center gap-1.5">
             <span>© 2026</span>
             <FanPactLogo variant="compact" height={20} />
-            <span>, Inc. NIL and Youth Sports Commerce Platform. Demo experience — all products and contributions illustrative.</span>
+            <span>, Inc. Community Commerce Platform. Demo experience — all products and contributions illustrative.</span>
           </div>
         </div>
       </footer>
