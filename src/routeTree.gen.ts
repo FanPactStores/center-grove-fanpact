@@ -19,6 +19,7 @@ import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
 import { Route as AssaIndexRouteImport } from './routes/assa.index'
+import { Route as OnboardingYouthRouteImport } from './routes/onboarding.youth'
 import { Route as OnboardingCollegiateRouteImport } from './routes/onboarding.collegiate'
 import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
 import { Route as LegacyMyListRouteImport } from './routes/legacy.my-list'
@@ -133,6 +134,11 @@ const AssaIndexRoute = AssaIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AssaRoute,
+} as any)
+const OnboardingYouthRoute = OnboardingYouthRouteImport.update({
+  id: '/onboarding/youth',
+  path: '/onboarding/youth',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingCollegiateRoute = OnboardingCollegiateRouteImport.update({
   id: '/onboarding/collegiate',
@@ -485,6 +491,7 @@ export interface FileRoutesByFullPath {
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
+  '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
@@ -557,6 +564,7 @@ export interface FileRoutesByTo {
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
+  '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa': typeof AssaIndexRoute
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
@@ -634,6 +642,7 @@ export interface FileRoutesById {
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
+  '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
@@ -712,6 +721,7 @@ export interface FileRouteTypes {
     | '/legacy/my-list'
     | '/legacy/team-card'
     | '/onboarding/collegiate'
+    | '/onboarding/youth'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
@@ -784,6 +794,7 @@ export interface FileRouteTypes {
     | '/legacy/my-list'
     | '/legacy/team-card'
     | '/onboarding/collegiate'
+    | '/onboarding/youth'
     | '/assa'
     | '/butler'
     | '/center-grove'
@@ -860,6 +871,7 @@ export interface FileRouteTypes {
     | '/legacy/my-list'
     | '/legacy/team-card'
     | '/onboarding/collegiate'
+    | '/onboarding/youth'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
@@ -921,6 +933,7 @@ export interface RootRouteChildren {
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
   OnboardingCollegiateRoute: typeof OnboardingCollegiateRoute
+  OnboardingYouthRoute: typeof OnboardingYouthRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
@@ -995,6 +1008,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/assa/'
       preLoaderRoute: typeof AssaIndexRouteImport
       parentRoute: typeof AssaRoute
+    }
+    '/onboarding/youth': {
+      id: '/onboarding/youth'
+      path: '/onboarding/youth'
+      fullPath: '/onboarding/youth'
+      preLoaderRoute: typeof OnboardingYouthRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/onboarding/collegiate': {
       id: '/onboarding/collegiate'
@@ -1732,6 +1752,7 @@ const rootRouteChildren: RootRouteChildren = {
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
   OnboardingCollegiateRoute: OnboardingCollegiateRoute,
+  OnboardingYouthRoute: OnboardingYouthRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
 export const routeTree = rootRouteImport
