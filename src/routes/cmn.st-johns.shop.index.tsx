@@ -26,7 +26,7 @@ export const Route = createFileRoute("/cmn/st-johns/shop/")({
       },
     ],
   }),
-  component: StJohnsShop;
+  component: StJohnsShop,
 });
 
 function StJohnsShop() {
