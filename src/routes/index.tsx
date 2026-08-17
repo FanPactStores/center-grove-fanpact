@@ -1,22 +1,24 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, GraduationCap, Users, ShoppingBag, Wallet } from "lucide-react";
+import { ArrowRight, GraduationCap, HeartHandshake, Users, ShoppingBag, Wallet } from "lucide-react";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import heroYouth from "@/assets/hero-youth.jpg";
 import ogImage from "@/assets/fanpact-og.jpg.asset.json";
-import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
+import { CONFERENCES, YOUTH_LEAGUES, CAUSE_PARTNERS } from "@/data/conferences";
 import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FanPact — NIL and Youth Sports Commerce Platform" },
-      { name: "description", content: "Collegiate NIL and youth sports commerce funding. Shop everyday products — 60% of net earnings flows to your designated athlete or program. No extra cost. No behavior change." },
-      { property: "og:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
-      { property: "og:description", content: "Collegiate athletics. Youth community alliances. One platform. 60% of net earnings back to the team you choose." },
+      { title: "FanPact — Community Commerce Platform" },
+      { name: "description", content: "Community commerce funding for collegiate NIL, youth programs, and community causes. Shop everyday products — 60% of net earnings flows to the people and programs you choose." },
+      { property: "og:title", content: "FanPact — Community Commerce Platform" },
+      { property: "og:description", content: "Collegiate NIL. Youth programs. Community causes. One platform. 60% of net earnings back to what you care about." },
       { property: "og:image", content: ogImage.url },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
+      { name: "twitter:title", content: "FanPact — Community Commerce Platform" },
+      { name: "twitter:description", content: "Collegiate NIL. Youth programs. Community causes. One platform." },
       { name: "twitter:image", content: ogImage.url },
     ],
   }),
@@ -32,18 +34,21 @@ function MasterHome() {
           <Link to="/" aria-label="FanPact home" className="inline-flex">
             <FanPactLogo variant="white" height={36} />
           </Link>
-          <nav className="hidden gap-8 text-sm text-white/90 md:flex">
+          <nav className="hidden items-center gap-8 text-sm text-white/90 md:flex">
             <a href="#collegiate" className="hover:text-white">Collegiate</a>
             <a href="#youth" className="hover:text-white">Youth</a>
+            <a href="#cause" className="hover:text-white">Cause</a>
+            <Link to="/alliance" className="hover:text-white">Alliance</Link>
             <a href="#how" className="hover:text-white">How it works</a>
             <a href="#card" className="hover:text-white">Team Card</a>
           </nav>
-          <a
-            href="#collegiate"
-            className="hidden rounded-md border border-white/30 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 md:inline-flex"
+          <Link
+            to="/onboarding"
+            className="hidden rounded-md px-4 py-2 text-sm font-semibold shadow-lg md:inline-flex"
+            style={{ background: "var(--community)", color: "var(--community-foreground)" }}
           >
-            Select your team →
-          </a>
+            Start Your Storefront
+          </Link>
         </div>
       </header>
 
@@ -61,7 +66,7 @@ function MasterHome() {
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
-              NIL and Youth Sports Commerce Platform
+              Community Commerce Platform
             </div>
             <div className="mb-6 flex justify-center md:justify-start">
               <FanPactLogo variant="white" height={52} />
@@ -69,15 +74,15 @@ function MasterHome() {
             <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-tight text-white">
               WHERE EVERY<br />
               PURCHASE FUNDS<br />
-              <span style={{ color: "var(--gold)" }}>YOUR ATHLETES</span>
+              <span style={{ color: "var(--gold)" }}>WHAT YOU CARE ABOUT</span>
             </h1>
             <div className="mt-4 flex flex-col gap-1 font-display text-xl font-bold tracking-tight text-white md:flex-row md:gap-4 md:text-2xl lg:text-3xl">
               <span>Collegiate NIL.</span>
-              <span>Youth Sports.</span>
-              <span>Powered by Commerce.</span>
+              <span>Youth Programs.</span>
+              <span>Community Causes.</span>
             </div>
             <p className="mt-6 max-w-2xl text-lg text-white/85">
-              60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
+              60% of net earnings flows to the people and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
             <p className="mt-2 max-w-2xl text-[0.85rem] text-white/60">
               Groceries. Pet food. Household essentials. Personal care. Not team merch.
@@ -89,22 +94,22 @@ function MasterHome() {
                 style={{ background: "var(--gold)", color: "var(--gold-foreground)" }}
               >
                 <GraduationCap className="h-5 w-5" />
-                Select your college
+                Select Your College
               </a>
               <a
                 href="#youth"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
               >
                 <Users className="h-5 w-5" />
-                Select your youth program
+                Select Your Youth Program
               </a>
-              <Link
-                to="/onboarding"
-                className="inline-flex items-center gap-2 rounded-md border border-white/60 bg-white/10 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20"
+              <a
+                href="#cause"
+                className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
               >
-                <ArrowRight className="h-5 w-5" />
-                Start your storefront
-              </Link>
+                <HeartHandshake className="h-5 w-5" />
+                Select Your Cause
+              </a>
             </div>
             <div className="mt-12 flex items-center gap-4 text-xs uppercase tracking-[0.22em] text-white/70">
               <div className="font-display text-5xl leading-none" style={{ color: "var(--gold)" }}>
@@ -192,6 +197,38 @@ function MasterHome() {
         </div>
       </section>
 
+      {/* CAUSE SELECTOR */}
+      <section id="cause" className="border-b border-border bg-background py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                <HeartHandshake className="h-4 w-4" /> Community causes
+              </div>
+              <h2 className="mt-3 font-display text-5xl tracking-tight">
+                Select your cause — <span style={{ color: "var(--gold)" }}>support the organizations you care about</span>
+              </h2>
+              <p className="mt-3 max-w-xl text-muted-foreground">
+                Community cause partners bring their own network into FanPact. Designate the fund, or the specific chapter, hospital, or affiliate you want to support.
+              </p>
+            </div>
+            <div className="rounded-full border border-border bg-card px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground">
+              {CAUSE_PARTNERS.length} partner{CAUSE_PARTNERS.length === 1 ? "" : "s"} ·{" "}
+              {CAUSE_PARTNERS.reduce((n, p) => n + p.affiliates.length, 0)} affiliates
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            {CAUSE_PARTNERS.map((partner) => (
+              <CauseBlock key={partner.id} partner={partner} />
+            ))}
+          </div>
+
+          <p className="mt-8 text-sm text-muted-foreground">More cause partners launching soon →</p>
+        </div>
+      </section>
+
+
       {/* HOW IT WORKS */}
       <section id="how" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="mb-14 max-w-2xl">
@@ -267,7 +304,7 @@ function MasterHome() {
           <div className="flex flex-wrap items-center gap-1.5">
             <span>© 2026</span>
             <FanPactLogo variant="compact" height={20} />
-            <span>, Inc. NIL and Youth Sports Commerce Platform. Demo experience — all products and contributions illustrative.</span>
+            <span>, Inc. Community Commerce Platform. Demo experience — all products and contributions illustrative.</span>
           </div>
         </div>
       </footer>
@@ -337,6 +374,36 @@ function SchoolTile({ school, dark = false }: { school: { name: string; slug: st
     <div className={`flex items-center justify-between px-5 py-4 ${disabledClasses}`}>
       <span className="text-sm">{school.name}</span>
       <span className="text-[10px] uppercase tracking-widest opacity-60">Soon</span>
+    </div>
+  );
+}
+
+function CauseBlock({
+  partner,
+}: {
+  partner: { id: string; name: string; tier2Label: string; region?: string; affiliates: { name: string; slug: string; href?: string }[] };
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-6 py-5">
+        <div className="flex flex-wrap items-baseline gap-4">
+          <h3 className="font-display text-3xl tracking-tight">{partner.name}</h3>
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">
+            {partner.affiliates.length} {partner.tier2Label}
+          </span>
+          {partner.region && (
+            <span className="text-xs uppercase tracking-widest text-muted-foreground">{partner.region}</span>
+          )}
+        </div>
+        <span className="rounded-full border border-border px-3 py-1 text-[10px] uppercase tracking-widest text-muted-foreground">
+          Soon
+        </span>
+      </div>
+      <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
+        {partner.affiliates.map((a) => (
+          <SchoolTile key={a.slug} school={a} />
+        ))}
+      </div>
     </div>
   );
 }

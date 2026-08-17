@@ -127,3 +127,27 @@ export const YOUTH_LEAGUES: YouthLeague[] = [
   },
 ];
 
+
+export type CausePartner = {
+  id: string;
+  name: string;
+  /** Configurable per partner — CMN uses "Hospitals", others "Chapters"/"Affiliates". */
+  tier2Label: string;
+  region?: string;
+  affiliates: SchoolRef[];
+};
+
+export const CAUSE_PARTNERS: CausePartner[] = [
+  {
+    id: "childrens-miracle-network",
+    name: "Children's Miracle Network",
+    tier2Label: "Hospitals",
+    region: "National",
+    affiliates: [
+      { name: "Riley Children's Health", slug: "cmn-riley" },
+      { name: "St. Louis Children's Hospital", slug: "cmn-stl" },
+      { name: "Children's Hospital of Philadelphia", slug: "cmn-chop" },
+      { name: "Cincinnati Children's", slug: "cmn-cincinnati" },
+    ],
+  },
+];
