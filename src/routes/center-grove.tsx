@@ -1,6 +1,5 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { StoreHeader } from "@/components/fanpact/StoreHeader";
-import { StoreFooter } from "@/components/fanpact/StoreFooter";
+import { CauseStoreHeader, CauseStoreFooter } from "@/components/fanpact/CauseStoreChrome";
 import { UpcomingEventsBanner } from "@/components/UpcomingEventsBanner";
 import { STORES } from "@/data/stores";
 
