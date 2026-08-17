@@ -63,6 +63,7 @@ import { Route as LegacyOrgsOrgRouteImport } from './routes/legacy.orgs.$org'
 import { Route as LegacyEventsSlugRouteImport } from './routes/legacy.events.$slug'
 import { Route as CmnStJohnsOurHospitalRouteImport } from './routes/cmn.st-johns.our-hospital'
 import { Route as CmnStJohnsImpactStoriesRouteImport } from './routes/cmn.st-johns.impact-stories'
+import { Route as CmnStJohnsCartRouteImport } from './routes/cmn.st-johns.cart'
 import { Route as CenterGroveSponsorsSlugRouteImport } from './routes/center-grove.sponsors.$slug'
 import { Route as CenterGroveShopCategoryRouteImport } from './routes/center-grove.shop.$category'
 import { Route as CenterGroveProductSlugRouteImport } from './routes/center-grove.product.$slug'
@@ -368,6 +369,11 @@ const CmnStJohnsImpactStoriesRoute = CmnStJohnsImpactStoriesRouteImport.update({
   path: '/impact-stories',
   getParentRoute: () => CmnStJohnsRoute,
 } as any)
+const CmnStJohnsCartRoute = CmnStJohnsCartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => CmnStJohnsRoute,
+} as any)
 const CenterGroveSponsorsSlugRoute = CenterGroveSponsorsSlugRouteImport.update({
   id: '/sponsors/$slug',
   path: '/sponsors/$slug',
@@ -562,6 +568,7 @@ export interface FileRoutesByFullPath {
   '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
   '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRouteWithChildren
+  '/cmn/st-johns/cart': typeof CmnStJohnsCartRoute
   '/cmn/st-johns/impact-stories': typeof CmnStJohnsImpactStoriesRoute
   '/cmn/st-johns/our-hospital': typeof CmnStJohnsOurHospitalRoute
   '/legacy/events/$slug': typeof LegacyEventsSlugRoute
@@ -642,6 +649,7 @@ export interface FileRoutesByTo {
   '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
   '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRouteWithChildren
+  '/cmn/st-johns/cart': typeof CmnStJohnsCartRoute
   '/cmn/st-johns/impact-stories': typeof CmnStJohnsImpactStoriesRoute
   '/cmn/st-johns/our-hospital': typeof CmnStJohnsOurHospitalRoute
   '/legacy/events/$slug': typeof LegacyEventsSlugRoute
@@ -728,6 +736,7 @@ export interface FileRoutesById {
   '/center-grove/product/$slug': typeof CenterGroveProductSlugRoute
   '/center-grove/shop/$category': typeof CenterGroveShopCategoryRoute
   '/center-grove/sponsors/$slug': typeof CenterGroveSponsorsSlugRouteWithChildren
+  '/cmn/st-johns/cart': typeof CmnStJohnsCartRoute
   '/cmn/st-johns/impact-stories': typeof CmnStJohnsImpactStoriesRoute
   '/cmn/st-johns/our-hospital': typeof CmnStJohnsOurHospitalRoute
   '/legacy/events/$slug': typeof LegacyEventsSlugRoute
@@ -815,6 +824,7 @@ export interface FileRouteTypes {
     | '/center-grove/product/$slug'
     | '/center-grove/shop/$category'
     | '/center-grove/sponsors/$slug'
+    | '/cmn/st-johns/cart'
     | '/cmn/st-johns/impact-stories'
     | '/cmn/st-johns/our-hospital'
     | '/legacy/events/$slug'
@@ -895,6 +905,7 @@ export interface FileRouteTypes {
     | '/center-grove/product/$slug'
     | '/center-grove/shop/$category'
     | '/center-grove/sponsors/$slug'
+    | '/cmn/st-johns/cart'
     | '/cmn/st-johns/impact-stories'
     | '/cmn/st-johns/our-hospital'
     | '/legacy/events/$slug'
@@ -980,6 +991,7 @@ export interface FileRouteTypes {
     | '/center-grove/product/$slug'
     | '/center-grove/shop/$category'
     | '/center-grove/sponsors/$slug'
+    | '/cmn/st-johns/cart'
     | '/cmn/st-johns/impact-stories'
     | '/cmn/st-johns/our-hospital'
     | '/legacy/events/$slug'
@@ -1411,6 +1423,13 @@ declare module '@tanstack/react-router' {
       path: '/impact-stories'
       fullPath: '/cmn/st-johns/impact-stories'
       preLoaderRoute: typeof CmnStJohnsImpactStoriesRouteImport
+      parentRoute: typeof CmnStJohnsRoute
+    }
+    '/cmn/st-johns/cart': {
+      id: '/cmn/st-johns/cart'
+      path: '/cart'
+      fullPath: '/cmn/st-johns/cart'
+      preLoaderRoute: typeof CmnStJohnsCartRouteImport
       parentRoute: typeof CmnStJohnsRoute
     }
     '/center-grove/sponsors/$slug': {
@@ -1898,6 +1917,7 @@ const LegacyRouteWithChildren =
   LegacyRoute._addFileChildren(LegacyRouteChildren)
 
 interface CmnStJohnsRouteChildren {
+  CmnStJohnsCartRoute: typeof CmnStJohnsCartRoute
   CmnStJohnsImpactStoriesRoute: typeof CmnStJohnsImpactStoriesRoute
   CmnStJohnsOurHospitalRoute: typeof CmnStJohnsOurHospitalRoute
   CmnStJohnsIndexRoute: typeof CmnStJohnsIndexRoute
@@ -1907,6 +1927,7 @@ interface CmnStJohnsRouteChildren {
 }
 
 const CmnStJohnsRouteChildren: CmnStJohnsRouteChildren = {
+  CmnStJohnsCartRoute: CmnStJohnsCartRoute,
   CmnStJohnsImpactStoriesRoute: CmnStJohnsImpactStoriesRoute,
   CmnStJohnsOurHospitalRoute: CmnStJohnsOurHospitalRoute,
   CmnStJohnsIndexRoute: CmnStJohnsIndexRoute,
