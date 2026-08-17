@@ -98,6 +98,13 @@ function MasterHome() {
                 <Users className="h-5 w-5" />
                 Select your youth program
               </a>
+              <Link
+                to="/onboarding"
+                className="inline-flex items-center gap-2 rounded-md border border-white/60 bg-white/10 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20"
+              >
+                <ArrowRight className="h-5 w-5" />
+                Start your storefront
+              </Link>
             </div>
             <div className="mt-12 flex items-center gap-4 text-xs uppercase tracking-[0.22em] text-white/70">
               <div className="font-display text-5xl leading-none" style={{ color: "var(--gold)" }}>

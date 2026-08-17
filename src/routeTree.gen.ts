@@ -14,10 +14,13 @@ import { Route as CenterGroveRouteImport } from './routes/center-grove'
 import { Route as ButlerRouteImport } from './routes/butler'
 import { Route as AssaRouteImport } from './routes/assa'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
 import { Route as AssaIndexRouteImport } from './routes/assa.index'
+import { Route as OnboardingYouthRouteImport } from './routes/onboarding.youth'
+import { Route as OnboardingCollegiateRouteImport } from './routes/onboarding.collegiate'
 import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
 import { Route as LegacyMyListRouteImport } from './routes/legacy.my-list'
 import { Route as LegacyCheckoutConfirmationRouteImport } from './routes/legacy.checkout-confirmation'
@@ -107,6 +110,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
+  id: '/onboarding/',
+  path: '/onboarding/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegacyIndexRoute = LegacyIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -126,6 +134,16 @@ const AssaIndexRoute = AssaIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AssaRoute,
+} as any)
+const OnboardingYouthRoute = OnboardingYouthRouteImport.update({
+  id: '/onboarding/youth',
+  path: '/onboarding/youth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingCollegiateRoute = OnboardingCollegiateRouteImport.update({
+  id: '/onboarding/collegiate',
+  path: '/onboarding/collegiate',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LegacyTeamCardRoute = LegacyTeamCardRouteImport.update({
   id: '/team-card',
@@ -472,10 +490,13 @@ export interface FileRoutesByFullPath {
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/onboarding/collegiate': typeof OnboardingCollegiateRoute
+  '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -542,10 +563,13 @@ export interface FileRoutesByTo {
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/onboarding/collegiate': typeof OnboardingCollegiateRoute
+  '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa': typeof AssaIndexRoute
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
   '/legacy': typeof LegacyIndexRoute
+  '/onboarding': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -617,10 +641,13 @@ export interface FileRoutesById {
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/onboarding/collegiate': typeof OnboardingCollegiateRoute
+  '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -693,10 +720,13 @@ export interface FileRouteTypes {
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
     | '/legacy/team-card'
+    | '/onboarding/collegiate'
+    | '/onboarding/youth'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/onboarding/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -763,10 +793,13 @@ export interface FileRouteTypes {
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
     | '/legacy/team-card'
+    | '/onboarding/collegiate'
+    | '/onboarding/youth'
     | '/assa'
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/onboarding'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -837,10 +870,13 @@ export interface FileRouteTypes {
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
     | '/legacy/team-card'
+    | '/onboarding/collegiate'
+    | '/onboarding/youth'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/onboarding/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -896,6 +932,9 @@ export interface RootRouteChildren {
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
+  OnboardingCollegiateRoute: typeof OnboardingCollegiateRoute
+  OnboardingYouthRoute: typeof OnboardingYouthRoute
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -935,6 +974,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/onboarding'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof OnboardingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legacy/': {
       id: '/legacy/'
       path: '/'
@@ -962,6 +1008,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/assa/'
       preLoaderRoute: typeof AssaIndexRouteImport
       parentRoute: typeof AssaRoute
+    }
+    '/onboarding/youth': {
+      id: '/onboarding/youth'
+      path: '/onboarding/youth'
+      fullPath: '/onboarding/youth'
+      preLoaderRoute: typeof OnboardingYouthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/collegiate': {
+      id: '/onboarding/collegiate'
+      path: '/onboarding/collegiate'
+      fullPath: '/onboarding/collegiate'
+      preLoaderRoute: typeof OnboardingCollegiateRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/legacy/team-card': {
       id: '/legacy/team-card'
@@ -1691,7 +1751,20 @@ const rootRouteChildren: RootRouteChildren = {
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
+  OnboardingCollegiateRoute: OnboardingCollegiateRoute,
+  OnboardingYouthRoute: OnboardingYouthRoute,
+  OnboardingIndexRoute: OnboardingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
