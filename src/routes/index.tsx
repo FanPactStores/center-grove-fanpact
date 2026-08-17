@@ -377,3 +377,33 @@ function SchoolTile({ school, dark = false }: { school: { name: string; slug: st
     </div>
   );
 }
+
+function CauseBlock({
+  partner,
+}: {
+  partner: { id: string; name: string; tier2Label: string; region?: string; affiliates: { name: string; slug: string; href?: string }[] };
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-card">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border px-6 py-5">
+        <div className="flex flex-wrap items-baseline gap-4">
+          <h3 className="font-display text-3xl tracking-tight">{partner.name}</h3>
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">
+            {partner.affiliates.length} {partner.tier2Label}
+          </span>
+          {partner.region && (
+            <span className="text-xs uppercase tracking-widest text-muted-foreground">{partner.region}</span>
+          )}
+        </div>
+        <span className="rounded-full border border-border px-3 py-1 text-[10px] uppercase tracking-widest text-muted-foreground">
+          Soon
+        </span>
+      </div>
+      <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
+        {partner.affiliates.map((a) => (
+          <SchoolTile key={a.slug} school={a} />
+        ))}
+      </div>
+    </div>
+  );
+}
