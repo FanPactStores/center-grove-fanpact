@@ -71,7 +71,7 @@ export const STORES: Record<StoreId, StoreConfig> = {
     heroBody:
       "From West Chester to Cherry Hill, Downingtown to Warminster, and every Combat Futures showcase team — pick your hub, your roster, or your athlete. 60% of net earnings on every purchase flows to your designation.",
     marks: { letter: "A", word: "ASSA", subtitle: "All-Star Sports Academy" },
-  },,
+  },
   "cmn-st-johns": {
     id: "cmn-st-johns",
     basePath: "/cmn/st-johns",
