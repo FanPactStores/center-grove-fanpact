@@ -10,13 +10,15 @@ import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FanPact — NIL and Youth Sports Commerce Platform" },
-      { name: "description", content: "Collegiate NIL and youth sports commerce funding. Shop everyday products — 60% of net earnings flows to your designated athlete or program. No extra cost. No behavior change." },
-      { property: "og:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
-      { property: "og:description", content: "Collegiate athletics. Youth community alliances. One platform. 60% of net earnings back to the team you choose." },
+      { title: "FanPact — Community Commerce Platform" },
+      { name: "description", content: "Community commerce funding for collegiate NIL, youth programs, and community causes. Shop everyday products — 60% of net earnings flows to the people and programs you choose." },
+      { property: "og:title", content: "FanPact — Community Commerce Platform" },
+      { property: "og:description", content: "Collegiate NIL. Youth programs. Community causes. One platform. 60% of net earnings back to what you care about." },
       { property: "og:image", content: ogImage.url },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "FanPact — NIL and Youth Sports Commerce Platform" },
+      { name: "twitter:title", content: "FanPact — Community Commerce Platform" },
+      { name: "twitter:description", content: "Collegiate NIL. Youth programs. Community causes. One platform." },
       { name: "twitter:image", content: ogImage.url },
     ],
   }),
