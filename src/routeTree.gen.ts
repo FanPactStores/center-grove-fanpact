@@ -78,6 +78,7 @@ import { Route as AssaShopCategoryRouteImport } from './routes/assa.shop.$catego
 import { Route as AssaProductSlugRouteImport } from './routes/assa.product.$slug'
 import { Route as AssaOrgsOrgRouteImport } from './routes/assa.orgs.$org'
 import { Route as AssaEventsSlugRouteImport } from './routes/assa.events.$slug'
+import { Route as CmnStJohnsSponsorsIndexRouteImport } from './routes/cmn.st-johns.sponsors.index'
 import { Route as CmnStJohnsShopIndexRouteImport } from './routes/cmn.st-johns.shop.index'
 import { Route as LegacySponsorsSlugClaimRouteImport } from './routes/legacy.sponsors.$slug.claim'
 import { Route as LegacyOrgsOrgTeamRouteImport } from './routes/legacy.orgs.$org.$team'
@@ -442,6 +443,11 @@ const AssaEventsSlugRoute = AssaEventsSlugRouteImport.update({
   path: '/events/$slug',
   getParentRoute: () => AssaRoute,
 } as any)
+const CmnStJohnsSponsorsIndexRoute = CmnStJohnsSponsorsIndexRouteImport.update({
+  id: '/sponsors/',
+  path: '/sponsors/',
+  getParentRoute: () => CmnStJohnsRoute,
+} as any)
 const CmnStJohnsShopIndexRoute = CmnStJohnsShopIndexRouteImport.update({
   id: '/shop/',
   path: '/shop/',
@@ -590,6 +596,7 @@ export interface FileRoutesByFullPath {
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
   '/cmn/st-johns/shop/': typeof CmnStJohnsShopIndexRoute
+  '/cmn/st-johns/sponsors/': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
   '/legacy/orgs/$org/$team/$player': typeof LegacyOrgsOrgTeamPlayerRoute
@@ -669,6 +676,7 @@ export interface FileRoutesByTo {
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
   '/cmn/st-johns/shop': typeof CmnStJohnsShopIndexRoute
+  '/cmn/st-johns/sponsors': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
   '/legacy/orgs/$org/$team/$player': typeof LegacyOrgsOrgTeamPlayerRoute
@@ -754,6 +762,7 @@ export interface FileRoutesById {
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
   '/cmn/st-johns/shop/': typeof CmnStJohnsShopIndexRoute
+  '/cmn/st-johns/sponsors/': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
   '/center-grove/orgs/$org/$team/$player': typeof CenterGroveOrgsOrgTeamPlayerRoute
   '/legacy/orgs/$org/$team/$player': typeof LegacyOrgsOrgTeamPlayerRoute
@@ -840,6 +849,7 @@ export interface FileRouteTypes {
     | '/legacy/orgs/$org/$team'
     | '/legacy/sponsors/$slug/claim'
     | '/cmn/st-johns/shop/'
+    | '/cmn/st-johns/sponsors/'
     | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
     | '/legacy/orgs/$org/$team/$player'
@@ -919,6 +929,7 @@ export interface FileRouteTypes {
     | '/legacy/orgs/$org/$team'
     | '/legacy/sponsors/$slug/claim'
     | '/cmn/st-johns/shop'
+    | '/cmn/st-johns/sponsors'
     | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
     | '/legacy/orgs/$org/$team/$player'
@@ -1003,6 +1014,7 @@ export interface FileRouteTypes {
     | '/legacy/orgs/$org/$team'
     | '/legacy/sponsors/$slug/claim'
     | '/cmn/st-johns/shop/'
+    | '/cmn/st-johns/sponsors/'
     | '/assa/orgs/$org/$team/$player'
     | '/center-grove/orgs/$org/$team/$player'
     | '/legacy/orgs/$org/$team/$player'
@@ -1506,6 +1518,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssaEventsSlugRouteImport
       parentRoute: typeof AssaRoute
     }
+    '/cmn/st-johns/sponsors/': {
+      id: '/cmn/st-johns/sponsors/'
+      path: '/sponsors'
+      fullPath: '/cmn/st-johns/sponsors/'
+      preLoaderRoute: typeof CmnStJohnsSponsorsIndexRouteImport
+      parentRoute: typeof CmnStJohnsRoute
+    }
     '/cmn/st-johns/shop/': {
       id: '/cmn/st-johns/shop/'
       path: '/shop'
@@ -1884,6 +1903,7 @@ interface CmnStJohnsRouteChildren {
   CmnStJohnsIndexRoute: typeof CmnStJohnsIndexRoute
   CmnStJohnsShopCategoryRoute: typeof CmnStJohnsShopCategoryRoute
   CmnStJohnsShopIndexRoute: typeof CmnStJohnsShopIndexRoute
+  CmnStJohnsSponsorsIndexRoute: typeof CmnStJohnsSponsorsIndexRoute
 }
 
 const CmnStJohnsRouteChildren: CmnStJohnsRouteChildren = {
@@ -1892,6 +1912,7 @@ const CmnStJohnsRouteChildren: CmnStJohnsRouteChildren = {
   CmnStJohnsIndexRoute: CmnStJohnsIndexRoute,
   CmnStJohnsShopCategoryRoute: CmnStJohnsShopCategoryRoute,
   CmnStJohnsShopIndexRoute: CmnStJohnsShopIndexRoute,
+  CmnStJohnsSponsorsIndexRoute: CmnStJohnsSponsorsIndexRoute,
 }
 
 const CmnStJohnsRouteWithChildren = CmnStJohnsRoute._addFileChildren(
