@@ -14,6 +14,7 @@ import { Route as CenterGroveRouteImport } from './routes/center-grove'
 import { Route as ButlerRouteImport } from './routes/butler'
 import { Route as AssaRouteImport } from './routes/assa'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
@@ -105,6 +106,11 @@ const AssaRoute = AssaRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
+  id: '/onboarding/',
+  path: '/onboarding/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegacyIndexRoute = LegacyIndexRouteImport.update({
@@ -476,6 +482,7 @@ export interface FileRoutesByFullPath {
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -546,6 +553,7 @@ export interface FileRoutesByTo {
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
   '/legacy': typeof LegacyIndexRoute
+  '/onboarding': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -621,6 +629,7 @@ export interface FileRoutesById {
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/onboarding/': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -697,6 +706,7 @@ export interface FileRouteTypes {
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/onboarding/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -767,6 +777,7 @@ export interface FileRouteTypes {
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/onboarding'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -841,6 +852,7 @@ export interface FileRouteTypes {
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/onboarding/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -896,6 +908,7 @@ export interface RootRouteChildren {
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -933,6 +946,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/onboarding'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof OnboardingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legacy/': {
@@ -1691,6 +1711,7 @@ const rootRouteChildren: RootRouteChildren = {
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
+  OnboardingIndexRoute: OnboardingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
