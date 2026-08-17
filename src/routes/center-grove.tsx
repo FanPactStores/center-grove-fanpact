@@ -12,9 +12,9 @@ function CenterGroveLayout() {
   return (
     <div data-store="center-grove" className="min-h-screen bg-[var(--surface)] text-foreground">
       <UpcomingEventsBanner store="center-grove" />
-      <StoreHeader store={store} />
+      <CauseStoreHeader store={store} />
       <Outlet />
-      <StoreFooter store={store} />
+      <CauseStoreFooter store={store} />
     </div>
   );
 }
