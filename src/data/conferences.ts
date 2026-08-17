@@ -144,6 +144,7 @@ export const CAUSE_PARTNERS: CausePartner[] = [
     tier2Label: "Hospitals",
     region: "National",
     affiliates: [
+      { name: "HSHS St. John's Children's Hospital", slug: "cmn-st-johns", href: "/cmn/st-johns" },
       { name: "Riley Children's Health", slug: "cmn-riley" },
       { name: "St. Louis Children's Hospital", slug: "cmn-stl" },
       { name: "Children's Hospital of Philadelphia", slug: "cmn-chop" },

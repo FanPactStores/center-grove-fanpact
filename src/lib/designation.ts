@@ -129,6 +129,14 @@ function assaIndex(): StoreDesignationIndex {
   return flatten("assa", "All-Star Sports Academy Fund", groups);
 }
 
+function causeIndex(): StoreDesignationIndex {
+  return flatten(
+    "cmn-st-johns",
+    "HSHS St. John's Children's Hospital Greatest Needs Fund",
+    [],
+  );
+}
+
 function flatten(
   storeId: StoreId,
   generalFundName: string,
@@ -159,6 +167,7 @@ export function getDesignationIndex(storeId: StoreId): StoreDesignationIndex {
     storeId === "butler" ? butlerIndex()
     : storeId === "center-grove" ? cgIndex()
     : storeId === "legacy" ? legacyIndex()
+    : storeId === "cmn-st-johns" ? causeIndex()
     : assaIndex();
   indexCache[storeId] = built;
   return built;
@@ -169,6 +178,7 @@ export const DEFAULT_FUND_NAMES: Record<StoreId, string> = {
   "center-grove": "Center Grove Community Alliance Fund",
   legacy: "Legacy Performance Academy Fund",
   assa: "All-Star Sports Academy Fund",
+  "cmn-st-johns": "HSHS St. John's Children's Hospital Greatest Needs Fund",
 };
 
 export function defaultDesignation(storeId: StoreId): Designation {
