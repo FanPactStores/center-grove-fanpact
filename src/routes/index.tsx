@@ -197,6 +197,38 @@ function MasterHome() {
         </div>
       </section>
 
+      {/* CAUSE SELECTOR */}
+      <section id="cause" className="border-b border-border bg-background py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                <HeartHandshake className="h-4 w-4" /> Community causes
+              </div>
+              <h2 className="mt-3 font-display text-5xl tracking-tight">
+                Select your cause — <span style={{ color: "var(--gold)" }}>support the organizations you care about</span>
+              </h2>
+              <p className="mt-3 max-w-xl text-muted-foreground">
+                Community cause partners bring their own network into FanPact. Designate the fund, or the specific chapter, hospital, or affiliate you want to support.
+              </p>
+            </div>
+            <div className="rounded-full border border-border bg-card px-4 py-2 text-xs uppercase tracking-widest text-muted-foreground">
+              {CAUSE_PARTNERS.length} partner{CAUSE_PARTNERS.length === 1 ? "" : "s"} ·{" "}
+              {CAUSE_PARTNERS.reduce((n, p) => n + p.affiliates.length, 0)} affiliates
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            {CAUSE_PARTNERS.map((partner) => (
+              <CauseBlock key={partner.id} partner={partner} />
+            ))}
+          </div>
+
+          <p className="mt-8 text-sm text-muted-foreground">More cause partners launching soon →</p>
+        </div>
+      </section>
+
+
       {/* HOW IT WORKS */}
       <section id="how" className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <div className="mb-14 max-w-2xl">
