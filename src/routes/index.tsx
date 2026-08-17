@@ -1,9 +1,9 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, GraduationCap, Users, ShoppingBag, Wallet } from "lucide-react";
+import { ArrowRight, GraduationCap, HeartHandshake, Users, ShoppingBag, Wallet } from "lucide-react";
 import heroStadium from "@/assets/hero-stadium.jpg";
 import heroYouth from "@/assets/hero-youth.jpg";
 import ogImage from "@/assets/fanpact-og.jpg.asset.json";
-import { CONFERENCES, YOUTH_LEAGUES } from "@/data/conferences";
+import { CONFERENCES, YOUTH_LEAGUES, CAUSE_PARTNERS } from "@/data/conferences";
 import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
