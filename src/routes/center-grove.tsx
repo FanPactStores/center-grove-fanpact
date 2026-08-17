@@ -1,6 +1,5 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { StoreHeader } from "@/components/fanpact/StoreHeader";
-import { StoreFooter } from "@/components/fanpact/StoreFooter";
+import { CauseStoreHeader, CauseStoreFooter } from "@/components/fanpact/CauseStoreChrome";
 import { UpcomingEventsBanner } from "@/components/UpcomingEventsBanner";
 import { STORES } from "@/data/stores";
 
@@ -13,9 +12,9 @@ function CenterGroveLayout() {
   return (
     <div data-store="center-grove" className="min-h-screen bg-[var(--surface)] text-foreground">
       <UpcomingEventsBanner store="center-grove" />
-      <StoreHeader store={store} />
+      <CauseStoreHeader store={store} />
       <Outlet />
-      <StoreFooter store={store} />
+      <CauseStoreFooter store={store} />
     </div>
   );
 }
