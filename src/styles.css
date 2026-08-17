@@ -147,6 +147,17 @@
   --gold-foreground: oklch(0.18 0.05 255);
 }
 
+/* ---------- HSHS ST. JOHN'S CHILDREN'S HOSPITAL (CMN) THEME ---------- */
+[data-store="cmn-st-johns"] {
+  --brand: oklch(0.30 0.10 265);           /* HSHS deep blue */
+  --brand-foreground: oklch(0.99 0 0);
+  --brand-accent: oklch(0.62 0.17 20);     /* CMN red */
+  --ink: oklch(0.20 0.06 265);
+  --surface: oklch(0.99 0.004 250);
+  --surface-2: oklch(0.96 0.012 250);
+  --gold: oklch(0.80 0.13 80);
+  --gold-foreground: oklch(0.20 0.06 265);
+}
 
 @layer base {
   * {

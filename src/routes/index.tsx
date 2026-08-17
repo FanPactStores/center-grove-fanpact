@@ -396,7 +396,7 @@ function CauseBlock({
           )}
         </div>
         <span className="rounded-full border border-border px-3 py-1 text-[10px] uppercase tracking-widest text-muted-foreground">
-          Soon
+          {partner.affiliates.some((a) => a.href) ? "Live" : "Soon"}
         </span>
       </div>
       <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">

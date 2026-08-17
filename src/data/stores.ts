@@ -1,5 +1,5 @@
-export type StoreId = "butler" | "center-grove" | "legacy" | "assa";
-export type StoreBasePath = "/butler" | "/center-grove" | "/legacy" | "/assa";
+export type StoreId = "butler" | "center-grove" | "legacy" | "assa" | "cmn-st-johns";
+export type StoreBasePath = "/butler" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns";
 
 export type StoreConfig = {
   id: StoreId;
@@ -71,5 +71,19 @@ export const STORES: Record<StoreId, StoreConfig> = {
     heroBody:
       "From West Chester to Cherry Hill, Downingtown to Warminster, and every Combat Futures showcase team — pick your hub, your roster, or your athlete. 60% of net earnings on every purchase flows to your designation.",
     marks: { letter: "A", word: "ASSA", subtitle: "All-Star Sports Academy" },
+  },,
+  "cmn-st-johns": {
+    id: "cmn-st-johns",
+    basePath: "/cmn/st-johns",
+    name: "HSHS St. John's Children's Hospital",
+    shortName: "St. John's Children's",
+    fundName: "HSHS St. John's Children's Hospital Greatest Needs Fund",
+    fundDisplay: "HSHS St. John's Children's Hospital",
+    tagline: "Shop the brands you already buy. Fund pediatric care in Illinois.",
+    heroEyebrow: "Children's Miracle Network Hospitals \u00d7 FanPact",
+    heroHeadline: "Shop & Support HSHS St. John's Children's Hospital",
+    heroBody:
+      "Every purchase helps fund life-saving pediatric care in Springfield, Illinois, and across central and southern Illinois.",
+    marks: { letter: "SJ", word: "ST. JOHN'S CHILDREN'S", subtitle: "Springfield, Illinois" },
   },
 };
