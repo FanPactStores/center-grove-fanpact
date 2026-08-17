@@ -34,18 +34,21 @@ function MasterHome() {
           <Link to="/" aria-label="FanPact home" className="inline-flex">
             <FanPactLogo variant="white" height={36} />
           </Link>
-          <nav className="hidden gap-8 text-sm text-white/90 md:flex">
+          <nav className="hidden items-center gap-8 text-sm text-white/90 md:flex">
             <a href="#collegiate" className="hover:text-white">Collegiate</a>
             <a href="#youth" className="hover:text-white">Youth</a>
+            <a href="#cause" className="hover:text-white">Cause</a>
+            <Link to="/alliance" className="hover:text-white">Alliance</Link>
             <a href="#how" className="hover:text-white">How it works</a>
             <a href="#card" className="hover:text-white">Team Card</a>
           </nav>
-          <a
-            href="#collegiate"
-            className="hidden rounded-md border border-white/30 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 md:inline-flex"
+          <Link
+            to="/onboarding"
+            className="hidden rounded-md px-4 py-2 text-sm font-semibold shadow-lg md:inline-flex"
+            style={{ background: "var(--community)", color: "var(--community-foreground)" }}
           >
-            Select your team →
-          </a>
+            Start Your Storefront
+          </Link>
         </div>
       </header>
 
