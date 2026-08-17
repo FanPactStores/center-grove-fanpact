@@ -5,16 +5,36 @@ import type { StoreConfig } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
 import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 import { NavSearchBar } from "@/components/fanpact/SearchBar";
+import { DesignationBanner } from "./DesignationBanner";
 
-const NAV = [
-  { label: "SHOP", to: "/cmn/st-johns/shop" as const },
-  { label: "OUR HOSPITAL", to: "/cmn/st-johns/our-hospital" as const },
-  { label: "IMPACT STORIES", to: "/cmn/st-johns/impact-stories" as const },
-  { label: "SPONSORS", to: "/cmn/st-johns/sponsors" as const },
-];
+type NavItem = { label: string; to: string };
+
+const NAV_BY_STORE: Record<string, NavItem[]> = {
+  "cmn-st-johns": [
+    { label: "SHOP", to: "/cmn/st-johns/shop" },
+    { label: "OUR HOSPITAL", to: "/cmn/st-johns/our-hospital" },
+    { label: "IMPACT STORIES", to: "/cmn/st-johns/impact-stories" },
+    { label: "SPONSORS", to: "/cmn/st-johns/sponsors" },
+  ],
+  "center-grove": [
+    { label: "SHOP", to: "/center-grove/shop" },
+    { label: "TEAMS", to: "/center-grove/orgs" },
+    { label: "EVENTS", to: "/center-grove/events" },
+    { label: "REWARDS", to: "/center-grove/team-card" },
+    { label: "SPONSORS", to: "/center-grove/sponsors" },
+  ],
+};
+
+/** Single-line designation copy for single-beneficiary (cause) stores. */
+const FIXED_DESIGNATION: Record<string, string> = {
+  "cmn-st-johns":
+    "100% of your designated contribution supports HSHS St. John's Children's Hospital's greatest areas of need.",
+};
 
 export function CauseStoreHeader({ store }: { store: StoreConfig }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const nav = NAV_BY_STORE[store.id] ?? [{ label: "SHOP", to: `${store.basePath}/shop` }];
+  const fixedLine = FIXED_DESIGNATION[store.id];
 
   return (
     <header className="sticky top-0 z-50">
@@ -33,7 +53,7 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
           </Link>
 
           <Link
-            to="/cmn/st-johns"
+            to={store.basePath as "/butler"}
             className="flex items-center gap-3 rounded-md px-2 py-1"
             style={{ background: "var(--brand)" }}
           >
@@ -53,10 +73,10 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
           </Link>
 
           <nav className="ml-12 hidden flex-1 items-center justify-center gap-8 md:flex">
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <Link
                 key={n.label}
-                to={n.to}
+                to={n.to as "/butler/shop"}
                 className="text-xs font-bold tracking-widest transition-colors hover:opacity-80"
                 activeProps={{ style: { color: "var(--brand-accent)" } }}
                 style={{ color: "var(--muted-foreground)" }}
@@ -68,7 +88,7 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
 
           <div className="ml-auto flex items-center gap-1">
             <Link
-              to="/cmn/st-johns/cart"
+              to={`${store.basePath}/cart` as "/butler/cart"}
               aria-label="Cart"
               className="rounded-full p-2 transition-colors hover:bg-muted"
               style={{ color: "var(--brand-accent)" }}
@@ -97,10 +117,10 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
             >
               FanPact Home →
             </Link>
-            {NAV.map((n) => (
+            {nav.map((n) => (
               <Link
                 key={n.label}
-                to={n.to}
+                to={n.to as "/butler/shop"}
                 onClick={() => setMobileOpen(false)}
                 className="block py-2 text-sm font-semibold"
               >
@@ -124,7 +144,7 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
           {CATEGORIES.map((c) => (
             <Link
               key={c.slug}
-              to="/cmn/st-johns/shop/$category"
+              to={`${store.basePath}/shop/$category` as "/butler/shop/$category"}
               params={{ category: c.slug }}
               className="shrink-0 whitespace-nowrap rounded-md px-3 py-1.5 text-xs text-white/80 transition-colors hover:bg-white/10 hover:text-white"
             >
@@ -134,28 +154,31 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
         </div>
       </div>
 
-      {/* DESIGNATION BAR — single beneficiary, no picker */}
-      <div
-        className="border-b text-xs"
-        style={{
-          background: "color-mix(in oklab, var(--brand-accent) 12%, white)",
-          borderColor: "color-mix(in oklab, var(--brand-accent) 30%, white)",
-          color: "var(--ink)",
-        }}
-      >
-        <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-2 lg:px-8">
-          <Heart className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--brand-accent)" }} />
-          <span className="truncate">
-            100% of your designated contribution supports HSHS St. John's Children's Hospital's
-            greatest areas of need.
-          </span>
+      {/* DESIGNATION BAR */}
+      {fixedLine ? (
+        <div
+          className="border-b text-xs"
+          style={{
+            background: "color-mix(in oklab, var(--brand-accent) 12%, white)",
+            borderColor: "color-mix(in oklab, var(--brand-accent) 30%, white)",
+            color: "var(--ink)",
+          }}
+        >
+          <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-2 lg:px-8">
+            <Heart className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--brand-accent)" }} />
+            <span className="truncate">{fixedLine}</span>
+          </div>
         </div>
-      </div>
+      ) : (
+        <DesignationBanner store={store} />
+      )}
     </header>
   );
 }
 
 export function CauseStoreFooter({ store }: { store: StoreConfig }) {
+  const nav = NAV_BY_STORE[store.id] ?? [{ label: "SHOP", to: `${store.basePath}/shop` }];
+
   return (
     <footer
       className="mt-24 border-t border-border"
@@ -172,18 +195,20 @@ export function CauseStoreFooter({ store }: { store: StoreConfig }) {
             <span>Powered by FanPact</span>
           </Link>
           <p className="mt-6 max-w-md text-sm opacity-80">
-            60% of net earnings on every purchase flows to HSHS St. John's Children's Hospital, a
-            Children's Miracle Network Hospital in Springfield, Illinois. No extra cost, no
+            60% of net earnings on every purchase flows to {store.fundDisplay}. No extra cost, no
             fundraising ask.
           </p>
         </div>
         <div>
           <div className="text-xs uppercase tracking-[0.18em] opacity-60">Shop</div>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link to="/cmn/st-johns/shop" className="hover:underline">All categories</Link></li>
-            <li><Link to="/cmn/st-johns/our-hospital" className="hover:underline">Our hospital</Link></li>
-            <li><Link to="/cmn/st-johns/impact-stories" className="hover:underline">Impact stories</Link></li>
-            <li><Link to="/cmn/st-johns/sponsors" className="hover:underline">Sponsors</Link></li>
+            {nav.map((n) => (
+              <li key={n.label}>
+                <Link to={n.to as "/butler/shop"} className="hover:underline">
+                  {n.label.charAt(0) + n.label.slice(1).toLowerCase()}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
@@ -197,8 +222,7 @@ export function CauseStoreFooter({ store }: { store: StoreConfig }) {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-6 text-xs opacity-70 lg:px-8">
           © {new Date().getFullYear()} FanPact, Inc. NIL and Youth Sports Commerce Platform. Demo
-          experience — all products and contributions illustrative. Hospital imagery is a
-          placeholder pending Children's Miracle Network Brand Center approval.
+          experience — all products and contributions illustrative.
         </div>
       </div>
     </footer>
