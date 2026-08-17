@@ -66,7 +66,7 @@ function MasterHome() {
           <div className="max-w-4xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--gold)" }} />
-              NIL and Youth Sports Commerce Platform
+              Community Commerce Platform
             </div>
             <div className="mb-6 flex justify-center md:justify-start">
               <FanPactLogo variant="white" height={52} />
@@ -74,15 +74,15 @@ function MasterHome() {
             <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-tight text-white">
               WHERE EVERY<br />
               PURCHASE FUNDS<br />
-              <span style={{ color: "var(--gold)" }}>YOUR ATHLETES</span>
+              <span style={{ color: "var(--gold)" }}>WHAT YOU CARE ABOUT</span>
             </h1>
             <div className="mt-4 flex flex-col gap-1 font-display text-xl font-bold tracking-tight text-white md:flex-row md:gap-4 md:text-2xl lg:text-3xl">
               <span>Collegiate NIL.</span>
-              <span>Youth Sports.</span>
-              <span>Powered by Commerce.</span>
+              <span>Youth Programs.</span>
+              <span>Community Causes.</span>
             </div>
             <p className="mt-6 max-w-2xl text-lg text-white/85">
-              60% of net earnings flows to the athletes and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
+              60% of net earnings flows to the people and programs you choose. No extra cost. No behavior change required. <span className="text-white">Just switch where you already shop.</span>
             </p>
             <p className="mt-2 max-w-2xl text-[0.85rem] text-white/60">
               Groceries. Pet food. Household essentials. Personal care. Not team merch.
@@ -94,22 +94,22 @@ function MasterHome() {
                 style={{ background: "var(--gold)", color: "var(--gold-foreground)" }}
               >
                 <GraduationCap className="h-5 w-5" />
-                Select your college
+                Select Your College
               </a>
               <a
                 href="#youth"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
               >
                 <Users className="h-5 w-5" />
-                Select your youth program
+                Select Your Youth Program
               </a>
-              <Link
-                to="/onboarding"
-                className="inline-flex items-center gap-2 rounded-md border border-white/60 bg-white/10 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/20"
+              <a
+                href="#cause"
+                className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-6 py-4 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
               >
-                <ArrowRight className="h-5 w-5" />
-                Start your storefront
-              </Link>
+                <HeartHandshake className="h-5 w-5" />
+                Select Your Cause
+              </a>
             </div>
             <div className="mt-12 flex items-center gap-4 text-xs uppercase tracking-[0.22em] text-white/70">
               <div className="font-display text-5xl leading-none" style={{ color: "var(--gold)" }}>

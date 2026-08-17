@@ -13,6 +13,7 @@ import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as CenterGroveRouteImport } from './routes/center-grove'
 import { Route as ButlerRouteImport } from './routes/butler'
 import { Route as AssaRouteImport } from './routes/assa'
+import { Route as AllianceRouteImport } from './routes/alliance'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
@@ -103,6 +104,11 @@ const ButlerRoute = ButlerRouteImport.update({
 const AssaRoute = AssaRouteImport.update({
   id: '/assa',
   path: '/assa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AllianceRoute = AllianceRouteImport.update({
+  id: '/alliance',
+  path: '/alliance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -470,6 +476,7 @@ const AssaOrgsOrgTeamPlayerRoute = AssaOrgsOrgTeamPlayerRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alliance': typeof AllianceRoute
   '/assa': typeof AssaRouteWithChildren
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
@@ -547,6 +554,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alliance': typeof AllianceRoute
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
   '/assa/my-list': typeof AssaMyListRoute
@@ -621,6 +629,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alliance': typeof AllianceRoute
   '/assa': typeof AssaRouteWithChildren
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
@@ -700,6 +709,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/alliance'
     | '/assa'
     | '/butler'
     | '/center-grove'
@@ -777,6 +787,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/alliance'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
     | '/assa/my-list'
@@ -850,6 +861,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/alliance'
     | '/assa'
     | '/butler'
     | '/center-grove'
@@ -928,6 +940,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AllianceRoute: typeof AllianceRoute
   AssaRoute: typeof AssaRouteWithChildren
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
@@ -965,6 +978,13 @@ declare module '@tanstack/react-router' {
       path: '/assa'
       fullPath: '/assa'
       preLoaderRoute: typeof AssaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alliance': {
+      id: '/alliance'
+      path: '/alliance'
+      fullPath: '/alliance'
+      preLoaderRoute: typeof AllianceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -1747,6 +1767,7 @@ const LegacyRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AllianceRoute: AllianceRoute,
   AssaRoute: AssaRouteWithChildren,
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
