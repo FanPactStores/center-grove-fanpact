@@ -3,8 +3,7 @@ import { ArrowRight, ShoppingBag, Heart, MapPin, Baby, Stethoscope } from "lucid
 import heroImage from "@/assets/cmn-st-johns-hero.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
-import { FEATURED_PRODUCTS } from "@/data/products";
-import { ProductCard } from "@/components/fanpact/ProductCard";
+import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/cmn/st-johns/")({
@@ -201,27 +200,11 @@ function StJohnsHome() {
         </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
-      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="font-display text-4xl tracking-tight md:text-5xl">
-            Everyday essentials supporting kids in Illinois
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Shop the products you already buy — every purchase helps fund pediatric care.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-          {FEATURED_PRODUCTS.slice(0, 6).map((p) => (
-            <ProductCard
-              key={p.id}
-              product={p}
-              basePath={store.basePath}
-              storeId={store.id}
-            />
-          ))}
-        </div>
-      </section>
+      {/* EVERYDAY ESSENTIALS */}
+      <EverydayEssentialsGrid
+        basePath={store.basePath}
+        supportsName="HSHS St. John's Children's Hospital"
+      />
     </main>
   );
 }
