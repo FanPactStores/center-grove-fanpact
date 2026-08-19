@@ -1,11 +1,10 @@
+import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, LayoutGrid, Users } from "lucide-react";
 import cgHero from "@/assets/cg-community.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
-import { FEATURED_PRODUCTS } from "@/data/products";
 import { CG_ORGS } from "@/data/center-grove-orgs";
-import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
@@ -201,26 +200,7 @@ function CenterGroveHome() {
       <YourRegulars store={store} />
 
       {/* FEATURED PRODUCTS */}
-      <section className="border-y border-border bg-[var(--surface-2)]">
-        <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <div className="mb-10 text-center">
-            <h2
-              className="font-display text-4xl tracking-tight md:text-5xl"
-              style={{ color: "var(--brand-accent)" }}
-            >
-              Everyday Essentials Supporting Center Grove
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-              Shop the products you already love — every purchase makes a difference.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-            {FEATURED_PRODUCTS.slice(0, 6).map((p) => (
-              <ProductCard key={p.id} product={p} basePath={store.basePath} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <EverydayEssentialsGrid basePath={store.basePath} supportsName="Center Grove" />
 
       {/* HOW IT WORKS */}
       <section className="mx-auto max-w-7xl px-4 py-24 lg:px-8">

@@ -1,11 +1,10 @@
+import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, LayoutGrid, TrendingUp } from "lucide-react";
 import butlerArena from "@/assets/butler-arena.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
-import { FEATURED_PRODUCTS } from "@/data/products";
 import { sponsorsForStore } from "@/data/sponsors";
-import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
@@ -180,33 +179,7 @@ function ButlerHome() {
       <YourRegulars store={store} />
 
       {/* EVERYDAY ESSENTIALS */}
-      <section className="border-y border-border bg-[var(--surface-2)]">
-        <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <div className="mb-10 text-center">
-            <h2
-              className="font-display text-4xl tracking-tight md:text-5xl"
-              style={{ color: "var(--brand-accent)" }}
-            >
-              Everyday Essentials Supporting Butler Athletes
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-              Shop the products you already love — every purchase makes a difference.
-            </p>
-            <Link
-              to="/butler/shop"
-              className="mt-5 inline-flex items-center gap-1 text-sm font-semibold underline-offset-4 hover:underline"
-              style={{ color: "var(--brand-accent)" }}
-            >
-              View All <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-            {FEATURED_PRODUCTS.slice(0, 6).map((p) => (
-              <ProductCard key={p.id} product={p} basePath={store.basePath} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <EverydayEssentialsGrid basePath={store.basePath} supportsName="Butler Athletics" />
 
       {/* NIL IMPACT STRIP */}
       <section
