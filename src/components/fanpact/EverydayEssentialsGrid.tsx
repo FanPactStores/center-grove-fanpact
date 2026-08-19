@@ -54,7 +54,8 @@ export function EverydayEssentialsGrid({ basePath, supportsName }: Props) {
           {TILES.map((tile) => (
             <Link
               key={tile.label}
-              to={`${basePath}/shop/${tile.category}`}
+              to={`${basePath}/shop/$category` as "/butler/shop/$category"}
+              params={{ category: tile.category }}
               className="group flex aspect-square flex-col overflow-hidden rounded-xl border-[0.5px] border-border bg-card transition-all duration-200 hover:scale-[1.03] hover:border-[var(--brand-accent)] hover:shadow-lg"
             >
               <div className="flex h-[60%] items-center justify-center overflow-hidden bg-white p-3">
