@@ -4,9 +4,7 @@ import { ArrowRight, ShoppingBag, LayoutGrid, Users } from "lucide-react";
 import cgHero from "@/assets/cg-community.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
-import { FEATURED_PRODUCTS } from "@/data/products";
 import { CG_ORGS } from "@/data/center-grove-orgs";
-import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 

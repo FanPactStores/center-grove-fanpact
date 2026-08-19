@@ -4,9 +4,7 @@ import { ArrowRight, ShoppingBag, LayoutGrid, TrendingUp } from "lucide-react";
 import butlerArena from "@/assets/butler-arena.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
-import { FEATURED_PRODUCTS } from "@/data/products";
 import { sponsorsForStore } from "@/data/sponsors";
-import { ProductCard } from "@/components/fanpact/ProductCard";
 import { YourRegulars } from "@/components/fanpact/YourRegulars";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
