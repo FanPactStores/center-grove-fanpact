@@ -3,8 +3,7 @@ import { ArrowRight, ShoppingBag, Heart, MapPin, Baby, Stethoscope } from "lucid
 import heroImage from "@/assets/cmn-st-johns-hero.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
-import { FEATURED_PRODUCTS } from "@/data/products";
-import { ProductCard } from "@/components/fanpact/ProductCard";
+import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { EnterprisePartnerBanner } from "@/components/EnterprisePartnerBanner";
 
 export const Route = createFileRoute("/cmn/st-johns/")({
