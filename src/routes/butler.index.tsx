@@ -1,3 +1,4 @@
+import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, LayoutGrid, TrendingUp } from "lucide-react";
 import butlerArena from "@/assets/butler-arena.jpg";

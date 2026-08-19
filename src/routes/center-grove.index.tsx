@@ -1,3 +1,4 @@
+import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, LayoutGrid, Users } from "lucide-react";
 import cgHero from "@/assets/cg-community.jpg";
