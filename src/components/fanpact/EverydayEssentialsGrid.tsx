@@ -77,7 +77,7 @@ export function EverydayEssentialsGrid({ basePath, supportsName }: Props) {
 
         <div className="mt-10 text-center">
           <Link
-            to={`${basePath}/shop`}
+            to={`${basePath}/shop` as "/butler/shop"}
             className="inline-flex items-center gap-1 text-sm font-semibold underline-offset-4 hover:underline"
             style={{ color: "var(--brand-accent)" }}
           >
