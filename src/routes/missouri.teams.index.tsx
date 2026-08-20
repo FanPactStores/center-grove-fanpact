@@ -34,7 +34,7 @@ function TeamsIndex() {
               <div className="flex items-start justify-between gap-4">
                 <div className="text-xs uppercase tracking-[0.22em] opacity-70">Mizzou Athletics</div>
                 {t.comingSoon && (
-                  <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
+                  <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-black shadow-sm">
                     Coming Soon
                   </span>
                 )}
