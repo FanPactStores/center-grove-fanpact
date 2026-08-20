@@ -41,36 +41,57 @@ function SportRoster() {
               <h1 className="mt-2 font-display text-6xl tracking-tight">{team.name}</h1>
               <p className="mt-3 max-w-xl opacity-85">{team.blurb}</p>
             </div>
-            <div className="text-right">
-              <div className="font-display text-6xl tracking-tight" style={{ color: "var(--brand-accent)" }}>{team.players.length}</div>
-              <div className="text-xs uppercase tracking-widest opacity-70">Players</div>
-            </div>
+            {team.comingSoon ? (
+              <span className="rounded-full bg-white/20 px-4 py-2 text-sm font-semibold uppercase tracking-wider backdrop-blur">
+                Coming Soon
+              </span>
+            ) : (
+              <div className="text-right">
+                <div className="font-display text-6xl tracking-tight" style={{ color: "var(--brand-accent)" }}>{team.players.length}</div>
+                <div className="text-xs uppercase tracking-widest opacity-70">Players</div>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {team.players.map((p: import("@/data/missouri-teams").MissouriPlayer) => (
+        {team.comingSoon ? (
+          <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-16 text-center">
+            <h2 className="font-display text-3xl tracking-tight">Roster loading for the 2026 season</h2>
+            <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+              The {team.name} roster will be available soon. Check back as the season approaches.
+            </p>
             <Link
-              key={p.slug}
-              to="/missouri/teams/$sport/$player"
-              params={{ sport: team.slug, player: p.slug }}
-              className="group overflow-hidden rounded-xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              to="/missouri/teams"
+              className="mt-8 inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
             >
-              <div className="relative aspect-[3/4] w-full" style={{ background: p.swatch }}>
-                <div className="absolute left-3 top-3 font-display text-4xl text-white">{p.number}</div>
-                <div className="absolute bottom-3 right-3 rounded-md bg-black/30 px-2 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">
-                  {p.position}
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="font-display text-lg leading-tight group-hover:underline">{p.name}</div>
-                <div className="mt-1 text-xs text-muted-foreground">#{p.number} · {p.position}</div>
-              </div>
+              Browse available teams
             </Link>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {team.players.map((p: import("@/data/missouri-teams").MissouriPlayer) => (
+              <Link
+                key={p.slug}
+                to="/missouri/teams/$sport/$player"
+                params={{ sport: team.slug, player: p.slug }}
+                className="group overflow-hidden rounded-xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                <div className="relative aspect-[3/4] w-full" style={{ background: p.swatch }}>
+                  <div className="absolute left-3 top-3 font-display text-4xl text-white">{p.number}</div>
+                  <div className="absolute bottom-3 right-3 rounded-md bg-black/30 px-2 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">
+                    {p.position}
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="font-display text-lg leading-tight group-hover:underline">{p.name}</div>
+                  <div className="mt-1 text-xs text-muted-foreground">#{p.number} · {p.position}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
