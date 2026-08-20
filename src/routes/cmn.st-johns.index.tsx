@@ -67,14 +67,14 @@ function StJohnsHome() {
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                to="/cmn/st-johns/shop"
+              <a
+                href="#everyday-essentials"
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg"
                 style={{ background: "var(--brand-accent)" }}
               >
                 <ShoppingBag className="h-4 w-4" />
                 Shop Now
-              </Link>
+              </a>
               <Link
                 to="/cmn/st-johns/our-hospital"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
@@ -202,6 +202,7 @@ function StJohnsHome() {
 
       {/* EVERYDAY ESSENTIALS */}
       <EverydayEssentialsGrid
+        id="everyday-essentials"
         basePath={store.basePath}
         supportsName="HSHS St. John's Children's Hospital"
       />

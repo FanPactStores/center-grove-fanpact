@@ -58,14 +58,14 @@ function CenterGroveHome() {
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link
-                to="/center-grove/shop"
+              <a
+                href="#everyday-essentials"
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold uppercase tracking-wider shadow-lg"
                 style={{ background: "var(--brand-accent)", color: "var(--gold-foreground)" }}
               >
                 <ShoppingBag className="h-4 w-4" />
                 Shop Now
-              </Link>
+              </a>
               <Link
                 to="/center-grove/orgs"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
@@ -200,7 +200,7 @@ function CenterGroveHome() {
       <YourRegulars store={store} />
 
       {/* FEATURED PRODUCTS */}
-      <EverydayEssentialsGrid basePath={store.basePath} supportsName="Center Grove" />
+      <EverydayEssentialsGrid id="everyday-essentials" basePath={store.basePath} supportsName="Center Grove" />
 
       {/* HOW IT WORKS */}
       <section className="mx-auto max-w-7xl px-4 py-24 lg:px-8">

@@ -68,14 +68,14 @@ function LegacyHome() {
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link
-                to="/legacy/shop"
+              <a
+                href="#everyday-essentials"
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg"
                 style={{ background: "var(--brand-accent)" }}
               >
                 <ShoppingBag className="h-4 w-4" />
                 Shop Now
-              </Link>
+              </a>
               <Link
                 to="/legacy/orgs"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
@@ -195,7 +195,7 @@ function LegacyHome() {
       <YourRegulars store={store} />
 
       {/* FEATURED PRODUCTS */}
-      <section className="border-y border-border bg-[var(--surface-2)]">
+      <section id="everyday-essentials" className="border-y border-border bg-[var(--surface-2)]">
         <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <div className="mb-10 text-center">
             <h2
