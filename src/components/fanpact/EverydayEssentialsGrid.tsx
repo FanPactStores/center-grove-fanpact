@@ -1,86 +1,35 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import imgLaundry from "@/assets/essentials/laundry.jpg";
+import imgPaper from "@/assets/essentials/paper-cleaning.jpg";
+import imgDish from "@/assets/essentials/dishwashing.jpg";
+import imgPet from "@/assets/essentials/pet.jpg";
+import imgOral from "@/assets/essentials/oral-care.jpg";
+import imgVitamins from "@/assets/essentials/vitamins.jpg";
+import imgSports from "@/assets/essentials/sports-drinks.jpg";
+import imgSnacks from "@/assets/essentials/snacks.jpg";
+import imgCables from "@/assets/essentials/cables.jpg";
+import imgCoffee from "@/assets/essentials/coffee.jpg";
 
 type Tile = {
   label: string;
   category: string;
-  brandColor: string;
-  fallbackText: string;
-  fallbackTextColor: string;
+  image: string;
 };
 
 const TILES: Tile[] = [
-  {
-    label: "Laundry",
-    category: "home-living",
-    brandColor: "#F15A2B",
-    fallbackText: "Tide",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Paper & Cleaning",
-    category: "home-living",
-    brandColor: "#E31837",
-    fallbackText: "Bounty",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Dishwashing",
-    category: "kitchen-dining",
-    brandColor: "#006B3C",
-    fallbackText: "Cascade",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Pet Treats & Food",
-    category: "pet-supplies",
-    brandColor: "#5E9E2F",
-    fallbackText: "Greenies",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Oral Care",
-    category: "beauty-personal-care",
-    brandColor: "#E31837",
-    fallbackText: "Colgate",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Vitamins & Wellness",
-    category: "health-wellness",
-    brandColor: "#004B8D",
-    fallbackText: "Centrum",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Sports Drinks",
-    category: "food-beverage",
-    brandColor: "#F36F21",
-    fallbackText: "Gatorade",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Snacks & Pantry",
-    category: "food-beverage",
-    brandColor: "#FBBF00",
-    fallbackText: "KIND",
-    fallbackTextColor: "#1A1A1A",
-  },
-  {
-    label: "Charging & Cables",
-    category: "electronics",
-    brandColor: "#1A1A2E",
-    fallbackText: "Anker",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Coffee & Tea",
-    category: "food-beverage",
-    brandColor: "#2C6E2F",
-    fallbackText: "Green Mtn",
-    fallbackTextColor: "#FFFFFF",
-  },
+  { label: "Laundry", category: "home-living", image: imgLaundry },
+  { label: "Paper & Cleaning", category: "home-living", image: imgPaper },
+  { label: "Dishwashing", category: "kitchen-dining", image: imgDish },
+  { label: "Pet Treats & Food", category: "pet-supplies", image: imgPet },
+  { label: "Oral Care", category: "beauty-personal-care", image: imgOral },
+  { label: "Vitamins & Wellness", category: "health-wellness", image: imgVitamins },
+  { label: "Sports Drinks", category: "food-beverage", image: imgSports },
+  { label: "Snacks & Pantry", category: "food-beverage", image: imgSnacks },
+  { label: "Charging & Cables", category: "electronics", image: imgCables },
+  { label: "Coffee & Tea", category: "food-beverage", image: imgCoffee },
 ];
+
 
 type Props = {
   /** e.g. "/center-grove" */
@@ -113,17 +62,17 @@ export function EverydayEssentialsGrid({ basePath, supportsName }: Props) {
               params={{ category: tile.category }}
               className="group flex aspect-square flex-col overflow-hidden rounded-xl border-[0.5px] border-border bg-card transition-all duration-200 hover:scale-[1.03] hover:border-[var(--brand-accent)] hover:shadow-lg"
             >
-              <div
-                className="flex h-[60%] items-center justify-center overflow-hidden p-3 transition-transform duration-300 group-hover:scale-105"
-                style={{ backgroundColor: tile.brandColor }}
-              >
-                <span
-                  className="font-display text-3xl font-bold tracking-tight md:text-4xl"
-                  style={{ color: tile.fallbackTextColor }}
-                >
-                  {tile.fallbackText}
-                </span>
+              <div className="flex h-[60%] items-center justify-center overflow-hidden bg-white p-3">
+                <img
+                  src={tile.image}
+                  alt={tile.label}
+                  loading="lazy"
+                  width={816}
+                  height={816}
+                  className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
+
               <div className="flex flex-1 items-center justify-center px-3 text-center">
                 <span className="font-semibold leading-tight">{tile.label}</span>
               </div>
