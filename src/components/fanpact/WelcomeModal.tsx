@@ -100,7 +100,7 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
             <div className="px-6 py-5">
               <p className="text-sm text-muted-foreground">
                 {isCollegiate
-                  ? "Your purchases support Butler Athletics. Want to direct your contribution to a specific athlete?"
+                  ? `Your purchases support ${store.shortName} Athletics. Want to direct your contribution to a specific athlete?`
                   : "Search by player name or browse by sport and team. Your designation is remembered for every future purchase."}
               </p>
 
