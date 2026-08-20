@@ -1,7 +1,7 @@
 import { EverydayEssentialsGrid } from "@/components/fanpact/EverydayEssentialsGrid";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ShoppingBag, LayoutGrid, TrendingUp } from "lucide-react";
-import missouriArena from "@/assets/missouri-arena.jpg";
+import missouriColumns from "@/assets/missouri-columns.jpg";
 import { STORES } from "@/data/stores";
 import { CATEGORIES } from "@/data/categories";
 import { sponsorsForStore } from "@/data/sponsors";
@@ -46,7 +46,7 @@ function MissouriHome() {
       {/* HERO (disclaimer now lives in StoreHeader) */}
       <section className="relative isolate overflow-hidden">
         <img
-          src={missouriArena}
+          src={missouriColumns}
           alt="Memorial Stadium packed with Missouri Tigers fans during a basketball game"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
           width={1920}
