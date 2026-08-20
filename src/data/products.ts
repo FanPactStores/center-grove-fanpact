@@ -784,7 +784,7 @@ export const PRODUCTS: Product[] = SEEDS.map((s) => ({
 export const getProduct = (slug: string) =>
   PRODUCTS.find((p) => p.slug === slug);
 export const getProductsByCategory = (slug: string) =>
-  PRODUCTS.filter((p) => p.category === slug);
+  applyPinned(slug, PRODUCTS.filter((p) => p.category === slug));
 
 export const FEATURED_PRODUCTS = [
   "apple-airpods-pro-2",
