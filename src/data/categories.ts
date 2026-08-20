@@ -201,6 +201,7 @@ export const CATEGORIES: Category[] = [
     subcategories: [
       { slug: "pantry", name: "Pantry" },
       { slug: "snacks", name: "Snacks" },
+      { slug: "sports-drinks", name: "Sports Drinks" },
       { slug: "coffee-tea", name: "Coffee & Tea" },
     ],
   },
