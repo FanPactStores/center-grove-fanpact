@@ -62,17 +62,17 @@ export function EverydayEssentialsGrid({ basePath, supportsName }: Props) {
               params={{ category: tile.category }}
               className="group flex aspect-square flex-col overflow-hidden rounded-xl border-[0.5px] border-border bg-card transition-all duration-200 hover:scale-[1.03] hover:border-[var(--brand-accent)] hover:shadow-lg"
             >
-              <div
-                className="flex h-[60%] items-center justify-center overflow-hidden p-3 transition-transform duration-300 group-hover:scale-105"
-                style={{ backgroundColor: tile.brandColor }}
-              >
-                <span
-                  className="font-display text-3xl font-bold tracking-tight md:text-4xl"
-                  style={{ color: tile.fallbackTextColor }}
-                >
-                  {tile.fallbackText}
-                </span>
+              <div className="flex h-[60%] items-center justify-center overflow-hidden bg-white p-3">
+                <img
+                  src={tile.image}
+                  alt={tile.label}
+                  loading="lazy"
+                  width={816}
+                  height={816}
+                  className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
+
               <div className="flex flex-1 items-center justify-center px-3 text-center">
                 <span className="font-semibold leading-tight">{tile.label}</span>
               </div>
