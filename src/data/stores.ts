@@ -1,5 +1,5 @@
-export type StoreId = "butler" | "center-grove" | "legacy" | "assa" | "cmn-st-johns";
-export type StoreBasePath = "/butler" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns";
+export type StoreId = "butler" | "missouri" | "center-grove" | "legacy" | "assa" | "cmn-st-johns";
+export type StoreBasePath = "/butler" | "/missouri" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns";
 
 export type StoreConfig = {
   id: StoreId;
@@ -29,6 +29,20 @@ export const STORES: Record<StoreId, StoreConfig> = {
     heroBody:
       "Redirect the spend you already make on Tide, Gatorade, Purina, Rawlings, and Nike — and 60% of net earnings flow back to Butler Athletics and the player you designate.",
     marks: { letter: "B", word: "BUTLER" },
+  },
+  missouri: {
+    id: "missouri",
+    basePath: "/missouri",
+    name: "University of Missouri",
+    shortName: "Missouri",
+    fundName: "Mizzou Athletics Community Fund",
+    fundDisplay: "Mizzou Athletics",
+    tagline: "Shop the brands you already buy. Fund the Tigers you already love.",
+    heroEyebrow: "Missouri Tigers \u00d7 FanPact",
+    heroHeadline: "Every purchase. Every Tiger win.",
+    heroBody:
+      "Redirect the spend you already make on everyday essentials \u2014 and 60% of net earnings flow back to Mizzou Athletics and the athlete you designate.",
+    marks: { letter: "M", word: "MISSOURI" },
   },
   "center-grove": {
     id: "center-grove",
