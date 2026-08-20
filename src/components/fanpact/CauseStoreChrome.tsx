@@ -16,6 +16,12 @@ const NAV_BY_STORE: Record<string, NavItem[]> = {
     { label: "IMPACT STORIES", to: "/cmn/st-johns/impact-stories" },
     { label: "SPONSORS", to: "/cmn/st-johns/sponsors" },
   ],
+  shamrocks: [
+    { label: "SHOP", to: "/shamrocks/shop" },
+    { label: "DIVISIONS", to: "/shamrocks/teams" },
+    { label: "REWARDS", to: "/shamrocks/team-card" },
+    { label: "SPONSORS", to: "/shamrocks/sponsors" },
+  ],
   "center-grove": [
     { label: "SHOP", to: "/center-grove/shop" },
     { label: "TEAMS", to: "/center-grove/orgs" },

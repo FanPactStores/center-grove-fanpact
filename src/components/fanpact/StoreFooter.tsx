@@ -38,6 +38,7 @@ export function StoreFooter({ store }: { store: StoreConfig }) {
             <li><Link to="/butler" className="hover:underline">Butler store</Link></li>
             <li><Link to="/missouri" className="hover:underline">Missouri store</Link></li>
             <li><Link to="/center-grove" className="hover:underline">Center Grove store</Link></li>
+            <li><Link to="/shamrocks" className="hover:underline">Shamrocks store</Link></li>
           </ul>
         </div>
       </div>

@@ -97,6 +97,7 @@ export const YOUTH_LEAGUES: YouthLeague[] = [
     region: "Midwest",
     alliances: [
       { name: "STL Legacy / Klutch Baseball", slug: "legacy", href: "/legacy" },
+      { name: "Springfield Shamrocks Baseball", slug: "shamrocks", href: "/shamrocks" },
       ...[
         "Naperville Community","Oak Park Athletic","Bloomington Youth","Ann Arbor Alliance",
         "Columbus Youth Sports","Cincinnati Community","Louisville Youth Alliance",

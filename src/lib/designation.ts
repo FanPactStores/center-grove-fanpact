@@ -5,6 +5,7 @@ import { MISSOURI_TEAMS } from "@/data/missouri-teams";
 import { CG_ORGS } from "@/data/center-grove-orgs";
 import { LEGACY_ORGS } from "@/data/legacy-orgs";
 import { ASSA_ORGS } from "@/data/assa-orgs";
+import { SHAMROCKS_ORGS } from "@/data/shamrocks-orgs";
 
 export type DesignationKind = "general" | "team" | "player";
 
@@ -151,6 +152,25 @@ function assaIndex(): StoreDesignationIndex {
   return flatten("assa", "All-Star Sports Academy Fund", groups);
 }
 
+function shamrocksIndex(): StoreDesignationIndex {
+  const groups: DesignationGroup[] = SHAMROCKS_ORGS.map((o) => ({
+    label: o.shortName,
+    id: o.slug,
+    teams: o.teams.map((t) => ({
+      teamId: `${o.slug}/${t.slug}`,
+      teamLabel: `${t.name} (${t.ageGroup})`,
+      teamCode: t.designationCode,
+      players: t.players.map((p) => ({
+        id: `${o.slug}/${t.slug}/${p.slug}`,
+        name: p.name,
+        meta: `${t.name} \u00b7 ${t.ageGroup} \u00b7 ${p.position}`,
+        code: p.designationCode,
+      })),
+    })),
+  }));
+  return flatten("shamrocks", "Springfield Shamrocks Community Baseball Fund", groups);
+}
+
 function causeIndex(): StoreDesignationIndex {
   return flatten(
     "cmn-st-johns",
@@ -191,6 +211,7 @@ export function getDesignationIndex(storeId: StoreId): StoreDesignationIndex {
     : storeId === "center-grove" ? cgIndex()
     : storeId === "legacy" ? legacyIndex()
     : storeId === "cmn-st-johns" ? causeIndex()
+    : storeId === "shamrocks" ? shamrocksIndex()
     : assaIndex();
   indexCache[storeId] = built;
   return built;
@@ -203,6 +224,7 @@ export const DEFAULT_FUND_NAMES: Record<StoreId, string> = {
   legacy: "Legacy Performance Academy Fund",
   assa: "All-Star Sports Academy Fund",
   "cmn-st-johns": "HSHS St. John's Children's Hospital Greatest Needs Fund",
+  shamrocks: "Springfield Shamrocks Community Baseball Fund",
 };
 
 export function defaultDesignation(storeId: StoreId): Designation {

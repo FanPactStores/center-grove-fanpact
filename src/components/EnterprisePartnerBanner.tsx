@@ -65,7 +65,7 @@ const NAVY = "#13294B";
 const GOLD = "#BA7517";
 
 export type EnterprisePartnerBannerProps = {
-  store?: "butler" | "missouri" | "center-grove" | "legacy" | "assa";
+  store?: "butler" | "missouri" | "center-grove" | "legacy" | "assa" | "shamrocks";
 };
 
 export function EnterprisePartnerBanner({ store }: EnterprisePartnerBannerProps) {

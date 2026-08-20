@@ -1,5 +1,5 @@
-export type StoreId = "butler" | "missouri" | "center-grove" | "legacy" | "assa" | "cmn-st-johns";
-export type StoreBasePath = "/butler" | "/missouri" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns";
+export type StoreId = "butler" | "missouri" | "center-grove" | "legacy" | "assa" | "cmn-st-johns" | "shamrocks";
+export type StoreBasePath = "/butler" | "/missouri" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns" | "/shamrocks";
 
 export type StoreConfig = {
   id: StoreId;
@@ -99,5 +99,19 @@ export const STORES: Record<StoreId, StoreConfig> = {
     heroBody:
       "Every purchase helps fund life-saving pediatric care in Springfield, Illinois, and across central and southern Illinois.",
     marks: { letter: "SJ", word: "ST. JOHN'S CHILDREN'S", subtitle: "Springfield, Illinois" },
+  },
+  "shamrocks": {
+    id: "shamrocks",
+    basePath: "/shamrocks",
+    name: "Springfield Shamrocks Baseball",
+    shortName: "Shamrocks",
+    fundName: "Springfield Shamrocks Community Baseball Fund",
+    fundDisplay: "Shamrocks Baseball",
+    tagline: "Shop the brands you already buy. Fund Springfield's game.",
+    heroEyebrow: "Springfield Shamrocks \u00d7 FanPact",
+    heroHeadline: "Every purchase. Every Shamrock.",
+    heroBody:
+      "60% of net earnings on every purchase flows directly to the Springfield Shamrocks division or player you designate \u2014 no extra cost, no fundraising ask. Shop what your family already buys and fund the diamond.",
+    marks: { letter: "S", word: "SHAMROCKS", subtitle: "Springfield, Illinois" },
   },
 };
