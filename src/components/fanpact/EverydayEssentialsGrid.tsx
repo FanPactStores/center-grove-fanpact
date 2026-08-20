@@ -1,86 +1,35 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import imgLaundry from "@/assets/essentials/laundry.jpg";
+import imgPaper from "@/assets/essentials/paper-cleaning.jpg";
+import imgDish from "@/assets/essentials/dishwashing.jpg";
+import imgPet from "@/assets/essentials/pet.jpg";
+import imgOral from "@/assets/essentials/oral-care.jpg";
+import imgVitamins from "@/assets/essentials/vitamins.jpg";
+import imgSports from "@/assets/essentials/sports-drinks.jpg";
+import imgSnacks from "@/assets/essentials/snacks.jpg";
+import imgCables from "@/assets/essentials/cables.jpg";
+import imgCoffee from "@/assets/essentials/coffee.jpg";
 
 type Tile = {
   label: string;
   category: string;
-  brandColor: string;
-  fallbackText: string;
-  fallbackTextColor: string;
+  image: string;
 };
 
 const TILES: Tile[] = [
-  {
-    label: "Laundry",
-    category: "home-living",
-    brandColor: "#F15A2B",
-    fallbackText: "Tide",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Paper & Cleaning",
-    category: "home-living",
-    brandColor: "#E31837",
-    fallbackText: "Bounty",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Dishwashing",
-    category: "kitchen-dining",
-    brandColor: "#006B3C",
-    fallbackText: "Cascade",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Pet Treats & Food",
-    category: "pet-supplies",
-    brandColor: "#5E9E2F",
-    fallbackText: "Greenies",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Oral Care",
-    category: "beauty-personal-care",
-    brandColor: "#E31837",
-    fallbackText: "Colgate",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Vitamins & Wellness",
-    category: "health-wellness",
-    brandColor: "#004B8D",
-    fallbackText: "Centrum",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Sports Drinks",
-    category: "food-beverage",
-    brandColor: "#F36F21",
-    fallbackText: "Gatorade",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Snacks & Pantry",
-    category: "food-beverage",
-    brandColor: "#FBBF00",
-    fallbackText: "KIND",
-    fallbackTextColor: "#1A1A1A",
-  },
-  {
-    label: "Charging & Cables",
-    category: "electronics",
-    brandColor: "#1A1A2E",
-    fallbackText: "Anker",
-    fallbackTextColor: "#FFFFFF",
-  },
-  {
-    label: "Coffee & Tea",
-    category: "food-beverage",
-    brandColor: "#2C6E2F",
-    fallbackText: "Green Mtn",
-    fallbackTextColor: "#FFFFFF",
-  },
+  { label: "Laundry", category: "home-living", image: imgLaundry },
+  { label: "Paper & Cleaning", category: "home-living", image: imgPaper },
+  { label: "Dishwashing", category: "kitchen-dining", image: imgDish },
+  { label: "Pet Treats & Food", category: "pet-supplies", image: imgPet },
+  { label: "Oral Care", category: "beauty-personal-care", image: imgOral },
+  { label: "Vitamins & Wellness", category: "health-wellness", image: imgVitamins },
+  { label: "Sports Drinks", category: "food-beverage", image: imgSports },
+  { label: "Snacks & Pantry", category: "food-beverage", image: imgSnacks },
+  { label: "Charging & Cables", category: "electronics", image: imgCables },
+  { label: "Coffee & Tea", category: "food-beverage", image: imgCoffee },
 ];
+
 
 type Props = {
   /** e.g. "/center-grove" */
