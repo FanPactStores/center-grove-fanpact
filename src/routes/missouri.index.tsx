@@ -47,7 +47,7 @@ function MissouriHome() {
       <section className="relative isolate overflow-hidden">
         <img
           src={missouriColumns}
-          alt="Memorial Stadium packed with Missouri Tigers fans during a basketball game"
+          alt="The Memorial Columns on Francis Quadrangle at the University of Missouri at dusk"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
           width={1920}
           height={1080}
