@@ -36,6 +36,7 @@ export function StoreFooter({ store }: { store: StoreConfig }) {
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link to="/" className="hover:underline">FanPact home</Link></li>
             <li><Link to="/butler" className="hover:underline">Butler store</Link></li>
+            <li><Link to="/missouri" className="hover:underline">Missouri store</Link></li>
             <li><Link to="/center-grove" className="hover:underline">Center Grove store</Link></li>
           </ul>
         </div>

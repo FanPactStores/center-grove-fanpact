@@ -125,6 +125,7 @@ export function UnifiedSponsorsPage({ store }: Props) {
   const local = LOCAL_BY_STORE[store.id];
   const shopTo =
     store.id === "butler" ? "/butler/shop" :
+    store.id === "missouri" ? "/missouri/shop" :
     store.id === "center-grove" ? "/center-grove/shop" :
     store.id === "legacy" ? "/legacy/shop" : "/assa/shop";
 

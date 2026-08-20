@@ -111,6 +111,18 @@
   --gold-foreground: oklch(0.18 0.06 260);
 }
 
+/* ---------- UNIVERSITY OF MISSOURI THEME ---------- */
+[data-store="missouri"] {
+  --brand: oklch(0.16 0.004 80);           /* Mizzou black */
+  --brand-foreground: oklch(0.99 0 0);
+  --brand-accent: oklch(0.80 0.15 85);     /* Mizzou gold #F1B82D */
+  --ink: oklch(0.14 0.004 80);
+  --surface: oklch(0.99 0.004 85);
+  --surface-2: oklch(0.96 0.01 85);
+  --gold: oklch(0.80 0.15 85);
+  --gold-foreground: oklch(0.16 0.004 80);
+}
+
 /* ---------- CENTER GROVE THEME ---------- */
 [data-store="center-grove"] {
   --brand: oklch(0.15 0.005 80);           /* Trojan black */

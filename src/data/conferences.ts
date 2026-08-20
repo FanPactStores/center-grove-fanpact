@@ -33,9 +33,11 @@ export const CONFERENCES: Conference[] = [
     name: "SEC",
     schools: [
       "Alabama","Auburn","Arkansas","Florida","Georgia","Kentucky","LSU","Mississippi",
-      "Mississippi State","Missouri","Oklahoma","South Carolina","Tennessee","Texas",
+      "Mississippi State","Oklahoma","South Carolina","Tennessee","Texas",
       "Texas A&M","Vanderbilt",
-    ].map((n) => ({ name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, "-") })),
+    ].map((n) => ({ name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, "-") }))
+      .concat([{ name: "Missouri", slug: "missouri", href: "/missouri" }])
+      .sort((a, b) => a.name.localeCompare(b.name)),
   },
   {
     id: "big-ten",

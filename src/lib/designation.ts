@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
 import { STORES, type StoreId, type StoreConfig } from "@/data/stores";
 import { BUTLER_TEAMS } from "@/data/butler-teams";
+import { MISSOURI_TEAMS } from "@/data/missouri-teams";
 import { CG_ORGS } from "@/data/center-grove-orgs";
 import { LEGACY_ORGS } from "@/data/legacy-orgs";
 import { ASSA_ORGS } from "@/data/assa-orgs";
@@ -70,6 +71,27 @@ function butlerIndex(): StoreDesignationIndex {
     ],
   }));
   return flatten("butler", "Butler Athletics Community Fund", groups);
+}
+
+function missouriIndex(): StoreDesignationIndex {
+  const groups: DesignationGroup[] = MISSOURI_TEAMS.map((t) => ({
+    label: t.name,
+    id: t.slug,
+    teams: [
+      {
+        teamId: t.slug,
+        teamLabel: t.name,
+        teamCode: `MIZ-${t.slug.toUpperCase()}`,
+        players: t.players.map((p) => ({
+          id: `${t.slug}/${p.slug}`,
+          name: p.name,
+          meta: `#${p.number} \u00b7 ${p.position} \u00b7 ${t.name}`,
+          code: `MIZ-${t.slug.toUpperCase()}-#${p.number}-${p.slug}`,
+        })),
+      },
+    ],
+  }));
+  return flatten("missouri", "Mizzou Athletics Community Fund", groups);
 }
 
 function cgIndex(): StoreDesignationIndex {
@@ -165,6 +187,7 @@ export function getDesignationIndex(storeId: StoreId): StoreDesignationIndex {
   if (indexCache[storeId]) return indexCache[storeId]!;
   const built =
     storeId === "butler" ? butlerIndex()
+    : storeId === "missouri" ? missouriIndex()
     : storeId === "center-grove" ? cgIndex()
     : storeId === "legacy" ? legacyIndex()
     : storeId === "cmn-st-johns" ? causeIndex()
@@ -175,6 +198,7 @@ export function getDesignationIndex(storeId: StoreId): StoreDesignationIndex {
 
 export const DEFAULT_FUND_NAMES: Record<StoreId, string> = {
   butler: "Butler Athletics Community Fund",
+  missouri: "Mizzou Athletics Community Fund",
   "center-grove": "Center Grove Community Alliance Fund",
   legacy: "Legacy Performance Academy Fund",
   assa: "All-Star Sports Academy Fund",

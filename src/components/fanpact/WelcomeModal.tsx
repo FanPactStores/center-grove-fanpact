@@ -58,7 +58,7 @@ export function WelcomeModal({ store }: { store: StoreConfig }) {
 
   if (stage === "done") return null;
 
-  const isCollegiate = store.id === "butler";
+  const isCollegiate = store.id === "butler" || store.id === "missouri";
 
   return (
     <>
