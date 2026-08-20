@@ -2,7 +2,7 @@ import { Link, createFileRoute, notFound, useNavigate } from "@tanstack/react-ro
 import { ChevronRight, LayoutGrid, List, ArrowLeft, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { CATEGORIES, getCategory, type Category } from "@/data/categories";
-import { getProductsByCategory, productImage, type Product } from "@/data/products";
+import { applyPinned, getProductsByCategory, productImage, type Product } from "@/data/products";
 import { STORES } from "@/data/stores";
 import { ProductCard } from "@/components/fanpact/ProductCard";
 import { PageSearchBar, matchesSearch } from "@/components/fanpact/SearchBar";
@@ -89,7 +89,7 @@ function MissouriCategory() {
         list.sort((a, b) => a.name.localeCompare(b.name));
         break;
     }
-    return list;
+    return applyPinned(category.slug, list);
   }, [products, activeSub, selectedBrands, sort, searchQuery]);
 
   const toggleBrand = (b: string) =>
