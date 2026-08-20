@@ -16,6 +16,7 @@ export type MissouriTeam = {
   shortName: string;
   blurb: string;
   players: MissouriPlayer[];
+  comingSoon?: boolean;
 };
 
 const swatch = (h: number) => `oklch(0.32 0.07 ${h})`;
@@ -604,6 +605,14 @@ export const MISSOURI_TEAMS: MissouriTeam[] = [
     shortName: "W Golf",
     blurb: "SEC women's golf at the Club at Old Hawthorne.",
     players: build("Women's Golf", "womens-golf", womensGolfRaw, 120),
+  },
+  {
+    slug: "baseball",
+    name: "Baseball",
+    shortName: "Baseball",
+    blurb: "Mizzou Baseball at Taylor Stadium. Roster returning for the 2026 season.",
+    players: [],
+    comingSoon: true,
   },
 ];
 
