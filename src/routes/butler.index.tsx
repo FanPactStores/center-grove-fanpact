@@ -73,14 +73,14 @@ function ButlerHome() {
 
             {/* CTAS */}
             <div className="mt-5 flex flex-wrap gap-3">
-              <Link
-                to="/butler/shop"
+              <a
+                href="#everyday-essentials"
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg"
                 style={{ background: "var(--brand-accent)" }}
               >
                 <ShoppingBag className="h-4 w-4" />
                 Shop Now
-              </Link>
+              </a>
               <a
                 href="#categories"
                 className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-wider text-white backdrop-blur hover:bg-white/10"
@@ -179,7 +179,7 @@ function ButlerHome() {
       <YourRegulars store={store} />
 
       {/* EVERYDAY ESSENTIALS */}
-      <EverydayEssentialsGrid basePath={store.basePath} supportsName="Butler Athletics" />
+      <EverydayEssentialsGrid id="everyday-essentials" basePath={store.basePath} supportsName="Butler Athletics" />
 
       {/* NIL IMPACT STRIP */}
       <section
