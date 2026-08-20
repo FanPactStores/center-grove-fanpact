@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MissouriRouteImport } from './routes/missouri'
 import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as CenterGroveRouteImport } from './routes/center-grove'
 import { Route as ButlerRouteImport } from './routes/butler'
@@ -16,12 +17,17 @@ import { Route as AssaRouteImport } from './routes/assa'
 import { Route as AllianceRouteImport } from './routes/alliance'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
+import { Route as MissouriIndexRouteImport } from './routes/missouri.index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
 import { Route as AssaIndexRouteImport } from './routes/assa.index'
 import { Route as OnboardingYouthRouteImport } from './routes/onboarding.youth'
 import { Route as OnboardingCollegiateRouteImport } from './routes/onboarding.collegiate'
+import { Route as MissouriTeamCardRouteImport } from './routes/missouri.team-card'
+import { Route as MissouriMyListRouteImport } from './routes/missouri.my-list'
+import { Route as MissouriCheckoutConfirmationRouteImport } from './routes/missouri.checkout-confirmation'
+import { Route as MissouriCartRouteImport } from './routes/missouri.cart'
 import { Route as LegacyTeamCardRouteImport } from './routes/legacy.team-card'
 import { Route as LegacyMyListRouteImport } from './routes/legacy.my-list'
 import { Route as LegacyCheckoutConfirmationRouteImport } from './routes/legacy.checkout-confirmation'
@@ -39,6 +45,10 @@ import { Route as AssaTeamCardRouteImport } from './routes/assa.team-card'
 import { Route as AssaMyListRouteImport } from './routes/assa.my-list'
 import { Route as AssaCheckoutConfirmationRouteImport } from './routes/assa.checkout-confirmation'
 import { Route as AssaCartRouteImport } from './routes/assa.cart'
+import { Route as MissouriTeamsIndexRouteImport } from './routes/missouri.teams.index'
+import { Route as MissouriSponsorsIndexRouteImport } from './routes/missouri.sponsors.index'
+import { Route as MissouriShopIndexRouteImport } from './routes/missouri.shop.index'
+import { Route as MissouriEventsIndexRouteImport } from './routes/missouri.events.index'
 import { Route as LegacySponsorsIndexRouteImport } from './routes/legacy.sponsors.index'
 import { Route as LegacyShopIndexRouteImport } from './routes/legacy.shop.index'
 import { Route as LegacyOrgsIndexRouteImport } from './routes/legacy.orgs.index'
@@ -56,6 +66,11 @@ import { Route as AssaSponsorsIndexRouteImport } from './routes/assa.sponsors.in
 import { Route as AssaShopIndexRouteImport } from './routes/assa.shop.index'
 import { Route as AssaOrgsIndexRouteImport } from './routes/assa.orgs.index'
 import { Route as AssaEventsIndexRouteImport } from './routes/assa.events.index'
+import { Route as MissouriTeamsSportRouteImport } from './routes/missouri.teams.$sport'
+import { Route as MissouriSponsorsSlugRouteImport } from './routes/missouri.sponsors.$slug'
+import { Route as MissouriShopCategoryRouteImport } from './routes/missouri.shop.$category'
+import { Route as MissouriProductSlugRouteImport } from './routes/missouri.product.$slug'
+import { Route as MissouriEventsSlugRouteImport } from './routes/missouri.events.$slug'
 import { Route as LegacySponsorsSlugRouteImport } from './routes/legacy.sponsors.$slug'
 import { Route as LegacyShopCategoryRouteImport } from './routes/legacy.shop.$category'
 import { Route as LegacyProductSlugRouteImport } from './routes/legacy.product.$slug'
@@ -81,6 +96,8 @@ import { Route as AssaOrgsOrgRouteImport } from './routes/assa.orgs.$org'
 import { Route as AssaEventsSlugRouteImport } from './routes/assa.events.$slug'
 import { Route as CmnStJohnsSponsorsIndexRouteImport } from './routes/cmn.st-johns.sponsors.index'
 import { Route as CmnStJohnsShopIndexRouteImport } from './routes/cmn.st-johns.shop.index'
+import { Route as MissouriTeamsSportPlayerRouteImport } from './routes/missouri.teams.$sport.$player'
+import { Route as MissouriSponsorsSlugClaimRouteImport } from './routes/missouri.sponsors.$slug.claim'
 import { Route as LegacySponsorsSlugClaimRouteImport } from './routes/legacy.sponsors.$slug.claim'
 import { Route as LegacyOrgsOrgTeamRouteImport } from './routes/legacy.orgs.$org.$team'
 import { Route as CmnStJohnsShopCategoryRouteImport } from './routes/cmn.st-johns.shop.$category'
@@ -95,6 +112,11 @@ import { Route as LegacyOrgsOrgTeamPlayerRouteImport } from './routes/legacy.org
 import { Route as CenterGroveOrgsOrgTeamPlayerRouteImport } from './routes/center-grove.orgs.$org.$team.$player'
 import { Route as AssaOrgsOrgTeamPlayerRouteImport } from './routes/assa.orgs.$org.$team.$player'
 
+const MissouriRoute = MissouriRouteImport.update({
+  id: '/missouri',
+  path: '/missouri',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegacyRoute = LegacyRouteImport.update({
   id: '/legacy',
   path: '/legacy',
@@ -130,6 +152,11 @@ const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   path: '/onboarding/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MissouriIndexRoute = MissouriIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MissouriRoute,
+} as any)
 const LegacyIndexRoute = LegacyIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -159,6 +186,27 @@ const OnboardingCollegiateRoute = OnboardingCollegiateRouteImport.update({
   id: '/onboarding/collegiate',
   path: '/onboarding/collegiate',
   getParentRoute: () => rootRouteImport,
+} as any)
+const MissouriTeamCardRoute = MissouriTeamCardRouteImport.update({
+  id: '/team-card',
+  path: '/team-card',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriMyListRoute = MissouriMyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriCheckoutConfirmationRoute =
+  MissouriCheckoutConfirmationRouteImport.update({
+    id: '/checkout-confirmation',
+    path: '/checkout-confirmation',
+    getParentRoute: () => MissouriRoute,
+  } as any)
+const MissouriCartRoute = MissouriCartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => MissouriRoute,
 } as any)
 const LegacyTeamCardRoute = LegacyTeamCardRouteImport.update({
   id: '/team-card',
@@ -249,6 +297,26 @@ const AssaCartRoute = AssaCartRouteImport.update({
   path: '/cart',
   getParentRoute: () => AssaRoute,
 } as any)
+const MissouriTeamsIndexRoute = MissouriTeamsIndexRouteImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriSponsorsIndexRoute = MissouriSponsorsIndexRouteImport.update({
+  id: '/sponsors/',
+  path: '/sponsors/',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriShopIndexRoute = MissouriShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriEventsIndexRoute = MissouriEventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => MissouriRoute,
+} as any)
 const LegacySponsorsIndexRoute = LegacySponsorsIndexRouteImport.update({
   id: '/sponsors/',
   path: '/sponsors/',
@@ -334,6 +402,31 @@ const AssaEventsIndexRoute = AssaEventsIndexRouteImport.update({
   id: '/events/',
   path: '/events/',
   getParentRoute: () => AssaRoute,
+} as any)
+const MissouriTeamsSportRoute = MissouriTeamsSportRouteImport.update({
+  id: '/teams/$sport',
+  path: '/teams/$sport',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriSponsorsSlugRoute = MissouriSponsorsSlugRouteImport.update({
+  id: '/sponsors/$slug',
+  path: '/sponsors/$slug',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriShopCategoryRoute = MissouriShopCategoryRouteImport.update({
+  id: '/shop/$category',
+  path: '/shop/$category',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriProductSlugRoute = MissouriProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => MissouriRoute,
+} as any)
+const MissouriEventsSlugRoute = MissouriEventsSlugRouteImport.update({
+  id: '/events/$slug',
+  path: '/events/$slug',
+  getParentRoute: () => MissouriRoute,
 } as any)
 const LegacySponsorsSlugRoute = LegacySponsorsSlugRouteImport.update({
   id: '/sponsors/$slug',
@@ -460,6 +553,18 @@ const CmnStJohnsShopIndexRoute = CmnStJohnsShopIndexRouteImport.update({
   path: '/shop/',
   getParentRoute: () => CmnStJohnsRoute,
 } as any)
+const MissouriTeamsSportPlayerRoute =
+  MissouriTeamsSportPlayerRouteImport.update({
+    id: '/$player',
+    path: '/$player',
+    getParentRoute: () => MissouriTeamsSportRoute,
+  } as any)
+const MissouriSponsorsSlugClaimRoute =
+  MissouriSponsorsSlugClaimRouteImport.update({
+    id: '/claim',
+    path: '/claim',
+    getParentRoute: () => MissouriSponsorsSlugRoute,
+  } as any)
 const LegacySponsorsSlugClaimRoute = LegacySponsorsSlugClaimRouteImport.update({
   id: '/claim',
   path: '/claim',
@@ -535,6 +640,7 @@ export interface FileRoutesByFullPath {
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
+  '/missouri': typeof MissouriRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
   '/assa/my-list': typeof AssaMyListRoute
@@ -552,12 +658,17 @@ export interface FileRoutesByFullPath {
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/missouri/cart': typeof MissouriCartRoute
+  '/missouri/checkout-confirmation': typeof MissouriCheckoutConfirmationRoute
+  '/missouri/my-list': typeof MissouriMyListRoute
+  '/missouri/team-card': typeof MissouriTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
   '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/missouri/': typeof MissouriIndexRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
@@ -582,6 +693,11 @@ export interface FileRoutesByFullPath {
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
   '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRouteWithChildren
+  '/missouri/events/$slug': typeof MissouriEventsSlugRoute
+  '/missouri/product/$slug': typeof MissouriProductSlugRoute
+  '/missouri/shop/$category': typeof MissouriShopCategoryRoute
+  '/missouri/sponsors/$slug': typeof MissouriSponsorsSlugRouteWithChildren
+  '/missouri/teams/$sport': typeof MissouriTeamsSportRouteWithChildren
   '/assa/events/': typeof AssaEventsIndexRoute
   '/assa/orgs/': typeof AssaOrgsIndexRoute
   '/assa/shop/': typeof AssaShopIndexRoute
@@ -599,6 +715,10 @@ export interface FileRoutesByFullPath {
   '/legacy/orgs/': typeof LegacyOrgsIndexRoute
   '/legacy/shop/': typeof LegacyShopIndexRoute
   '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
+  '/missouri/events/': typeof MissouriEventsIndexRoute
+  '/missouri/shop/': typeof MissouriShopIndexRoute
+  '/missouri/sponsors/': typeof MissouriSponsorsIndexRoute
+  '/missouri/teams/': typeof MissouriTeamsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/assa/sponsors/$slug/claim': typeof AssaSponsorsSlugClaimRoute
   '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
@@ -609,6 +729,8 @@ export interface FileRoutesByFullPath {
   '/cmn/st-johns/shop/$category': typeof CmnStJohnsShopCategoryRoute
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
+  '/missouri/sponsors/$slug/claim': typeof MissouriSponsorsSlugClaimRoute
+  '/missouri/teams/$sport/$player': typeof MissouriTeamsSportPlayerRoute
   '/cmn/st-johns/shop/': typeof CmnStJohnsShopIndexRoute
   '/cmn/st-johns/sponsors/': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
@@ -634,12 +756,17 @@ export interface FileRoutesByTo {
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/missouri/cart': typeof MissouriCartRoute
+  '/missouri/checkout-confirmation': typeof MissouriCheckoutConfirmationRoute
+  '/missouri/my-list': typeof MissouriMyListRoute
+  '/missouri/team-card': typeof MissouriTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
   '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa': typeof AssaIndexRoute
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
   '/legacy': typeof LegacyIndexRoute
+  '/missouri': typeof MissouriIndexRoute
   '/onboarding': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
@@ -664,6 +791,11 @@ export interface FileRoutesByTo {
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
   '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRouteWithChildren
+  '/missouri/events/$slug': typeof MissouriEventsSlugRoute
+  '/missouri/product/$slug': typeof MissouriProductSlugRoute
+  '/missouri/shop/$category': typeof MissouriShopCategoryRoute
+  '/missouri/sponsors/$slug': typeof MissouriSponsorsSlugRouteWithChildren
+  '/missouri/teams/$sport': typeof MissouriTeamsSportRouteWithChildren
   '/assa/events': typeof AssaEventsIndexRoute
   '/assa/orgs': typeof AssaOrgsIndexRoute
   '/assa/shop': typeof AssaShopIndexRoute
@@ -681,6 +813,10 @@ export interface FileRoutesByTo {
   '/legacy/orgs': typeof LegacyOrgsIndexRoute
   '/legacy/shop': typeof LegacyShopIndexRoute
   '/legacy/sponsors': typeof LegacySponsorsIndexRoute
+  '/missouri/events': typeof MissouriEventsIndexRoute
+  '/missouri/shop': typeof MissouriShopIndexRoute
+  '/missouri/sponsors': typeof MissouriSponsorsIndexRoute
+  '/missouri/teams': typeof MissouriTeamsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/assa/sponsors/$slug/claim': typeof AssaSponsorsSlugClaimRoute
   '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
@@ -691,6 +827,8 @@ export interface FileRoutesByTo {
   '/cmn/st-johns/shop/$category': typeof CmnStJohnsShopCategoryRoute
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
+  '/missouri/sponsors/$slug/claim': typeof MissouriSponsorsSlugClaimRoute
+  '/missouri/teams/$sport/$player': typeof MissouriTeamsSportPlayerRoute
   '/cmn/st-johns/shop': typeof CmnStJohnsShopIndexRoute
   '/cmn/st-johns/sponsors': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
@@ -705,6 +843,7 @@ export interface FileRoutesById {
   '/butler': typeof ButlerRouteWithChildren
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
+  '/missouri': typeof MissouriRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
   '/assa/my-list': typeof AssaMyListRoute
@@ -722,12 +861,17 @@ export interface FileRoutesById {
   '/legacy/checkout-confirmation': typeof LegacyCheckoutConfirmationRoute
   '/legacy/my-list': typeof LegacyMyListRoute
   '/legacy/team-card': typeof LegacyTeamCardRoute
+  '/missouri/cart': typeof MissouriCartRoute
+  '/missouri/checkout-confirmation': typeof MissouriCheckoutConfirmationRoute
+  '/missouri/my-list': typeof MissouriMyListRoute
+  '/missouri/team-card': typeof MissouriTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
   '/onboarding/youth': typeof OnboardingYouthRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
+  '/missouri/': typeof MissouriIndexRoute
   '/onboarding/': typeof OnboardingIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
@@ -752,6 +896,11 @@ export interface FileRoutesById {
   '/legacy/product/$slug': typeof LegacyProductSlugRoute
   '/legacy/shop/$category': typeof LegacyShopCategoryRoute
   '/legacy/sponsors/$slug': typeof LegacySponsorsSlugRouteWithChildren
+  '/missouri/events/$slug': typeof MissouriEventsSlugRoute
+  '/missouri/product/$slug': typeof MissouriProductSlugRoute
+  '/missouri/shop/$category': typeof MissouriShopCategoryRoute
+  '/missouri/sponsors/$slug': typeof MissouriSponsorsSlugRouteWithChildren
+  '/missouri/teams/$sport': typeof MissouriTeamsSportRouteWithChildren
   '/assa/events/': typeof AssaEventsIndexRoute
   '/assa/orgs/': typeof AssaOrgsIndexRoute
   '/assa/shop/': typeof AssaShopIndexRoute
@@ -769,6 +918,10 @@ export interface FileRoutesById {
   '/legacy/orgs/': typeof LegacyOrgsIndexRoute
   '/legacy/shop/': typeof LegacyShopIndexRoute
   '/legacy/sponsors/': typeof LegacySponsorsIndexRoute
+  '/missouri/events/': typeof MissouriEventsIndexRoute
+  '/missouri/shop/': typeof MissouriShopIndexRoute
+  '/missouri/sponsors/': typeof MissouriSponsorsIndexRoute
+  '/missouri/teams/': typeof MissouriTeamsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/assa/sponsors/$slug/claim': typeof AssaSponsorsSlugClaimRoute
   '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
@@ -779,6 +932,8 @@ export interface FileRoutesById {
   '/cmn/st-johns/shop/$category': typeof CmnStJohnsShopCategoryRoute
   '/legacy/orgs/$org/$team': typeof LegacyOrgsOrgTeamRouteWithChildren
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
+  '/missouri/sponsors/$slug/claim': typeof MissouriSponsorsSlugClaimRoute
+  '/missouri/teams/$sport/$player': typeof MissouriTeamsSportPlayerRoute
   '/cmn/st-johns/shop/': typeof CmnStJohnsShopIndexRoute
   '/cmn/st-johns/sponsors/': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
@@ -794,6 +949,7 @@ export interface FileRouteTypes {
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/missouri'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
     | '/assa/my-list'
@@ -811,12 +967,17 @@ export interface FileRouteTypes {
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
     | '/legacy/team-card'
+    | '/missouri/cart'
+    | '/missouri/checkout-confirmation'
+    | '/missouri/my-list'
+    | '/missouri/team-card'
     | '/onboarding/collegiate'
     | '/onboarding/youth'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/missouri/'
     | '/onboarding/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
@@ -841,6 +1002,11 @@ export interface FileRouteTypes {
     | '/legacy/product/$slug'
     | '/legacy/shop/$category'
     | '/legacy/sponsors/$slug'
+    | '/missouri/events/$slug'
+    | '/missouri/product/$slug'
+    | '/missouri/shop/$category'
+    | '/missouri/sponsors/$slug'
+    | '/missouri/teams/$sport'
     | '/assa/events/'
     | '/assa/orgs/'
     | '/assa/shop/'
@@ -858,6 +1024,10 @@ export interface FileRouteTypes {
     | '/legacy/orgs/'
     | '/legacy/shop/'
     | '/legacy/sponsors/'
+    | '/missouri/events/'
+    | '/missouri/shop/'
+    | '/missouri/sponsors/'
+    | '/missouri/teams/'
     | '/assa/orgs/$org/$team'
     | '/assa/sponsors/$slug/claim'
     | '/butler/sponsors/$slug/claim'
@@ -868,6 +1038,8 @@ export interface FileRouteTypes {
     | '/cmn/st-johns/shop/$category'
     | '/legacy/orgs/$org/$team'
     | '/legacy/sponsors/$slug/claim'
+    | '/missouri/sponsors/$slug/claim'
+    | '/missouri/teams/$sport/$player'
     | '/cmn/st-johns/shop/'
     | '/cmn/st-johns/sponsors/'
     | '/assa/orgs/$org/$team/$player'
@@ -893,12 +1065,17 @@ export interface FileRouteTypes {
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
     | '/legacy/team-card'
+    | '/missouri/cart'
+    | '/missouri/checkout-confirmation'
+    | '/missouri/my-list'
+    | '/missouri/team-card'
     | '/onboarding/collegiate'
     | '/onboarding/youth'
     | '/assa'
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/missouri'
     | '/onboarding'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
@@ -923,6 +1100,11 @@ export interface FileRouteTypes {
     | '/legacy/product/$slug'
     | '/legacy/shop/$category'
     | '/legacy/sponsors/$slug'
+    | '/missouri/events/$slug'
+    | '/missouri/product/$slug'
+    | '/missouri/shop/$category'
+    | '/missouri/sponsors/$slug'
+    | '/missouri/teams/$sport'
     | '/assa/events'
     | '/assa/orgs'
     | '/assa/shop'
@@ -940,6 +1122,10 @@ export interface FileRouteTypes {
     | '/legacy/orgs'
     | '/legacy/shop'
     | '/legacy/sponsors'
+    | '/missouri/events'
+    | '/missouri/shop'
+    | '/missouri/sponsors'
+    | '/missouri/teams'
     | '/assa/orgs/$org/$team'
     | '/assa/sponsors/$slug/claim'
     | '/butler/sponsors/$slug/claim'
@@ -950,6 +1136,8 @@ export interface FileRouteTypes {
     | '/cmn/st-johns/shop/$category'
     | '/legacy/orgs/$org/$team'
     | '/legacy/sponsors/$slug/claim'
+    | '/missouri/sponsors/$slug/claim'
+    | '/missouri/teams/$sport/$player'
     | '/cmn/st-johns/shop'
     | '/cmn/st-johns/sponsors'
     | '/assa/orgs/$org/$team/$player'
@@ -963,6 +1151,7 @@ export interface FileRouteTypes {
     | '/butler'
     | '/center-grove'
     | '/legacy'
+    | '/missouri'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
     | '/assa/my-list'
@@ -980,12 +1169,17 @@ export interface FileRouteTypes {
     | '/legacy/checkout-confirmation'
     | '/legacy/my-list'
     | '/legacy/team-card'
+    | '/missouri/cart'
+    | '/missouri/checkout-confirmation'
+    | '/missouri/my-list'
+    | '/missouri/team-card'
     | '/onboarding/collegiate'
     | '/onboarding/youth'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
+    | '/missouri/'
     | '/onboarding/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
@@ -1010,6 +1204,11 @@ export interface FileRouteTypes {
     | '/legacy/product/$slug'
     | '/legacy/shop/$category'
     | '/legacy/sponsors/$slug'
+    | '/missouri/events/$slug'
+    | '/missouri/product/$slug'
+    | '/missouri/shop/$category'
+    | '/missouri/sponsors/$slug'
+    | '/missouri/teams/$sport'
     | '/assa/events/'
     | '/assa/orgs/'
     | '/assa/shop/'
@@ -1027,6 +1226,10 @@ export interface FileRouteTypes {
     | '/legacy/orgs/'
     | '/legacy/shop/'
     | '/legacy/sponsors/'
+    | '/missouri/events/'
+    | '/missouri/shop/'
+    | '/missouri/sponsors/'
+    | '/missouri/teams/'
     | '/assa/orgs/$org/$team'
     | '/assa/sponsors/$slug/claim'
     | '/butler/sponsors/$slug/claim'
@@ -1037,6 +1240,8 @@ export interface FileRouteTypes {
     | '/cmn/st-johns/shop/$category'
     | '/legacy/orgs/$org/$team'
     | '/legacy/sponsors/$slug/claim'
+    | '/missouri/sponsors/$slug/claim'
+    | '/missouri/teams/$sport/$player'
     | '/cmn/st-johns/shop/'
     | '/cmn/st-johns/sponsors/'
     | '/assa/orgs/$org/$team/$player'
@@ -1051,6 +1256,7 @@ export interface RootRouteChildren {
   ButlerRoute: typeof ButlerRouteWithChildren
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
+  MissouriRoute: typeof MissouriRouteWithChildren
   CmnStJohnsRoute: typeof CmnStJohnsRouteWithChildren
   OnboardingCollegiateRoute: typeof OnboardingCollegiateRoute
   OnboardingYouthRoute: typeof OnboardingYouthRoute
@@ -1059,6 +1265,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/missouri': {
+      id: '/missouri'
+      path: '/missouri'
+      fullPath: '/missouri'
+      preLoaderRoute: typeof MissouriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legacy': {
       id: '/legacy'
       path: '/legacy'
@@ -1108,6 +1321,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/missouri/': {
+      id: '/missouri/'
+      path: '/'
+      fullPath: '/missouri/'
+      preLoaderRoute: typeof MissouriIndexRouteImport
+      parentRoute: typeof MissouriRoute
+    }
     '/legacy/': {
       id: '/legacy/'
       path: '/'
@@ -1149,6 +1369,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding/collegiate'
       preLoaderRoute: typeof OnboardingCollegiateRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/missouri/team-card': {
+      id: '/missouri/team-card'
+      path: '/team-card'
+      fullPath: '/missouri/team-card'
+      preLoaderRoute: typeof MissouriTeamCardRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/my-list': {
+      id: '/missouri/my-list'
+      path: '/my-list'
+      fullPath: '/missouri/my-list'
+      preLoaderRoute: typeof MissouriMyListRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/checkout-confirmation': {
+      id: '/missouri/checkout-confirmation'
+      path: '/checkout-confirmation'
+      fullPath: '/missouri/checkout-confirmation'
+      preLoaderRoute: typeof MissouriCheckoutConfirmationRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/cart': {
+      id: '/missouri/cart'
+      path: '/cart'
+      fullPath: '/missouri/cart'
+      preLoaderRoute: typeof MissouriCartRouteImport
+      parentRoute: typeof MissouriRoute
     }
     '/legacy/team-card': {
       id: '/legacy/team-card'
@@ -1269,6 +1517,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssaCartRouteImport
       parentRoute: typeof AssaRoute
     }
+    '/missouri/teams/': {
+      id: '/missouri/teams/'
+      path: '/teams'
+      fullPath: '/missouri/teams/'
+      preLoaderRoute: typeof MissouriTeamsIndexRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/sponsors/': {
+      id: '/missouri/sponsors/'
+      path: '/sponsors'
+      fullPath: '/missouri/sponsors/'
+      preLoaderRoute: typeof MissouriSponsorsIndexRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/shop/': {
+      id: '/missouri/shop/'
+      path: '/shop'
+      fullPath: '/missouri/shop/'
+      preLoaderRoute: typeof MissouriShopIndexRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/events/': {
+      id: '/missouri/events/'
+      path: '/events'
+      fullPath: '/missouri/events/'
+      preLoaderRoute: typeof MissouriEventsIndexRouteImport
+      parentRoute: typeof MissouriRoute
+    }
     '/legacy/sponsors/': {
       id: '/legacy/sponsors/'
       path: '/sponsors'
@@ -1387,6 +1663,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/assa/events/'
       preLoaderRoute: typeof AssaEventsIndexRouteImport
       parentRoute: typeof AssaRoute
+    }
+    '/missouri/teams/$sport': {
+      id: '/missouri/teams/$sport'
+      path: '/teams/$sport'
+      fullPath: '/missouri/teams/$sport'
+      preLoaderRoute: typeof MissouriTeamsSportRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/sponsors/$slug': {
+      id: '/missouri/sponsors/$slug'
+      path: '/sponsors/$slug'
+      fullPath: '/missouri/sponsors/$slug'
+      preLoaderRoute: typeof MissouriSponsorsSlugRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/shop/$category': {
+      id: '/missouri/shop/$category'
+      path: '/shop/$category'
+      fullPath: '/missouri/shop/$category'
+      preLoaderRoute: typeof MissouriShopCategoryRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/product/$slug': {
+      id: '/missouri/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/missouri/product/$slug'
+      preLoaderRoute: typeof MissouriProductSlugRouteImport
+      parentRoute: typeof MissouriRoute
+    }
+    '/missouri/events/$slug': {
+      id: '/missouri/events/$slug'
+      path: '/events/$slug'
+      fullPath: '/missouri/events/$slug'
+      preLoaderRoute: typeof MissouriEventsSlugRouteImport
+      parentRoute: typeof MissouriRoute
     }
     '/legacy/sponsors/$slug': {
       id: '/legacy/sponsors/$slug'
@@ -1562,6 +1873,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/cmn/st-johns/shop/'
       preLoaderRoute: typeof CmnStJohnsShopIndexRouteImport
       parentRoute: typeof CmnStJohnsRoute
+    }
+    '/missouri/teams/$sport/$player': {
+      id: '/missouri/teams/$sport/$player'
+      path: '/$player'
+      fullPath: '/missouri/teams/$sport/$player'
+      preLoaderRoute: typeof MissouriTeamsSportPlayerRouteImport
+      parentRoute: typeof MissouriTeamsSportRoute
+    }
+    '/missouri/sponsors/$slug/claim': {
+      id: '/missouri/sponsors/$slug/claim'
+      path: '/claim'
+      fullPath: '/missouri/sponsors/$slug/claim'
+      preLoaderRoute: typeof MissouriSponsorsSlugClaimRouteImport
+      parentRoute: typeof MissouriSponsorsSlugRoute
     }
     '/legacy/sponsors/$slug/claim': {
       id: '/legacy/sponsors/$slug/claim'
@@ -1935,6 +2260,66 @@ const LegacyRouteChildren: LegacyRouteChildren = {
 const LegacyRouteWithChildren =
   LegacyRoute._addFileChildren(LegacyRouteChildren)
 
+interface MissouriSponsorsSlugRouteChildren {
+  MissouriSponsorsSlugClaimRoute: typeof MissouriSponsorsSlugClaimRoute
+}
+
+const MissouriSponsorsSlugRouteChildren: MissouriSponsorsSlugRouteChildren = {
+  MissouriSponsorsSlugClaimRoute: MissouriSponsorsSlugClaimRoute,
+}
+
+const MissouriSponsorsSlugRouteWithChildren =
+  MissouriSponsorsSlugRoute._addFileChildren(MissouriSponsorsSlugRouteChildren)
+
+interface MissouriTeamsSportRouteChildren {
+  MissouriTeamsSportPlayerRoute: typeof MissouriTeamsSportPlayerRoute
+}
+
+const MissouriTeamsSportRouteChildren: MissouriTeamsSportRouteChildren = {
+  MissouriTeamsSportPlayerRoute: MissouriTeamsSportPlayerRoute,
+}
+
+const MissouriTeamsSportRouteWithChildren =
+  MissouriTeamsSportRoute._addFileChildren(MissouriTeamsSportRouteChildren)
+
+interface MissouriRouteChildren {
+  MissouriCartRoute: typeof MissouriCartRoute
+  MissouriCheckoutConfirmationRoute: typeof MissouriCheckoutConfirmationRoute
+  MissouriMyListRoute: typeof MissouriMyListRoute
+  MissouriTeamCardRoute: typeof MissouriTeamCardRoute
+  MissouriIndexRoute: typeof MissouriIndexRoute
+  MissouriEventsSlugRoute: typeof MissouriEventsSlugRoute
+  MissouriProductSlugRoute: typeof MissouriProductSlugRoute
+  MissouriShopCategoryRoute: typeof MissouriShopCategoryRoute
+  MissouriSponsorsSlugRoute: typeof MissouriSponsorsSlugRouteWithChildren
+  MissouriTeamsSportRoute: typeof MissouriTeamsSportRouteWithChildren
+  MissouriEventsIndexRoute: typeof MissouriEventsIndexRoute
+  MissouriShopIndexRoute: typeof MissouriShopIndexRoute
+  MissouriSponsorsIndexRoute: typeof MissouriSponsorsIndexRoute
+  MissouriTeamsIndexRoute: typeof MissouriTeamsIndexRoute
+}
+
+const MissouriRouteChildren: MissouriRouteChildren = {
+  MissouriCartRoute: MissouriCartRoute,
+  MissouriCheckoutConfirmationRoute: MissouriCheckoutConfirmationRoute,
+  MissouriMyListRoute: MissouriMyListRoute,
+  MissouriTeamCardRoute: MissouriTeamCardRoute,
+  MissouriIndexRoute: MissouriIndexRoute,
+  MissouriEventsSlugRoute: MissouriEventsSlugRoute,
+  MissouriProductSlugRoute: MissouriProductSlugRoute,
+  MissouriShopCategoryRoute: MissouriShopCategoryRoute,
+  MissouriSponsorsSlugRoute: MissouriSponsorsSlugRouteWithChildren,
+  MissouriTeamsSportRoute: MissouriTeamsSportRouteWithChildren,
+  MissouriEventsIndexRoute: MissouriEventsIndexRoute,
+  MissouriShopIndexRoute: MissouriShopIndexRoute,
+  MissouriSponsorsIndexRoute: MissouriSponsorsIndexRoute,
+  MissouriTeamsIndexRoute: MissouriTeamsIndexRoute,
+}
+
+const MissouriRouteWithChildren = MissouriRoute._addFileChildren(
+  MissouriRouteChildren,
+)
+
 interface CmnStJohnsRouteChildren {
   CmnStJohnsCartRoute: typeof CmnStJohnsCartRoute
   CmnStJohnsImpactStoriesRoute: typeof CmnStJohnsImpactStoriesRoute
@@ -1968,6 +2353,7 @@ const rootRouteChildren: RootRouteChildren = {
   ButlerRoute: ButlerRouteWithChildren,
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
+  MissouriRoute: MissouriRouteWithChildren,
   CmnStJohnsRoute: CmnStJohnsRouteWithChildren,
   OnboardingCollegiateRoute: OnboardingCollegiateRoute,
   OnboardingYouthRoute: OnboardingYouthRoute,
