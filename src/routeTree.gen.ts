@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShamrocksRouteImport } from './routes/shamrocks'
 import { Route as MissouriRouteImport } from './routes/missouri'
 import { Route as LegacyRouteImport } from './routes/legacy'
 import { Route as CenterGroveRouteImport } from './routes/center-grove'
@@ -16,12 +17,17 @@ import { Route as ButlerRouteImport } from './routes/butler'
 import { Route as AssaRouteImport } from './routes/assa'
 import { Route as AllianceRouteImport } from './routes/alliance'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ShamrocksIndexRouteImport } from './routes/shamrocks.index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding.index'
 import { Route as MissouriIndexRouteImport } from './routes/missouri.index'
 import { Route as LegacyIndexRouteImport } from './routes/legacy.index'
 import { Route as CenterGroveIndexRouteImport } from './routes/center-grove.index'
 import { Route as ButlerIndexRouteImport } from './routes/butler.index'
 import { Route as AssaIndexRouteImport } from './routes/assa.index'
+import { Route as ShamrocksTeamCardRouteImport } from './routes/shamrocks.team-card'
+import { Route as ShamrocksMyListRouteImport } from './routes/shamrocks.my-list'
+import { Route as ShamrocksCheckoutConfirmationRouteImport } from './routes/shamrocks.checkout-confirmation'
+import { Route as ShamrocksCartRouteImport } from './routes/shamrocks.cart'
 import { Route as OnboardingYouthRouteImport } from './routes/onboarding.youth'
 import { Route as OnboardingCollegiateRouteImport } from './routes/onboarding.collegiate'
 import { Route as MissouriTeamCardRouteImport } from './routes/missouri.team-card'
@@ -45,6 +51,9 @@ import { Route as AssaTeamCardRouteImport } from './routes/assa.team-card'
 import { Route as AssaMyListRouteImport } from './routes/assa.my-list'
 import { Route as AssaCheckoutConfirmationRouteImport } from './routes/assa.checkout-confirmation'
 import { Route as AssaCartRouteImport } from './routes/assa.cart'
+import { Route as ShamrocksTeamsIndexRouteImport } from './routes/shamrocks.teams.index'
+import { Route as ShamrocksSponsorsIndexRouteImport } from './routes/shamrocks.sponsors.index'
+import { Route as ShamrocksShopIndexRouteImport } from './routes/shamrocks.shop.index'
 import { Route as MissouriTeamsIndexRouteImport } from './routes/missouri.teams.index'
 import { Route as MissouriSponsorsIndexRouteImport } from './routes/missouri.sponsors.index'
 import { Route as MissouriShopIndexRouteImport } from './routes/missouri.shop.index'
@@ -66,6 +75,10 @@ import { Route as AssaSponsorsIndexRouteImport } from './routes/assa.sponsors.in
 import { Route as AssaShopIndexRouteImport } from './routes/assa.shop.index'
 import { Route as AssaOrgsIndexRouteImport } from './routes/assa.orgs.index'
 import { Route as AssaEventsIndexRouteImport } from './routes/assa.events.index'
+import { Route as ShamrocksTeamsDivisionRouteImport } from './routes/shamrocks.teams.$division'
+import { Route as ShamrocksSponsorsSlugRouteImport } from './routes/shamrocks.sponsors.$slug'
+import { Route as ShamrocksShopCategoryRouteImport } from './routes/shamrocks.shop.$category'
+import { Route as ShamrocksProductSlugRouteImport } from './routes/shamrocks.product.$slug'
 import { Route as MissouriTeamsSportRouteImport } from './routes/missouri.teams.$sport'
 import { Route as MissouriSponsorsSlugRouteImport } from './routes/missouri.sponsors.$slug'
 import { Route as MissouriShopCategoryRouteImport } from './routes/missouri.shop.$category'
@@ -96,6 +109,7 @@ import { Route as AssaOrgsOrgRouteImport } from './routes/assa.orgs.$org'
 import { Route as AssaEventsSlugRouteImport } from './routes/assa.events.$slug'
 import { Route as CmnStJohnsSponsorsIndexRouteImport } from './routes/cmn.st-johns.sponsors.index'
 import { Route as CmnStJohnsShopIndexRouteImport } from './routes/cmn.st-johns.shop.index'
+import { Route as ShamrocksSponsorsSlugClaimRouteImport } from './routes/shamrocks.sponsors.$slug.claim'
 import { Route as MissouriTeamsSportPlayerRouteImport } from './routes/missouri.teams.$sport.$player'
 import { Route as MissouriSponsorsSlugClaimRouteImport } from './routes/missouri.sponsors.$slug.claim'
 import { Route as LegacySponsorsSlugClaimRouteImport } from './routes/legacy.sponsors.$slug.claim'
@@ -112,6 +126,11 @@ import { Route as LegacyOrgsOrgTeamPlayerRouteImport } from './routes/legacy.org
 import { Route as CenterGroveOrgsOrgTeamPlayerRouteImport } from './routes/center-grove.orgs.$org.$team.$player'
 import { Route as AssaOrgsOrgTeamPlayerRouteImport } from './routes/assa.orgs.$org.$team.$player'
 
+const ShamrocksRoute = ShamrocksRouteImport.update({
+  id: '/shamrocks',
+  path: '/shamrocks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MissouriRoute = MissouriRouteImport.update({
   id: '/missouri',
   path: '/missouri',
@@ -147,6 +166,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShamrocksIndexRoute = ShamrocksIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
 const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   id: '/onboarding/',
   path: '/onboarding/',
@@ -176,6 +200,27 @@ const AssaIndexRoute = AssaIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AssaRoute,
+} as any)
+const ShamrocksTeamCardRoute = ShamrocksTeamCardRouteImport.update({
+  id: '/team-card',
+  path: '/team-card',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksMyListRoute = ShamrocksMyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksCheckoutConfirmationRoute =
+  ShamrocksCheckoutConfirmationRouteImport.update({
+    id: '/checkout-confirmation',
+    path: '/checkout-confirmation',
+    getParentRoute: () => ShamrocksRoute,
+  } as any)
+const ShamrocksCartRoute = ShamrocksCartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => ShamrocksRoute,
 } as any)
 const OnboardingYouthRoute = OnboardingYouthRouteImport.update({
   id: '/onboarding/youth',
@@ -297,6 +342,21 @@ const AssaCartRoute = AssaCartRouteImport.update({
   path: '/cart',
   getParentRoute: () => AssaRoute,
 } as any)
+const ShamrocksTeamsIndexRoute = ShamrocksTeamsIndexRouteImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksSponsorsIndexRoute = ShamrocksSponsorsIndexRouteImport.update({
+  id: '/sponsors/',
+  path: '/sponsors/',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksShopIndexRoute = ShamrocksShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
 const MissouriTeamsIndexRoute = MissouriTeamsIndexRouteImport.update({
   id: '/teams/',
   path: '/teams/',
@@ -402,6 +462,26 @@ const AssaEventsIndexRoute = AssaEventsIndexRouteImport.update({
   id: '/events/',
   path: '/events/',
   getParentRoute: () => AssaRoute,
+} as any)
+const ShamrocksTeamsDivisionRoute = ShamrocksTeamsDivisionRouteImport.update({
+  id: '/teams/$division',
+  path: '/teams/$division',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksSponsorsSlugRoute = ShamrocksSponsorsSlugRouteImport.update({
+  id: '/sponsors/$slug',
+  path: '/sponsors/$slug',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksShopCategoryRoute = ShamrocksShopCategoryRouteImport.update({
+  id: '/shop/$category',
+  path: '/shop/$category',
+  getParentRoute: () => ShamrocksRoute,
+} as any)
+const ShamrocksProductSlugRoute = ShamrocksProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => ShamrocksRoute,
 } as any)
 const MissouriTeamsSportRoute = MissouriTeamsSportRouteImport.update({
   id: '/teams/$sport',
@@ -553,6 +633,12 @@ const CmnStJohnsShopIndexRoute = CmnStJohnsShopIndexRouteImport.update({
   path: '/shop/',
   getParentRoute: () => CmnStJohnsRoute,
 } as any)
+const ShamrocksSponsorsSlugClaimRoute =
+  ShamrocksSponsorsSlugClaimRouteImport.update({
+    id: '/claim',
+    path: '/claim',
+    getParentRoute: () => ShamrocksSponsorsSlugRoute,
+  } as any)
 const MissouriTeamsSportPlayerRoute =
   MissouriTeamsSportPlayerRouteImport.update({
     id: '/$player',
@@ -641,6 +727,7 @@ export interface FileRoutesByFullPath {
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
   '/missouri': typeof MissouriRouteWithChildren
+  '/shamrocks': typeof ShamrocksRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
   '/assa/my-list': typeof AssaMyListRoute
@@ -664,12 +751,17 @@ export interface FileRoutesByFullPath {
   '/missouri/team-card': typeof MissouriTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
   '/onboarding/youth': typeof OnboardingYouthRoute
+  '/shamrocks/cart': typeof ShamrocksCartRoute
+  '/shamrocks/checkout-confirmation': typeof ShamrocksCheckoutConfirmationRoute
+  '/shamrocks/my-list': typeof ShamrocksMyListRoute
+  '/shamrocks/team-card': typeof ShamrocksTeamCardRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
   '/missouri/': typeof MissouriIndexRoute
   '/onboarding/': typeof OnboardingIndexRoute
+  '/shamrocks/': typeof ShamrocksIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -698,6 +790,10 @@ export interface FileRoutesByFullPath {
   '/missouri/shop/$category': typeof MissouriShopCategoryRoute
   '/missouri/sponsors/$slug': typeof MissouriSponsorsSlugRouteWithChildren
   '/missouri/teams/$sport': typeof MissouriTeamsSportRouteWithChildren
+  '/shamrocks/product/$slug': typeof ShamrocksProductSlugRoute
+  '/shamrocks/shop/$category': typeof ShamrocksShopCategoryRoute
+  '/shamrocks/sponsors/$slug': typeof ShamrocksSponsorsSlugRouteWithChildren
+  '/shamrocks/teams/$division': typeof ShamrocksTeamsDivisionRoute
   '/assa/events/': typeof AssaEventsIndexRoute
   '/assa/orgs/': typeof AssaOrgsIndexRoute
   '/assa/shop/': typeof AssaShopIndexRoute
@@ -719,6 +815,9 @@ export interface FileRoutesByFullPath {
   '/missouri/shop/': typeof MissouriShopIndexRoute
   '/missouri/sponsors/': typeof MissouriSponsorsIndexRoute
   '/missouri/teams/': typeof MissouriTeamsIndexRoute
+  '/shamrocks/shop/': typeof ShamrocksShopIndexRoute
+  '/shamrocks/sponsors/': typeof ShamrocksSponsorsIndexRoute
+  '/shamrocks/teams/': typeof ShamrocksTeamsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/assa/sponsors/$slug/claim': typeof AssaSponsorsSlugClaimRoute
   '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
@@ -731,6 +830,7 @@ export interface FileRoutesByFullPath {
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
   '/missouri/sponsors/$slug/claim': typeof MissouriSponsorsSlugClaimRoute
   '/missouri/teams/$sport/$player': typeof MissouriTeamsSportPlayerRoute
+  '/shamrocks/sponsors/$slug/claim': typeof ShamrocksSponsorsSlugClaimRoute
   '/cmn/st-johns/shop/': typeof CmnStJohnsShopIndexRoute
   '/cmn/st-johns/sponsors/': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
@@ -762,12 +862,17 @@ export interface FileRoutesByTo {
   '/missouri/team-card': typeof MissouriTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
   '/onboarding/youth': typeof OnboardingYouthRoute
+  '/shamrocks/cart': typeof ShamrocksCartRoute
+  '/shamrocks/checkout-confirmation': typeof ShamrocksCheckoutConfirmationRoute
+  '/shamrocks/my-list': typeof ShamrocksMyListRoute
+  '/shamrocks/team-card': typeof ShamrocksTeamCardRoute
   '/assa': typeof AssaIndexRoute
   '/butler': typeof ButlerIndexRoute
   '/center-grove': typeof CenterGroveIndexRoute
   '/legacy': typeof LegacyIndexRoute
   '/missouri': typeof MissouriIndexRoute
   '/onboarding': typeof OnboardingIndexRoute
+  '/shamrocks': typeof ShamrocksIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -796,6 +901,10 @@ export interface FileRoutesByTo {
   '/missouri/shop/$category': typeof MissouriShopCategoryRoute
   '/missouri/sponsors/$slug': typeof MissouriSponsorsSlugRouteWithChildren
   '/missouri/teams/$sport': typeof MissouriTeamsSportRouteWithChildren
+  '/shamrocks/product/$slug': typeof ShamrocksProductSlugRoute
+  '/shamrocks/shop/$category': typeof ShamrocksShopCategoryRoute
+  '/shamrocks/sponsors/$slug': typeof ShamrocksSponsorsSlugRouteWithChildren
+  '/shamrocks/teams/$division': typeof ShamrocksTeamsDivisionRoute
   '/assa/events': typeof AssaEventsIndexRoute
   '/assa/orgs': typeof AssaOrgsIndexRoute
   '/assa/shop': typeof AssaShopIndexRoute
@@ -817,6 +926,9 @@ export interface FileRoutesByTo {
   '/missouri/shop': typeof MissouriShopIndexRoute
   '/missouri/sponsors': typeof MissouriSponsorsIndexRoute
   '/missouri/teams': typeof MissouriTeamsIndexRoute
+  '/shamrocks/shop': typeof ShamrocksShopIndexRoute
+  '/shamrocks/sponsors': typeof ShamrocksSponsorsIndexRoute
+  '/shamrocks/teams': typeof ShamrocksTeamsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/assa/sponsors/$slug/claim': typeof AssaSponsorsSlugClaimRoute
   '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
@@ -829,6 +941,7 @@ export interface FileRoutesByTo {
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
   '/missouri/sponsors/$slug/claim': typeof MissouriSponsorsSlugClaimRoute
   '/missouri/teams/$sport/$player': typeof MissouriTeamsSportPlayerRoute
+  '/shamrocks/sponsors/$slug/claim': typeof ShamrocksSponsorsSlugClaimRoute
   '/cmn/st-johns/shop': typeof CmnStJohnsShopIndexRoute
   '/cmn/st-johns/sponsors': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
@@ -844,6 +957,7 @@ export interface FileRoutesById {
   '/center-grove': typeof CenterGroveRouteWithChildren
   '/legacy': typeof LegacyRouteWithChildren
   '/missouri': typeof MissouriRouteWithChildren
+  '/shamrocks': typeof ShamrocksRouteWithChildren
   '/assa/cart': typeof AssaCartRoute
   '/assa/checkout-confirmation': typeof AssaCheckoutConfirmationRoute
   '/assa/my-list': typeof AssaMyListRoute
@@ -867,12 +981,17 @@ export interface FileRoutesById {
   '/missouri/team-card': typeof MissouriTeamCardRoute
   '/onboarding/collegiate': typeof OnboardingCollegiateRoute
   '/onboarding/youth': typeof OnboardingYouthRoute
+  '/shamrocks/cart': typeof ShamrocksCartRoute
+  '/shamrocks/checkout-confirmation': typeof ShamrocksCheckoutConfirmationRoute
+  '/shamrocks/my-list': typeof ShamrocksMyListRoute
+  '/shamrocks/team-card': typeof ShamrocksTeamCardRoute
   '/assa/': typeof AssaIndexRoute
   '/butler/': typeof ButlerIndexRoute
   '/center-grove/': typeof CenterGroveIndexRoute
   '/legacy/': typeof LegacyIndexRoute
   '/missouri/': typeof MissouriIndexRoute
   '/onboarding/': typeof OnboardingIndexRoute
+  '/shamrocks/': typeof ShamrocksIndexRoute
   '/assa/events/$slug': typeof AssaEventsSlugRoute
   '/assa/orgs/$org': typeof AssaOrgsOrgRouteWithChildren
   '/assa/product/$slug': typeof AssaProductSlugRoute
@@ -901,6 +1020,10 @@ export interface FileRoutesById {
   '/missouri/shop/$category': typeof MissouriShopCategoryRoute
   '/missouri/sponsors/$slug': typeof MissouriSponsorsSlugRouteWithChildren
   '/missouri/teams/$sport': typeof MissouriTeamsSportRouteWithChildren
+  '/shamrocks/product/$slug': typeof ShamrocksProductSlugRoute
+  '/shamrocks/shop/$category': typeof ShamrocksShopCategoryRoute
+  '/shamrocks/sponsors/$slug': typeof ShamrocksSponsorsSlugRouteWithChildren
+  '/shamrocks/teams/$division': typeof ShamrocksTeamsDivisionRoute
   '/assa/events/': typeof AssaEventsIndexRoute
   '/assa/orgs/': typeof AssaOrgsIndexRoute
   '/assa/shop/': typeof AssaShopIndexRoute
@@ -922,6 +1045,9 @@ export interface FileRoutesById {
   '/missouri/shop/': typeof MissouriShopIndexRoute
   '/missouri/sponsors/': typeof MissouriSponsorsIndexRoute
   '/missouri/teams/': typeof MissouriTeamsIndexRoute
+  '/shamrocks/shop/': typeof ShamrocksShopIndexRoute
+  '/shamrocks/sponsors/': typeof ShamrocksSponsorsIndexRoute
+  '/shamrocks/teams/': typeof ShamrocksTeamsIndexRoute
   '/assa/orgs/$org/$team': typeof AssaOrgsOrgTeamRouteWithChildren
   '/assa/sponsors/$slug/claim': typeof AssaSponsorsSlugClaimRoute
   '/butler/sponsors/$slug/claim': typeof ButlerSponsorsSlugClaimRoute
@@ -934,6 +1060,7 @@ export interface FileRoutesById {
   '/legacy/sponsors/$slug/claim': typeof LegacySponsorsSlugClaimRoute
   '/missouri/sponsors/$slug/claim': typeof MissouriSponsorsSlugClaimRoute
   '/missouri/teams/$sport/$player': typeof MissouriTeamsSportPlayerRoute
+  '/shamrocks/sponsors/$slug/claim': typeof ShamrocksSponsorsSlugClaimRoute
   '/cmn/st-johns/shop/': typeof CmnStJohnsShopIndexRoute
   '/cmn/st-johns/sponsors/': typeof CmnStJohnsSponsorsIndexRoute
   '/assa/orgs/$org/$team/$player': typeof AssaOrgsOrgTeamPlayerRoute
@@ -950,6 +1077,7 @@ export interface FileRouteTypes {
     | '/center-grove'
     | '/legacy'
     | '/missouri'
+    | '/shamrocks'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
     | '/assa/my-list'
@@ -973,12 +1101,17 @@ export interface FileRouteTypes {
     | '/missouri/team-card'
     | '/onboarding/collegiate'
     | '/onboarding/youth'
+    | '/shamrocks/cart'
+    | '/shamrocks/checkout-confirmation'
+    | '/shamrocks/my-list'
+    | '/shamrocks/team-card'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
     | '/missouri/'
     | '/onboarding/'
+    | '/shamrocks/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -1007,6 +1140,10 @@ export interface FileRouteTypes {
     | '/missouri/shop/$category'
     | '/missouri/sponsors/$slug'
     | '/missouri/teams/$sport'
+    | '/shamrocks/product/$slug'
+    | '/shamrocks/shop/$category'
+    | '/shamrocks/sponsors/$slug'
+    | '/shamrocks/teams/$division'
     | '/assa/events/'
     | '/assa/orgs/'
     | '/assa/shop/'
@@ -1028,6 +1165,9 @@ export interface FileRouteTypes {
     | '/missouri/shop/'
     | '/missouri/sponsors/'
     | '/missouri/teams/'
+    | '/shamrocks/shop/'
+    | '/shamrocks/sponsors/'
+    | '/shamrocks/teams/'
     | '/assa/orgs/$org/$team'
     | '/assa/sponsors/$slug/claim'
     | '/butler/sponsors/$slug/claim'
@@ -1040,6 +1180,7 @@ export interface FileRouteTypes {
     | '/legacy/sponsors/$slug/claim'
     | '/missouri/sponsors/$slug/claim'
     | '/missouri/teams/$sport/$player'
+    | '/shamrocks/sponsors/$slug/claim'
     | '/cmn/st-johns/shop/'
     | '/cmn/st-johns/sponsors/'
     | '/assa/orgs/$org/$team/$player'
@@ -1071,12 +1212,17 @@ export interface FileRouteTypes {
     | '/missouri/team-card'
     | '/onboarding/collegiate'
     | '/onboarding/youth'
+    | '/shamrocks/cart'
+    | '/shamrocks/checkout-confirmation'
+    | '/shamrocks/my-list'
+    | '/shamrocks/team-card'
     | '/assa'
     | '/butler'
     | '/center-grove'
     | '/legacy'
     | '/missouri'
     | '/onboarding'
+    | '/shamrocks'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -1105,6 +1251,10 @@ export interface FileRouteTypes {
     | '/missouri/shop/$category'
     | '/missouri/sponsors/$slug'
     | '/missouri/teams/$sport'
+    | '/shamrocks/product/$slug'
+    | '/shamrocks/shop/$category'
+    | '/shamrocks/sponsors/$slug'
+    | '/shamrocks/teams/$division'
     | '/assa/events'
     | '/assa/orgs'
     | '/assa/shop'
@@ -1126,6 +1276,9 @@ export interface FileRouteTypes {
     | '/missouri/shop'
     | '/missouri/sponsors'
     | '/missouri/teams'
+    | '/shamrocks/shop'
+    | '/shamrocks/sponsors'
+    | '/shamrocks/teams'
     | '/assa/orgs/$org/$team'
     | '/assa/sponsors/$slug/claim'
     | '/butler/sponsors/$slug/claim'
@@ -1138,6 +1291,7 @@ export interface FileRouteTypes {
     | '/legacy/sponsors/$slug/claim'
     | '/missouri/sponsors/$slug/claim'
     | '/missouri/teams/$sport/$player'
+    | '/shamrocks/sponsors/$slug/claim'
     | '/cmn/st-johns/shop'
     | '/cmn/st-johns/sponsors'
     | '/assa/orgs/$org/$team/$player'
@@ -1152,6 +1306,7 @@ export interface FileRouteTypes {
     | '/center-grove'
     | '/legacy'
     | '/missouri'
+    | '/shamrocks'
     | '/assa/cart'
     | '/assa/checkout-confirmation'
     | '/assa/my-list'
@@ -1175,12 +1330,17 @@ export interface FileRouteTypes {
     | '/missouri/team-card'
     | '/onboarding/collegiate'
     | '/onboarding/youth'
+    | '/shamrocks/cart'
+    | '/shamrocks/checkout-confirmation'
+    | '/shamrocks/my-list'
+    | '/shamrocks/team-card'
     | '/assa/'
     | '/butler/'
     | '/center-grove/'
     | '/legacy/'
     | '/missouri/'
     | '/onboarding/'
+    | '/shamrocks/'
     | '/assa/events/$slug'
     | '/assa/orgs/$org'
     | '/assa/product/$slug'
@@ -1209,6 +1369,10 @@ export interface FileRouteTypes {
     | '/missouri/shop/$category'
     | '/missouri/sponsors/$slug'
     | '/missouri/teams/$sport'
+    | '/shamrocks/product/$slug'
+    | '/shamrocks/shop/$category'
+    | '/shamrocks/sponsors/$slug'
+    | '/shamrocks/teams/$division'
     | '/assa/events/'
     | '/assa/orgs/'
     | '/assa/shop/'
@@ -1230,6 +1394,9 @@ export interface FileRouteTypes {
     | '/missouri/shop/'
     | '/missouri/sponsors/'
     | '/missouri/teams/'
+    | '/shamrocks/shop/'
+    | '/shamrocks/sponsors/'
+    | '/shamrocks/teams/'
     | '/assa/orgs/$org/$team'
     | '/assa/sponsors/$slug/claim'
     | '/butler/sponsors/$slug/claim'
@@ -1242,6 +1409,7 @@ export interface FileRouteTypes {
     | '/legacy/sponsors/$slug/claim'
     | '/missouri/sponsors/$slug/claim'
     | '/missouri/teams/$sport/$player'
+    | '/shamrocks/sponsors/$slug/claim'
     | '/cmn/st-johns/shop/'
     | '/cmn/st-johns/sponsors/'
     | '/assa/orgs/$org/$team/$player'
@@ -1257,6 +1425,7 @@ export interface RootRouteChildren {
   CenterGroveRoute: typeof CenterGroveRouteWithChildren
   LegacyRoute: typeof LegacyRouteWithChildren
   MissouriRoute: typeof MissouriRouteWithChildren
+  ShamrocksRoute: typeof ShamrocksRouteWithChildren
   CmnStJohnsRoute: typeof CmnStJohnsRouteWithChildren
   OnboardingCollegiateRoute: typeof OnboardingCollegiateRoute
   OnboardingYouthRoute: typeof OnboardingYouthRoute
@@ -1265,6 +1434,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/shamrocks': {
+      id: '/shamrocks'
+      path: '/shamrocks'
+      fullPath: '/shamrocks'
+      preLoaderRoute: typeof ShamrocksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/missouri': {
       id: '/missouri'
       path: '/missouri'
@@ -1314,6 +1490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shamrocks/': {
+      id: '/shamrocks/'
+      path: '/'
+      fullPath: '/shamrocks/'
+      preLoaderRoute: typeof ShamrocksIndexRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
     '/onboarding/': {
       id: '/onboarding/'
       path: '/onboarding'
@@ -1355,6 +1538,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/assa/'
       preLoaderRoute: typeof AssaIndexRouteImport
       parentRoute: typeof AssaRoute
+    }
+    '/shamrocks/team-card': {
+      id: '/shamrocks/team-card'
+      path: '/team-card'
+      fullPath: '/shamrocks/team-card'
+      preLoaderRoute: typeof ShamrocksTeamCardRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/my-list': {
+      id: '/shamrocks/my-list'
+      path: '/my-list'
+      fullPath: '/shamrocks/my-list'
+      preLoaderRoute: typeof ShamrocksMyListRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/checkout-confirmation': {
+      id: '/shamrocks/checkout-confirmation'
+      path: '/checkout-confirmation'
+      fullPath: '/shamrocks/checkout-confirmation'
+      preLoaderRoute: typeof ShamrocksCheckoutConfirmationRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/cart': {
+      id: '/shamrocks/cart'
+      path: '/cart'
+      fullPath: '/shamrocks/cart'
+      preLoaderRoute: typeof ShamrocksCartRouteImport
+      parentRoute: typeof ShamrocksRoute
     }
     '/onboarding/youth': {
       id: '/onboarding/youth'
@@ -1517,6 +1728,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssaCartRouteImport
       parentRoute: typeof AssaRoute
     }
+    '/shamrocks/teams/': {
+      id: '/shamrocks/teams/'
+      path: '/teams'
+      fullPath: '/shamrocks/teams/'
+      preLoaderRoute: typeof ShamrocksTeamsIndexRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/sponsors/': {
+      id: '/shamrocks/sponsors/'
+      path: '/sponsors'
+      fullPath: '/shamrocks/sponsors/'
+      preLoaderRoute: typeof ShamrocksSponsorsIndexRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/shop/': {
+      id: '/shamrocks/shop/'
+      path: '/shop'
+      fullPath: '/shamrocks/shop/'
+      preLoaderRoute: typeof ShamrocksShopIndexRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
     '/missouri/teams/': {
       id: '/missouri/teams/'
       path: '/teams'
@@ -1663,6 +1895,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/assa/events/'
       preLoaderRoute: typeof AssaEventsIndexRouteImport
       parentRoute: typeof AssaRoute
+    }
+    '/shamrocks/teams/$division': {
+      id: '/shamrocks/teams/$division'
+      path: '/teams/$division'
+      fullPath: '/shamrocks/teams/$division'
+      preLoaderRoute: typeof ShamrocksTeamsDivisionRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/sponsors/$slug': {
+      id: '/shamrocks/sponsors/$slug'
+      path: '/sponsors/$slug'
+      fullPath: '/shamrocks/sponsors/$slug'
+      preLoaderRoute: typeof ShamrocksSponsorsSlugRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/shop/$category': {
+      id: '/shamrocks/shop/$category'
+      path: '/shop/$category'
+      fullPath: '/shamrocks/shop/$category'
+      preLoaderRoute: typeof ShamrocksShopCategoryRouteImport
+      parentRoute: typeof ShamrocksRoute
+    }
+    '/shamrocks/product/$slug': {
+      id: '/shamrocks/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/shamrocks/product/$slug'
+      preLoaderRoute: typeof ShamrocksProductSlugRouteImport
+      parentRoute: typeof ShamrocksRoute
     }
     '/missouri/teams/$sport': {
       id: '/missouri/teams/$sport'
@@ -1873,6 +2133,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/cmn/st-johns/shop/'
       preLoaderRoute: typeof CmnStJohnsShopIndexRouteImport
       parentRoute: typeof CmnStJohnsRoute
+    }
+    '/shamrocks/sponsors/$slug/claim': {
+      id: '/shamrocks/sponsors/$slug/claim'
+      path: '/claim'
+      fullPath: '/shamrocks/sponsors/$slug/claim'
+      preLoaderRoute: typeof ShamrocksSponsorsSlugClaimRouteImport
+      parentRoute: typeof ShamrocksSponsorsSlugRoute
     }
     '/missouri/teams/$sport/$player': {
       id: '/missouri/teams/$sport/$player'
@@ -2320,6 +2587,53 @@ const MissouriRouteWithChildren = MissouriRoute._addFileChildren(
   MissouriRouteChildren,
 )
 
+interface ShamrocksSponsorsSlugRouteChildren {
+  ShamrocksSponsorsSlugClaimRoute: typeof ShamrocksSponsorsSlugClaimRoute
+}
+
+const ShamrocksSponsorsSlugRouteChildren: ShamrocksSponsorsSlugRouteChildren = {
+  ShamrocksSponsorsSlugClaimRoute: ShamrocksSponsorsSlugClaimRoute,
+}
+
+const ShamrocksSponsorsSlugRouteWithChildren =
+  ShamrocksSponsorsSlugRoute._addFileChildren(
+    ShamrocksSponsorsSlugRouteChildren,
+  )
+
+interface ShamrocksRouteChildren {
+  ShamrocksCartRoute: typeof ShamrocksCartRoute
+  ShamrocksCheckoutConfirmationRoute: typeof ShamrocksCheckoutConfirmationRoute
+  ShamrocksMyListRoute: typeof ShamrocksMyListRoute
+  ShamrocksTeamCardRoute: typeof ShamrocksTeamCardRoute
+  ShamrocksIndexRoute: typeof ShamrocksIndexRoute
+  ShamrocksProductSlugRoute: typeof ShamrocksProductSlugRoute
+  ShamrocksShopCategoryRoute: typeof ShamrocksShopCategoryRoute
+  ShamrocksSponsorsSlugRoute: typeof ShamrocksSponsorsSlugRouteWithChildren
+  ShamrocksTeamsDivisionRoute: typeof ShamrocksTeamsDivisionRoute
+  ShamrocksShopIndexRoute: typeof ShamrocksShopIndexRoute
+  ShamrocksSponsorsIndexRoute: typeof ShamrocksSponsorsIndexRoute
+  ShamrocksTeamsIndexRoute: typeof ShamrocksTeamsIndexRoute
+}
+
+const ShamrocksRouteChildren: ShamrocksRouteChildren = {
+  ShamrocksCartRoute: ShamrocksCartRoute,
+  ShamrocksCheckoutConfirmationRoute: ShamrocksCheckoutConfirmationRoute,
+  ShamrocksMyListRoute: ShamrocksMyListRoute,
+  ShamrocksTeamCardRoute: ShamrocksTeamCardRoute,
+  ShamrocksIndexRoute: ShamrocksIndexRoute,
+  ShamrocksProductSlugRoute: ShamrocksProductSlugRoute,
+  ShamrocksShopCategoryRoute: ShamrocksShopCategoryRoute,
+  ShamrocksSponsorsSlugRoute: ShamrocksSponsorsSlugRouteWithChildren,
+  ShamrocksTeamsDivisionRoute: ShamrocksTeamsDivisionRoute,
+  ShamrocksShopIndexRoute: ShamrocksShopIndexRoute,
+  ShamrocksSponsorsIndexRoute: ShamrocksSponsorsIndexRoute,
+  ShamrocksTeamsIndexRoute: ShamrocksTeamsIndexRoute,
+}
+
+const ShamrocksRouteWithChildren = ShamrocksRoute._addFileChildren(
+  ShamrocksRouteChildren,
+)
+
 interface CmnStJohnsRouteChildren {
   CmnStJohnsCartRoute: typeof CmnStJohnsCartRoute
   CmnStJohnsImpactStoriesRoute: typeof CmnStJohnsImpactStoriesRoute
@@ -2354,6 +2668,7 @@ const rootRouteChildren: RootRouteChildren = {
   CenterGroveRoute: CenterGroveRouteWithChildren,
   LegacyRoute: LegacyRouteWithChildren,
   MissouriRoute: MissouriRouteWithChildren,
+  ShamrocksRoute: ShamrocksRouteWithChildren,
   CmnStJohnsRoute: CmnStJohnsRouteWithChildren,
   OnboardingCollegiateRoute: OnboardingCollegiateRoute,
   OnboardingYouthRoute: OnboardingYouthRoute,
