@@ -36,11 +36,12 @@ type Props = {
   basePath: string;
   /** e.g. "Center Grove" or "Butler Athletics" */
   supportsName: string;
+  id?: string;
 };
 
-export function EverydayEssentialsGrid({ basePath, supportsName }: Props) {
+export function EverydayEssentialsGrid({ basePath, supportsName, id }: Props) {
   return (
-    <section className="border-y border-border bg-[var(--surface-2)]">
+    <section id={id} className="border-y border-border bg-[var(--surface-2)]">
       <div className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
         <div className="mb-10 text-center">
           <h2
