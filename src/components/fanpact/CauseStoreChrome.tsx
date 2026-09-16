@@ -6,6 +6,7 @@ import { CATEGORIES } from "@/data/categories";
 import { FanPactLogo } from "@/components/fanpact/FanPactLogo";
 import { NavSearchBar } from "@/components/fanpact/SearchBar";
 import { DesignationBanner } from "./DesignationBanner";
+import { CauseFundBar } from "./CauseFundBar";
 
 type NavItem = { label: string; to: string };
 
@@ -29,6 +30,12 @@ const NAV_BY_STORE: Record<string, NavItem[]> = {
     { label: "REWARDS", to: "/center-grove/team-card" },
     { label: "SPONSORS", to: "/center-grove/sponsors" },
   ],
+  "west-side-christian": [
+    { label: "SHOP", to: "/cause/west-side-christian-church/shop" },
+    { label: "OUR MINISTRIES", to: "/cause/west-side-christian-church/our-ministries" },
+    { label: "IMPACT STORIES", to: "/cause/west-side-christian-church/impact-stories" },
+    { label: "SPONSORS", to: "/cause/west-side-christian-church/sponsors" },
+  ],
 };
 
 /** Single-line designation copy for single-beneficiary (cause) stores. */
@@ -41,6 +48,7 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const nav = NAV_BY_STORE[store.id] ?? [{ label: "SHOP", to: `${store.basePath}/shop` }];
   const fixedLine = FIXED_DESIGNATION[store.id];
+  const hasFunds = !!store.causeFunds?.length;
 
   return (
     <header className="sticky top-0 z-50">
@@ -161,7 +169,9 @@ export function CauseStoreHeader({ store }: { store: StoreConfig }) {
       </div>
 
       {/* DESIGNATION BAR */}
-      {fixedLine ? (
+      {hasFunds ? (
+        <CauseFundBar store={store} />
+      ) : fixedLine ? (
         <div
           className="border-b text-xs"
           style={{
