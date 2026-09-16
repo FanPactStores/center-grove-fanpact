@@ -14,7 +14,7 @@ export const Route = createFileRoute("/cause/west-side-christian-church/cart")({
       {
         name: "description",
         content:
-          "Review your cart. 60% of net earnings supports West Side Christian Church's greatest areas of need.",
+          "Review your cart. 60% of net earnings supports the West Side Christian Church fund you designate.",
       },
       { property: "og:title", content: "Cart — West Side Christian Church × FanPact" },
       { property: "og:description", content: "Everyday essentials that fund ministry in Springfield, Illinois." },
