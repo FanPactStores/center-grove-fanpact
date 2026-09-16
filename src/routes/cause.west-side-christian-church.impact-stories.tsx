@@ -8,12 +8,12 @@ export const Route = createFileRoute("/cause/west-side-christian-church/impact-s
       {
         name: "description",
         content:
-          "Stories of the families and kids supported by West Side Christian Church in Springfield, Illinois.",
+          "How everyday shopping turns into ministry, missions, and community impact at West Side Christian Church in Springfield, Illinois.",
       },
       { property: "og:title", content: "Impact Stories — West Side Christian Church" },
       {
         property: "og:description",
-        content: "How everyday shopping turns into pediatric care across Illinois.",
+        content: "Everyday purchases becoming real ministry impact in Springfield, Illinois.",
       },
     ],
   }),
@@ -22,19 +22,19 @@ export const Route = createFileRoute("/cause/west-side-christian-church/impact-s
 
 const STORIES = [
   {
-    title: "Every cart becomes care",
+    title: "Room for more kids",
     body:
-      "Contributions from everyday purchases go to the hospital's greatest areas of need — the equipment, programs, and family support services that matter most in the moment.",
+      "Contributions designated to the Kids Ministry Building Expansion go toward the space a growing congregation needs — classrooms, safe check-in, and room for families who are new.",
   },
   {
-    title: "Close to home",
+    title: "Missions, near and far",
     body:
-      "Families across central and southern Illinois can receive specialized pediatric care without traveling hours from home.",
+      "The Missions fund supports dozens of local and global partners, from Springfield neighborhoods to communities across the world.",
   },
   {
-    title: "From the first breath",
+    title: "Wherever the need is greatest",
     body:
-      "The Level III Neonatal Intensive Care Unit cares for the region's most fragile newborns, in partnership with Southern Illinois University School of Medicine.",
+      "The General Fund keeps weekly ministry running — students, young adults, small groups, and the everyday work of the church.",
   },
 ];
 
@@ -48,8 +48,8 @@ function ImpactStories() {
         What your everyday shopping makes possible
       </h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        Patient and family stories will be published here as they are approved by the hospital and
-        Children's Miracle Network. Until then, here's how contributions are put to work.
+        Stories from the congregation will be published here as they are approved by the church.
+        Until then, here's how contributions are put to work.
       </p>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">

@@ -8,12 +8,12 @@ export const Route = createFileRoute("/cause/west-side-christian-church/sponsors
       {
         name: "description",
         content:
-          "National brands, local partners, and enterprise partners supporting West Side Christian Church through FanPact.",
+          "National brands, local Springfield businesses, and enterprise partners supporting West Side Christian Church through FanPact.",
       },
-      { property: "og:title", content: "Sponsors & Partners — West Side Christian Church × FanPact" },
+      { property: "og:title", content: "Sponsors & Partners — West Side Christian Church" },
       {
         property: "og:description",
-        content: "The commercial ecosystem behind pediatric care in central and southern Illinois.",
+        content: "The commercial ecosystem behind ministry in Springfield, Illinois.",
       },
     ],
   }),
@@ -29,7 +29,7 @@ const TIERS = [
   {
     icon: Handshake,
     label: "Local partners",
-    body: "Springfield-area businesses supporting the hospital. Local partners coming soon.",
+    body: "Springfield-area businesses supporting the church. Local partners coming soon.",
   },
   {
     icon: Building2,
@@ -48,8 +48,8 @@ function Sponsors() {
         The partners behind the storefront
       </h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        Sponsorship for the West Side Christian Church'storefront is open. Interested
-        brands and local businesses will be listed here once onboarded.
+        Sponsorship for the West Side Christian Church storefront is open. Interested brands and
+        local businesses will be listed here once onboarded.
       </p>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
