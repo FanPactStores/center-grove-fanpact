@@ -100,8 +100,8 @@ function WestSideProduct() {
           >
             <Heart className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--brand-accent)" }} />
             <span>
-              <strong>{usd(product.contribution)}</strong> of this purchase supports HSHS St. John's
-              Children's Hospital's greatest areas of need.
+              <strong>{usd(product.contribution)}</strong> of this purchase supports West Side
+              Christian Church — designated to the fund you select.
             </span>
           </div>
 

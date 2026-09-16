@@ -17,7 +17,7 @@ export const Route = createFileRoute("/cause/west-side-christian-church/cart")({
           "Review your cart. 60% of net earnings supports West Side Christian Church's greatest areas of need.",
       },
       { property: "og:title", content: "Cart — West Side Christian Church × FanPact" },
-      { property: "og:description", content: "Everyday essentials that fund pediatric care." },
+      { property: "og:description", content: "Everyday essentials that fund ministry in Springfield, Illinois." },
     ],
   }),
   component: WestSideCart,
