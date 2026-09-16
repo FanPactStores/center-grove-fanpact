@@ -2,7 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { Minus, Plus, Trash2, Heart } from "lucide-react";
 import { useState } from "react";
 import { PRODUCTS, productImage } from "@/data/products";
-import { STORES } from "@/data/stores";
+import { CAUSE_FUND_COPY, STORES } from "@/data/stores";
+import { useCauseFund } from "@/lib/cause-funds";
 import { Button } from "@/components/ui/button";
 import { usd } from "@/lib/format";
 
@@ -26,6 +27,7 @@ function WestSideCart() {
   const store = STORES["west-side-christian"];
   const initial = PRODUCTS.slice(0, 3).map((product, i) => ({ product, qty: i === 2 ? 2 : 1 }));
   const [items, setItems] = useState(initial);
+  const { funds, fund, select } = useCauseFund("west-side-christian");
 
   const subtotal = items.reduce((s, i) => s + i.product.price * i.qty, 0);
   const contribution = items.reduce((s, i) => s + i.product.contribution * i.qty, 0);
@@ -103,7 +105,7 @@ function WestSideCart() {
               <div className="text-right">
                 <div className="font-semibold tabular-nums">{usd(product.price * qty)}</div>
                 <div className="mt-1 text-[11px]" style={{ color: "var(--brand-accent)" }}>
-                  {usd(product.contribution * qty)} to the hospital
+                  {usd(product.contribution * qty)} to the church
                 </div>
               </div>
             </div>
@@ -143,13 +145,37 @@ function WestSideCart() {
               {usd(contribution)} contribution
             </div>
             <p className="mt-2 text-xs text-muted-foreground">
-              100% of your designated contribution supports West Side Christian Church's
-              greatest areas of need.
+              Designated to <strong>{fund?.name}</strong>.
             </p>
           </div>
 
-          <Button className="mt-6 w-full" size="lg">
-            Checkout
+          <div className="mt-6 rounded-xl border border-border p-4">
+            <label className="block">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Fund designation
+              </span>
+              <select
+                value={fund?.id ?? ""}
+                onChange={(e) => select(e.target.value)}
+                className="mt-2 w-full rounded-md border border-border bg-white px-3 py-2 text-sm font-semibold"
+              >
+                {funds.map((f) => (
+                  <option key={f.id} value={f.id}>
+                    {f.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p className="mt-2 text-xs text-muted-foreground">{CAUSE_FUND_COPY}</p>
+          </div>
+
+          <Button className="mt-6 w-full" size="lg" asChild>
+            <Link
+              to="/cause/west-side-christian-church/checkout-confirmation"
+              search={{ amount: contribution, total }}
+            >
+              Checkout
+            </Link>
           </Button>
           <p className="mt-3 text-center text-[11px] text-muted-foreground">
             Demo checkout — {store.name}. No payment is processed.

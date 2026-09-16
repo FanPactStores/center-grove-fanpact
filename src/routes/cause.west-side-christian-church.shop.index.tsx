@@ -22,7 +22,7 @@ export const Route = createFileRoute("/cause/west-side-christian-church/shop/")(
       { property: "og:title", content: "Shop — West Side Christian Church × FanPact" },
       {
         property: "og:description",
-        content: "Everyday essentials that fund pediatric care in central and southern Illinois.",
+        content: "Everyday essentials that fund ministry, missions, and community impact in Springfield, Illinois.",
       },
     ],
   }),
@@ -48,7 +48,7 @@ function WestSideShop() {
           All categories
         </div>
         <h1 className="mt-2 font-display text-5xl tracking-tight">
-          The Children's Hospital store
+          The West Side Christian Church store
         </h1>
       </div>
       <div className="mb-8">

@@ -68,6 +68,7 @@ import { Route as CenterGroveSponsorsIndexRouteImport } from './routes/center-gr
 import { Route as CenterGroveShopIndexRouteImport } from './routes/center-grove.shop.index'
 import { Route as CenterGroveOrgsIndexRouteImport } from './routes/center-grove.orgs.index'
 import { Route as CenterGroveEventsIndexRouteImport } from './routes/center-grove.events.index'
+import { Route as CauseWestSideChristianChurchIndexRouteImport } from './routes/cause.west-side-christian-church.index'
 import { Route as ButlerTeamsIndexRouteImport } from './routes/butler.teams.index'
 import { Route as ButlerSponsorsIndexRouteImport } from './routes/butler.sponsors.index'
 import { Route as ButlerShopIndexRouteImport } from './routes/butler.shop.index'
@@ -100,6 +101,7 @@ import { Route as CenterGroveOrgsOrgRouteImport } from './routes/center-grove.or
 import { Route as CenterGroveEventsSlugRouteImport } from './routes/center-grove.events.$slug'
 import { Route as CauseWestSideChristianChurchOurMinistriesRouteImport } from './routes/cause.west-side-christian-church.our-ministries'
 import { Route as CauseWestSideChristianChurchImpactStoriesRouteImport } from './routes/cause.west-side-christian-church.impact-stories'
+import { Route as CauseWestSideChristianChurchCheckoutConfirmationRouteImport } from './routes/cause.west-side-christian-church.checkout-confirmation'
 import { Route as CauseWestSideChristianChurchCartRouteImport } from './routes/cause.west-side-christian-church.cart'
 import { Route as ButlerTeamsSportRouteImport } from './routes/butler.teams.$sport'
 import { Route as ButlerSponsorsSlugRouteImport } from './routes/butler.sponsors.$slug'
@@ -437,6 +439,12 @@ const CenterGroveEventsIndexRoute = CenterGroveEventsIndexRouteImport.update({
   path: '/events/',
   getParentRoute: () => CenterGroveRoute,
 } as any)
+const CauseWestSideChristianChurchIndexRoute =
+  CauseWestSideChristianChurchIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => CauseWestSideChristianChurchRoute,
+  } as any)
 const ButlerTeamsIndexRoute = ButlerTeamsIndexRouteImport.update({
   id: '/teams/',
   path: '/teams/',
@@ -597,6 +605,12 @@ const CauseWestSideChristianChurchImpactStoriesRoute =
   CauseWestSideChristianChurchImpactStoriesRouteImport.update({
     id: '/impact-stories',
     path: '/impact-stories',
+    getParentRoute: () => CauseWestSideChristianChurchRoute,
+  } as any)
+const CauseWestSideChristianChurchCheckoutConfirmationRoute =
+  CauseWestSideChristianChurchCheckoutConfirmationRouteImport.update({
+    id: '/checkout-confirmation',
+    path: '/checkout-confirmation',
     getParentRoute: () => CauseWestSideChristianChurchRoute,
   } as any)
 const CauseWestSideChristianChurchCartRoute =
@@ -830,6 +844,7 @@ export interface FileRoutesByFullPath {
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRouteWithChildren
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
   '/cause/west-side-christian-church/cart': typeof CauseWestSideChristianChurchCartRoute
+  '/cause/west-side-christian-church/checkout-confirmation': typeof CauseWestSideChristianChurchCheckoutConfirmationRoute
   '/cause/west-side-christian-church/impact-stories': typeof CauseWestSideChristianChurchImpactStoriesRoute
   '/cause/west-side-christian-church/our-ministries': typeof CauseWestSideChristianChurchOurMinistriesRoute
   '/center-grove/events/$slug': typeof CenterGroveEventsSlugRoute
@@ -862,6 +877,7 @@ export interface FileRoutesByFullPath {
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
+  '/cause/west-side-christian-church/': typeof CauseWestSideChristianChurchIndexRoute
   '/center-grove/events/': typeof CenterGroveEventsIndexRoute
   '/center-grove/orgs/': typeof CenterGroveOrgsIndexRoute
   '/center-grove/shop/': typeof CenterGroveShopIndexRoute
@@ -912,7 +928,6 @@ export interface FileRoutesByTo {
   '/butler/checkout-confirmation': typeof ButlerCheckoutConfirmationRoute
   '/butler/my-list': typeof ButlerMyListRoute
   '/butler/team-card': typeof ButlerTeamCardRoute
-  '/cause/west-side-christian-church': typeof CauseWestSideChristianChurchRouteWithChildren
   '/center-grove/cart': typeof CenterGroveCartRoute
   '/center-grove/checkout-confirmation': typeof CenterGroveCheckoutConfirmationRoute
   '/center-grove/my-list': typeof CenterGroveMyListRoute
@@ -949,6 +964,7 @@ export interface FileRoutesByTo {
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRouteWithChildren
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
   '/cause/west-side-christian-church/cart': typeof CauseWestSideChristianChurchCartRoute
+  '/cause/west-side-christian-church/checkout-confirmation': typeof CauseWestSideChristianChurchCheckoutConfirmationRoute
   '/cause/west-side-christian-church/impact-stories': typeof CauseWestSideChristianChurchImpactStoriesRoute
   '/cause/west-side-christian-church/our-ministries': typeof CauseWestSideChristianChurchOurMinistriesRoute
   '/center-grove/events/$slug': typeof CenterGroveEventsSlugRoute
@@ -981,6 +997,7 @@ export interface FileRoutesByTo {
   '/butler/shop': typeof ButlerShopIndexRoute
   '/butler/sponsors': typeof ButlerSponsorsIndexRoute
   '/butler/teams': typeof ButlerTeamsIndexRoute
+  '/cause/west-side-christian-church': typeof CauseWestSideChristianChurchIndexRoute
   '/center-grove/events': typeof CenterGroveEventsIndexRoute
   '/center-grove/orgs': typeof CenterGroveOrgsIndexRoute
   '/center-grove/shop': typeof CenterGroveShopIndexRoute
@@ -1076,6 +1093,7 @@ export interface FileRoutesById {
   '/butler/sponsors/$slug': typeof ButlerSponsorsSlugRouteWithChildren
   '/butler/teams/$sport': typeof ButlerTeamsSportRouteWithChildren
   '/cause/west-side-christian-church/cart': typeof CauseWestSideChristianChurchCartRoute
+  '/cause/west-side-christian-church/checkout-confirmation': typeof CauseWestSideChristianChurchCheckoutConfirmationRoute
   '/cause/west-side-christian-church/impact-stories': typeof CauseWestSideChristianChurchImpactStoriesRoute
   '/cause/west-side-christian-church/our-ministries': typeof CauseWestSideChristianChurchOurMinistriesRoute
   '/center-grove/events/$slug': typeof CenterGroveEventsSlugRoute
@@ -1108,6 +1126,7 @@ export interface FileRoutesById {
   '/butler/shop/': typeof ButlerShopIndexRoute
   '/butler/sponsors/': typeof ButlerSponsorsIndexRoute
   '/butler/teams/': typeof ButlerTeamsIndexRoute
+  '/cause/west-side-christian-church/': typeof CauseWestSideChristianChurchIndexRoute
   '/center-grove/events/': typeof CenterGroveEventsIndexRoute
   '/center-grove/orgs/': typeof CenterGroveOrgsIndexRoute
   '/center-grove/shop/': typeof CenterGroveShopIndexRoute
@@ -1204,6 +1223,7 @@ export interface FileRouteTypes {
     | '/butler/sponsors/$slug'
     | '/butler/teams/$sport'
     | '/cause/west-side-christian-church/cart'
+    | '/cause/west-side-christian-church/checkout-confirmation'
     | '/cause/west-side-christian-church/impact-stories'
     | '/cause/west-side-christian-church/our-ministries'
     | '/center-grove/events/$slug'
@@ -1236,6 +1256,7 @@ export interface FileRouteTypes {
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
+    | '/cause/west-side-christian-church/'
     | '/center-grove/events/'
     | '/center-grove/orgs/'
     | '/center-grove/shop/'
@@ -1286,7 +1307,6 @@ export interface FileRouteTypes {
     | '/butler/checkout-confirmation'
     | '/butler/my-list'
     | '/butler/team-card'
-    | '/cause/west-side-christian-church'
     | '/center-grove/cart'
     | '/center-grove/checkout-confirmation'
     | '/center-grove/my-list'
@@ -1323,6 +1343,7 @@ export interface FileRouteTypes {
     | '/butler/sponsors/$slug'
     | '/butler/teams/$sport'
     | '/cause/west-side-christian-church/cart'
+    | '/cause/west-side-christian-church/checkout-confirmation'
     | '/cause/west-side-christian-church/impact-stories'
     | '/cause/west-side-christian-church/our-ministries'
     | '/center-grove/events/$slug'
@@ -1355,6 +1376,7 @@ export interface FileRouteTypes {
     | '/butler/shop'
     | '/butler/sponsors'
     | '/butler/teams'
+    | '/cause/west-side-christian-church'
     | '/center-grove/events'
     | '/center-grove/orgs'
     | '/center-grove/shop'
@@ -1449,6 +1471,7 @@ export interface FileRouteTypes {
     | '/butler/sponsors/$slug'
     | '/butler/teams/$sport'
     | '/cause/west-side-christian-church/cart'
+    | '/cause/west-side-christian-church/checkout-confirmation'
     | '/cause/west-side-christian-church/impact-stories'
     | '/cause/west-side-christian-church/our-ministries'
     | '/center-grove/events/$slug'
@@ -1481,6 +1504,7 @@ export interface FileRouteTypes {
     | '/butler/shop/'
     | '/butler/sponsors/'
     | '/butler/teams/'
+    | '/cause/west-side-christian-church/'
     | '/center-grove/events/'
     | '/center-grove/orgs/'
     | '/center-grove/shop/'
@@ -1952,6 +1976,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CenterGroveEventsIndexRouteImport
       parentRoute: typeof CenterGroveRoute
     }
+    '/cause/west-side-christian-church/': {
+      id: '/cause/west-side-christian-church/'
+      path: '/'
+      fullPath: '/cause/west-side-christian-church/'
+      preLoaderRoute: typeof CauseWestSideChristianChurchIndexRouteImport
+      parentRoute: typeof CauseWestSideChristianChurchRoute
+    }
     '/butler/teams/': {
       id: '/butler/teams/'
       path: '/teams'
@@ -2174,6 +2205,13 @@ declare module '@tanstack/react-router' {
       path: '/impact-stories'
       fullPath: '/cause/west-side-christian-church/impact-stories'
       preLoaderRoute: typeof CauseWestSideChristianChurchImpactStoriesRouteImport
+      parentRoute: typeof CauseWestSideChristianChurchRoute
+    }
+    '/cause/west-side-christian-church/checkout-confirmation': {
+      id: '/cause/west-side-christian-church/checkout-confirmation'
+      path: '/checkout-confirmation'
+      fullPath: '/cause/west-side-christian-church/checkout-confirmation'
+      preLoaderRoute: typeof CauseWestSideChristianChurchCheckoutConfirmationRouteImport
       parentRoute: typeof CauseWestSideChristianChurchRoute
     }
     '/cause/west-side-christian-church/cart': {
@@ -2797,8 +2835,10 @@ const ShamrocksRouteWithChildren = ShamrocksRoute._addFileChildren(
 
 interface CauseWestSideChristianChurchRouteChildren {
   CauseWestSideChristianChurchCartRoute: typeof CauseWestSideChristianChurchCartRoute
+  CauseWestSideChristianChurchCheckoutConfirmationRoute: typeof CauseWestSideChristianChurchCheckoutConfirmationRoute
   CauseWestSideChristianChurchImpactStoriesRoute: typeof CauseWestSideChristianChurchImpactStoriesRoute
   CauseWestSideChristianChurchOurMinistriesRoute: typeof CauseWestSideChristianChurchOurMinistriesRoute
+  CauseWestSideChristianChurchIndexRoute: typeof CauseWestSideChristianChurchIndexRoute
   CauseWestSideChristianChurchProductSlugRoute: typeof CauseWestSideChristianChurchProductSlugRoute
   CauseWestSideChristianChurchShopCategoryRoute: typeof CauseWestSideChristianChurchShopCategoryRoute
   CauseWestSideChristianChurchShopIndexRoute: typeof CauseWestSideChristianChurchShopIndexRoute
@@ -2809,10 +2849,14 @@ const CauseWestSideChristianChurchRouteChildren: CauseWestSideChristianChurchRou
   {
     CauseWestSideChristianChurchCartRoute:
       CauseWestSideChristianChurchCartRoute,
+    CauseWestSideChristianChurchCheckoutConfirmationRoute:
+      CauseWestSideChristianChurchCheckoutConfirmationRoute,
     CauseWestSideChristianChurchImpactStoriesRoute:
       CauseWestSideChristianChurchImpactStoriesRoute,
     CauseWestSideChristianChurchOurMinistriesRoute:
       CauseWestSideChristianChurchOurMinistriesRoute,
+    CauseWestSideChristianChurchIndexRoute:
+      CauseWestSideChristianChurchIndexRoute,
     CauseWestSideChristianChurchProductSlugRoute:
       CauseWestSideChristianChurchProductSlugRoute,
     CauseWestSideChristianChurchShopCategoryRoute:
