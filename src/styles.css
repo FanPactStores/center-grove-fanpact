@@ -171,6 +171,17 @@
   --gold-foreground: oklch(0.20 0.06 265);
 }
 
+[data-store="west-side-christian"] {
+  --brand: oklch(0.32 0.06 250);           /* West Side deep slate blue */
+  --brand-foreground: oklch(0.99 0 0);
+  --brand-accent: oklch(0.66 0.13 60);     /* warm amber */
+  --ink: oklch(0.22 0.04 250);
+  --surface: oklch(0.99 0.004 90);
+  --surface-2: oklch(0.965 0.012 85);
+  --gold: oklch(0.80 0.13 80);
+  --gold-foreground: oklch(0.22 0.04 250);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

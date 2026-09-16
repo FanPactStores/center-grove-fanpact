@@ -171,6 +171,10 @@ function shamrocksIndex(): StoreDesignationIndex {
   return flatten("shamrocks", "Springfield Shamrocks Community Baseball Fund", groups);
 }
 
+function westSideIndex(): StoreDesignationIndex {
+  return flatten("west-side-christian", "West Side Christian Church General Fund", []);
+}
+
 function causeIndex(): StoreDesignationIndex {
   return flatten(
     "cmn-st-johns",
@@ -212,6 +216,7 @@ export function getDesignationIndex(storeId: StoreId): StoreDesignationIndex {
     : storeId === "legacy" ? legacyIndex()
     : storeId === "cmn-st-johns" ? causeIndex()
     : storeId === "shamrocks" ? shamrocksIndex()
+    : storeId === "west-side-christian" ? westSideIndex()
     : assaIndex();
   indexCache[storeId] = built;
   return built;
@@ -225,6 +230,7 @@ export const DEFAULT_FUND_NAMES: Record<StoreId, string> = {
   assa: "All-Star Sports Academy Fund",
   "cmn-st-johns": "HSHS St. John's Children's Hospital Greatest Needs Fund",
   shamrocks: "Springfield Shamrocks Community Baseball Fund",
+  "west-side-christian": "West Side Christian Church General Fund",
 };
 
 export function defaultDesignation(storeId: StoreId): Designation {
