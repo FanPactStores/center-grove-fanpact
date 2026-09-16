@@ -154,4 +154,21 @@ export const CAUSE_PARTNERS: CausePartner[] = [
       { name: "Cincinnati Children's", slug: "cmn-cincinnati" },
     ],
   },
+  {
+    id: "churches-faith-communities",
+    name: "Churches & Faith Communities",
+    tier2Label: "Congregations",
+    region: "Illinois",
+    affiliates: [
+      {
+        name: "West Side Christian Church",
+        slug: "west-side-christian-church",
+        href: "/cause/west-side-christian-church",
+      },
+      { name: "Springfield First Church", slug: "springfield-first-church" },
+      { name: "Grace Community Church", slug: "grace-community-church" },
+      { name: "Hope Fellowship", slug: "hope-fellowship" },
+      { name: "Cornerstone Church", slug: "cornerstone-church" },
+    ],
+  },
 ];
