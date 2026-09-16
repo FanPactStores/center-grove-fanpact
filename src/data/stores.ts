@@ -1,5 +1,5 @@
-export type StoreId = "butler" | "missouri" | "center-grove" | "legacy" | "assa" | "cmn-st-johns" | "shamrocks";
-export type StoreBasePath = "/butler" | "/missouri" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns" | "/shamrocks";
+export type StoreId = "butler" | "missouri" | "center-grove" | "legacy" | "assa" | "cmn-st-johns" | "shamrocks" | "west-side-christian";
+export type StoreBasePath = "/butler" | "/missouri" | "/center-grove" | "/legacy" | "/assa" | "/cmn/st-johns" | "/shamrocks" | "/cause/west-side-christian-church";
 
 export type StoreConfig = {
   id: StoreId;
@@ -13,7 +13,16 @@ export type StoreConfig = {
   heroHeadline: string;
   heroBody: string;
   marks: { letter: string; word: string; subtitle?: string };
+  /**
+   * Cause partners with multiple named funds. When present the storefront shows
+   * a fund designation picker; when absent it uses single-beneficiary copy.
+   */
+  causeFunds?: Array<{ id: string; name: string; blurb?: string }>;
 };
+
+/** Standard copy for multi-fund cause partners. */
+export const CAUSE_FUND_COPY =
+  "Choose where your contribution goes. Your share of the 60% ecosystem allocation supports the fund you select.";
 
 export const STORES: Record<StoreId, StoreConfig> = {
   butler: {
@@ -113,5 +122,36 @@ export const STORES: Record<StoreId, StoreConfig> = {
     heroBody:
       "60% of net earnings on every purchase flows directly to the Springfield Shamrocks division or player you designate \u2014 no extra cost, no fundraising ask. Shop what your family already buys and fund the diamond.",
     marks: { letter: "S", word: "SHAMROCKS", subtitle: "Springfield, Illinois" },
+  },
+  "west-side-christian": {
+    id: "west-side-christian",
+    basePath: "/cause/west-side-christian-church",
+    name: "West Side Christian Church",
+    shortName: "West Side",
+    fundName: "West Side Christian Church General Fund",
+    fundDisplay: "West Side Christian Church",
+    tagline: "Shop the brands you already buy. Fund ministry in Springfield.",
+    heroEyebrow: "Churches & Faith Communities \u00d7 FanPact",
+    heroHeadline: "Shop & Support West Side Christian Church",
+    heroBody:
+      "Every purchase helps fund ministry, missions, and community impact right here in Springfield, Illinois.",
+    marks: { letter: "WS", word: "WEST SIDE", subtitle: "Springfield, Illinois" },
+    causeFunds: [
+      {
+        id: "kids-ministry-expansion",
+        name: "Kids Ministry Building Expansion",
+        blurb: "Expanding facilities to serve a growing congregation of families.",
+      },
+      {
+        id: "missions",
+        name: "Missions",
+        blurb: "Dozens of local and global mission partners.",
+      },
+      {
+        id: "general-fund",
+        name: "General Fund",
+        blurb: "Wherever the need is greatest across the church's ministries.",
+      },
+    ],
   },
 };
