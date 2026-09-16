@@ -1,63 +1,65 @@
-# Match the Butler store to staging.fanpact.net/butler
+# Churches & Faith Communities — West Side Christian Church
 
-## 1. New navigation system (`StoreHeader.tsx` + new `StoreSubnav.tsx` + new `CategoryStrip.tsx`)
+## 1. New cause category on the homepage
 
-Three stacked bands like staging:
+Add a second Tier 1 card to "Select Your Cause", matching the Children's Miracle Network card exactly:
 
-**Band 1 — white top bar**
-- Left: FanPact pennant icon + `BUTLER` wordmark in brand blue
-- Center: `Shop ▾` (dropdown of categories), `Rewards`, `Teams`, `Athletes`, `Sponsors`
-- Right: heart (wishlist), cart, account icons
+- Category: **Churches & Faith Communities** (region: Illinois)
+- Tier 2 label: **Congregations**
+- Entries: **West Side Christian Church** — live link to the new storefront, no "Soon" tag.
+  Plus four placeholder congregations (greyed, no link) so the card reads like the CMN one.
 
-**Band 2 — black sub-nav**
-- Tabs: `SHOP` (active), `TEAMS soon`, `ATHLETES soon`, `NIL IMPACT`, `NEWS & BLOGS soon`, `SPONSORS soon`
-- "soon" pills are muted/disabled
+## 2. New storefront at /cause/west-side-christian-church
 
-**Band 3 — black category strip**
-- Horizontal scroll of all 12 category links with hover underline in brand blue
+Built from the HSHS St. John's cause template — same header, footer, search row, category strip, shop, product pages, cart, sponsors — with West Side content.
 
-**Yellow disclaimer bar** under nav: "We donate 70% of net earnings from qualifying purchases to support Butler student-athletes. *(full disclaimer)*" with a dismiss `×`.
+Nav: SHOP / OUR MINISTRIES / IMPACT STORIES / SPONSORS
 
-## 2. Replace the category model
+Pages created:
+- Home
+- Shop (all categories + per-category)
+- Product detail
+- Cart (with fund picker, see below)
+- Checkout confirmation (shows chosen fund)
+- Our Ministries
+- Impact Stories
+- Sponsors (placeholder, same layout as other stores)
 
-The current "sports gear" catalog doesn't match staging's thesis ("buy your everyday products, athletes benefit"). Replace `CATEGORIES` in `src/data/categories.ts` with the 12 staging categories:
+Hero uses the exact supplied headline, subheadline, mechanic line, and micro-line. Hero image is a generated placeholder (warm community/gathering scene) with a visible note that final imagery is pending church approval — nothing pulled from wschurch.org or their Facebook page.
 
-```
-Electronics · Home & Living · Kitchen & Dining · Beauty & Personal Care ·
-Pet Supplies · Fitness & Outdoor · Auto Accessories · Tools & Home Improvement ·
-Office & School · Baby & Kids · Apparel · Toys & Games
-```
+## 3. Fund designation (three named funds)
 
-Each gets 3–4 subcategories and a brand-realistic blurb.
+Funds: **Kids Ministry Building Expansion**, **Missions**, **General Fund** (default).
 
-## 3. Replace the product catalog
+- A fund selector bar sits in the store header where other stores show their designation banner, and again in the cart before checkout.
+- Copy used in both places: "Choose where your contribution goes. Your share of the 60% ecosystem allocation supports the fund you select."
+- The choice is remembered on the shopper's device and carries through to the confirmation page.
 
-Rewrite `src/data/products.ts` with ~60 everyday-brand products distributed across the 12 categories (Apple AirPods, Sony headphones, Dyson vacuum, Ninja blender, Crest, Tide, Purina, Hydro Flask, Castrol, DeWalt, Crayola, Pampers, Nike, LEGO, etc.). Same `Product` shape (id, slug, brand, price, contribution, sku, inStock, highlights, specs) so the existing detail/category/cart pages keep working.
+## 4. Our Ministries page
 
-## 4. Fix product imagery
+No division/team/player picker. Content covers West Side Kids (birth–3rd grade), Junior High and Student Ministries (6th–12th), Young Adults, small groups, local and global mission partners, and the Kids Ministry facility expansion. Location: Springfield, Illinois.
 
-Pollinations is unreliable in preview (slow first-paint, no fallback). Switch `productImage()` to **Unsplash's hosted CDN** using curated photo IDs per product:
+## 5. Product catalog
 
-```ts
-imageId: "photo-1505740420928-5e560c06d30e"  // per product
-productImage(p, w) → `https://images.unsplash.com/${p.imageId}?w=${w}&q=80&auto=format&fit=crop`
-```
+Reuses the same shared dropship catalog and category set as every other storefront — no separate products.
 
-Each product gets a hand-picked Unsplash photo ID (no API key needed, served from Unsplash CDN, instant load, true high-res). I'll keep a `fallbackPrompt` field so we can regenerate later if needed.
+## 6. Reusable cause pattern
 
-## 5. Keep working
+Each cause partner is now marked as either single-fund or multi-fund:
 
-- All routes (`butler.shop.$category`, `butler.product.$slug`, `butler.cart`, sponsors, teams) keep their structure — only data + header change.
-- Team-routing data (`butler-teams.ts`) untouched.
-- All brand-blue accents stay token-driven so Center Grove will inherit gold automatically.
+- **Single fund** (St. John's): no picker, keeps the existing "100% of your contribution… undivided" line.
+- **Multiple funds** (West Side): shows the fund picker and the designation copy above.
 
-## 6. Center Grove
-
-Not touched in this pass. Once Butler matches staging and you sign off, I'll replicate to `/center-grove` with the gold palette and the youth four-level designation selector.
+This is driven off one field per store, so the next cause partner only needs its funds listed — no new components.
 
 ## Technical notes
-- New components: `StoreSubnav.tsx`, `CategoryStrip.tsx`, `DisclaimerBar.tsx`
-- `StoreHeader.tsx` rewritten (kept same export signature)
-- `categories.ts` `CategorySlug` union expanded → may produce type errors in any file that hard-codes the old slugs; I'll fix in same pass
-- `products.ts` fully rewritten; `FEATURED_PRODUCTS` slugs updated so the homepage "Everyday Essentials" row keeps rendering
-- `butler.cart.tsx` initial cart slugs updated to match new products
+
+- `src/data/stores.ts`: add `west-side-christian` store id + basePath `/cause/west-side-christian-church`; add optional `causeFunds?: { id: string; name: string; blurb?: string }[]` to `StoreConfig`.
+- `src/data/conferences.ts`: append the `churches-faith` entry to `CAUSE_PARTNERS`.
+- `src/styles.css`: `[data-store="west-side-christian"]` theme block (warm blue/amber).
+- `src/lib/designation.ts`: add `west-side-christian` to `DEFAULT_FUND_NAMES` and `getDesignationIndex` (empty groups, like the cause index) so shared components stay type-safe.
+- New `src/lib/cause-funds.ts`: localStorage-backed hook `useCauseFund(storeId)` reading `causeFunds` from the store config.
+- New `src/components/fanpact/CauseFundBar.tsx`: header fund selector; `CauseStoreChrome.tsx` renders it when `store.causeFunds` exists, otherwise keeps the current fixed-line / DesignationBanner behaviour.
+- `CauseStoreChrome.tsx`: add `NAV_BY_STORE["west-side-christian"]`.
+- Routes: `src/routes/cause.west-side-christian-church.tsx` (layout) plus `.index`, `.shop.index`, `.shop.$category`, `.product.$slug`, `.cart`, `.checkout-confirmation`, `.our-ministries`, `.impact-stories`, `.sponsors.index` — cloned from the `cmn.st-johns.*` equivalents with per-route `head()` metadata.
+- Hero art generated to `src/assets/west-side-hero.jpg`.
